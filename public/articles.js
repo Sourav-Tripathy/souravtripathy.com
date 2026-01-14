@@ -1,0 +1,22 @@
+const articles = [
+    { date: "2025-10-27T04:49:33", title: "What are Eigenvectors and Eigenvalues?", link: "https://siliconandsoul.substack.com/p/what-are-eigenvectors-and-eigenvalues", platform: "Substack" },
+    { date: "2025-09-14T03:46:18", title: "An Introduction to Knowledge Distillation in Neural Networks", link: "https://siliconandsoul.substack.com/p/an-introduction-to-knowledge-distillation", platform: "Substack" },
+    { date: "2025-08-01T15:38:47", title: "Understanding LoRA and QLoRA for LLM Fine-tuning", link: "https://siliconandsoul.substack.com/p/understanding-lora-and-qlora-for", platform: "Substack" },
+    { date: "2025-07-18T20:51:08", title: "The Seduction of Incompleteness", link: "https://siliconandsoul.substack.com/p/the-seduction-of-incompleteness", platform: "Substack" },
+    { date: "2025-06-28T15:36:10", title: "In a Subversion of Life", link: "https://siliconandsoul.substack.com/p/in-a-subversion-of-life", platform: "Substack" },
+    { date: "2025-05-17T11:58:56", title: "A Stillness That Holds You", link: "https://siliconandsoul.substack.com/p/a-stillness-that-holds-you", platform: "Substack" },
+    { date: "2025-04-27T12:56:40", title: "We Are All Prisms in Sunlight", link: "https://siliconandsoul.substack.com/p/we-are-all-prisms-in-sunlight", platform: "Substack" },
+    { date: "2025-03-30T10:12:09", title: "Of Circuits and Citrus", link: "https://siliconandsoul.substack.com/p/of-circuits-and-citrus", platform: "Substack" },
+    { date: "2025-03-22T06:35:45", title: "The Arithmetic of Theoretical Mornings", link: "https://siliconandsoul.substack.com/p/the-arithmetic-of-theoretical-mornings", platform: "Substack" },
+    { date: "2025-03-12T16:13:05", title: "The Calculus of Falling", link: "https://siliconandsoul.substack.com/p/the-calculus-of-falling", platform: "Substack" },
+    { date: "2025-03-11T04:39:39", title: "The Word Square Experiment", link: "https://siliconandsoul.substack.com/p/the-word-square-experiment", platform: "Substack" },
+    { date: "2025-02-16T03:46:38", title: "A Sugar Rush of Thoughts", link: "https://siliconandsoul.substack.com/p/a-sugar-rush-of-thoughts", platform: "Substack" },
+    { date: "2025-01-11T14:13:57", title: "To Be or Not to Be", link: "https://siliconandsoul.substack.com/p/to-be-or-not-to-be", platform: "Substack" },
+    { date: "2024-12-04T11:50:42", title: "Decoding Vectors, Matrices, and Transformations", link: "https://siliconandsoul.substack.com/p/decoding-vectors-matrices-and-transformations", platform: "Substack" },
+    { date: "2024-11-26T20:04:51", title: "A Philosophical Exploration of Existence", link: "https://siliconandsoul.substack.com/p/a-philosophical-exploration-of-existence-5619865884bb", platform: "Substack" },
+    { date: "2024-08-31T17:55:53", title: "The Power of Attention", link: "https://siliconandsoul.substack.com/p/the-power-of-attention", platform: "Substack" },
+    { date: "2024-07-28T11:01:27", title: "Vector Voodoo", link: "https://siliconandsoul.substack.com/p/vector-voodoo", platform: "Substack" },
+    { date: "2024-05-29T15:14:46", title: "Linear Regression", link: "https://siliconandsoul.substack.com/p/linear-regression", platform: "Substack" },
+    { date: "2024-05-26T05:07:06", title: "Kafka, Metamorphosis and Kafkaesque", link: "https://siliconandsoul.substack.com/p/kafka-metamorphosis-and-kafkaesque-ada21edbb78b", platform: "Substack" },
+    { date: "2023-08-20T15:11:08", title: "Kite .", link: "https://siliconandsoul.substack.com/p/kite-65bdb2a0f999", platform: "Substack" }
+];

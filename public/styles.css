@@ -1,0 +1,271 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Spectral:ital,wght@1,400&display=swap');
+/* For the subtitle */
+
+:root {
+    /* Warm Light Green Theme */
+    --bg: #e8f3e8;
+    /* Very pale green, like old paper */
+    --fg: #0d2618;
+    /* Darker for accessibility */
+    --dim: #4a6c56;
+    /* Muted green for secondary text */
+    --accent: #a37f5f;
+    /* Coffee/Earth tone */
+    --highlight: #2d6a45;
+    /* Brighter green for active states */
+
+    --font-mono: 'Space Mono', monospace;
+    --font-serif: 'Spectral', serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-mono);
+    line-height: 1.6;
+    font-size: 15px;
+}
+
+.container {
+    max-width: 860px;
+    /* Slight increase for the 2-column layout */
+    margin: 0 auto;
+    padding: 3rem 2rem;
+}
+
+/* New Header Layout */
+.site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 4rem;
+}
+
+.brand-name {
+    font-size: 1.8rem;
+    margin: 0;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+/* Tabs */
+.tabs {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    color: var(--dim);
+    /* Default state distinct but readable */
+    cursor: pointer;
+    padding: 5px 0;
+    position: relative;
+    transition: color 0.2s;
+}
+
+.tab-btn:hover {
+    color: var(--highlight);
+}
+
+.tab-btn.active {
+    color: var(--fg);
+    /* Active state darkest */
+    font-weight: 700;
+}
+
+/* Bio Grid Layout */
+.bio-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    align-items: center;
+}
+
+.subtitle {
+    font-family: var(--font-mono);
+    /* Matched to site font */
+    font-style: italic;
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-top: 0;
+    margin-bottom: 2rem;
+    color: var(--fg);
+}
+
+/* ASCII Mug Positioning */
+.ascii-art {
+    white-space: pre;
+    font-size: 14px;
+    /* Enlarged slightly */
+    transform: scale(1.3);
+    /* Further enlarged visually */
+    line-height: 1.2;
+    color: var(--accent);
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+}
+
+.bio-visual {
+    display: flex;
+    justify-content: center;
+    padding-top: 0;
+    margin-top: -1rem;
+    /* Pull it up slightly more to align with large subtitle */
+}
+
+/* Content Sections */
+.tab-content {
+    animation: fadein 0.3s ease;
+}
+
+.hidden {
+    display: none;
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Links */
+a {
+    color: var(--fg);
+    text-decoration: underline;
+    text-decoration-color: var(--dim);
+    text-underline-offset: 3px;
+}
+
+a:hover {
+    color: var(--highlight);
+    text-decoration-color: var(--highlight);
+    text-shadow: 0 0 5px rgba(45, 106, 69, 0.3);
+}
+
+/* Socials */
+.social-links {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* Centered in footer */
+}
+
+.social-links a {
+    text-decoration: none;
+    border-bottom: 1px dotted var(--dim);
+}
+
+.social-links a:hover {
+    border-bottom: 1px solid var(--highlight);
+}
+
+/* Blog List */
+.year-separator {
+    font-size: 1.2rem;
+    margin: 2.5rem 0 1rem 0;
+    color: var(--dim);
+    border-bottom: 1px dashed var(--dim);
+    padding-bottom: 0.5rem;
+    display: inline-block;
+}
+
+.article-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.8rem;
+}
+
+.article-title {
+    text-decoration: none;
+    border: none;
+    color: var(--accent);
+    /* distinct link color */
+}
+
+.article-title:hover {
+    color: var(--highlight);
+    text-shadow: 0 0 8px rgba(45, 106, 69, 0.5);
+    /* Glowing green effect */
+}
+
+.article-meta {
+    font-size: 0.85rem;
+    color: var(--dim);
+    min-width: 120px;
+    text-align: right;
+}
+
+/* Internet & You */
+.info-block {
+    margin-bottom: 2rem;
+    border-left: 3px solid var(--accent);
+    padding-left: 1rem;
+}
+
+.label {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--dim);
+    text-transform: uppercase;
+    margin-bottom: 0.25rem;
+}
+
+.value {
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.sub-info {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--dim);
+    font-style: italic;
+}
+
+footer {
+    margin-top: 5rem;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--dim);
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+    .site-header {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    .bio-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .bio-visual {
+        order: -1;
+        /* Move ascii art to top on mobile */
+        padding-top: 0;
+        margin-bottom: 2rem;
+    }
+}

@@ -1,78 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Sourav Tripathy</title>
-
-  <meta name="description" content="Personal site of Sourav Tripathy." />
-  <link rel="canonical" href="https://souravtripathy.com/" />
-
-  <style>
-    :root {
-      --bg: #0e0e11;
-      --fg: #e6e6eb;
-      --muted: #9a9aa2;
-      --accent: #6cf2c2;
-    }
-
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--fg);
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-      line-height: 1.6;
-    }
-
-    main {
-      max-width: 720px;
-      padding: 4rem 1.25rem;
-      margin: auto;
-    }
-
-    h1 {
-      font-size: 2.2rem;
-      margin-bottom: 0.5rem;
-    }
-
-    p {
-      color: var(--muted);
-      margin-top: 0.25rem;
-    }
-
-    .divider {
-      margin: 3rem 0;
-      height: 1px;
-      background: #222;
-    }
-
-    footer {
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Simple Coffee Mug SVG Favicon -->
+  <link rel="icon"
+    href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYTM3ZjVmIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggZD0iTTE4IDhoMWE0IDQgMCAwIDEgMCA4aC0xIi8+PHBhdGggZD0iTTIgOGgxNnY5YTQgNCAwIDAgMS00IDRINmE0IDQgMCAwIDEtNC00Vjh6Ii8+PGxpbmUgeDE9IjYiIHkxPSIxIiB4Mj0iNiIgeTI9IjQiLz48bGluZSB4MT0iMTAiIHkxPSIxIiB4Mj0iMTAiIHkyPSI0Ii8+PGxpbmUgeDE9IjE0IiB5MT0iMSIgeDI9IjE0IiB5Mj0iNCIvPjwvc3ZnPg==">
 </head>
 
 <body>
-  <main>
-    <h1>Sourav Tripathy</h1>
-    <p>Hello</p>
+  <div class="container">
 
-    <div class="divider"></div>
+    <header class="site-header">
+      <h1 class="brand-name">Sourav Tripathy</h1>
+      <nav class="tabs">
+        <button class="tab-btn active" data-tab="about">About</button>
+        <button class="tab-btn" data-tab="blog">Blog</button>
+        <button class="tab-btn" data-tab="status">Status</button>
+      </nav>
+    </header>
 
-    <p>
-      This page exists because for some apparent reasons that i have no clue.
-    </p>
+    <main>
+      <!-- About Section -->
+      <section id="about" class="tab-content active">
+
+        <div class="bio-grid">
+          <div class="bio-text">
+            <h2 class="subtitle">Developer / Absurdist</h2>
+
+            <p>Hello fellow earth being.</p>
+
+            <p>
+              Every moment we spend breathing is the outcome of roughly 14 billion years of evolution. Zoom out far
+              enough and
+              insignificance is unavoidable. But the fact that this process produced a human brain capable of asking
+              questions and trying to understand the universe is genuinely astonishing. Adding to that
+              somehow
+              matrix multiplication has led to mimicking intelligence and that fascinates me every single day.
+            </p>
+
+            <p>
+              I mostly read fiction and scientific philosophy. I drink a lot of coffee. When time allows, I watch
+              films. You can
+              find me on <a href="https://letterboxd.com/essenceX/" target="_blank">Letterboxd</a> and
+              <a href="https://www.goodreads.com/user/show/82254166-sourav-tripathy" target="_blank">Goodreads</a>.
+            </p>
+
+            <p>
+              I write occasionally: about concepts, passing thoughts, short stories, and poems. You’ll find those under
+              the
+              <a href="#" onclick="document.querySelector('[data-tab=blog]').click(); return false;">Blog</a> tab.
+            </p>
+
+            <p style="font-size: 0.9em; opacity: 0.8; margin-top: 1.5rem;">
+              <em>If you’re in India, I published a poetry collection called Raindrops to soul in 2022. It’s available
+                on <a href="https://www.amazon.in/Raindrops-Soul-journey-concealed-voices/dp/B09TWMLHTV"
+                  target="_blank">Amazon</a>.</em>
+            </p>
+
+            <div style="margin-top: 2rem; border-top: 1px dashed var(--dim); padding-top: 1rem;">
+              <p>
+                Professionally, I work as a Software Engineer (Machine Learning) at a startup. My <a href="cv.pdf"
+                  target="_blank">CV is linked here</a>.
+              </p>
+              <p>
+                If you want to reach out, email me at <a
+                  href="mailto:lipuntripathy74@gmail.com">lipuntripathy74@gmail.com</a>.
+              </p>
+            </div>
+          </div>
+
+          <div class="bio-visual">
+            <div class="ascii-art" id="ascii-mug"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Blog Section -->
+      <section id="blog" class="tab-content hidden">
+        <div id="articles-list">
+          <!-- Populated by JS -->
+        </div>
+      </section>
+
+      <!-- Status Section -->
+      <section id="status" class="tab-content hidden">
+        <div class="info-block">
+          <span class="label">Mars Coordinated Time</span>
+          <span class="value" id="mars-time">--:-- MTC</span>
+          <div id="mars-daylight" class="sub-info"></div>
+        </div>
+
+        <div class="info-block" style="margin-top: 2rem;">
+          <span class="label">Your IP Address</span>
+          <span class="value" id="ip-address">Loading...</span>
+          <div id="ip-info" class="sub-info">
+          </div>
+        </div>
+      </section>
+    </main>
 
     <footer>
+      <div class="social-links" style="margin-bottom: 2rem;">
+        <a href="mailto:lipuntripathy74@gmail.com" target="_blank">Email</a>
+        <a href="https://x.com/EssenceThinker" target="_blank">X (Twitter)</a>
+        <a href="https://www.linkedin.com/in/sourav-tripathy-astrophile/" target="_blank">LinkedIn</a>
+        <a href="https://github.com/Sourav-Tripathy" target="_blank">GitHub</a>
+        <a href="https://letterboxd.com/essenceX/" target="_blank">Letterboxd</a>
+        <a href="https://www.goodreads.com/user/show/82254166-sourav-tripathy" target="_blank">Goodreads</a>
+      </div>
       © <span id="year"></span> Sourav Tripathy
     </footer>
-  </main>
+  </div>
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+  <script src="articles.js"></script>
+  <script src="script.js"></script>
 </body>
+
 </html>
