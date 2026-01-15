@@ -205,17 +205,20 @@ async function initISSTracker() {
 
     // --- Logic ---
 
-    // 1. Get User Location (cached)
+    // 1. Get User Location (Aggressively cached)
     const cachedUserLoc = getCached(IP_CACHE_KEY, 3600 * 1000);
     if (cachedUserLoc) {
         currentUserPos = cachedUserLoc;
     } else {
         try {
-            const ipRes = await fetch('http://ip-api.com/json/');
+            // Switched to ipwho.is (HTTPS supported) to avoid Mixed Content blocking
+            const ipRes = await fetch('https://ipwho.is/');
             if (ipRes.ok) {
                 const ipData = await ipRes.json();
-                if (ipData.status === 'success') {
-                    currentUserPos = { lat: ipData.lat, lon: ipData.lon };
+                if (ipData.success) {
+                    currentUserPos = { lat: ipData.latitude, lon: ipData.longitude };
+                    // If your code uses userLoc elsewhere, keep it consistent, 
+                    // but here we use currentUserPos for global state.
                     setCached(IP_CACHE_KEY, currentUserPos);
                 }
             }
