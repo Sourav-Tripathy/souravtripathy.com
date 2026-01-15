@@ -211,19 +211,35 @@ async function initISSTracker() {
         currentUserPos = cachedUserLoc;
     } else {
         try {
-            // Switched to ipwho.is (HTTPS supported) to avoid Mixed Content blocking
+            // Primary: ipwho.is (HTTPS, No Key)
             const ipRes = await fetch('https://ipwho.is/');
             if (ipRes.ok) {
                 const ipData = await ipRes.json();
                 if (ipData.success) {
                     currentUserPos = { lat: ipData.latitude, lon: ipData.longitude };
-                    // If your code uses userLoc elsewhere, keep it consistent, 
-                    // but here we use currentUserPos for global state.
                     setCached(IP_CACHE_KEY, currentUserPos);
+                } else {
+                    console.warn("ipwho.is failed (success:false):", ipData.message);
+                    throw new Error("ipwho.is failed");
                 }
+            } else {
+                throw new Error("ipwho.is returned " + ipRes.status);
             }
         } catch (e) {
-            console.warn("Could not fetch user location:", e);
+            console.warn("Primary geo-limit reached or blocked. Trying fallback...", e);
+            try {
+                // Secondary: ipapi.co (HTTPS, Rate Limit: 1000/day)
+                const res2 = await fetch('https://ipapi.co/json/');
+                if (res2.ok) {
+                    const data2 = await res2.json();
+                    if (data2.latitude && data2.longitude) {
+                        currentUserPos = { lat: data2.latitude, lon: data2.longitude };
+                        setCached(IP_CACHE_KEY, currentUserPos);
+                    }
+                }
+            } catch (e2) {
+                console.warn("All geolocation fallbacks failed:", e2);
+            }
         }
     }
 
