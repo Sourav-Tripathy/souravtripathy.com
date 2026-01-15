@@ -19,6 +19,7 @@
       <nav class="tabs">
         <button class="tab-btn active" data-tab="about">About</button>
         <button class="tab-btn" data-tab="blog">Blog</button>
+        <button class="tab-btn" data-tab="projects">Projects</button>
         <button class="tab-btn" data-tab="status">Status</button>
       </nav>
     </header>
@@ -63,7 +64,7 @@
 
             <div style="margin-top: 2rem; border-top: 1px dashed var(--dim); padding-top: 1rem;">
               <p>
-                Professionally, I work as a Software Engineer (Machine Learning) at a startup. My <a href="cv.pdf"
+                Professionally, I work as a Machine Learning Engineer at a startup. My <a href="cv.pdf"
                   target="_blank">CV is linked here</a>.
               </p>
               <p>
@@ -82,22 +83,60 @@
       <!-- Blog Section -->
       <section id="blog" class="tab-content hidden">
         <div id="articles-list">
-          <!-- Populated by JS -->
+
+        </div>
+      </section>
+
+      <!-- Projects Section -->
+      <section id="projects" class="tab-content hidden">
+        <div class="info-block" style="border-left-color: var(--highlight);">
+          <span class="label">Knowledge Management</span>
+          <span class="value"><a href="https://cognitia.club" target="_blank"
+              style="text-decoration: none; color: inherit;">Cognitia</a></span>
+          <div class="sub-info" style="margin-top: 0.5rem; font-style: normal;">
+            <p style="margin: 0;">
+              A knowledge garden for internet readings where one can share and track all reading with other people
+              inside it.
+            </p>
+            <p style="margin-top: 0.5rem; color: var(--accent); font-size: 0.85rem;">
+              (Currently in dev version) — <a href="https://cognitia.club" target="_blank">cognitia.club</a>
+            </p>
+          </div>
         </div>
       </section>
 
       <!-- Status Section -->
       <section id="status" class="tab-content hidden">
-        <div class="info-block">
-          <span class="label">Mars Coordinated Time</span>
-          <span class="value" id="mars-time">--:-- MTC</span>
-          <div id="mars-daylight" class="sub-info"></div>
-        </div>
+        <div class="status-grid">
+          <div class="status-info">
+            <div class="info-block">
+              <span class="label">Mars Coordinated Time</span>
+              <span class="value" id="mars-time">--:-- MTC</span>
+              <div id="mars-daylight" class="sub-info"></div>
+            </div>
 
-        <div class="info-block" style="margin-top: 2rem;">
-          <span class="label">Your IP Address</span>
-          <span class="value" id="ip-address">Loading...</span>
-          <div id="ip-info" class="sub-info">
+            <div class="info-block" style="margin-top: 2rem;">
+              <span class="label">Your IP Address</span>
+              <span class="value" id="ip-address">Loading...</span>
+              <div id="ip-info" class="sub-info">
+              </div>
+            </div>
+
+            <div class="info-block" style="margin-top: 2rem;">
+              <span class="label">International Space Station (ISS)</span>
+              <span class="value" id="iss-distance">Scanning sky...</span>
+              <div id="iss-detail" class="sub-info"></div>
+              <div style="font-size: 0.75rem; color: var(--dim); margin-top: 0.5rem; opacity: 0.8;">
+                Calculated using Haversine formula from your IP geolocation to ISS location.
+              </div>
+            </div>
+          </div>
+
+          <div class="status-visual">
+            <div id="globe-container"
+              style="display: flex; justify-content: center; align-items: center; width: 100%; height: 400px; position:relative;">
+              <div id="globe-canvas-container" style="width: 100%; height: 100%;"></div>
+            </div>
           </div>
         </div>
       </section>
@@ -118,6 +157,16 @@
 
   <script src="articles.js"></script>
   <script src="script.js"></script>
+  <script src="globe.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        if (window.initModernGlobe) {
+          initModernGlobe('globe-canvas-container');
+        }
+      }, 100);
+    });
+  </script>
 </body>
 
 </html>

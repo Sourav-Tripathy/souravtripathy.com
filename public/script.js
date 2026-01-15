@@ -163,12 +163,160 @@ function startCoffeeAnimation() {
 }
 
 
+// 6. ISS Tracker
+let currentIssPos = { lat: 0, lon: 0 };
+let currentUserPos = null;
+
+async function initISSTracker() {
+    const distEl = document.getElementById('iss-distance');
+    const detailEl = document.getElementById('iss-detail');
+    if (!distEl) return;
+
+    // --- Configuration ---
+    const RATE_LIMIT_WINDOW = 2000; // Minimum time between API calls in ms (conservatively 2s)
+    const POLL_INTERVAL = 5000;     // Auto-refresh every 5 seconds
+    const IP_CACHE_KEY = 'user_geo_cache_v1';
+    const ISS_CACHE_KEY = 'iss_pos_cache_v1';
+
+    // --- State ---
+    let isRequestPending = false;
+
+    // --- Helpers ---
+    function getCached(key, ttlMs) {
+        try {
+            const raw = localStorage.getItem(key);
+            if (!raw) return null;
+            const data = JSON.parse(raw);
+            if (Date.now() - data.timestamp < ttlMs) {
+                return data.payload;
+            }
+        } catch (e) { console.error("Cache read error", e); }
+        return null;
+    }
+
+    function setCached(key, payload) {
+        try {
+            localStorage.setItem(key, JSON.stringify({
+                timestamp: Date.now(),
+                payload: payload
+            }));
+        } catch (e) { console.error("Cache write error", e); }
+    }
+
+    // --- Logic ---
+
+    // 1. Get User Location (cached)
+    const cachedUserLoc = getCached(IP_CACHE_KEY, 3600 * 1000);
+    if (cachedUserLoc) {
+        currentUserPos = cachedUserLoc;
+    } else {
+        try {
+            const ipRes = await fetch('http://ip-api.com/json/');
+            if (ipRes.ok) {
+                const ipData = await ipRes.json();
+                if (ipData.status === 'success') {
+                    currentUserPos = { lat: ipData.lat, lon: ipData.lon };
+                    setCached(IP_CACHE_KEY, currentUserPos);
+                }
+            }
+        } catch (e) {
+            console.warn("Could not fetch user location:", e);
+        }
+    }
+
+    // 2. ISS Fetch & Update Function
+    async function updateISS() {
+        if (isRequestPending) return;
+
+        const cachedIss = getCached(ISS_CACHE_KEY, RATE_LIMIT_WINDOW);
+        if (cachedIss) {
+            currentIssPos = cachedIss;
+            renderISS(cachedIss.lat, cachedIss.lon, false);
+
+            if (window.updateGlobeData) {
+                window.updateGlobeData(currentIssPos, currentUserPos);
+            }
+            return;
+        }
+
+        isRequestPending = true;
+        try {
+            const issRes = await fetch('https://api.wheretheiss.at/v1/satellites/25544');
+
+            if (issRes.status === 429) throw new Error("Rate limit exceeded");
+
+            const remaining = issRes.headers.get('X-Rl');
+            if (remaining && parseInt(remaining) === 0) console.warn("ISS API Throttled");
+
+            if (!issRes.ok) throw new Error("ISS API failed");
+
+            const issData = await issRes.json();
+            const issLat = issData.latitude;
+            const issLon = issData.longitude;
+
+            // Save to cache
+            currentIssPos = { lat: issLat, lon: issLon };
+            setCached(ISS_CACHE_KEY, currentIssPos);
+
+            renderISS(issLat, issLon, true);
+
+            // Update 3D Globe
+            if (window.updateGlobeData) {
+                window.updateGlobeData(currentIssPos, currentUserPos);
+            }
+
+        } catch (e) {
+            console.error("ISS Update Error:", e);
+            const staleIss = getCached(ISS_CACHE_KEY, 60000);
+            if (staleIss) {
+                currentIssPos = staleIss;
+                distEl.innerText = "Connection Weak...";
+                renderISS(staleIss.lat, staleIss.lon, false);
+            } else {
+                distEl.innerText = "Signal Lost";
+                detailEl.innerText = "Unable to contact station.";
+            }
+        } finally {
+            isRequestPending = false;
+        }
+    }
+
+    // 3. Render Function
+    function renderISS(issLat, issLon, isLive) {
+        const coordText = `ISS at Lat: ${issLat.toFixed(2)}, Lon: ${issLon.toFixed(2)}`;
+
+        if (currentUserPos) {
+            const R = 6371; // km
+            const dLat = (issLat - currentUserPos.lat) * Math.PI / 180;
+            const dLon = (issLon - currentUserPos.lon) * Math.PI / 180;
+            const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.cos(currentUserPos.lat * Math.PI / 180) * Math.cos(issLat * Math.PI / 180) *
+                Math.sin(dLon / 2) * Math.sin(dLon / 2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            const d = R * c;
+
+            distEl.innerText = `${Math.round(d).toLocaleString()} km away`;
+            detailEl.innerText = coordText;
+        } else {
+            distEl.innerText = `Lat: ${issLat.toFixed(2)}, Lon: ${issLon.toFixed(2)}`;
+            detailEl.innerText = "Distance unavailable (User location unknown).";
+        }
+    }
+
+    // Initial call
+    updateISS();
+    setInterval(updateISS, POLL_INTERVAL);
+}
+
+
 // Init
 document.addEventListener('DOMContentLoaded', () => {
     initTabs();
     renderArticles();
     startCoffeeAnimation();
     initIpMagic();
+    initISSTracker();
+    // Globe initialized within ISSTracker or separate interaction
 
     // Update Mars time every second
     setInterval(updateMarsTime, 1000);

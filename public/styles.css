@@ -268,4 +268,27 @@ footer {
         padding-top: 0;
         margin-bottom: 2rem;
     }
+
+    .status-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .status-visual {
+        order: -1;
+        margin-bottom: 2rem;
+    }
+}
+
+/* Status Grid */
+.status-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+.status-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
