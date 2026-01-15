@@ -238,7 +238,19 @@ async function initISSTracker() {
                     }
                 }
             } catch (e2) {
-                console.warn("All geolocation fallbacks failed:", e2);
+                console.warn("All IP geolocations failed. Trying browser API...", e2);
+                // Final Fallback: Browser Geolocation (Permission Required)
+                if ("geolocation" in navigator) {
+                    navigator.geolocation.getCurrentPosition(
+                        (pos) => {
+                            currentUserPos = { lat: pos.coords.latitude, lon: pos.coords.longitude };
+                            setCached(IP_CACHE_KEY, currentUserPos);
+                        },
+                        (err) => {
+                            console.warn("Browser geolocation denied/failed:", err);
+                        }
+                    );
+                }
             }
         }
     }
