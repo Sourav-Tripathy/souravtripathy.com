@@ -1,4 +1,5 @@
 const articles = [
+    { date: "2026-01-18T15:02:43", title: "Continual learning, memory and context problem (An analysis and chain of thought)", link: "https://siliconandsoul.substack.com/p/continual-learningmemory-and-context", platform: "Substack" },
     { date: "2025-10-27T04:49:33", title: "What are Eigenvectors and Eigenvalues?", link: "https://siliconandsoul.substack.com/p/what-are-eigenvectors-and-eigenvalues", platform: "Substack" },
     { date: "2025-09-14T03:46:18", title: "An Introduction to Knowledge Distillation in Neural Networks", link: "https://siliconandsoul.substack.com/p/an-introduction-to-knowledge-distillation", platform: "Substack" },
     { date: "2025-08-01T15:38:47", title: "Understanding LoRA and QLoRA for LLM Fine-tuning", link: "https://siliconandsoul.substack.com/p/understanding-lora-and-qlora-for", platform: "Substack" },
