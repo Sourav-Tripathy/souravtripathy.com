@@ -329,7 +329,18 @@ async function initISSTracker() {
 function renderNowPage() {
     const container = document.getElementById('now-container');
     const data = window.nowData;
-    if (!container || !data) return;
+
+    console.log("Render Now Page Triggered");
+    console.log("Container:", container);
+    console.log("Data:", data);
+
+    if (!container) return;
+
+    if (!data) {
+        console.warn("window.nowData is missing");
+        container.innerHTML = '<div class="info-block"><span class="value" style="font-size: 1rem; color: var(--dim);">Unable to load content (Data missing). Please try a hard refresh.</span></div>';
+        return;
+    }
 
     // Clear container
     container.innerHTML = '';

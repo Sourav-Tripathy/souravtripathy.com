@@ -20,3 +20,5 @@ window.nowData = {
         }
     ]
 };
+
+console.log("Now Data Loaded", window.nowData);
