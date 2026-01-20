@@ -1,4 +1,4 @@
-const nowData = {
+window.nowData = {
     reading: [
         {
             title: "The Vegetarian",

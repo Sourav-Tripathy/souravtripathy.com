@@ -328,7 +328,8 @@ async function initISSTracker() {
 // 7. Render Now Page
 function renderNowPage() {
     const container = document.getElementById('now-container');
-    if (!container || typeof nowData === 'undefined') return;
+    const data = window.nowData;
+    if (!container || !data) return;
 
     // Clear container
     container.innerHTML = '';
@@ -336,7 +337,7 @@ function renderNowPage() {
     let delay = 0;
 
     // Render Reading Section
-    if (nowData.reading && nowData.reading.length > 0) {
+    if (data.reading && data.reading.length > 0) {
         const block = document.createElement('div');
         block.className = 'info-block fade-in-item';
         block.style.borderLeftColor = 'var(--highlight)'; // Greenish for reading
@@ -348,7 +349,7 @@ function renderNowPage() {
         label.innerText = 'Reading';
         block.appendChild(label);
 
-        nowData.reading.forEach(book => {
+        data.reading.forEach(book => {
             const value = document.createElement('div');
             value.className = 'value';
             value.style.fontSize = '1.1rem';
@@ -365,7 +366,7 @@ function renderNowPage() {
     }
 
     // Render Listening Section
-    if (nowData.listening && nowData.listening.length > 0) {
+    if (data.listening && data.listening.length > 0) {
         const block = document.createElement('div');
         block.className = 'info-block fade-in-item';
         block.style.borderLeftColor = 'var(--accent)'; // Brownish for assignments/music
@@ -377,7 +378,7 @@ function renderNowPage() {
         label.innerText = 'Listening To';
         block.appendChild(label);
 
-        nowData.listening.forEach(song => {
+        data.listening.forEach(song => {
             const value = document.createElement('div');
             value.className = 'value';
             value.style.fontSize = '1.1rem';
