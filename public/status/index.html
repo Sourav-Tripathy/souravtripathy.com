@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sourav Tripathy | Status</title>
+    <link rel="stylesheet" href="../styles.css">
+    <!-- Simple Coffee Mug SVG Favicon -->
+    <link rel="icon"
+        href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYTM3ZjVmIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggZD0iTTE4IDhoMWE0IDQgMCAwIDEgMCA4aC0xIi8+PHBhdGggZD0iTTIgOGgxNnY5YTQgNCAwIDAgMS00IDRINmE0IDQgMCAwIDEtNC00Vjh6Ii8+PGxpbmUgeDE9IjYiIHkxPSIxIiB4Mj0iNiIgeTI9IjQiLz48bGluZSB4MT0iMTAiIHkxPSIxIiB4Mj0iMTAiIHkyPSI0Ii8+PGxpbmUgeDE9IjE0IiB5MT0iMSIgeDI9IjE0IiB5Mj0iNCIvPjwvc3ZnPg==">
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- COMMON HEADER START -->
+        <header class="site-header">
+            <h1 class="brand-name">Sourav Tripathy</h1>
+            <nav class="tabs">
+                <a href="/" class="tab-btn">About</a>
+                <a href="/blog/" class="tab-btn">Blog</a>
+                <a href="/projects/" class="tab-btn">Projects</a>
+                <a href="/now/" class="tab-btn">Now</a>
+                <a href="/status/" class="tab-btn active">Status</a>
+            </nav>
+        </header>
+        <!-- COMMON HEADER END -->
+
+        <main>
+            <!-- Status Section -->
+            <section id="status" class="tab-content">
+                <div class="status-grid">
+                    <div class="status-info">
+                        <div class="info-block">
+                            <span class="label">Mars Coordinated Time</span>
+                            <span class="value" id="mars-time">--:-- MTC</span>
+                            <div id="mars-daylight" class="sub-info"></div>
+                        </div>
+
+                        <div class="info-block" style="margin-top: 2rem;">
+                            <span class="label">Your IP Address</span>
+                            <span class="value" id="ip-address">Loading...</span>
+                            <div id="ip-info" class="sub-info">
+                            </div>
+                        </div>
+
+                        <div class="info-block" style="margin-top: 2rem;">
+                            <span class="label">International Space Station (ISS)</span>
+                            <span class="value" id="iss-distance">Scanning sky...</span>
+                            <div id="iss-detail" class="sub-info"></div>
+                            <div style="font-size: 0.75rem; color: var(--dim); margin-top: 0.5rem; opacity: 0.8;">
+                                Calculated using Haversine formula from your IP geolocation to ISS location.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="status-visual">
+                        <div id="globe-container" class="smooth-fade-in"
+                            style="display: flex; justify-content: center; align-items: center; width: 100%; height: 400px; position:relative;">
+                            <div id="globe-canvas-container" style="width: 100%; height: 100%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- COMMON FOOTER START -->
+        <footer>
+            <div class="social-links" style="margin-bottom: 2rem;">
+                <a href="mailto:lipuntripathy74@gmail.com" target="_blank">Email</a>
+                <a href="https://x.com/EssenceThinker" target="_blank">X (Twitter)</a>
+                <a href="https://www.linkedin.com/in/sourav-tripathy-astrophile/" target="_blank">LinkedIn</a>
+                <a href="https://github.com/Sourav-Tripathy" target="_blank">GitHub</a>
+                <a href="https://letterboxd.com/essenceX/" target="_blank">Letterboxd</a>
+                <a href="https://www.goodreads.com/user/show/82254166-sourav-tripathy" target="_blank">Goodreads</a>
+            </div>
+            © <span id="year"></span> Sourav Tripathy
+        </footer>
+        <!-- COMMON FOOTER END -->
+    </div>
+
+    <script src="../blog/articles.js"></script>
+    <script src="../script.js"></script>
+    <script src="../globe.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                if (window.initModernGlobe) {
+                    initModernGlobe('globe-canvas-container');
+
+                    // Smoothly reveal the globe after a brief moment to ensure first frame is drawn
+                    requestAnimationFrame(() => {
+                        requestAnimationFrame(() => {
+                            const globe = document.getElementById('globe-container');
+                            if (globe) globe.classList.add('visible');
+                        });
+                    });
+                }
+            }, 100);
+        });
+    </script>
+</body>
+
+</html>

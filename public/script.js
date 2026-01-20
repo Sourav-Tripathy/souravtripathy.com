@@ -1,31 +1,11 @@
-// 1. Tab Logic
-function initTabs() {
-    const buttons = document.querySelectorAll('.tab-btn');
-    const contents = document.querySelectorAll('.tab-content');
-
-    buttons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            // Deactivate all
-            buttons.forEach(b => b.classList.remove('active'));
-            contents.forEach(c => c.classList.add('hidden'));
-            contents.forEach(c => c.classList.remove('active'));
-
-            // Activate target
-            btn.classList.add('active');
-            const targetId = btn.getAttribute('data-tab');
-            const targetContent = document.getElementById(targetId);
-
-            // Check if content exists before removing hidden class
-            if (targetContent) {
-                targetContent.classList.remove('hidden');
-                targetContent.classList.add('active');
-            }
-        });
-    });
-}
+// 1. Navigation Logic
+// Since we are using multi-page, we just ensure the current page's link is active
+// This is handled via HTML classes, but we could enforce it here if needed.
+// For now, no client-side routing logic is required.
 
 // 2. Blog Rendering
 function renderArticles() {
+    // Only run if the articles-list element exists
     const list = document.getElementById('articles-list');
     if (!list) return;
 
@@ -33,19 +13,26 @@ function renderArticles() {
     articles.sort((a, b) => new Date(b.date) - new Date(a.date));
 
     let currentYear = null;
+    // Stagger delay counter
+    let delay = 0;
 
     articles.forEach(art => {
         const artYear = art.date.split('-')[0];
         if (artYear !== currentYear) {
             currentYear = artYear;
             const yearHeader = document.createElement('div');
-            yearHeader.className = 'year-separator';
+            yearHeader.className = 'year-separator fade-in-item';
+            yearHeader.style.animationDelay = `${delay}ms`;
             yearHeader.innerText = currentYear;
             list.appendChild(yearHeader);
+            delay += 50;
         }
 
         const item = document.createElement('div');
-        item.className = 'article-item';
+        item.className = 'article-item fade-in-item';
+        item.style.animationDelay = `${delay}ms`;
+        delay += 50; // Increment delay for next item
+
         // Date formatting: "Jan 12"
         const dateObj = new Date(art.date);
         const dateStr = dateObj.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
@@ -57,7 +44,6 @@ function renderArticles() {
         list.appendChild(item);
     });
 }
-
 // 3. Mars Time
 function updateMarsTime() {
     const d = (new Date() - new Date('2000-01-06T00:00:00Z')) / 86400000;
@@ -82,7 +68,7 @@ function updateMarsTime() {
     }
 }
 
-// 4. IP Number Theory Magic
+// 4. IP Number Theory 
 async function initIpMagic() {
     const ipEl = document.getElementById('ip-address');
     const theoryEl = document.getElementById('ip-info');
@@ -94,7 +80,7 @@ async function initIpMagic() {
         const ip = data.ip;
         ipEl.innerText = ip;
 
-        // Perform magic
+        // Perform 
         // 1. Sum of octets (IPv4)
         if (ip.includes('.')) {
             const parts = ip.split('.').map(Number);
@@ -339,11 +325,80 @@ async function initISSTracker() {
     setInterval(updateISS, POLL_INTERVAL);
 }
 
+// 7. Render Now Page
+function renderNowPage() {
+    const container = document.getElementById('now-container');
+    if (!container || typeof nowData === 'undefined') return;
+
+    // Clear container
+    container.innerHTML = '';
+
+    let delay = 0;
+
+    // Render Reading Section
+    if (nowData.reading && nowData.reading.length > 0) {
+        const block = document.createElement('div');
+        block.className = 'info-block fade-in-item';
+        block.style.borderLeftColor = 'var(--highlight)'; // Greenish for reading
+        block.style.animationDelay = `${delay}ms`;
+        delay += 100;
+
+        const label = document.createElement('span');
+        label.className = 'label';
+        label.innerText = 'Reading';
+        block.appendChild(label);
+
+        nowData.reading.forEach(book => {
+            const value = document.createElement('div');
+            value.className = 'value';
+            value.style.fontSize = '1.1rem';
+            value.style.marginBottom = '0.5rem';
+            value.style.fontWeight = 'normal';
+
+            value.innerHTML = `
+                <a href="${book.titleLink}" target="_blank" class="article-title" style="font-style: italic;">${book.title}</a>
+                <span style="font-size: 0.9em; opacity: 0.8;"> by <a href="${book.authorLink}" target="_blank" class="article-title">${book.author}</a></span>
+            `;
+            block.appendChild(value);
+        });
+        container.appendChild(block);
+    }
+
+    // Render Listening Section
+    if (nowData.listening && nowData.listening.length > 0) {
+        const block = document.createElement('div');
+        block.className = 'info-block fade-in-item';
+        block.style.borderLeftColor = 'var(--accent)'; // Brownish for assignments/music
+        block.style.animationDelay = `${delay}ms`;
+        delay += 100;
+
+        const label = document.createElement('span');
+        label.className = 'label';
+        label.innerText = 'Listening To';
+        block.appendChild(label);
+
+        nowData.listening.forEach(song => {
+            const value = document.createElement('div');
+            value.className = 'value';
+            value.style.fontSize = '1.1rem';
+            value.style.marginBottom = '0.5rem';
+            value.style.fontWeight = 'normal';
+
+            value.innerHTML = `
+                <a href="${song.link}" target="_blank" class="article-title">${song.title}</a>
+            `;
+            block.appendChild(value);
+        });
+        container.appendChild(block);
+    }
+}
+
 
 // Init
 document.addEventListener('DOMContentLoaded', () => {
-    initTabs();
+    // initTabs(); // Logic moved to MPA structure
     renderArticles();
+    renderNowPage();
     startCoffeeAnimation();
     initIpMagic();
     initISSTracker();
