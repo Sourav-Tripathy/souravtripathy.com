@@ -5,12 +5,6 @@ window.nowData = {
             titleLink: "https://www.goodreads.com/book/show/25489025-the-vegetarian",
             author: "Han Kang",
             authorLink: "https://en.wikipedia.org/wiki/Han_Kang"
-        },
-        {
-            title: "The Life of a Stupid Man",
-            titleLink: "https://www.goodreads.com/book/show/24874322-the-life-of-a-stupid-man",
-            author: "Ryūnosuke Akutagawa",
-            authorLink: "https://en.wikipedia.org/wiki/Ry%C5%ABnosuke_Akutagawa"
         }
     ],
     listening: [
