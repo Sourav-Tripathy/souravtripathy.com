@@ -5,6 +5,12 @@ window.nowData = {
             titleLink: "https://www.goodreads.com/book/show/25489025-the-vegetarian",
             author: "Han Kang",
             authorLink: "https://en.wikipedia.org/wiki/Han_Kang"
+        },
+        {
+            title: "Physics and Philosophy",
+            titleLink: "https://www.goodreads.com/book/show/111185.Physics_and_Philosophy",
+            author: "Werner Heisenberg",
+            authorLink: "https://en.wikipedia.org/wiki/Werner_Heisenberg"
         }
     ],
     listening: [
