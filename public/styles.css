@@ -264,6 +264,13 @@ footer {
         gap: 1.5rem;
     }
 
+    .tabs {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+        row-gap: 0.5rem;
+    }
+
     .bio-grid {
         grid-template-columns: 1fr;
     }
