@@ -38,8 +38,8 @@ body {
 }
 
 .container {
-    max-width: 860px;
-    /* Slight increase for the 2-column layout */
+    max-width: 960px;
+    /* Increased for better header spacing with more tabs */
     margin: 0 auto;
     padding: 3rem 2rem;
 }
@@ -62,14 +62,14 @@ body {
 /* Tabs */
 .tabs {
     display: flex;
-    gap: 1.5rem;
+    gap: 1.2rem;
 }
 
 .tab-btn {
     background: none;
     border: none;
     font-family: var(--font-mono);
-    font-size: 1rem;
+    font-size: 0.95rem;
     color: var(--dim);
     /* Default state distinct but readable */
     cursor: pointer;
@@ -224,26 +224,26 @@ a:hover {
 
 /* Internet & You */
 .info-block {
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     border-left: 3px solid var(--accent);
     padding-left: 1rem;
 }
 
 .label {
     display: block;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: var(--dim);
     text-transform: uppercase;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.2rem;
 }
 
 .value {
-    font-size: 1.4rem;
+    font-size: 1.25rem;
     font-weight: 700;
 }
 
 .sub-info {
-    margin-top: 0.5rem;
+    margin-top: 0.25rem;
     font-size: 0.9rem;
     color: var(--dim);
     font-style: italic;

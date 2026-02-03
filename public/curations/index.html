@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sourav Tripathy | Curations</title>
+    <link rel="stylesheet" href="../styles.css">
+    <!-- Simple Coffee Mug SVG Favicon -->
+    <link rel="icon"
+        href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYTM3ZjVmIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggZD0iTTE4IDhoMWE0IDQgMCAwIDEgMCA4aC0xIi8+PHBhdGggZD0iTTIgOGgxNnY5YTQgNCAwIDAgMS00IDRINmE0IDQgMCAwIDEtNC00Vjh6Ii8+PGxpbmUgeDE9IjYiIHkxPSIxIiB4Mj0iNiIgeTI9IjQiLz48bGluZSB4MT0iMTAiIHkxPSIxIiB4Mj0iMTAiIHkyPSI0Ii8+PGxpbmUgeDE9IjE0IiB5MT0iMSIgeDI9IjE0IiB5Mj0iNCIvPjwvc3ZnPg==">
+    <link rel="prefetch" href="../globe.js" as="script">
+    <style>
+        .curation-section {
+            margin-bottom: 2rem;
+            scroll-margin-top: 6rem;
+            /* Ensures header doesn't cover section when linking */
+        }
+
+
+        .curation-header {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--fg);
+            border-bottom: 1px dashed var(--dim);
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .book-item,
+        .article-item-curation {
+            margin-bottom: 1rem;
+            padding-left: 1rem;
+            border-left: 2px solid var(--dim);
+            transition: border-color 0.2s;
+        }
+
+        .book-item:hover,
+        .article-item-curation:hover {
+            border-left-color: var(--highlight);
+        }
+
+        .item-title {
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .item-author {
+            font-size: 0.85rem;
+            color: var(--dim);
+            font-style: italic;
+        }
+
+        .item-note {
+            margin-top: 0.25rem;
+            font-size: 0.9rem;
+            color: var(--fg);
+            line-height: 1.4;
+        }
+
+        /* Enforce accent color for all links in main content */
+        main a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        main a:hover {
+            color: var(--highlight);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- COMMON HEADER START -->
+        <header class="site-header">
+            <h1 class="brand-name">Sourav Tripathy</h1>
+            <nav class="tabs">
+                <a href="/" class="tab-btn">About</a>
+                <a href="/blog/" class="tab-btn">Blog</a>
+                <a href="/projects/" class="tab-btn">Projects</a>
+                <a href="/curations/" class="tab-btn active">Curations</a>
+                <a href="/now/" class="tab-btn">Now</a>
+                <a href="/observatory/" class="tab-btn">Observatory</a>
+            </nav>
+        </header>
+        <!-- COMMON HEADER END -->
+
+        <main>
+            <div class="subtitle" style="font-size: 1.1rem; margin-bottom: 3rem; line-height: 1.6;">
+                I read and consume a lot of contents that include <a href="#fiction-section">books</a>, <a
+                    href="#poetry-section">poetry</a>, <a href="#articles-section">articles (internet
+                    readings,blogs)</a>,
+                and <a href="#videos-section">youtube videos/podcasts</a>. So,below are a list of some which I found
+                fascinating and special.
+            </div>
+
+            <!-- Fiction Section -->
+            <section id="fiction-section" class="curation-section">
+                <h2 class="curation-header">fiction</h2>
+                <div id="fiction-list"></div>
+            </section>
+
+            <!-- Non-Fiction Section -->
+            <section id="nonfiction-section" class="curation-section">
+                <h2 class="curation-header">non-fiction</h2>
+                <div id="nonfiction-list"></div>
+            </section>
+
+            <!-- Poetry Section -->
+            <section id="poetry-section" class="curation-section">
+                <h2 class="curation-header">poetry</h2>
+                <div id="poetry-list"></div>
+            </section>
+
+            <!-- Articles Section -->
+            <section id="articles-section" class="curation-section">
+                <h2 class="curation-header">articles</h2>
+                <div id="articles-list"></div>
+            </section>
+
+            <!-- Videos Section -->
+            <section id="videos-section" class="curation-section">
+                <h2 class="curation-header">youtube videos / podcasts</h2>
+                <div id="videos-list"></div>
+            </section>
+
+        </main>
+
+        <!-- COMMON FOOTER START -->
+        <footer>
+            <div class="social-links" style="margin-bottom: 2rem;">
+                <a href="mailto:lipuntripathy74@gmail.com" target="_blank">Email</a>
+                <a href="https://x.com/EssenceThinker" target="_blank">X (Twitter)</a>
+                <a href="https://www.linkedin.com/in/sourav-tripathy-astrophile/" target="_blank">LinkedIn</a>
+                <a href="https://github.com/Sourav-Tripathy" target="_blank">GitHub</a>
+                <a href="https://letterboxd.com/essenceX/" target="_blank">Letterboxd</a>
+                <a href="https://www.goodreads.com/user/show/82254166-sourav-tripathy" target="_blank">Goodreads</a>
+            </div>
+            © <span id="year"></span> Sourav Tripathy
+        </footer>
+        <!-- COMMON FOOTER END -->
+    </div>
+
+    <script src="curations.js"></script>
+    <script>
+        // Helper to create book elements
+        function createBookElement(book, index) {
+            const div = document.createElement('div');
+            div.className = 'book-item fade-in-item';
+            div.style.animationDelay = `${index * 0.1}s`;
+
+            // Format: Title by Author (with links)
+            div.innerHTML = `
+                <div class="item-title">
+                    <a href="${book.link}" target="_blank" style="text-decoration: none; border: none;">${book.title}</a>
+                    <span style="font-weight: 400; color: var(--dim); font-size: 0.95rem;">by <a href="${book.authorWiki}" target="_blank" style="text-decoration: none; border-bottom: 1px dotted var(--dim);">${book.author}</a></span>
+                </div>
+            `;
+            return div;
+        }
+
+        // Helper to create article elements
+        function createArticleElement(article, index) {
+            const div = document.createElement('div');
+            div.className = 'article-item-curation fade-in-item';
+            div.style.animationDelay = `${index * 0.1}s`;
+            div.innerHTML = `
+                <div class="item-title" style="font-weight: 400; font-family: var(--font-mono);">
+                    <a href="${article.link}" target="_blank">${article.title}</a>
+                </div>
+            `;
+            return div;
+        }
+
+        // Render Fiction
+        const fictionList = document.getElementById('fiction-list');
+        if (curations.books.fiction && curations.books.fiction.length > 0) {
+            curations.books.fiction.forEach((book, index) => {
+                fictionList.appendChild(createBookElement(book, index));
+            });
+        } else {
+            document.getElementById('fiction-section').style.display = 'none';
+        }
+
+        // Render Non-Fiction
+        const nonFictionList = document.getElementById('nonfiction-list');
+        if (curations.books.nonFiction && curations.books.nonFiction.length > 0) {
+            curations.books.nonFiction.forEach((book, index) => {
+                nonFictionList.appendChild(createBookElement(book, index));
+            });
+        } else {
+            document.getElementById('nonfiction-section').style.display = 'none';
+        }
+
+        // Render Poetry
+        const poetryList = document.getElementById('poetry-list');
+        if (curations.books.poetry && curations.books.poetry.length > 0) {
+            curations.books.poetry.forEach((book, index) => {
+                poetryList.appendChild(createBookElement(book, index));
+            });
+        } else {
+            document.getElementById('poetry-section').style.display = 'none';
+        }
+
+        // Render Articles
+        const articlesList = document.getElementById('articles-list');
+        if (curations.articles && curations.articles.length > 0) {
+            curations.articles.forEach((article, index) => {
+                articlesList.appendChild(createArticleElement(article, index));
+            });
+        } else {
+            document.getElementById('articles-section').style.display = 'none';
+        }
+
+        // Render Videos
+        const videosList = document.getElementById('videos-list');
+        if (curations.videos && curations.videos.length > 0) {
+            curations.videos.forEach((video, index) => {
+                videosList.appendChild(createArticleElement(video, index)); // Reusing article element style
+            });
+        } else {
+            document.getElementById('videos-section').style.display = 'none';
+        }
+
+        // Set Year
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+
+</html>

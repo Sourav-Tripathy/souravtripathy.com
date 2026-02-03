@@ -10,6 +10,17 @@
     <link rel="icon"
         href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYTM3ZjVmIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggZD0iTTE4IDhoMWE0IDQgMCAwIDEgMCA4aC0xIi8+PHBhdGggZD0iTTIgOGgxNnY5YTQgNCAwIDAgMS00IDRINmE0IDQgMCAwIDEtNC00Vjh6Ii8+PGxpbmUgeDE9IjYiIHkxPSIxIiB4Mj0iNiIgeTI9IjQiLz48bGluZSB4MT0iMTAiIHkxPSIxIiB4Mj0iMTAiIHkyPSI0Ii8+PGxpbmUgeDE9IjE0IiB5MT0iMSIgeDI9IjE0IiB5Mj0iNCIvPjwvc3ZnPg==">
     <link rel="prefetch" href="../globe.js" as="script">
+    <style>
+        main a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        main a:hover {
+            color: var(--highlight);
+        }
+    </style>
 </head>
 
 <body>
@@ -22,6 +33,7 @@
                 <a href="/" class="tab-btn">About</a>
                 <a href="/blog/" class="tab-btn">Blog</a>
                 <a href="/projects/" class="tab-btn active">Projects</a>
+                <a href="/curations/" class="tab-btn">Curations</a>
                 <a href="/now/" class="tab-btn">Now</a>
                 <a href="/observatory/" class="tab-btn">Observatory</a>
             </nav>
@@ -29,24 +41,14 @@
         <!-- COMMON HEADER END -->
 
         <main>
+            <div class="subtitle" style="font-size: 1.1rem; margin-bottom: 2rem; line-height: 1.6;">
+                Below are some projects I've built that are publicly available; for other projects, check out my <a
+                    href="https://github.com/Sourav-Tripathy" target="_blank">GitHub</a>.
+            </div>
+
             <!-- Projects Section -->
             <section id="projects" class="tab-content">
-                <div class="info-block" style="border-left-color: var(--highlight);">
-                    <span class="label">Knowledge Management</span>
-                    <span class="value"><a href="https://cognitia.club" target="_blank"
-                            style="text-decoration: none; color: inherit;">Cognitia</a></span>
-                    <div class="sub-info" style="margin-top: 0.5rem; font-style: normal;">
-                        <p style="margin: 0;">
-                            A knowledge garden for internet readings where one can share and track all reading with
-                            other people
-                            inside it.
-                        </p>
-                        <p style="margin-top: 0.5rem; color: var(--accent); font-size: 0.85rem;">
-                            (Currently in dev version) — <a href="https://cognitia.club"
-                                target="_blank">cognitia.club</a>
-                        </p>
-                    </div>
-                </div>
+                <!-- Projects injected via project.js -->
             </section>
         </main>
 
@@ -65,6 +67,31 @@
         <!-- COMMON FOOTER END -->
     </div>
 
+    <script src="project.js"></script>
+    <script>
+        const projectsContainer = document.getElementById('projects');
+        projects.forEach((project, index) => {
+            const projectDiv = document.createElement('div');
+            projectDiv.className = 'info-block fade-in-item';
+            projectDiv.style.borderLeftColor = project.highlightColor || 'var(--highlight)';
+            projectDiv.style.animationDelay = `${index * 0.2}s`;
+
+            projectDiv.innerHTML = `
+                <span class="label" style="text-transform: none;">${project.category}</span>
+                <span class="value"><a href="${project.url}" target="_blank"
+                        style="text-decoration: none;">${project.title}</a></span>
+                <div class="sub-info" style="margin-top: 0.5rem; font-style: normal;">
+                    <p style="margin: 0;">
+                        ${project.description}
+                    </p>
+                    <p style="margin-top: 0.5rem; color: var(--accent); font-size: 0.85rem;">
+                        ${project.footerHtml}
+                    </p>
+                </div>
+            `;
+            projectsContainer.appendChild(projectDiv);
+        });
+    </script>
     <script src="../blog/articles.js"></script>
     <script src="../script.js"></script>
     <script src="../globe.js"></script>
