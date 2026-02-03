@@ -38,7 +38,7 @@ body {
 }
 
 .container {
-    max-width: 960px;
+    max-width: 1000px;
     /* Increased for better header spacing with more tabs */
     margin: 0 auto;
     padding: 3rem 2rem;
