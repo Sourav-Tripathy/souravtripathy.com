@@ -5,6 +5,12 @@ window.nowData = {
             titleLink: "https://www.goodreads.com/book/show/111185.Physics_and_Philosophy",
             author: "Werner Heisenberg",
             authorLink: "https://en.wikipedia.org/wiki/Werner_Heisenberg"
+        },
+        {
+            title: "What I talk about when I talk about running",
+            titleLink: "https://www.goodreads.com/book/show/2195464.What_I_Talk_About_When_I_Talk_About_Running",
+            author: "Haruki Murakami",
+            authorLink: "https://en.wikipedia.org/wiki/Haruki_Murakami"
         }
     ],
     listening: [
