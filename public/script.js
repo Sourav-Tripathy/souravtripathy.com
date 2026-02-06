@@ -1,3 +1,31 @@
+// 0. Theme Toggle (Light/Dark Mode)
+// Apply saved theme immediately to prevent flash of wrong theme
+(function () {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        // Respect system preference if no saved preference
+        document.documentElement.setAttribute('data-theme', 'dark');
+    }
+})();
+
+function initThemeToggle() {
+    const toggleBtn = document.querySelector('.theme-toggle');
+    if (!toggleBtn) return;
+
+    // Set initial state based on current theme
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+
+    toggleBtn.addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('data-theme') || 'light';
+        const newTheme = current === 'dark' ? 'light' : 'dark';
+
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+    });
+}
+
 // 1. Navigation Logic
 // Since we are using multi-page, we just ensure the current page's link is active
 // This is handled via HTML classes, but we could enforce it here if needed.
@@ -396,15 +424,35 @@ function renderNowPage() {
 }
 
 
+// 8. Masthead Scroll Effect
+function initMastheadScroll() {
+    const masthead = document.querySelector('.masthead');
+    if (!masthead) return;
+
+    const SCROLL_THRESHOLD = 10;
+
+    function updateMastheadShadow() {
+        if (window.scrollY > SCROLL_THRESHOLD) {
+            masthead.classList.add('scrolled');
+        } else {
+            masthead.classList.remove('scrolled');
+        }
+    }
+
+    window.addEventListener('scroll', updateMastheadShadow, { passive: true });
+    updateMastheadShadow(); // Initial check
+}
+
 // Init
 document.addEventListener('DOMContentLoaded', () => {
     // initTabs(); // Logic moved to MPA structure
+    initThemeToggle(); // Initialize theme toggle
     renderArticles();
     renderNowPage();
     startCoffeeAnimation();
     initIpMagic();
     initISSTracker();
-    // Globe initialized within ISSTracker or separate interaction
+    initMastheadScroll(); // Initialize masthead scroll effect
 
     // Update Mars time every second
     setInterval(updateMarsTime, 1000);

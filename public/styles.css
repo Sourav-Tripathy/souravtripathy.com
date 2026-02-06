@@ -3,7 +3,7 @@
 /* For the subtitle */
 
 :root {
-    /* Warm Light Green Theme */
+    /* Light Theme - Warm Light Green */
     --bg: #e8f3e8;
     /* Very pale green, like old paper */
     --fg: #0d2618;
@@ -14,9 +14,70 @@
     /* Coffee/Earth tone */
     --highlight: #2d6a45;
     /* Brighter green for active states */
+    --masthead-bg: rgba(232, 243, 232, 0.75);
+    --masthead-bg-scrolled: rgba(232, 243, 232, 0.9);
 
     --font-mono: 'Space Mono', monospace;
     --font-serif: 'Spectral', serif;
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+    --bg: #0c1f16;
+    /* Deep forest green/black */
+    --fg: #d4e8dc;
+    /* Soft light green text */
+    --dim: #7a9a87;
+    /* Muted sage for secondary text */
+    --accent: #c9a882;
+    /* Warmer coffee/gold tone */
+    --highlight: #5cb87a;
+    /* Bright mint green for active states */
+    --masthead-bg: rgba(12, 31, 22, 0.85);
+    --masthead-bg-scrolled: rgba(12, 31, 22, 0.95);
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 0.5rem;
+    color: var(--dim);
+    transition: color 0.2s ease, transform 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+}
+
+.theme-toggle:hover {
+    color: var(--highlight);
+    transform: scale(1.1);
+}
+
+.theme-toggle svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+}
+
+.theme-toggle .icon-sun,
+.theme-toggle .icon-moon {
+    display: none;
+}
+
+/* Show sun icon in light mode (click to go dark) */
+:root:not([data-theme="dark"]) .theme-toggle .icon-sun,
+html:not([data-theme="dark"]) .theme-toggle .icon-sun {
+    display: block;
+}
+
+/* Show moon icon in dark mode (click to go light) */
+[data-theme="dark"] .theme-toggle .icon-moon {
+    display: block;
 }
 
 @view-transition {
@@ -35,6 +96,36 @@ body {
     font-family: var(--font-mono);
     line-height: 1.6;
     font-size: 15px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Masthead - Fixed navigation bar */
+.masthead {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background-color: var(--masthead-bg);
+    backdrop-filter: blur(0.5px);
+    -webkit-backdrop-filter: blur(0.5px);
+    /* Safari support */
+    box-shadow: 0 1px 0 rgba(13, 38, 24, 0.05);
+    transition: background-color 0.3s ease, box-shadow 0.2s ease;
+}
+
+.masthead.scrolled {
+    background-color: var(--masthead-bg-scrolled);
+    box-shadow: 0 2px 12px rgba(13, 38, 24, 0.1);
+}
+
+.masthead-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
 }
 
 .container {
@@ -42,14 +133,21 @@ body {
     /* Increased for better header spacing with more tabs */
     margin: 0 auto;
     padding: 3rem 2rem;
+    padding-top: 8rem;
+    /* Accounts for fixed masthead height + original spacing */
 }
 
-/* New Header Layout */
+/* Site Header (inside masthead) */
 .site-header {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    margin-bottom: 4rem;
+    width: 100%;
+    /* Full width for space-between to work */
+    gap: 2rem;
+    /* Minimum gap between brand and tabs */
+    margin: 0;
+    /* Reset margin - spacing now handled by container padding-top */
 }
 
 .brand-name {
@@ -63,6 +161,7 @@ body {
 .tabs {
     display: flex;
     gap: 1.2rem;
+    align-items: center;
 }
 
 .tab-btn {
@@ -258,10 +357,22 @@ footer {
 
 /* Responsive */
 @media (max-width: 700px) {
+    .masthead-inner {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem 1.5rem 1.25rem;
+    }
+
+    .container {
+        padding-top: 15rem;
+        /* Accounts for taller stacked masthead + theme toggle on mobile */
+    }
+
     .site-header {
         flex-direction: column;
         align-items: center;
-        gap: 1.5rem;
+        gap: 1rem;
     }
 
     .tabs {
@@ -269,6 +380,11 @@ footer {
         justify-content: center;
         gap: 1rem;
         row-gap: 0.5rem;
+    }
+
+    .theme-toggle {
+        margin-left: 0;
+        margin-top: 0.5rem;
     }
 
     .bio-grid {
