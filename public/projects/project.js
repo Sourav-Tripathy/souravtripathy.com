@@ -14,5 +14,13 @@ const projects = [
         description: "A knowledge garden for internet readings where one can share and track all reading with other people inside it.",
         footerHtml: '(Currently in dev version) — <a href="https://cognitia.club" target="_blank">cognitia.club</a>',
         highlightColor: "var(--highlight)"
+    },
+    {
+        category: "PyPI Package(CLI tool)",
+        title: "commitgen",
+        url: "https://pypi.org/project/commitgen-ai/",
+        description: "CommitGen is an CLI tool that automatically generates conventional git commit messages for your staged changes. It analyzes your git diff, summarizes the changes, and uses local LLMs (via Ollama) or cloud providers (via OpenRouter) to write clean, descriptive commit messages.",
+        footerHtml: 'Available on <a href="https://pypi.org/project/commitgen-ai/" target="_blank">PyPI</a>',
+        highlightColor: "var(--highlight)"
     }
 ];
