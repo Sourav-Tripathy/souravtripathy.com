@@ -185,6 +185,10 @@ const curations = {
             link: "https://www.paulgraham.com/goodwriting.html"
         },
         {
+            title: "Machines of Loving Grace",
+            link: "https://darioamodei.com/essay/machines-of-loving-grace"
+        },
+        {
             title: "Why Does Beauty Matter?",
             link: "https://www.theculturist.io/p/why-does-beauty-matter-e7c"
         },
