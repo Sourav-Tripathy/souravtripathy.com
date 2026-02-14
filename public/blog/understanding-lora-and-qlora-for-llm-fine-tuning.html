@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Understanding LoRA and QLoRA for LLM Fine-tuning | Sourav Tripathy</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYTM3ZjVmIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggZD0iTTE4IDhoMWE0IDQgMCAwIDEgMCA4aC0xIi8+PHBhdGggZD0iTTIgOGgxNnY5YTQgNCAwIDAgMS00IDRINmE0IDQgMCAwIDEtNC00Vjh6Ii8+PGxpbmUgeDE9IjYiIHkxPSIxIiB4Mj0iNiIgeTI9IjQiLz48bGluZSB4MT0iMTAiIHkxPSIxIiB4Mj0iMTAiIHkyPSI0Ii8+PGxpbmUgeDE9IjE0IiB5MT0iMSIgeDI9IjE0IiB5Mj0iNCIvPjwvc3ZnPg==">
+    <script>
+        (function () {
+            var theme = localStorage.getItem('theme');
+            if (theme) {
+                document.documentElement.setAttribute('data-theme', theme);
+            } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+    <style>
+        /* Article specific styles */
+        .article-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 0;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+        .article-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+        .article-content h1, .article-content h2, .article-content h3 {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--highlight);
+        }
+        .article-content a {
+            color: var(--highlight);
+            text-decoration: underline;
+        }
+        .article-header {
+            margin-bottom: 3rem;
+            border-bottom: 1px dashed var(--dim);
+            padding-bottom: 2rem;
+        }
+        .article-title {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--fg);
+            text-decoration: none;
+        }
+        .article-meta {
+            color: var(--dim);
+            font-size: 0.9rem;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: var(--dim);
+            text-decoration: none;
+        }
+        .back-link:hover {
+            color: var(--highlight);
+        }
+        .article-content pre {
+            background: var(--fg);
+            color: var(--bg);
+            padding: 1rem;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+        .article-content code {
+            font-family: var(--font-mono);
+            font-size: 0.9em;
+            background: rgba(128, 128, 128, 0.1);
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+        }
+        .article-content pre code {
+            background: none;
+            padding: 0;
+            color: inherit;
+        }
+    </style>
+</head>
+<body>
+    <div class="masthead">
+        <div class="masthead-inner">
+            <header class="site-header">
+                <h1 class="brand-name">Sourav Tripathy</h1>
+                <nav class="tabs">
+                    <a href="/" class="tab-btn">About</a>
+                    <a href="/blog/" class="tab-btn active">Blog</a>
+                    <a href="/projects/" class="tab-btn">Projects</a>
+                    <a href="/curations/" class="tab-btn">Curations</a>
+                    <a href="/now/" class="tab-btn">Now</a>
+                    <a href="/observatory/" class="tab-btn">Observatory</a>
+                    <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark/light mode">
+                 <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                        <svg class="icon-moon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </button>
+                </nav>
+            </header>
+        </div>
+    </div>
+
+    <div class="container">
+        <main>
+            <a href="/blog/" class="back-link">← Back to Blog</a>
+            
+            <article class="article-content">
+                <header class="article-header">
+                    <h1 class="article-title">Understanding LoRA and QLoRA for LLM Fine-tuning</h1>
+                    <div class="article-meta">
+                        Published on August 1, 2025 • <a href="https://siliconandsoul.substack.com/p/understanding-lora-and-qlora-for" target="_blank">Read on Substack</a>
+                    </div>
+                </header>
+                
+                <div class="article-body">
+                    <p>The world of Large Language Models (LLMs) is rapidly evolving, and with their immense power comes an equally immense appetite for computational resources. Fine-tuning these behemoths to adapt them to specific tasks or domains is crucial for real-world applications. However, traditional fine-tuning methods often demand an impractical amount of hardware. This is where <strong>Parameter-Efficient Fine-Tuning (PEFT)</strong> techniques, specifically <strong>LoRA (Low-Rank Adaptation)</strong> and <strong>QLoRA (Quantized Low-Rank Adaptation)</strong>, come into play, offering a revolutionary approach to efficient LLM customisation.</p><h3>The Challenge of Full Fine-Tuning</h3><p>Before diving into LoRA, let&apos;s understand the conventional approach: <strong>full fine-tuning</strong>. This method involves <strong>updating all the parameters</strong> within a pre-trained LLM. While effective, it requires <strong>significant computational resources</strong>, including numerous heavy-duty GPUs, which are typically beyond the reach of a normal consumer or developer. Imagine a large matrix &apos;W&apos; representing all the weights of a deep neural network within an LLM &#x2013; full fine-tuning means modifying every single value in this colossal matrix.</p><p>To address this, PEFT emerged. Instead of updating all the weights in a large matrix, PEFT focuses on updating only a <strong>small subset of the weights</strong>, making the process computationally efficient. Among PEFT techniques, LoRA stands out as one of the most important and efficient.</p><h3>Essential Concepts for Understanding LoRA</h3><p>To truly grasp LoRA, we first need to understand two fundamental mathematical concepts:</p><ol><li><p><strong>Rank of a Matrix:</strong> The <strong>rank of a matrix</strong> fundamentally represents the <strong>dimensionality of the vector space spanned by its rows or columns</strong>. More simply, it tells us <strong>how many rows or columns are linearly independent</strong>.</p><ul><li><p>Consider <strong>Matrix A</strong>: </p><pre><code>                           | 1  2 |
+                           | 3  6 |</code></pre><p>Here, the second row [3 , 6] can be represented as three times the first row [1 , 2](i.e., 3&#xD7;[1 , 2]), meaning it&apos;s not linearly independent of the first row. Thus, the rank of Matrix A is <strong>1</strong>.</p></li><li><p>Now, consider <strong>Matrix B</strong>: </p><pre><code>                          | 2  1  3 |
+                          | 4  2  1 |
+                          | 1  5  2 |</code></pre><p>Here B is a 3x3 matrix where all columns and rows are linearly independent. None of its rows or columns can be represented using the others. In such a case, the rank of Matrix B would be <strong>3</strong>.</p></li><li><p>Another example, <strong>Matrix C: </strong></p><pre><code>                           | 1  2 |
+                           | 3  4 |</code></pre><p>The rank of this 2x2 matrix is 2, as its rows and columns are linearly independent.</p></li></ul></li><li><p><strong>Matrix Decomposition:</strong> <strong>Matrix decomposition</strong> is the process of <strong>breaking down a matrix into simpler matrices</strong> that are easier to analyse, compute, or interpret. It&apos;s widely used in machine learning, computer vision, and specifically forms the <strong>actual technique behind LoRA</strong>. By definition, it involves breaking down a matrix into a <strong>product of simpler matrices</strong>.</p><ul><li><p>For instance, a <strong>large 4x4 matrix &apos;W&apos;</strong> can be split into two smaller matrices: <strong>Matrix A (4x1)</strong> and <strong>Matrix B (1x4)</strong>. The magic lies in the fact that when you perform a <strong>dot product of Matrix A and Matrix B</strong>, the result is the original 4x4 Matrix W. This means instead of working on the whole original weight matrix, we can decompose it into these two smaller matrices and perform operations on them.</p></li></ul></li></ol><h3>LoRA: Low-Rank Adaptation</h3><p>LoRA is a <strong>parameter-efficient fine-tuning method</strong> that makes model adaptation both <strong>fast and memory-efficient</strong>.</p><p><strong>The Core Idea:</strong> Instead of directly modifying the enormous pre-trained model weights (W), LoRA <strong>injects small, trainable low-rank matrices</strong> into specific layers of the model. The original pre-trained weights remain <strong>frozen</strong>.</p><p>Let&apos;s break down its mathematical application step-by-step:</p><ol><li><p><strong>Start with the Original Weight (W):</strong> You begin with the <strong>original, pre-trained weight matrix (W)</strong> from your LLM (e.g., a Llama model).</p></li><li><p><strong>Adding a New Weight (&#x394;W):</strong> To adapt the model to new data (e.g., your hotel&apos;s specific information), LoRA conceptualises a new, fine-tuned weight matrix (<strong>W(new)&#x200B;)</strong><em> by adding a modification </em>&#x394;W to the original weight : </p><pre><code>                     W(new&#x200B;) = W(original)&#x200B; + &#x394;W </code></pre></li><li><p><strong>Decomposition of &#x394;W:</strong> This is where LoRA comes. Instead of directly training or working with the large &#x394;W, it is <strong>decomposed into two much smaller, low-rank matrices: Matrix A and Matrix B</strong>. </p><pre><code>                            &#x394;W = A &#xD7; B</code></pre><p>If W is a D x K matrix, Matrix A will have dimensions D x r, and Matrix B will have dimensions r x K, where &apos;r&apos; is the <strong>low rank</strong> (a very small number, e.g., 4). The multiplication of A (D x r) and B (r x K) correctly yields a D x K matrix for &#x394;W.</p></li><li><p><strong>Operations on A and B:</strong> All the <strong>training operations are performed exclusively on these smaller matrices, A and B</strong>, not on the full &#x394;W or W. After training, A and B are multiplied, and their product (&#x394;W) is added to the original W to get W(new&#x200B;). </p></li><li><p><strong>Injection into Transformer Architecture:</strong> In Transformer models, the attention mechanism relies on Query (WQ), Key (WK), and Value (WV) matrices. LoRA modifies these by adding the decomposed &#x394;W (i.e., A*B) to each:</p><pre><code>                    WQ(modified&#x200B;) = WQ + AQ &#xD7; BQ
+                    WK(modified&#x200B;) = WK + AK &#xD7; BK                                                                                                                    
+                    WV(modified&#x200B;) = WV + AV &#xD7; BV</code></pre><p><em>(Note: AQ, BQ, AK, BK, AV, BV are the specific decomposed matrices for each respective attention layer). During inference, these modified values are used.</em></p></li></ol><h4>The Mathematical Efficiency of LoRA</h4><p>Let&apos;s quantify the parameter reduction using an example from the source:</p><ul><li><p>Consider a large LLM weight matrix <strong>W</strong> with dimensions <strong>D = 4096</strong> and <strong>K = 4096</strong>.</p></li><li><p><strong>Full Fine-Tuning:</strong> If you were to update all weights in this matrix, the <strong>total trainable parameters</strong> would be D * K = 4096 * 4096 = <strong>16,777,216</strong> (approximately <strong>16.7 million</strong>).</p></li><li><p><strong>LoRA Fine-Tuning:</strong> Now, let&apos;s apply LoRA with a <strong>rank (r) of 4</strong>.</p><ul><li><p>Matrix A dimension: D x r = 4096 x 4.</p></li><li><p>Matrix B dimension: r x K = 4 x 4096.</p></li><li><p>The <strong>total trainable parameters for LoRA</strong> would be (D * r) + (r * K) = (4096 * 4) + (4 * 4096) = 16384 + 16384 = <strong>32,768</strong> (approximately <strong>32k</strong>). This demonstrates a <strong>reduction factor of almost 10^3</strong> (from 16.7 million to 32k). It&apos;s crucial to understand that <strong>increasing the rank (r) will significantly increase the total number of trainable parameters</strong>.</p></li></ul></li></ul><h4>Benefits of LoRA:</h4><ul><li><p>Requires substantially less memory.</p></li><li><p>Enables much quicker model training.</p></li><li><p>Makes it possible to fine-tune LLMs on less powerful hardware, such as a normal laptop .</p></li><li><p> LoRA effectively preserves the model&apos;s pre-trained knowledge.</p></li></ul><h3>QLoRA: Quantized Low-Rank Adaptation for Even Greater Efficiency</h3><p>QLoRA is an <strong>extension of LoRA</strong> that pushes memory efficiency even further by combining LoRA with <strong>quantization</strong>.</p><p><strong>The Core Idea:</strong> While LoRA reduces the <em>number</em> of trainable parameters, QLoRA reduces the <em>memory footprint</em> of the base model weights themselves by quantizing them.</p><p>Here&apos;s how QLoRA operates:</p><ol><li><p><strong>LoRA Foundation:</strong> QLoRA is built upon the LoRA technique, meaning it still uses the efficient low-rank adaptation matrices (A and B) for fine-tuning.</p></li><li><p><strong>Quantization of the Base Model:</strong> The key additional step is to <strong>quantize the base (pre-trained) model weights to a lower bit-precision, typically 4-bit</strong>.</p></li><li><p><strong>What is Quantization ?</strong> </p><p>Quantization is a process of <strong>reducing the memory space a number or data type occupies</strong>. For example, a number that typically occupies 8 bytes of space might be quantized to occupy only 1 byte. This means a large model (e.g., 1GB) could be reduced to a much smaller size (e.g., 600MB) through quantization.</p></li></ol><h4>Mathematical Details of Quantization (Precision vs. Memory):</h4><ul><li><p><strong>Float 32 (FP32):</strong> This data type uses <strong>32 bits</strong> of memory to store a number (e.g., 1.23456789). Internally, it allocates 1 bit for the sign, 8 bits for the exponent, and 23 bits for the fraction.</p></li><li><p><strong>Float 16 (FP16):</strong> This data type uses <strong>16 bits</strong> of memory, significantly reducing memory allocation. However, it <strong>loses precision</strong> (e.g., 1.235). Internally, it allocates 1 bit for the sign, 5 bits for the exponent, and 10 bits for the fraction.</p></li><li><p>The transition from FP32 to FP16 can result in a <strong>50% reduction in memory space</strong>.</p></li></ul><ol start="4"><li><p><strong>Applying Quantization in QLoRA:</strong> In QLoRA, the<strong> low-rank matrices (A and B) from LoRA contain floating-point weights and are kept in full or mixed precision to maintain training stability</strong>. <strong>Only the base model weights (W) are quantized to 4-bit precision</strong>, significantly reducing memory usage. This quantization <strong>improves efficiency but may lead to slight precision loss</strong> </p><p>(e.g., a value like 1.24567 might become 1.24).</p></li></ol><h4>Trade-offs with QLoRA:</h4><p>While quantization offers substantial memory reduction, it&apos;s vital to acknowledge that it <strong>involves losing precision</strong>. The decision to use QLoRA (and thus accept this precision loss) depends on the <strong>specific use case, data type, and scenario</strong>. There are instances where maintaining full precision is paramount.</p><p>In essence, <strong>LoRA streamlines fine-tuning by dramatically reducing the </strong><em><strong>number</strong></em><strong> of trainable parameters</strong> through clever low-rank matrix decomposition. <strong>QLoRA takes this efficiency a step further by also reducing the </strong><em><strong>memory footprint</strong></em><strong> of the model&apos;s weights themselves through quantization</strong>, enabling even greater memory savings.</p><p>Both techniques are pivotal in making the customisation of powerful LLMs more accessible and efficient for a wider range of applications and hardware setups. They represent a significant leap towards democratising access to advanced AI capabilities.</p><p>If you want to read the research paper below are the links :</p><ul><li><p><a href="https://arxiv.org/pdf/2106.09685" target="_blank" rel="noopener noreferrer">LoRA: Low-Rank Adaptation of Large Language Models</a></p></li><li><p><a href="https://arxiv.org/pdf/2305.14314" target="_blank" rel="noopener noreferrer">QLoRA: Efficient Finetuning of Quantized LLMs</a></p></li></ul>
+                </div>
+                
+                <div class="subscribe-section" style="margin-top: 4rem; padding: 2rem; background: rgba(128, 128, 128, 0.05); border-radius: 8px; text-align: center;">
+                    <p style="margin-bottom: 1rem; font-style: italic;">Enjoyed this piece? Subscribe for free to receive new posts and support my work.</p>
+                    <a href="https://siliconandsoul.substack.com/subscribe" target="_blank" class="button primary" style="background: var(--highlight); color: var(--bg); padding: 0.8rem 1.5rem; border-radius: 4px; text-decoration: none; font-weight: bold; display: inline-block;">Subscribe on Substack</a>
+                </div>
+            </article>
+        </main>
+
+        <footer>
+            <div class="social-links" style="margin-bottom: 2rem;">
+              <a href="mailto:lipuntripathy74@gmail.com" target="_blank">Email</a>
+                <a href="https://x.com/EssenceThinker" target="_blank">X (Twitter)</a>
+                <a href="https://www.linkedin.com/in/sourav-tripathy-astrophile/" target="_blank">LinkedIn</a>
+                <a href="https://github.com/Sourav-Tripathy" target="_blank">GitHub</a>
+                <a href="https://letterboxd.com/essenceX/" target="_blank">Letterboxd</a>
+                <a href="https://www.goodreads.com/user/show/82254166-sourav-tripathy" target="_blank">Goodreads</a>
+            </div>
+            © <span id="year"></span> Sourav Tripathy
+        </footer>
+    </div>
+    <script src="../script.js"></script>
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

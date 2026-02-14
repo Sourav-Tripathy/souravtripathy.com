@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>What are Eigenvectors and Eigenvalues? | Sourav Tripathy</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYTM3ZjVmIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggZD0iTTE4IDhoMWE0IDQgMCAwIDEgMCA4aC0xIi8+PHBhdGggZD0iTTIgOGgxNnY5YTQgNCAwIDAgMS00IDRINmE0IDQgMCAwIDEtNC00Vjh6Ii8+PGxpbmUgeDE9IjYiIHkxPSIxIiB4Mj0iNiIgeTI9IjQiLz48bGluZSB4MT0iMTAiIHkxPSIxIiB4Mj0iMTAiIHkyPSI0Ii8+PGxpbmUgeDE9IjE0IiB5MT0iMSIgeDI9IjE0IiB5Mj0iNCIvPjwvc3ZnPg==">
+    <script>
+        (function () {
+            var theme = localStorage.getItem('theme');
+            if (theme) {
+                document.documentElement.setAttribute('data-theme', theme);
+            } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+    <style>
+        /* Article specific styles */
+        .article-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 0;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+        .article-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+        .article-content h1, .article-content h2, .article-content h3 {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--highlight);
+        }
+        .article-content a {
+            color: var(--highlight);
+            text-decoration: underline;
+        }
+        .article-header {
+            margin-bottom: 3rem;
+            border-bottom: 1px dashed var(--dim);
+            padding-bottom: 2rem;
+        }
+        .article-title {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--fg);
+            text-decoration: none;
+        }
+        .article-meta {
+            color: var(--dim);
+            font-size: 0.9rem;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: var(--dim);
+            text-decoration: none;
+        }
+        .back-link:hover {
+            color: var(--highlight);
+        }
+        .article-content pre {
+            background: var(--fg);
+            color: var(--bg);
+            padding: 1rem;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+        .article-content code {
+            font-family: var(--font-mono);
+            font-size: 0.9em;
+            background: rgba(128, 128, 128, 0.1);
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+        }
+        .article-content pre code {
+            background: none;
+            padding: 0;
+            color: inherit;
+        }
+    </style>
+</head>
+<body>
+    <div class="masthead">
+        <div class="masthead-inner">
+            <header class="site-header">
+                <h1 class="brand-name">Sourav Tripathy</h1>
+                <nav class="tabs">
+                    <a href="/" class="tab-btn">About</a>
+                    <a href="/blog/" class="tab-btn active">Blog</a>
+                    <a href="/projects/" class="tab-btn">Projects</a>
+                    <a href="/curations/" class="tab-btn">Curations</a>
+                    <a href="/now/" class="tab-btn">Now</a>
+                    <a href="/observatory/" class="tab-btn">Observatory</a>
+                    <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark/light mode">
+                 <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                        <svg class="icon-moon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </button>
+                </nav>
+            </header>
+        </div>
+    </div>
+
+    <div class="container">
+        <main>
+            <a href="/blog/" class="back-link">← Back to Blog</a>
+            
+            <article class="article-content">
+                <header class="article-header">
+                    <h1 class="article-title">What are Eigenvectors and Eigenvalues?</h1>
+                    <div class="article-meta">
+                        Published on October 27, 2025 • <a href="https://siliconandsoul.substack.com/p/what-are-eigenvectors-and-eigenvalues" target="_blank">Read on Substack</a>
+                    </div>
+                </header>
+                
+                <div class="article-body">
+                    <p>It&#x2019;s Sunday (Oct 26), and out of utter banal curiosity, I started searching about why most mathematical words originate from German ,Greek . I knew that Greek society pioneered early astronomy and mathematics, but I wanted to understand the German connection.</p><p>As I always do, I could have had a session with ChatGPT or Gemini, but this time I chose the Google search rabbit hole because I wanted to waste my time opening multiple web links, skimming them, letting tabs multiply, reading one by one in no particular order.While doing so, another curious question struck me: <em><strong>How does Google&#x2019;s PageRank algorithm actually work?  </strong></em>So I opened the <a href="https://snap.stanford.edu/class/cs224w-readings/Brin98Anatomy.pdf" target="_blank" rel="noopener noreferrer">1998 paper by Sergey Brin and Lawrence Page that introduced Google.</a> There, while skimming through the section on how <a href="https://en.wikipedia.org/wiki/PageRank" target="_blank" rel="noopener noreferrer">PageRank</a> works, I saw it ,the algorithm depends on eigenvalues and eigenvectors.</p><div class="captioned-image-container"><figure><a class="image-link image2 is-viewable-img" target="_blank" href="https://substackcdn.com/image/fetch/$s_!mMhK!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F223e76a3-a43f-40e6-956c-b743703efaa9_1499x733.png" data-component-name="Image2ToDOM" rel="noopener noreferrer"><div class="image2-inset"><picture><source type="image/webp" srcset="https://substackcdn.com/image/fetch/$s_!mMhK!,w_424,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F223e76a3-a43f-40e6-956c-b743703efaa9_1499x733.png 424w, https://substackcdn.com/image/fetch/$s_!mMhK!,w_848,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F223e76a3-a43f-40e6-956c-b743703efaa9_1499x733.png 848w, https://substackcdn.com/image/fetch/$s_!mMhK!,w_1272,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F223e76a3-a43f-40e6-956c-b743703efaa9_1499x733.png 1272w, https://substackcdn.com/image/fetch/$s_!mMhK!,w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F223e76a3-a43f-40e6-956c-b743703efaa9_1499x733.png 1456w" sizes="100vw"><img src="https://substackcdn.com/image/fetch/$s_!mMhK!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F223e76a3-a43f-40e6-956c-b743703efaa9_1499x733.png" width="1456" height="712" data-attrs="{&quot;src&quot;:&quot;https://substack-post-media.s3.amazonaws.com/public/images/223e76a3-a43f-40e6-956c-b743703efaa9_1499x733.png&quot;,&quot;srcNoWatermark&quot;:null,&quot;fullscreen&quot;:null,&quot;imageSize&quot;:null,&quot;height&quot;:712,&quot;width&quot;:1456,&quot;resizeWidth&quot;:null,&quot;bytes&quot;:383475,&quot;alt&quot;:null,&quot;title&quot;:null,&quot;type&quot;:&quot;image/png&quot;,&quot;href&quot;:null,&quot;belowTheFold&quot;:false,&quot;topImage&quot;:true,&quot;internalRedirect&quot;:&quot;https://siliconandsoul.substack.com/i/173531277?img=https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F223e76a3-a43f-40e6-956c-b743703efaa9_1499x733.png&quot;,&quot;isProcessing&quot;:false,&quot;align&quot;:null,&quot;offset&quot;:false}" class="sizing-normal" alt srcset="https://substackcdn.com/image/fetch/$s_!mMhK!,w_424,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F223e76a3-a43f-40e6-956c-b743703efaa9_1499x733.png 424w, https://substackcdn.com/image/fetch/$s_!mMhK!,w_848,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F223e76a3-a43f-40e6-956c-b743703efaa9_1499x733.png 848w, https://substackcdn.com/image/fetch/$s_!mMhK!,w_1272,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F223e76a3-a43f-40e6-956c-b743703efaa9_1499x733.png 1272w, https://substackcdn.com/image/fetch/$s_!mMhK!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F223e76a3-a43f-40e6-956c-b743703efaa9_1499x733.png 1456w" sizes="100vw" fetchpriority="high"></picture></div></a><figcaption class="image-caption"><a href="https://snap.stanford.edu/class/cs224w-readings/Brin98Anatomy.pdf" target="_blank" rel="noopener noreferrer">The anatomy of a large-scale hypertextual Web search engine</a></figcaption></figure></div><p>Here&#x2019;s the idea: <em>Imagine the entire internet as a vast network of links. If we want to know the probability of moving from the jth webpage to the ith webpage, we represent it as an element in a giant matrix. On this massive matrix, we find the eigenvector corresponding to the largest eigenvalue. The higher the eigenvalue, the more the eigenvector is &#x201C;<strong>stretched</strong>&#x201D; and that stretch tells us which pages are most important , the ones most likely to be visited in a sea of probabilities.</em></p><p>And when I saw eigenvectors hidden inside the algorithm that organises human knowledge,I realised how beautiful mathematics is, and how deeply cool eigenvalues and eigenvectors are.</p><h3>Eigenvectors and Eigenvalues:</h3><p>Before we speak of what eigenvalues and eigenvectors <em>are</em>, it helps to pause at the origin of the word itself. <em>Eigen</em> is a German word meaning &#x201C;own&#x201D; or &#x201C;characteristic.&#x201D; There&#x2019;s something deeply fitting about that : for an eigenvector is, in a sense, a vector that remains <em>true to itself</em>, even when transformed. It doesn&#x2019;t twist away or lose its direction; it only stretches or shrinks along its own line. Its companion, the eigenvalue, tells us how much it changes  and how much of itself it preserves or amplifies. </p><p>To begin understanding what they are we must begin with the fundamental idea about what linear transformation means. <a href="https://siliconandsoul.substack.com/p/decoding-vectors-matrices-and-transformations" target="_blank" rel="noopener noreferrer">Here you can find a a bit detailed explanation</a>. In brief, it refers to an operation where we transform a vector by changing its direction or amplifying its magnitude, and a matrix is the tool that helps us do it.</p><p>So, Now imagine a rubber sheet with grids drawn on it . We can stretch it , squish it or rotate it . On doing that every point that exists in the sheet changes according to some rule like a point facing east might now face north-east . But the question here arises <strong>are there any directions that exist in the sheet that no matter what we do , it does not change its direction ?</strong></p><p>Yes , they exist and those vectors that have that direction are called eigen vectors i.e eigen vectors are those vectors whose directions doesn&#x2019;t change after being multiplied by a matrix (linear transformation). They might scale or rotate 180 degree in some cases (when eigenvalues are negative) but never deviate from the span of the vector.</p><p>Mathematically they are represented by the equation below :</p><div class="latex-rendered" data-attrs="{&quot;persistentExpression&quot;:&quot;Av = &#x3BB;v&quot;,&quot;id&quot;:&quot;QZFJKHOCUB&quot;}" data-component-name="LatexBlockToDOM"></div><p><em>where &#x2018;<strong>v&#x2018; </strong> is the eigen vector , &#x2018;<strong>A&#x2019; </strong>is the matrix and <strong>&#x2018;&#x3BB;&#x2019; </strong>is the eigen value.</em></p><p>The above equation can be modified to <strong>Av = (&#x3BB;I)v</strong> where <em><strong>&#x2018;I&#x2019;</strong></em> is the identity matrix. This is done because eigen value is a scalar and converting it into a matrix helps in the operations. </p><pre><code>Av - (&#x3BB;I)v = 0 
+v(A - &#x3BB;I) = 0
+
+So,
+det(A - &#x3BB;I)= 0    <em><strong>(characteristic Equation)</strong></em></code></pre><p>One must think why the equation <code>v(A - &#x3BB;I) = 0</code> yields  <code>det(A - &#x3BB;I)= 0 </code>. <br>We&#x2019;re looking for <em>non-zero</em> vectors <strong>v</strong> that satisfy this equation. If <code>(A - &#x3BB;I)</code> were an invertible matrix, the only solution would be v = 0, which is trivial . For non-zero solutions to exist, <code>(A - &#x3BB;I)</code> must be <em>singular</em> i.e it must be non-invertible.</p><p><em><strong>A matrix is singular precisely when its determinant equals zero. </strong></em>Hence we get the equation <code>det(A - &#x3BB;I)= 0</code>  and this is called characteristic equation and it is polynomial in &#x2018;<em>&#x3BB;&#x2019; </em>, and its roots are the eigenvalues.</p><p>Let&#x2019;s take a simple 2&#xD7;2 matrix:</p><pre><code><code>A = [4  1]
+    [2  3]</code></code></pre><p>To find eigenvalues, we compute <code>det(A - &#x3BB;I)</code>:</p><pre><code><code>det([4-&#x3BB;   1  ]) = 0
+   [2    3-&#x3BB; ]</code></code></pre><p>Expanding:</p><pre><code>(4-&#x3BB;)(3-&#x3BB;) - (1)(2) = 0
+12 - 4&#x3BB; - 3&#x3BB; + &#x3BB;&#xB2; - 2 = 0
+&#x3BB;&#xB2; - 7&#x3BB; + 10 = 0
+(&#x3BB; - 5)(&#x3BB; - 2) = 0
+
+So &#x3BB; = 5 or &#x3BB; = 2. These are our eigenvalues.</code></pre><p>Once we have an eigenvalue, we can find its eigenvector by solving (A - &#x3BB;I)v = 0.</p><p>For &#x3BB; = 5:</p><pre><code><code>[-1  1][v&#x2081;]   [0]
+[ 2 -2][v&#x2082;] = [0]</code></code></pre><p>This gives us <em>-v&#x2081; + v&#x2082; = 0</em>, so <em>v&#x2082; = v&#x2081;</em>. Any vector of the form [1, 1] (or any multiple) is an eigenvector for &#x3BB; = 5.</p><p>For &#x3BB; = 2, we&#x2019;d get the eigenvector [1, -2] (after similar calculation).</p><p><strong>Here is an Interesting fact</strong>: eigenvalues can be complex numbers with imaginary parts like 3 + 2i. <em><strong>Real eigenvalues indicate pure stretching or compressing. But complex eigenvalues indicate rotation.</strong></em></p><p>Imagine a transformation that rotates everything by 90 degrees. No real vector stays pointing in its original direction , everything turns. Yet mathematically, this transformation still has eigenvectors; they just involve complex numbers. The imaginary part captures the rotational nature of the transformation.</p><p>For a rotation by angle &#x3B8;, the eigenvalues are <strong>e^(i&#x3B8;)</strong> and <strong>e^(-i&#x3B8;)</strong> : complex conjugates that encode the angle of rotation in their argument.</p><p><em><strong>Note : Eigenvalues and eigenvectors are only for square matrices.</strong></em></p><h3>A Tautological beauty to admire :</h3><p>Consider the identity matrix <strong>I</strong>, which leaves every vector unchanged. For any vector <strong>v</strong>:</p><pre><code><strong>Iv = 1&#xB7;v</strong></code></pre><p>Every vector is an eigenvector of the identity matrix with eigenvalue 1. The identity transformation is the ultimate expression of <em>eigen</em> i.e everything remains &#x201C;its own.&#x201D;</p><p>But there&#x2019;s a more interesting construction. Let&#x2019;s take a specific eigenvector, say <strong>v</strong> = [3, 4]. We can construct a <em>projection matrix</em> <strong>P</strong> that projects any vector onto the direction of <strong>v</strong>.</p><p>First, we normalise <strong>v</strong> to get a unit vector: </p><pre><code><strong>&#xFB;</strong> = [3/5, 4/5]</code></pre><p>Then we form the projection matrix:</p><pre><code><code>P = &#xFB;&#xFB;^T = [3/5] [3/5  4/5] = [9/25   12/25]
+            [4/5]              [12/25  16/25]</code></code></pre><p>Now when we apply <strong>P</strong> to our original vector <strong>v</strong>:</p><pre><code><code>P&#xB7;v = [9/25   12/25] [3]   [3]
+      [12/25  16/25] [4] = [4] = v</code></code></pre><p>So <strong>v</strong> is an eigenvector of <strong>P</strong> with eigenvalue 1! The projection matrix leaves vectors along <strong>v</strong> unchanged (eigenvalue 1), while projecting all other vectors onto that direction.</p><p>This is almost tautological , a mathematical reflection of the word eigen itself. The vector &#x201C;recognises itself&#x201D; in the transformation and remains &#x201C;its own.&#x201D;</p><h3>Change of Basis :</h3><p>This might all seem abstract, but eigenvectors give us a natural coordinate system for understanding transformations.Normally, we describe vectors using standard basis vectors (like x and y axes). But we can choose <em>any</em> set of independent vectors as our basis. What if we choose the eigenvectors?</p><p>This is called the <em><strong>eigenbasis</strong></em>, and in this coordinate system, the transformation <strong>A</strong> becomes beautifully simple i.e it becomes <em>diagonal</em>.</p><p>If a matrix <strong>A</strong> has enough eigenvectors to form a complete basis, we can write:</p><pre><code><strong>A = PDP&#x207B;&#xB9; </strong></code></pre><p>where <em><strong>P</strong> is a matrix whose columns are the eigenvectors,<strong>D</strong> is a diagonal matrix with eigenvalues on the diagonal and <strong>P&#x207B;&#xB9;</strong> is the inverse of <strong>P .</strong></em></p><p>This means: To transform a vector with <strong>A</strong>, first change to the eigenbasis (multiply by P&#x207B;&#xB9;), then simply scale each coordinate by its eigenvalue (multiply by <strong>D</strong>), then change back to the original basis (multiply by <strong>P</strong>).</p><p>In a diagonal matrix, everything happens independently on each axis. There&#x2019;s no mixing between dimensions. The first coordinate gets multiplied by the first diagonal entry, the second by the second, and so on.</p><p>This makes many operations trivial:</p><ul><li><p>Want <strong>A&#xB2;</strong>? Just square each diagonal entry.</p></li><li><p>Want <strong>A&#xB9;&#x2070;&#x2070;</strong>? Just raise each diagonal entry to the 100th power.</p></li><li><p>Want the exponential e^<strong>A</strong>? Just exponentiate each diagonal entry.</p></li></ul><p>Suppose you need to compute <strong>A&#x2075;</strong> where:</p><pre><code><code>A = [4  1]
+    [2  3]</code></code></pre><p>You could multiply the matrix by itself 5 times. That&#x2019;s a tedious task.</p><p>Or you could diagonalize: </p><pre><code>A = PDP&#x207B;&#xB9;</code></pre><p>Then:</p><pre><code> A&#x2075; = (PDP&#x207B;&#xB9;)&#x2075; = PD&#x2075;P&#x207B;&#xB9;</code></pre><p>And D&#x2075; is trivial so ,just raise each eigenvalue to the 5th power after getting the eigen values as 5 and 2 like we computed above:</p><pre><code><code>D&#x2075; = [5&#x2075;  0 ] = [3125    0]
+     [0  2&#x2075;]    [0     32]</code></code></pre><p>Then sandwich it back: A&#x2075; = PD&#x2075;P&#x207B;&#xB9;, done in three simple matrix multiplications. </p><p>Now that we understand what are eigenvalues and eigenvectors , one must ask the question where they are practically used and I started with <a href="https://en.wikipedia.org/wiki/PageRank" target="_blank" rel="noopener noreferrer">PageRank</a> example at the start of this blog. </p><p>Another beautiful example of its use is the <a href="https://en.wikipedia.org/wiki/Principal_component_analysis" target="_blank" rel="noopener noreferrer">Principal Component Analysis</a>. <br>When analysing a big dataset with many variable , we form a <em><strong>covariance matrix</strong></em> (a matrix which tells us how is each variable related to other ) . Once the covariance matrix is formed, we find the eigenvectors and the since each eigenvector has a eigenvalue which are scalar in nature, we get to know directly in which particular direction (eigenvector) our data varies i.e the eigenvector with the largest eigenvalue points in the direction of maximum variance. <em><strong>This forms the principal direction of our data helping us finding the pattern and also effectively reducing the many dimensional data to 2 or 3 dimensions while keeping the most important information that we project onto the top few eigenvectors.</strong></em></p><p>Since you&#x2019;ve read to the end of this, I&#x2019;ll answer the question that lead to writing this: It&#x2019;s because Germans engineered <em>how</em> to actually use mathematics . </p><p>Some famous German mathematicians are:</p><ul><li><p><strong><a href="https://en.wikipedia.org/wiki/Carl_Friedrich_Gauss" target="_blank" rel="noopener noreferrer">Carl Friedrich Gauss</a></strong> - The &#x201C;Prince of Mathematics,&#x201D; contributed to number theory, statistics, and much more</p></li><li><p><strong><a href="https://en.wikipedia.org/wiki/David_Hilbert" target="_blank" rel="noopener noreferrer">David Hilbert</a></strong>  - Formalised mathematics and posed problems that drove 20th-century research</p></li><li><p><strong><a href="https://en.wikipedia.org/wiki/Emmy_Noether" target="_blank" rel="noopener noreferrer">Emmy Noether</a></strong><a href="https://en.wikipedia.org/wiki/Emmy_Noether" target="_blank" rel="noopener noreferrer"> </a>- Revolutionised abstract algebra and theoretical physics</p></li><li><p><strong><a href="https://en.wikipedia.org/wiki/Bernhard_Riemann" target="_blank" rel="noopener noreferrer">Bernhard Riemann</a></strong><a href="https://en.wikipedia.org/wiki/Bernhard_Riemann" target="_blank" rel="noopener noreferrer"> </a> - Transformed geometry and laid groundwork for general relativity</p></li><li><p><strong><a href="https://en.wikipedia.org/wiki/Karl_Weierstrass" target="_blank" rel="noopener noreferrer">Karl Weierstrass</a></strong>  - Formalised mathematical analysis</p></li></ul><p>And if you are interested in reading the history of mathematics you can read this in the <a href="https://en.wikipedia.org/wiki/History_of_mathematics" target="_blank" rel="noopener noreferrer">wikipedia here </a>. (P.S. Its a rabbit hole so go there if you have time otherwise you might spend hours reading them.)</p><p>Note - </p><ul><li><p><a href="https://youtu.be/PFDu9oVAE-g?si=bn_sZyIqx5cygn8q" target="_blank" rel="noopener noreferrer">Watch this video by 3blue1brown to have a visual understanding.</a></p></li><li><p><a href="https://textbooks.math.gatech.edu/ila/eigenvectors.html" target="_blank" rel="noopener noreferrer">Read this article also - it offers some great visual understanding</a></p></li></ul>
+                </div>
+                
+                <div class="subscribe-section" style="margin-top: 4rem; padding: 2rem; background: rgba(128, 128, 128, 0.05); border-radius: 8px; text-align: center;">
+                    <p style="margin-bottom: 1rem; font-style: italic;">Enjoyed this piece? Subscribe for free to receive new posts and support my work.</p>
+                    <a href="https://siliconandsoul.substack.com/subscribe" target="_blank" class="button primary" style="background: var(--highlight); color: var(--bg); padding: 0.8rem 1.5rem; border-radius: 4px; text-decoration: none; font-weight: bold; display: inline-block;">Subscribe on Substack</a>
+                </div>
+            </article>
+        </main>
+
+        <footer>
+            <div class="social-links" style="margin-bottom: 2rem;">
+              <a href="mailto:lipuntripathy74@gmail.com" target="_blank">Email</a>
+                <a href="https://x.com/EssenceThinker" target="_blank">X (Twitter)</a>
+                <a href="https://www.linkedin.com/in/sourav-tripathy-astrophile/" target="_blank">LinkedIn</a>
+                <a href="https://github.com/Sourav-Tripathy" target="_blank">GitHub</a>
+                <a href="https://letterboxd.com/essenceX/" target="_blank">Letterboxd</a>
+                <a href="https://www.goodreads.com/user/show/82254166-sourav-tripathy" target="_blank">Goodreads</a>
+            </div>
+            © <span id="year"></span> Sourav Tripathy
+        </footer>
+    </div>
+    <script src="../script.js"></script>
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

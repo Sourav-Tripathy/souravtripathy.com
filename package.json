@@ -1,0 +1,22 @@
+{
+  "name": "souravtripathy.com",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/fetch-articles.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sourav-Tripathy/souravtripathy.com.git"
+  },
+  "keywords": [],
+  "author": "Sourav Tripathy",
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "rss-parser": "^3.13.0",
+    "slugify": "^1.6.6"
+  }
+}

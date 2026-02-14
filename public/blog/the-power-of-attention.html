@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>The Power of Attention | Sourav Tripathy</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYTM3ZjVmIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggZD0iTTE4IDhoMWE0IDQgMCAwIDEgMCA4aC0xIi8+PHBhdGggZD0iTTIgOGgxNnY5YTQgNCAwIDAgMS00IDRINmE0IDQgMCAwIDEtNC00Vjh6Ii8+PGxpbmUgeDE9IjYiIHkxPSIxIiB4Mj0iNiIgeTI9IjQiLz48bGluZSB4MT0iMTAiIHkxPSIxIiB4Mj0iMTAiIHkyPSI0Ii8+PGxpbmUgeDE9IjE0IiB5MT0iMSIgeDI9IjE0IiB5Mj0iNCIvPjwvc3ZnPg==">
+    <script>
+        (function () {
+            var theme = localStorage.getItem('theme');
+            if (theme) {
+                document.documentElement.setAttribute('data-theme', theme);
+            } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+    <style>
+        /* Article specific styles */
+        .article-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 0;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+        .article-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+        .article-content h1, .article-content h2, .article-content h3 {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--highlight);
+        }
+        .article-content a {
+            color: var(--highlight);
+            text-decoration: underline;
+        }
+        .article-header {
+            margin-bottom: 3rem;
+            border-bottom: 1px dashed var(--dim);
+            padding-bottom: 2rem;
+        }
+        .article-title {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--fg);
+            text-decoration: none;
+        }
+        .article-meta {
+            color: var(--dim);
+            font-size: 0.9rem;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: var(--dim);
+            text-decoration: none;
+        }
+        .back-link:hover {
+            color: var(--highlight);
+        }
+        .article-content pre {
+            background: var(--fg);
+            color: var(--bg);
+            padding: 1rem;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+        .article-content code {
+            font-family: var(--font-mono);
+            font-size: 0.9em;
+            background: rgba(128, 128, 128, 0.1);
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+        }
+        .article-content pre code {
+            background: none;
+            padding: 0;
+            color: inherit;
+        }
+    </style>
+</head>
+<body>
+    <div class="masthead">
+        <div class="masthead-inner">
+            <header class="site-header">
+                <h1 class="brand-name">Sourav Tripathy</h1>
+                <nav class="tabs">
+                    <a href="/" class="tab-btn">About</a>
+                    <a href="/blog/" class="tab-btn active">Blog</a>
+                    <a href="/projects/" class="tab-btn">Projects</a>
+                    <a href="/curations/" class="tab-btn">Curations</a>
+                    <a href="/now/" class="tab-btn">Now</a>
+                    <a href="/observatory/" class="tab-btn">Observatory</a>
+                    <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark/light mode">
+                 <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                        <svg class="icon-moon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </button>
+                </nav>
+            </header>
+        </div>
+    </div>
+
+    <div class="container">
+        <main>
+            <a href="/blog/" class="back-link">← Back to Blog</a>
+            
+            <article class="article-content">
+                <header class="article-header">
+                    <h1 class="article-title">The Power of Attention</h1>
+                    <div class="article-meta">
+                        Published on August 31, 2024 • <a href="https://siliconandsoul.substack.com/p/the-power-of-attention" target="_blank">Read on Substack</a>
+                    </div>
+                </header>
+                
+                <div class="article-body">
+                    <div class="captioned-image-container"><figure><a class="image-link image2" target="_blank" href="https://substackcdn.com/image/fetch/$s_!V4Am!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8e39ad1b-ffcd-49cf-bda1-fe731d90532d_1128x479.png" data-component-name="Image2ToDOM" rel="noopener noreferrer"><div class="image2-inset"><picture><source type="image/webp" srcset="https://substackcdn.com/image/fetch/$s_!V4Am!,w_424,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8e39ad1b-ffcd-49cf-bda1-fe731d90532d_1128x479.png 424w, https://substackcdn.com/image/fetch/$s_!V4Am!,w_848,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8e39ad1b-ffcd-49cf-bda1-fe731d90532d_1128x479.png 848w, https://substackcdn.com/image/fetch/$s_!V4Am!,w_1272,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8e39ad1b-ffcd-49cf-bda1-fe731d90532d_1128x479.png 1272w, https://substackcdn.com/image/fetch/$s_!V4Am!,w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8e39ad1b-ffcd-49cf-bda1-fe731d90532d_1128x479.png 1456w" sizes="100vw"><img src="https://substackcdn.com/image/fetch/$s_!V4Am!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8e39ad1b-ffcd-49cf-bda1-fe731d90532d_1128x479.png" width="526" height="223.36347517730496" data-attrs="{&quot;src&quot;:&quot;https://substack-post-media.s3.amazonaws.com/public/images/8e39ad1b-ffcd-49cf-bda1-fe731d90532d_1128x479.png&quot;,&quot;srcNoWatermark&quot;:null,&quot;fullscreen&quot;:null,&quot;imageSize&quot;:null,&quot;height&quot;:479,&quot;width&quot;:1128,&quot;resizeWidth&quot;:526,&quot;bytes&quot;:679957,&quot;alt&quot;:null,&quot;title&quot;:null,&quot;type&quot;:&quot;image/png&quot;,&quot;href&quot;:null,&quot;belowTheFold&quot;:false,&quot;topImage&quot;:true,&quot;internalRedirect&quot;:null,&quot;isProcessing&quot;:false,&quot;align&quot;:null,&quot;offset&quot;:false}" class="sizing-normal" alt srcset="https://substackcdn.com/image/fetch/$s_!V4Am!,w_424,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8e39ad1b-ffcd-49cf-bda1-fe731d90532d_1128x479.png 424w, https://substackcdn.com/image/fetch/$s_!V4Am!,w_848,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8e39ad1b-ffcd-49cf-bda1-fe731d90532d_1128x479.png 848w, https://substackcdn.com/image/fetch/$s_!V4Am!,w_1272,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8e39ad1b-ffcd-49cf-bda1-fe731d90532d_1128x479.png 1272w, https://substackcdn.com/image/fetch/$s_!V4Am!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8e39ad1b-ffcd-49cf-bda1-fe731d90532d_1128x479.png 1456w" sizes="100vw" fetchpriority="high"></picture><div></div></div></a></figure></div><p>Have you ever wondered how modern AI seems to understand language so well ? Well, let me tell you about this cool thing called the &quot;<em><strong>attention mechanism</strong></em>&quot; that&apos;s revolutionized the way we process language with computers. It&apos;s like giving AI the ability to focus on what&apos;s important, just like we do when we&apos;re reading or listening&#x2026;</p><p>Imagine you&apos;re at a party, and there&apos;s a lot of chatter going on. When someone you&apos;re interested in starts talking, you naturally focus on their words more than the background noise. That&apos;s kind of what attention does for AI &#x2013; it helps the model focus on the important parts of a sentence or document when it&apos;s trying to understand or generate text. </p><p>Here&apos;s why it&apos;s so awesome:</p><ol><li><p>It&apos;s like giving the AI model a photographic memory. The model can look at the entire sentence or paragraph at once, catching those tricky long-range connections that older models might miss.</p></li><li><p>It&apos;s super flexible. The model can shift its focus dynamically, depending on what it&apos;s trying to understand or generate at the moment.</p></li><li><p>It&apos;s fast ! Unlike some older models that had to process words one by one, attention can handle multiple parts of a sentence simultaneously.</p></li><li><p>We can actually peek into what the AI model is focusing on. It&apos;s like being able to read its mind!</p></li></ol><p>Now, let&apos;s roll up our sleeves and see how this attention magic actually works. We&apos;ll use a simple sentence as our example: &quot;<em><strong>The cat sat on the mat</strong></em>&quot; I know, not very exciting, but it&apos;ll help us understand what&apos;s going on under the hood.</p><p><strong>Step 1: Turning Words into Numbers (Word Embeddings)</strong></p><p>First things first, we need to turn our words into something the computer can understand - numbers! We use something called &quot;embeddings&quot; for this. Think of it as giving each word a unique ID card filled with numbers that describe its meaning. Technically these are high-dimensional vectors that capture semantic meaning.</p><p>Mathematically, it looks something like this:</p><p><em>&quot;The cat&quot; &#x2192; x&#x2081; = [0.2, 0.5, -0.3, 0.1]</em></p><p><em>&quot;sat on the mat&quot; &#x2192; x&#x2082; = [0.1, -0.2, 0.7, 0.3]</em></p><p>In reality, these vectors are usually much longer (often 300-1000 dimensions), but we&apos;re keeping it simple for our example. These numbers capture things like &quot;it&apos;s an animal&quot;, &quot;it&apos;s furry&quot;and so on. The division of the sentence into two parts is called tokenization where each part is a token.</p><p><strong>Step 2: Creating Query, Key, and Value Vectors</strong></p><p>Now, here&apos;s where it gets interesting. For each word (or chunk of words), we create three different versions:</p><p>- A Query vector (Q): Think of this as the word asking, &quot;Hey, who&apos;s important to me?&quot;</p><p>- A Key vector (K): This is like the word&apos;s name tag, saying &quot;This is who I am!&quot;</p><p>- A Value vector (V): This is the actual information the word carries.</p><p>We do this by taking our embeddings and passing them through what we call &quot;<em>linear layers</em>&quot;. It&apos;s just a fancy way of saying we do some matrix multiplication to transform our original numbers into these three new sets of numbers. These matrix multiplications are done with weights and biases, which are known as learnable parameters of the model and are randomly initialized. Since they are random, they may introduce errors, which are minimized through optimization algorithms such as gradient descent during training.</p><p>Mathematically, it looks like this:</p><pre><code>Q = X W^Q
+
+K = X W^K
+
+V = X W^V</code></pre><p>Where X is our input matrix (x&#x2081; and x&#x2082; stacked), and W^Q, W^K, and W^V are learned weight matrices.</p><p>Let&apos;s say our attention head size is 3. Then our weight matrices are 4x3, and we might get something like:</p><pre><code>Q&#x2081; = x&#x2081; W^Q = [0.1, -0.2, 0.3]
+
+K&#x2081; = x&#x2081; W^K = [0.2, 0.1, -0.1]
+
+V&#x2081; = x&#x2081; W^V = [-0.1, 0.3, 0.2]
+
+Q&#x2082; = x&#x2082; W^Q = [-0.3, 0.1, 0.2]
+
+K&#x2082; = x&#x2082; W^K = [0.1, -0.2, 0.3]
+
+V&#x2082; = x&#x2082; W^V = [0.2, -0.1, 0.1]</code></pre><p><strong>Step 3: Calculating Attention Scores</strong></p><p>Here&apos;s where the magic happens. We take the Query of each word and compare it with the Keys of all the words (including itself). It&apos;s like each word is asking, &quot;How relevant are you to me?&quot;</p><p>We do this by taking the dot product of the Query vectors with all the Key vectors. It looks like this:</p><p><em><strong>Score = Q K^T   </strong>(K^T is the transpose of  key vector)</em></p><p>For our example, it would be:</p><p>Let&apos;s calculate it out:</p><pre><code>Q&#x2081;&#xB7;K&#x2081;^T = 0.1 * 0.2 + (-0.2) * 0.1 + 0.3 * (-0.1) = -0.01
+
+Q&#x2081;&#xB7;K&#x2082;^T = 0.1 * 0.1 + (-0.2) * (-0.2) + 0.3 * 0.3 = 0.13
+
+Q&#x2082;&#xB7;K&#x2081;^T = (-0.3) * 0.2 + 0.1 * 0.1 + 0.2 * (-0.1) = -0.07
+
+Q&#x2082;&#xB7;K&#x2082;^T = (-0.3) * 0.1 + 0.1 * (-0.2) + 0.2 * 0.3 = 0.01</code></pre><p>So our attention score matrix is:</p><pre><code>| -0.01  0.13 |
+| -0.07  0.01 |</code></pre><p>The higher the score, the more attention we pay to that relationship i.e the scores reflect the relevance of the keys to the query.</p><p>It&apos;s like the AI is saying, &quot;Hey, these words seem pretty relevant to each other!&quot;</p><p><strong>Step 4: Scaling and Softmax - Making it a Popularity Contest</strong></p><p>Now we have these attention scores, but we need to make them easier to work with. We use a two-step process:</p><p>1. First, we scale the scores by dividing them by the square root of the dimension of our Key vectors. This helps keep things stable, especially when we&apos;re working with really big models. It&apos;s like turning down the volume a bit to prevent distortion.</p><p><strong>  </strong><em><strong> Scaled scores = Scores / &#x221A;d_k</strong></em></p><p>   In our case, d_k = 3, so we divide by &#x221A;3:</p><pre><code>   | -0.0058  0.0751 |
+   | -0.0404  0.0058 |</code></pre><p>2. Then we use a mathematical operation called &quot;softmax&quot; to turn these scores into percentages. It&apos;s like a popularity contest where all the scores must add up to 100%.</p><div class="captioned-image-container"><figure><a class="image-link image2" target="_blank" href="https://substackcdn.com/image/fetch/$s_!9EGa!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fb8360041-c193-4f50-b468-638215102822_345x109.png" data-component-name="Image2ToDOM" rel="noopener noreferrer"><div class="image2-inset"><picture><source type="image/webp" srcset="https://substackcdn.com/image/fetch/$s_!9EGa!,w_424,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fb8360041-c193-4f50-b468-638215102822_345x109.png 424w, https://substackcdn.com/image/fetch/$s_!9EGa!,w_848,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fb8360041-c193-4f50-b468-638215102822_345x109.png 848w, https://substackcdn.com/image/fetch/$s_!9EGa!,w_1272,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fb8360041-c193-4f50-b468-638215102822_345x109.png 1272w, https://substackcdn.com/image/fetch/$s_!9EGa!,w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fb8360041-c193-4f50-b468-638215102822_345x109.png 1456w" sizes="100vw"><img src="https://substackcdn.com/image/fetch/$s_!9EGa!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fb8360041-c193-4f50-b468-638215102822_345x109.png" width="345" height="109" data-attrs="{&quot;src&quot;:&quot;https://substack-post-media.s3.amazonaws.com/public/images/b8360041-c193-4f50-b468-638215102822_345x109.png&quot;,&quot;srcNoWatermark&quot;:null,&quot;fullscreen&quot;:null,&quot;imageSize&quot;:null,&quot;height&quot;:109,&quot;width&quot;:345,&quot;resizeWidth&quot;:null,&quot;bytes&quot;:7565,&quot;alt&quot;:null,&quot;title&quot;:null,&quot;type&quot;:&quot;image/png&quot;,&quot;href&quot;:null,&quot;belowTheFold&quot;:true,&quot;topImage&quot;:false,&quot;internalRedirect&quot;:null,&quot;isProcessing&quot;:false,&quot;align&quot;:null,&quot;offset&quot;:false}" class="sizing-normal" alt srcset="https://substackcdn.com/image/fetch/$s_!9EGa!,w_424,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fb8360041-c193-4f50-b468-638215102822_345x109.png 424w, https://substackcdn.com/image/fetch/$s_!9EGa!,w_848,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fb8360041-c193-4f50-b468-638215102822_345x109.png 848w, https://substackcdn.com/image/fetch/$s_!9EGa!,w_1272,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fb8360041-c193-4f50-b468-638215102822_345x109.png 1272w, https://substackcdn.com/image/fetch/$s_!9EGa!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fb8360041-c193-4f50-b468-638215102822_345x109.png 1456w" sizes="100vw" loading="lazy"></picture><div></div></div></a></figure></div><p><em>&#x200B;where the numerator is The exponential function applied to the score &#x1D465;&#x1D456; and the denominator is the sum of the exponentials of all scores in the vector, which serves as a normalization factor.</em></p><p>   After applying softmax, our attention weight matrix becomes:</p><pre><code>    | 0.4798  0.5202 |
+    | 0.4885  0.5115 |</code></pre><p>   Now each row adds up to 1, giving us a nice probability distribution of attention for each word.</p><p><strong>Step 5: Weighting the Values - Mixing the Perfect Cocktail</strong></p><p>Remember those Value vectors we created earlier? Now we use our attention weights to decide how much of each Value vector we should pay attention to. It&apos;s like mixing a cocktail &#x2013; we take a little bit from each Value, depending on how important it is.</p><p>Mathematically, it&apos;s a simple matrix multiplication:</p><p><em><strong>Output = Attention Weights * V</strong></em></p><pre><code>| 0.4798  0.5202 | | -0.1  0.3  0.2 |
+| 0.4885  0.5115 | |  0.2 -0.1  0.1 |</code></pre><p>Calculating this out, we get:</p><pre><code>| 0.0546  0.0942  0.1490 |
+| 0.0456  0.0942  0.1486 |</code></pre><p>Each row here represents the output for one of our input tokens, incorporating information from both tokens weighted by attention.</p><p><strong>Step 6: Finishing Touches - Output Projection and Layer Normalization</strong></p><p>We&apos;re almost there! We take our mixed Values and do a bit more math to make sure everything is just right. </p><p>First, we project this output to match our model&apos;s hidden size. Let&apos;s say our model&apos;s hidden size is 4. We&apos;ll use a learned weight matrix W^O (3x4) to do this:</p><p><em><strong>Final Output = Output * W^O</strong></em></p><p>This W^O is a crucial weight matrix that projects the concatenated outputs of all attention heads back to the model&apos;s hidden size. It&apos;s learned during the training process, just like the other weight matrices we&apos;ve discussed (W^Q, W^K, and W^V).</p><p>Then we use something called &quot;<em>layer normalization</em>&quot; which is a fancy way of making sure our numbers don&apos;t get too big or too small. For each feature, we subtract the mean and divide by the standard deviation:</p><pre><code>y = (x - &#x3BC;) / (&#x3C3; + &#x3B5;)</code></pre><p>Where &#x3BC; is the mean, &#x3C3; is the standard deviation, and &#x3B5; is a small number to prevent division by zero. It helps stabilize training and improve convergence.</p><p><strong>Step 7: Generating Output - The Grand Finale</strong></p><p>Finally, we use all this processed information to figure out what word should come next, or to understand the meaning of our input. It&apos;s like the AI has read and understood our sentence, focusing on the important parts just like a human would.</p><p>This final output is then fed into the feed-forward neural network part of the transformer layer. The process repeats in subsequent layers, allowing the model to build increasingly sophisticated representations.</p><p><strong>Multi-Head Attention: Because Two Heads Are Better Than One !</strong></p><p>Here&apos;s a cool twist &#x2013; in most modern systems, we don&apos;t just do this attention process once. We do it multiple times in parallel ! It&apos;s called &quot;multi-head attention&quot;. </p><p>Imagine you&apos;re trying to understand a complex scene. You might look at the colors, the shapes, the movement, all at the same time. That&apos;s what multi-head attention does &#x2013; it lets the AI look at the sentence from multiple perspectives simultaneously.</p><p>Mathematically, it looks like this:</p><pre><code>MultiHead(Q, K, V) = Concat(head&#x2081;, ..., head&#x2098;) W^O</code></pre><p>Where each head is:</p><pre><code>head&#x1D62; = Attention (QW^Q_i, KW^K_i, VW^V_i)</code></pre><p>This allows the model to jointly attend to information from different representation subspaces at different positions.</p><p>That was quite a journey, wasn&apos;t it? We&apos;ve gone from words to numbers, through a series of mathematical transformations, and back to meaningful representations that AI can use to understand and generate language.</p><p>So, what do you think? Isn&apos;t AI attention just mind-blowing? It&apos;s taking us one step closer to machines that can really grasp the nuances of human language. </p><p>If you have any questions about the math, the process, or just want to geek out about AI, feel free to ask. I love diving into the nitty-gritty details of this stuff. After all, understanding these mechanisms is key to pushing AI forward and using it responsibly. So, what part of attention fascinates you the most?</p><p class="button-wrapper" data-attrs="{&quot;url&quot;:&quot;https://siliconandsoul.substack.com/subscribe?&quot;,&quot;text&quot;:&quot;Subscribe now&quot;,&quot;action&quot;:null,&quot;class&quot;:null}" data-component-name="ButtonCreateButton"><a class="button primary" href="https://siliconandsoul.substack.com/subscribe?" target="_blank" rel="noopener noreferrer"><span>Subscribe now</span></a></p><p></p>
+                </div>
+                
+                <div class="subscribe-section" style="margin-top: 4rem; padding: 2rem; background: rgba(128, 128, 128, 0.05); border-radius: 8px; text-align: center;">
+                    <p style="margin-bottom: 1rem; font-style: italic;">Enjoyed this piece? Subscribe for free to receive new posts and support my work.</p>
+                    <a href="https://siliconandsoul.substack.com/subscribe" target="_blank" class="button primary" style="background: var(--highlight); color: var(--bg); padding: 0.8rem 1.5rem; border-radius: 4px; text-decoration: none; font-weight: bold; display: inline-block;">Subscribe on Substack</a>
+                </div>
+            </article>
+        </main>
+
+        <footer>
+            <div class="social-links" style="margin-bottom: 2rem;">
+              <a href="mailto:lipuntripathy74@gmail.com" target="_blank">Email</a>
+                <a href="https://x.com/EssenceThinker" target="_blank">X (Twitter)</a>
+                <a href="https://www.linkedin.com/in/sourav-tripathy-astrophile/" target="_blank">LinkedIn</a>
+                <a href="https://github.com/Sourav-Tripathy" target="_blank">GitHub</a>
+                <a href="https://letterboxd.com/essenceX/" target="_blank">Letterboxd</a>
+                <a href="https://www.goodreads.com/user/show/82254166-sourav-tripathy" target="_blank">Goodreads</a>
+            </div>
+            © <span id="year"></span> Sourav Tripathy
+        </footer>
+    </div>
+    <script src="../script.js"></script>
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

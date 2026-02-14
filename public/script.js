@@ -65,8 +65,9 @@ function renderArticles() {
         const dateObj = new Date(art.date);
         const dateStr = dateObj.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
 
+        const target = art.link.startsWith('http') ? '_blank' : '_self';
         item.innerHTML = `
-             <a href="${art.link}" target="_blank" class="article-title">${art.title}</a>
+             <a href="${art.link}" target="${target}" class="article-title">${art.title}</a>
              <span class="article-meta">${dateStr}</span>
         `;
         list.appendChild(item);
