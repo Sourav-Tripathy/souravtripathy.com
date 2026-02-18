@@ -22,67 +22,128 @@
             max-width: 800px;
             margin: 0 auto;
             padding: 2rem 0;
-            line-height: 1.6;
-            font-size: 1.1rem;
+            line-height: 1.8; /* Increased line height for better readability */
+            font-size: 1.15rem;
         }
         .article-content img {
             max-width: 100%;
             height: auto;
             border-radius: 8px;
-            margin: 1.5rem 0;
+            margin: 2rem 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Subtle shadow */
         }
         .article-content h1, .article-content h2, .article-content h3 {
-            margin-top: 2rem;
-            margin-bottom: 1rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1.2rem;
             color: var(--highlight);
+            line-height: 1.3;
         }
         .article-content a {
             color: var(--highlight);
-            text-decoration: underline;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(var(--highlight-rgb), 0.3);
+            transition: border-color 0.2s;
         }
+        .article-content a:hover {
+            border-bottom-color: var(--highlight);
+        }
+        
+        /* Revised Header Styles for Aesthetics */
         .article-header {
-            margin-bottom: 3rem;
-            border-bottom: 1px dashed var(--dim);
-            padding-bottom: 2rem;
+            margin-bottom: 3.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(128, 128, 128, 0.2);
         }
         .article-title {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
             color: var(--fg);
-            text-decoration: none;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
         }
         .article-meta {
-            color: var(--dim);
+            font-family: var(--font-mono, monospace);
             font-size: 0.9rem;
+            color: var(--dim);
+            letter-spacing: 0.03em;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            opacity: 0.85;
         }
-        .back-link {
-            display: inline-block;
-            margin-bottom: 2rem;
+        .article-meta a {
             color: var(--dim);
             text-decoration: none;
+            border-bottom: 1px dotted var(--dim);
+            transition: all 0.2s ease;
+            margin-left: auto; /* Push link to the right on larger screens */
+        }
+        .article-meta a:hover {
+            color: var(--highlight);
+            border-bottom-color: var(--highlight);
+        }
+        .meta-separator {
+            opacity: 0.4;
+            display: inline-block;
+            margin: 0 0.2rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 3rem;
+            color: var(--dim);
+            text-decoration: none;
+            font-family: var(--font-mono, monospace);
+            font-size: 0.9rem;
+            opacity: 0.7;
+            transition: opacity 0.2s;
         }
         .back-link:hover {
             color: var(--highlight);
+            opacity: 1;
         }
+        
         .article-content pre {
-            background: var(--fg);
+            background: var(--fg); /* Inverted for code blocks */
             color: var(--bg);
-            padding: 1rem;
-            border-radius: 5px;
+            padding: 1.5rem;
+            border-radius: 6px;
             overflow-x: auto;
-            margin: 1.5rem 0;
+            margin: 2rem 0;
+            font-size: 0.95rem;
+            line-height: 1.5;
         }
         .article-content code {
-            font-family: var(--font-mono);
+            font-family: var(--font-mono, monospace);
             font-size: 0.9em;
-            background: rgba(128, 128, 128, 0.1);
+            background: rgba(128, 128, 128, 0.15);
             padding: 0.2rem 0.4rem;
-            border-radius: 3px;
+            border-radius: 4px;
         }
         .article-content pre code {
             background: none;
             padding: 0;
             color: inherit;
+        }
+        
+        @media (max-width: 600px) {
+            .article-title {
+                font-size: 2rem;
+            }
+            .article-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            .article-meta a {
+                margin-left: 0; /* Reset margin on mobile */
+                margin-top: 0.5rem;
+            }
+             .meta-separator {
+                display: none; /* Hide separator on mobile when stacked */
+            }
         }
     </style>
 </head>
@@ -127,7 +188,10 @@
                 <header class="article-header">
                     <h1 class="article-title">An Introduction to Knowledge Distillation in Neural Networks</h1>
                     <div class="article-meta">
-                        Published on September 14, 2025 • <a href="https://siliconandsoul.substack.com/p/an-introduction-to-knowledge-distillation" target="_blank">Read on Substack</a>
+                        <span class="meta-item">September 14, 2025</span>
+                        <span class="meta-separator">/</span>
+                        <span class="meta-item">6 min read</span>
+                        <a href="https://siliconandsoul.substack.com/p/an-introduction-to-knowledge-distillation" target="_blank">Read on Substack ↗</a>
                     </div>
                 </header>
                 
@@ -135,9 +199,9 @@
                     <p>In 2015, Geoffrey Hinton, Oriol Vinyals, and Jeff Dean published a groundbreaking paper titled <strong>&quot;<a href="https://arxiv.org/pdf/1503.02531" target="_blank" rel="noopener noreferrer">Distilling the Knowledge in a Neural Network</a>&quot;</strong> where they showed that a smaller neural network could learn better from the data generated by a bigger one than from the raw data itself.</p><p>This week, while reading about a new concept called <strong><a href="https://arxiv.org/pdf/2507.14805" target="_blank" rel="noopener noreferrer">SUBLIMINAL LEARNING</a></strong> by Anthropic researchers, I came across this paper. It fascinated me with its finding of better knowledge transfer than raw data could provide. To see if the results were reproducible, I tried to replicate the first experiment they did with the standard MNIST dataset. Following the paper&#x2019;s literature, and without adding dropout layers or regularization to keep the setup simple, I replicated the experiment and will now share my findings.</p><p>You can check out the code in this <a href="https://github.com/Sourav-Tripathy/Cute-Experiments/blob/main/Exp-2/knowledge_distillation_MNIST.ipynb" target="_blank" rel="noopener noreferrer">notebook</a>.</p><h3>What is Knowledge Distillation?</h3><p>Before we dive into the experiment, let&apos;s define knowledge distillation.</p><p><strong>Knowledge distillation</strong> is a technique where a small neural network (the &quot;<strong>student</strong>&quot;) is trained to mimic the behavior of a large, powerful network (the &quot;<strong>teacher</strong>&quot;). The key is that the student learns not just the final classifications but also the nuances of the teacher&apos;s &quot;thought process.&quot;</p><p>A perfect analogy would be:</p><ul><li><p><strong>The Teacher:</strong> A world-class coffee expert who can not only identify the country a coffee is from but also guess the region, roast type, and detect subtle notes of chocolate or berry.</p></li><li><p><strong>The Student:</strong> A new barista in training.</p></li></ul><p><strong>Normal Training</strong> is like telling the student the right answer: &quot;This coffee is from Colombia.&quot; The student only learns that one fact. <strong>Knowledge Distillation</strong> is like having the expert tell the student their full thought process: &quot;This is very likely from Colombia, specifically the Huila region. It&apos;s a medium roast, and I&apos;m getting strong notes of dark chocolate and a hint of cherry.&quot;</p><p>The student learns much more from the expert&apos;s detailed description than from just the simple answer. Even though the student is less experienced, they learn to think like the expert and can make better, more nuanced guesses on their own.</p><h3>The Setup</h3><ul><li><p><strong>Teacher Neural Net Configuration:</strong> I made the configuration similar to the original paper, with two hidden layers of 1,200 neurons each and ReLU as the activation function. As is standard for MNIST, the output layer has 10 neurons, and the input layer has 784 neurons (for the 28x28-pixel images).</p></li><li><p><strong>Student Neural Net Configuration:</strong> The student&apos;s configuration is similar to the teacher&apos;s, but its two hidden layers have only 800 neurons each.</p></li></ul><h3>The Experiment</h3><p>First, we trained both the teacher and the student neural networks on the original training dataset and evaluated them against the 10,000-image test set.</p><h4>Initial Results</h4><p>Here are the accuracies for the first phase of the experiment:</p><ul><li><p><strong>Teacher Model:</strong> 96.87% accuracy</p></li><li><p><strong>Base Student Model (trained on hard labels):</strong> 96.15% accuracy</p></li><li><p><strong>Distilled Student Model (trained on soft labels):</strong> 96.34% accuracy</p></li><li><p><strong>Distilled student Model(trained without taking hard label loss)</strong>:11.04 % accuracy</p></li></ul><p>As expected, the teacher model had a higher accuracy due to its larger size. However, the key finding is that the distilled student model, trained with the nuanced &quot;soft targets&quot; from the teacher, performed better than the identical student model trained only on the original &quot;hard labels.&quot;The fourth result shows that a student trained <strong>only on soft targets</strong> performs poorly, highlighting the importance of including the hard targets in the loss function.</p><div class="captioned-image-container"><figure><a class="image-link image2 is-viewable-img" target="_blank" href="https://substackcdn.com/image/fetch/$s_!k20T!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Feedc4bc7-673e-4344-a754-bebf9af05870_1229x730.png" data-component-name="Image2ToDOM" rel="noopener noreferrer"><div class="image2-inset"><picture><source type="image/webp" srcset="https://substackcdn.com/image/fetch/$s_!k20T!,w_424,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Feedc4bc7-673e-4344-a754-bebf9af05870_1229x730.png 424w, https://substackcdn.com/image/fetch/$s_!k20T!,w_848,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Feedc4bc7-673e-4344-a754-bebf9af05870_1229x730.png 848w, https://substackcdn.com/image/fetch/$s_!k20T!,w_1272,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Feedc4bc7-673e-4344-a754-bebf9af05870_1229x730.png 1272w, https://substackcdn.com/image/fetch/$s_!k20T!,w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Feedc4bc7-673e-4344-a754-bebf9af05870_1229x730.png 1456w" sizes="100vw"><img src="https://substackcdn.com/image/fetch/$s_!k20T!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Feedc4bc7-673e-4344-a754-bebf9af05870_1229x730.png" width="1229" height="730" data-attrs="{&quot;src&quot;:&quot;https://substack-post-media.s3.amazonaws.com/public/images/eedc4bc7-673e-4344-a754-bebf9af05870_1229x730.png&quot;,&quot;srcNoWatermark&quot;:null,&quot;fullscreen&quot;:null,&quot;imageSize&quot;:null,&quot;height&quot;:730,&quot;width&quot;:1229,&quot;resizeWidth&quot;:null,&quot;bytes&quot;:68279,&quot;alt&quot;:null,&quot;title&quot;:null,&quot;type&quot;:&quot;image/png&quot;,&quot;href&quot;:null,&quot;belowTheFold&quot;:true,&quot;topImage&quot;:false,&quot;internalRedirect&quot;:&quot;https://siliconandsoul.substack.com/i/173409512?img=https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Feedc4bc7-673e-4344-a754-bebf9af05870_1229x730.png&quot;,&quot;isProcessing&quot;:false,&quot;align&quot;:null,&quot;offset&quot;:false}" class="sizing-normal" alt srcset="https://substackcdn.com/image/fetch/$s_!k20T!,w_424,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Feedc4bc7-673e-4344-a754-bebf9af05870_1229x730.png 424w, https://substackcdn.com/image/fetch/$s_!k20T!,w_848,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Feedc4bc7-673e-4344-a754-bebf9af05870_1229x730.png 848w, https://substackcdn.com/image/fetch/$s_!k20T!,w_1272,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Feedc4bc7-673e-4344-a754-bebf9af05870_1229x730.png 1272w, https://substackcdn.com/image/fetch/$s_!k20T!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Feedc4bc7-673e-4344-a754-bebf9af05870_1229x730.png 1456w" sizes="100vw" loading="lazy"></picture></div></a></figure></div><p>The improvement is small but significant, demonstrating that the soft targets from the teacher model contain valuable information that helps the student generalize better.</p><h3>What&apos;s in the Loss Function?</h3><p>The student model needs to factor in the loss from both the hard labels and the soft labels during training. This is where the loss function combines two key components:</p><ul><li><p><strong>KL Divergence (soft_loss):</strong> A mathematical way to measure how the student&apos;s probability distribution differs from the teacher&apos;s.</p></li><li><p><strong>Cross-Entropy Loss (hard_loss):</strong> The standard loss function that measures how well the student&apos;s predictions match the original hard labels.</p></li></ul><p>The combined loss function is a weighted average:</p><pre><code>Loss = &#x3B1; * soft_loss + (1 - &#x3B1;) * hard_loss</code></pre><p>Here, <strong>&#x3B1;</strong> is a parameter that determines how much the student model should focus on the teacher model&apos;s output. In this experiment, I used 0.5 to balance the importance of both hard and soft labels.</p><p>Another key hyperparameter is the <strong>temperature parameter (T)</strong>, which we use to scale the teacher&apos;s output to soften the distribution. This prevents the student from learning from a steep, spiky distribution and allows it to grasp the subtle relationships between classes. In this experiment, I used a high temperature of 20, as was mentioned in the original paper.</p><h3>Uncovering &quot;Dark Knowledge&quot;: The Missing Label Experiment</h3><p>To further explore the power of distillation, I replicated an extra experiment from the paper. I removed all images with the label &quot;3&quot; from the training dataset.</p><p>Now, for the student models, the label &quot;3&quot; is a &quot;mysterious image&quot; they have never seen. I trained two student models: one on the new, &quot;3-less&quot; hard label dataset and another on the &quot;3-less&quot; dataset of teacher outputs.</p><p>The results from the test set (which still contained images of &quot;3&quot;) were surprising:</p><ul><li><p><strong>Student Model (trained on hard labels):</strong> Out of 1,010 images of the number &quot;3&quot;, this model got <strong>all 1,010 wrong</strong>, with a <strong>0% accuracy</strong> on those images.</p></li><li><p><strong>Student Model (trained on teacher outputs):</strong> Out of the same 1,010 images, this model made only <strong>206 errors</strong>, demonstrating a far superior ability to handle a &quot;mysterious&quot; class.</p></li></ul><p>This is the central finding of the paper. Even though the hard label for image &quot;3&quot; was missing, the teacher&apos;s output distribution contained subtle traces of how other images were related to it (e.g., how a &quot;3&quot; can be confused with a &quot;5&quot; or &quot;8&quot;). The student model learned this &quot;<strong>dark knowledge</strong>&quot; and was able to infer the missing label, demonstrating that distillation can transfer knowledge that isn&apos;t explicitly present in the data.</p><h3>Takeaways</h3><p>This experiment effectively shows the core findings of the original knowledge distillation paper. By training a smaller student model on the nuanced probability distributions of a larger teacher, we can:</p><ul><li><p><strong>Improve performance:</strong> The distilled student model performed better than the base student.</p></li><li><p><strong>Transfer &quot;dark knowledge&quot;:</strong> The student learned to classify a completely missing class (&quot;3&quot;) by inferring from the teacher&apos;s soft targets.</p></li><li><p><strong>Enable model compression:</strong> This process allows for the creation of smaller, more efficient models that retain much of the performance of their larger counterparts.</p></li></ul><p>This technique is more relevant than ever today. The model compression and knowledge transfer principles behind knowledge distillation are essential for deploying massive models like Large Language Models (LLMs) on resource-constrained devices, bringing powerful AI to the hands of everyday users.</p><p> </p><p></p>
                 </div>
                 
-                <div class="subscribe-section" style="margin-top: 4rem; padding: 2rem; background: rgba(128, 128, 128, 0.05); border-radius: 8px; text-align: center;">
-                    <p style="margin-bottom: 1rem; font-style: italic;">Enjoyed this piece? Subscribe for free to receive new posts and support my work.</p>
-                    <a href="https://siliconandsoul.substack.com/subscribe" target="_blank" class="button primary" style="background: var(--highlight); color: var(--bg); padding: 0.8rem 1.5rem; border-radius: 4px; text-decoration: none; font-weight: bold; display: inline-block;">Subscribe on Substack</a>
+                <div class="subscribe-section" style="margin-top: 5rem; padding: 2.5rem; background: rgba(128, 128, 128, 0.05); border-radius: 12px; text-align: center;">
+                    <p style="margin-bottom: 1.5rem; font-style: italic; font-size: 1.1rem; opacity: 0.9;">Enjoyed this piece? Subscribe for free to receive new posts and support my work.</p>
+                    <a href="https://siliconandsoul.substack.com/subscribe" target="_blank" class="button primary" style="background: var(--highlight); color: var(--bg); padding: 1rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 600; letter-spacing: 0.5px; display: inline-block; transition: opacity 0.2s;">Subscribe on Substack</a>
                 </div>
             </article>
         </main>

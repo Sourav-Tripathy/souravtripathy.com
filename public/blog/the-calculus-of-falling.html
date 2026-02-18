@@ -22,67 +22,128 @@
             max-width: 800px;
             margin: 0 auto;
             padding: 2rem 0;
-            line-height: 1.6;
-            font-size: 1.1rem;
+            line-height: 1.8; /* Increased line height for better readability */
+            font-size: 1.15rem;
         }
         .article-content img {
             max-width: 100%;
             height: auto;
             border-radius: 8px;
-            margin: 1.5rem 0;
+            margin: 2rem 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Subtle shadow */
         }
         .article-content h1, .article-content h2, .article-content h3 {
-            margin-top: 2rem;
-            margin-bottom: 1rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1.2rem;
             color: var(--highlight);
+            line-height: 1.3;
         }
         .article-content a {
             color: var(--highlight);
-            text-decoration: underline;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(var(--highlight-rgb), 0.3);
+            transition: border-color 0.2s;
         }
+        .article-content a:hover {
+            border-bottom-color: var(--highlight);
+        }
+        
+        /* Revised Header Styles for Aesthetics */
         .article-header {
-            margin-bottom: 3rem;
-            border-bottom: 1px dashed var(--dim);
-            padding-bottom: 2rem;
+            margin-bottom: 3.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(128, 128, 128, 0.2);
         }
         .article-title {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
             color: var(--fg);
-            text-decoration: none;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
         }
         .article-meta {
-            color: var(--dim);
+            font-family: var(--font-mono, monospace);
             font-size: 0.9rem;
+            color: var(--dim);
+            letter-spacing: 0.03em;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            opacity: 0.85;
         }
-        .back-link {
-            display: inline-block;
-            margin-bottom: 2rem;
+        .article-meta a {
             color: var(--dim);
             text-decoration: none;
+            border-bottom: 1px dotted var(--dim);
+            transition: all 0.2s ease;
+            margin-left: auto; /* Push link to the right on larger screens */
+        }
+        .article-meta a:hover {
+            color: var(--highlight);
+            border-bottom-color: var(--highlight);
+        }
+        .meta-separator {
+            opacity: 0.4;
+            display: inline-block;
+            margin: 0 0.2rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 3rem;
+            color: var(--dim);
+            text-decoration: none;
+            font-family: var(--font-mono, monospace);
+            font-size: 0.9rem;
+            opacity: 0.7;
+            transition: opacity 0.2s;
         }
         .back-link:hover {
             color: var(--highlight);
+            opacity: 1;
         }
+        
         .article-content pre {
-            background: var(--fg);
+            background: var(--fg); /* Inverted for code blocks */
             color: var(--bg);
-            padding: 1rem;
-            border-radius: 5px;
+            padding: 1.5rem;
+            border-radius: 6px;
             overflow-x: auto;
-            margin: 1.5rem 0;
+            margin: 2rem 0;
+            font-size: 0.95rem;
+            line-height: 1.5;
         }
         .article-content code {
-            font-family: var(--font-mono);
+            font-family: var(--font-mono, monospace);
             font-size: 0.9em;
-            background: rgba(128, 128, 128, 0.1);
+            background: rgba(128, 128, 128, 0.15);
             padding: 0.2rem 0.4rem;
-            border-radius: 3px;
+            border-radius: 4px;
         }
         .article-content pre code {
             background: none;
             padding: 0;
             color: inherit;
+        }
+        
+        @media (max-width: 600px) {
+            .article-title {
+                font-size: 2rem;
+            }
+            .article-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            .article-meta a {
+                margin-left: 0; /* Reset margin on mobile */
+                margin-top: 0.5rem;
+            }
+             .meta-separator {
+                display: none; /* Hide separator on mobile when stacked */
+            }
         }
     </style>
 </head>
@@ -127,7 +188,10 @@
                 <header class="article-header">
                     <h1 class="article-title">The Calculus of Falling</h1>
                     <div class="article-meta">
-                        Published on March 12, 2025 • <a href="https://siliconandsoul.substack.com/p/the-calculus-of-falling" target="_blank">Read on Substack</a>
+                        <span class="meta-item">March 12, 2025</span>
+                        <span class="meta-separator">/</span>
+                        <span class="meta-item">4 min read</span>
+                        <a href="https://siliconandsoul.substack.com/p/the-calculus-of-falling" target="_blank">Read on Substack ↗</a>
                     </div>
                 </header>
                 
@@ -135,9 +199,9 @@
                     <div class="captioned-image-container"><figure><a class="image-link image2 is-viewable-img" target="_blank" href="https://substackcdn.com/image/fetch/$s_!FXJo!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F6b076134-965f-4247-9f63-1bd2d21ba09e_736x736.jpeg" data-component-name="Image2ToDOM" rel="noopener noreferrer"><div class="image2-inset"><picture><source type="image/webp" srcset="https://substackcdn.com/image/fetch/$s_!FXJo!,w_424,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F6b076134-965f-4247-9f63-1bd2d21ba09e_736x736.jpeg 424w, https://substackcdn.com/image/fetch/$s_!FXJo!,w_848,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F6b076134-965f-4247-9f63-1bd2d21ba09e_736x736.jpeg 848w, https://substackcdn.com/image/fetch/$s_!FXJo!,w_1272,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F6b076134-965f-4247-9f63-1bd2d21ba09e_736x736.jpeg 1272w, https://substackcdn.com/image/fetch/$s_!FXJo!,w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F6b076134-965f-4247-9f63-1bd2d21ba09e_736x736.jpeg 1456w" sizes="100vw"><img src="https://substackcdn.com/image/fetch/$s_!FXJo!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F6b076134-965f-4247-9f63-1bd2d21ba09e_736x736.jpeg" width="736" height="736" data-attrs="{&quot;src&quot;:&quot;https://substack-post-media.s3.amazonaws.com/public/images/6b076134-965f-4247-9f63-1bd2d21ba09e_736x736.jpeg&quot;,&quot;srcNoWatermark&quot;:null,&quot;fullscreen&quot;:null,&quot;imageSize&quot;:null,&quot;height&quot;:736,&quot;width&quot;:736,&quot;resizeWidth&quot;:null,&quot;bytes&quot;:103437,&quot;alt&quot;:&quot;A man free falling through abyss&#x2026;&quot;,&quot;title&quot;:null,&quot;type&quot;:&quot;image/jpeg&quot;,&quot;href&quot;:null,&quot;belowTheFold&quot;:false,&quot;topImage&quot;:true,&quot;internalRedirect&quot;:&quot;https://essencex.substack.com/i/158898711?img=https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F6b076134-965f-4247-9f63-1bd2d21ba09e_736x736.jpeg&quot;,&quot;isProcessing&quot;:false,&quot;align&quot;:null,&quot;offset&quot;:false}" class="sizing-normal" alt="A man free falling through abyss&#x2026;" title="A man free falling through abyss&#x2026;" srcset="https://substackcdn.com/image/fetch/$s_!FXJo!,w_424,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F6b076134-965f-4247-9f63-1bd2d21ba09e_736x736.jpeg 424w, https://substackcdn.com/image/fetch/$s_!FXJo!,w_848,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F6b076134-965f-4247-9f63-1bd2d21ba09e_736x736.jpeg 848w, https://substackcdn.com/image/fetch/$s_!FXJo!,w_1272,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F6b076134-965f-4247-9f63-1bd2d21ba09e_736x736.jpeg 1272w, https://substackcdn.com/image/fetch/$s_!FXJo!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F6b076134-965f-4247-9f63-1bd2d21ba09e_736x736.jpeg 1456w" sizes="100vw" fetchpriority="high"></picture></div></a><figcaption class="image-caption"><strong><a href="https://in.pinterest.com/pin/270567890106608129/" target="_blank" rel="noopener noreferrer">Image Source</a></strong></figcaption></figure></div><p><strong>I am falling&#x2026;.</strong></p><p>Not the swift, gasping plunge of a skipped heartbeat&#x200A;&#x2014;&#x200A;this is a drift, as if the universe has snipped its puppet strings. No ground yawning up, no sky recoiling. </p><p>Just&#x2026; absence&#x2026;.</p><p>My arms float outward, crucified by inertia. Newton&#x2019;s first law, I think faintly. An object in motion stays in motion&#x2026; unless acted upon by a force. But what force exists here? The dark swallows sound, light, even time. My breath hitches&#x200A;&#x2014;&#x200A;not from fear, but calculation.</p><p>How fast am I accelerating?</p><p>Where&#x2019;s the drag of air resistance?</p><p>I should be terrified. And I am, the animal part of me, somewhere deep down, is on alert, firing warning signals like a malfunctioning Geiger counter.But another layer of me detaches, cool and observational. No terminal velocity. That&#x2019;s the first clue. Terminal velocity requires atmosphere, molecules to collide with, friction to balance gravity. Here, there&#x2019;s nothing. Just vacuum and&#x2026; me.</p><p>I twist, trying to get a sense of up, down, something.</p><p><strong>Useless&#x2026;</strong></p><p>There&#x2019;s no direction to anchor to. No horizon to cling to. My stomach churns, but not from acceleration. There&#x2019;s no gravity. That&#x2019;s the second clue. If I&#x2019;m falling, why isn&#x2019;t there a mass pulling me? A black hole? But no. No tidal forces. No stretching, no tearing. My body feels&#x2026;<strong> whole..</strong></p><p>Panic and curiosity duel. I close my eyes&#x200A;&#x2014;&#x200A;or do I ?</p><p>The darkness behind my lids matches the void outside.</p><p>Am I even real ?</p><p>I pinch my arm. Pain sparks, sharp and bright. Okay, tactile feedback. Not a simulation. Or if it is, a convincing one.</p><p><strong>Time fractures.</strong> Minutes? Hours? I hum , testing for Doppler shifts. No echo. The sound dies inches from my lips. Sound needs a medium, I recite, like a student cramming for an exam. No air here. But then&#x200A;&#x2014;&#x200A;how am I breathing? The thought cracks my clinical calm. My lungs inflate, deflate. Oxygen from where?</p><p><strong>Think</strong>...I beg my synapses...</p><p>If this were space, I&#x2019;d be dead. Frozen, suffocated, boiled. If this were a dream&#x2026; But it feels too coherent. Dreams fray at the edges; this has a terrible logic. I count prime numbers to steady myself.</p><p>2, 3, 5, 7, 11&#x2026; Prime 23, my age.</p><p>Prime 101, the highway I drove yesterday. Coincidence or pattern?</p><p>A flicker. A spark. A distant star? No. Too close. A tiny point of light, expanding, warping into something more.</p><p><strong>Numbers&#x2026;.</strong></p><p><strong>Equations&#x2026;.</strong></p><p>F = ma&#x2026;&#x2026;&#x2026;E = mc&#xB2;.</p><p>They glow in the dark, like ghosts of a forgotten lesson. I reach out. My fingers slip through them, scattering the symbols like smoke&#x2026;</p><p>Why show me this? I whisper, but the void absorbs the words. The equations reform, dancing.</p><p>v = v&#x2080; + at</p><p>Velocity equals initial velocity plus acceleration multiplied by time. But my v&#x2080; was zero. I wasn&#x2019;t moving before I fell. So why does it feel like I&#x2019;ve been falling forever?</p><p>The absurdity hits me, sudden and sharp.</p><p><strong>Forever..</strong></p><p>Maybe that&#x2019;s it. Maybe this is an orbit. A never-ending free fall around some unseen centre. But orbits curve. I&#x2019;m moving straight. Aren&#x2019;t I? Without a reference point, how can I know?</p><p>The light fades. Darkness reclaims me. I let my body go limp, a leaf in a hurricane-less wind. And then&#x200A;&#x2014;&#x200A;it clicks. This isn&#x2019;t physics. Physics has rules, constants, symmetries. This is something else. The fall isn&#x2019;t through space, but through mind. The equations are a breadcrumb trail of my own rationality trying to scaffold the abyss.</p><p>The fear dissolves. Not because I understand, but because I don&#x2019;t. There&#x2019;s a raw beauty in not-knowing. I spread my arms wider, grinning like a madman. Let the void take me. Let the equations fail. Some truths aren&#x2019;t meant to be solved&#x200A;&#x2014;&#x200A;only felt.</p><blockquote class="quote-style"><p><em><strong>The truth is, I&#x2019;ve always been falling. All of us are.</strong></em></p><p><em><strong>Gravity&#x2019;s just a habit&#x2026;</strong></em></p></blockquote><p class="button-wrapper" data-attrs="{&quot;url&quot;:&quot;https://siliconandsoul.substack.com/p/the-calculus-of-falling/comments&quot;,&quot;text&quot;:&quot;Leave a comment&quot;,&quot;action&quot;:null,&quot;class&quot;:null}" data-component-name="ButtonCreateButton"><a class="button primary" href="https://siliconandsoul.substack.com/p/the-calculus-of-falling/comments" target="_blank" rel="noopener noreferrer"><span>Leave a comment</span></a></p><p></p>
                 </div>
                 
-                <div class="subscribe-section" style="margin-top: 4rem; padding: 2rem; background: rgba(128, 128, 128, 0.05); border-radius: 8px; text-align: center;">
-                    <p style="margin-bottom: 1rem; font-style: italic;">Enjoyed this piece? Subscribe for free to receive new posts and support my work.</p>
-                    <a href="https://siliconandsoul.substack.com/subscribe" target="_blank" class="button primary" style="background: var(--highlight); color: var(--bg); padding: 0.8rem 1.5rem; border-radius: 4px; text-decoration: none; font-weight: bold; display: inline-block;">Subscribe on Substack</a>
+                <div class="subscribe-section" style="margin-top: 5rem; padding: 2.5rem; background: rgba(128, 128, 128, 0.05); border-radius: 12px; text-align: center;">
+                    <p style="margin-bottom: 1.5rem; font-style: italic; font-size: 1.1rem; opacity: 0.9;">Enjoyed this piece? Subscribe for free to receive new posts and support my work.</p>
+                    <a href="https://siliconandsoul.substack.com/subscribe" target="_blank" class="button primary" style="background: var(--highlight); color: var(--bg); padding: 1rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 600; letter-spacing: 0.5px; display: inline-block; transition: opacity 0.2s;">Subscribe on Substack</a>
                 </div>
             </article>
         </main>

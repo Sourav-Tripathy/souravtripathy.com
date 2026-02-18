@@ -22,67 +22,128 @@
             max-width: 800px;
             margin: 0 auto;
             padding: 2rem 0;
-            line-height: 1.6;
-            font-size: 1.1rem;
+            line-height: 1.8; /* Increased line height for better readability */
+            font-size: 1.15rem;
         }
         .article-content img {
             max-width: 100%;
             height: auto;
             border-radius: 8px;
-            margin: 1.5rem 0;
+            margin: 2rem 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Subtle shadow */
         }
         .article-content h1, .article-content h2, .article-content h3 {
-            margin-top: 2rem;
-            margin-bottom: 1rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1.2rem;
             color: var(--highlight);
+            line-height: 1.3;
         }
         .article-content a {
             color: var(--highlight);
-            text-decoration: underline;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(var(--highlight-rgb), 0.3);
+            transition: border-color 0.2s;
         }
+        .article-content a:hover {
+            border-bottom-color: var(--highlight);
+        }
+        
+        /* Revised Header Styles for Aesthetics */
         .article-header {
-            margin-bottom: 3rem;
-            border-bottom: 1px dashed var(--dim);
-            padding-bottom: 2rem;
+            margin-bottom: 3.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(128, 128, 128, 0.2);
         }
         .article-title {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
             color: var(--fg);
-            text-decoration: none;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
         }
         .article-meta {
-            color: var(--dim);
+            font-family: var(--font-mono, monospace);
             font-size: 0.9rem;
+            color: var(--dim);
+            letter-spacing: 0.03em;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            opacity: 0.85;
         }
-        .back-link {
-            display: inline-block;
-            margin-bottom: 2rem;
+        .article-meta a {
             color: var(--dim);
             text-decoration: none;
+            border-bottom: 1px dotted var(--dim);
+            transition: all 0.2s ease;
+            margin-left: auto; /* Push link to the right on larger screens */
+        }
+        .article-meta a:hover {
+            color: var(--highlight);
+            border-bottom-color: var(--highlight);
+        }
+        .meta-separator {
+            opacity: 0.4;
+            display: inline-block;
+            margin: 0 0.2rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 3rem;
+            color: var(--dim);
+            text-decoration: none;
+            font-family: var(--font-mono, monospace);
+            font-size: 0.9rem;
+            opacity: 0.7;
+            transition: opacity 0.2s;
         }
         .back-link:hover {
             color: var(--highlight);
+            opacity: 1;
         }
+        
         .article-content pre {
-            background: var(--fg);
+            background: var(--fg); /* Inverted for code blocks */
             color: var(--bg);
-            padding: 1rem;
-            border-radius: 5px;
+            padding: 1.5rem;
+            border-radius: 6px;
             overflow-x: auto;
-            margin: 1.5rem 0;
+            margin: 2rem 0;
+            font-size: 0.95rem;
+            line-height: 1.5;
         }
         .article-content code {
-            font-family: var(--font-mono);
+            font-family: var(--font-mono, monospace);
             font-size: 0.9em;
-            background: rgba(128, 128, 128, 0.1);
+            background: rgba(128, 128, 128, 0.15);
             padding: 0.2rem 0.4rem;
-            border-radius: 3px;
+            border-radius: 4px;
         }
         .article-content pre code {
             background: none;
             padding: 0;
             color: inherit;
+        }
+        
+        @media (max-width: 600px) {
+            .article-title {
+                font-size: 2rem;
+            }
+            .article-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            .article-meta a {
+                margin-left: 0; /* Reset margin on mobile */
+                margin-top: 0.5rem;
+            }
+             .meta-separator {
+                display: none; /* Hide separator on mobile when stacked */
+            }
         }
     </style>
 </head>
@@ -127,7 +188,10 @@
                 <header class="article-header">
                     <h1 class="article-title">Linear Regression </h1>
                     <div class="article-meta">
-                        Published on May 29, 2024 • <a href="https://siliconandsoul.substack.com/p/linear-regression" target="_blank">Read on Substack</a>
+                        <span class="meta-item">May 29, 2024</span>
+                        <span class="meta-separator">/</span>
+                        <span class="meta-item">6 min read</span>
+                        <a href="https://siliconandsoul.substack.com/p/linear-regression" target="_blank">Read on Substack ↗</a>
                     </div>
                 </header>
                 
@@ -135,9 +199,9 @@
                     <p>Linear regression is a fundamental statistical technique that enables us to explore and quantify the relationship between variables. At the very basic level, its meaning lies in its name, which contains two terms: linear and regression.</p><p>Linear - The term &quot;linear&quot; refers to a straight-line relationship between variables. In the context of linear regression, it implies that the change in the dependent variable can be described as a linear combination of the independent variables. <em>Simply put, if you plot the relationship on a graph, the result is a straight line.</em></p><p>Regression - The term &quot;regression&quot; comes from the concept of &quot;regressing&quot; or returning to a mean. In statistics, regression analysis is a method for modeling the relationship between a dependent variable and one or more independent variables. It helps in predicting the value of the dependent variable based on the known values of the independent variables.</p><p>To sum up -</p><p><strong>Linear Regression is a supervised machine learning algorithm where the predicted output is continuous and has a constant slope. It&#x2019;s used to predict values within a continuous range, rather than trying to classify them into categories.</strong></p><p>General form of a linear regression model is:</p><p>Y = &#x3B2;0 + &#x3B2;1X1 + &#x3B2;2X2 + ... + &#x3B2;nXn + &#x3B5;</p><p>Where:</p><ul><li><p>Y is the dependent variable (the variable you want to predict or explain).</p></li><li><p>X1, X2, ..., Xn are the independent variables (the predictor variables).</p></li><li><p>&#x3B2;0 is the intercept (the value of Y when all independent variables are zero).</p></li><li><p>&#x3B2;1, &#x3B2;2, ..., &#x3B2;n are the coefficients or slopes associated with each independent variable.The coefficients (&#x3B2;1, &#x3B2;2, ..., &#x3B2;n) measure the change in the dependent variable for a one-unit change in the corresponding independent variable, while holding all other variables constant.</p></li><li><p>&#x3B5; is the error term,that accounts for the variability in Y that cannot be explained by the linear relationship with X. It captures the effects of all other factors not included in the model.</p><div class="captioned-image-container"><figure><a class="image-link image2 is-viewable-img" target="_blank" href="https://substackcdn.com/image/fetch/$s_!PkxH!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F7fdab54e-8f21-4da6-a3ec-50aab3925400_666x449.png" data-component-name="Image2ToDOM" rel="noopener noreferrer"><div class="image2-inset"><picture><source type="image/webp" srcset="https://substackcdn.com/image/fetch/$s_!PkxH!,w_424,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F7fdab54e-8f21-4da6-a3ec-50aab3925400_666x449.png 424w, https://substackcdn.com/image/fetch/$s_!PkxH!,w_848,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F7fdab54e-8f21-4da6-a3ec-50aab3925400_666x449.png 848w, https://substackcdn.com/image/fetch/$s_!PkxH!,w_1272,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F7fdab54e-8f21-4da6-a3ec-50aab3925400_666x449.png 1272w, https://substackcdn.com/image/fetch/$s_!PkxH!,w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F7fdab54e-8f21-4da6-a3ec-50aab3925400_666x449.png 1456w" sizes="100vw"><img src="https://substackcdn.com/image/fetch/$s_!PkxH!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F7fdab54e-8f21-4da6-a3ec-50aab3925400_666x449.png" width="464" height="312.8168168168168" data-attrs="{&quot;src&quot;:&quot;https://substack-post-media.s3.amazonaws.com/public/images/7fdab54e-8f21-4da6-a3ec-50aab3925400_666x449.png&quot;,&quot;srcNoWatermark&quot;:null,&quot;fullscreen&quot;:null,&quot;imageSize&quot;:null,&quot;height&quot;:449,&quot;width&quot;:666,&quot;resizeWidth&quot;:464,&quot;bytes&quot;:82688,&quot;alt&quot;:null,&quot;title&quot;:null,&quot;type&quot;:&quot;image/png&quot;,&quot;href&quot;:null,&quot;belowTheFold&quot;:true,&quot;topImage&quot;:false,&quot;internalRedirect&quot;:null,&quot;isProcessing&quot;:false,&quot;align&quot;:null,&quot;offset&quot;:false}" class="sizing-normal" alt srcset="https://substackcdn.com/image/fetch/$s_!PkxH!,w_424,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F7fdab54e-8f21-4da6-a3ec-50aab3925400_666x449.png 424w, https://substackcdn.com/image/fetch/$s_!PkxH!,w_848,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F7fdab54e-8f21-4da6-a3ec-50aab3925400_666x449.png 848w, https://substackcdn.com/image/fetch/$s_!PkxH!,w_1272,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F7fdab54e-8f21-4da6-a3ec-50aab3925400_666x449.png 1272w, https://substackcdn.com/image/fetch/$s_!PkxH!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F7fdab54e-8f21-4da6-a3ec-50aab3925400_666x449.png 1456w" sizes="100vw" loading="lazy"></picture></div></a><figcaption class="image-caption">A dummy graph to show linear regression line&#x2026;</figcaption></figure></div><p>For linear regression to provide reliable and accurate results, several assumptions must be met:</p></li><li><p><em><strong>Linearity:</strong></em> The relationship between the dependent and independent variables should be linear.</p></li><li><p><em><strong>Independence</strong></em>: Observations should be independent of each other.</p></li><li><p><em><strong>Homoscedasticity:</strong></em> The residuals (errors) should have constant variance across all levels of the independent variables.</p></li><li><p><em><strong>Normality:</strong></em> The residuals should be normally distributed.</p></li><li><p><em><strong>No Multicollinearity:</strong></em> Independent variables should not be highly correlated with each other.</p><div class="captioned-image-container"><figure><a class="image-link image2 is-viewable-img" target="_blank" href="https://substackcdn.com/image/fetch/$s_!7MyZ!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F46779644-23ec-4e73-84aa-f9a78e6dfac9_800x414.jpeg" data-component-name="Image2ToDOM" rel="noopener noreferrer"><div class="image2-inset"><picture><source type="image/webp" srcset="https://substackcdn.com/image/fetch/$s_!7MyZ!,w_424,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F46779644-23ec-4e73-84aa-f9a78e6dfac9_800x414.jpeg 424w, https://substackcdn.com/image/fetch/$s_!7MyZ!,w_848,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F46779644-23ec-4e73-84aa-f9a78e6dfac9_800x414.jpeg 848w, https://substackcdn.com/image/fetch/$s_!7MyZ!,w_1272,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F46779644-23ec-4e73-84aa-f9a78e6dfac9_800x414.jpeg 1272w, https://substackcdn.com/image/fetch/$s_!7MyZ!,w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F46779644-23ec-4e73-84aa-f9a78e6dfac9_800x414.jpeg 1456w" sizes="100vw"><img src="https://substackcdn.com/image/fetch/$s_!7MyZ!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F46779644-23ec-4e73-84aa-f9a78e6dfac9_800x414.jpeg" width="800" height="414" data-attrs="{&quot;src&quot;:&quot;https://substack-post-media.s3.amazonaws.com/public/images/46779644-23ec-4e73-84aa-f9a78e6dfac9_800x414.jpeg&quot;,&quot;srcNoWatermark&quot;:null,&quot;fullscreen&quot;:null,&quot;imageSize&quot;:null,&quot;height&quot;:414,&quot;width&quot;:800,&quot;resizeWidth&quot;:null,&quot;bytes&quot;:45454,&quot;alt&quot;:null,&quot;title&quot;:null,&quot;type&quot;:&quot;image/jpeg&quot;,&quot;href&quot;:null,&quot;belowTheFold&quot;:true,&quot;topImage&quot;:false,&quot;internalRedirect&quot;:null,&quot;isProcessing&quot;:false,&quot;align&quot;:null,&quot;offset&quot;:false}" class="sizing-normal" alt srcset="https://substackcdn.com/image/fetch/$s_!7MyZ!,w_424,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F46779644-23ec-4e73-84aa-f9a78e6dfac9_800x414.jpeg 424w, https://substackcdn.com/image/fetch/$s_!7MyZ!,w_848,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F46779644-23ec-4e73-84aa-f9a78e6dfac9_800x414.jpeg 848w, https://substackcdn.com/image/fetch/$s_!7MyZ!,w_1272,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F46779644-23ec-4e73-84aa-f9a78e6dfac9_800x414.jpeg 1272w, https://substackcdn.com/image/fetch/$s_!7MyZ!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F46779644-23ec-4e73-84aa-f9a78e6dfac9_800x414.jpeg 1456w" sizes="100vw" loading="lazy"></picture></div></a></figure></div><p></p></li></ul><p>Now that an understanding of linear regression is made, we must know how to fit the model i.e finding the optimal parameters (coefficients and intercept) that best describe the relationship between the dependent variable and the independent variables in the dataset. Here the concept of cost function arises. Lets understand that</p><p><em><strong>Cost function:</strong></em> The cost function (often the mean squared error or MSE) measures how well the model&apos;s predictions match the actual data. It is defined as the average of the squared differences between the observed values and the predicted values.</p><p>MSE = (1/N) &#x3A3;(Yi - &#x176;i)^2</p><p>Where N is the number of observations, Yi are the actual values, and &#x176;i are the predicted values from the model.</p><p>But this is not enough for fitting, we need to optimize the cost function to find those parameter values that minimize the cost and here optimization algorithms comes into play. There is algorithms like OLS (Ordinary Least Square) , Gradient Descent but OLS is most commnly used in linear regression , so, lets understand that.</p><p><em><strong>Ordinary Least Squares (OLS)</strong></em></p><p>OLS is a method to estimate the parameters by minimizing the sum of the squared residuals (differences between observed and predicted values). The steps involved in OLS are:</p><ol><li><p><em>Define the Residuals:</em> Residuals (ei) are the differences between the observed values (Yi) and the predicted values (&#x176;i):</p></li></ol><p>ei = Yi - &#x176;i</p><ol start="2"><li><p><em>Sum of Squared Residuals (SSE):</em> Calculate the sum of the squared residuals, which is the cost function to be minimized:</p></li></ol><p>SSE = &#x3A3;(ei^2)</p><ol start="3"><li><p><em>Minimize the Cost Function:</em> Find the parameter values (&#x3B2;0, &#x3B2;1, ..., &#x3B2;n) that minimize the sum of squared residuals. This involves solving the following normal equations:</p></li></ol><p>X^T * &#x3B2; = X^T *Y</p><p>Where X is the matrix of input features, &#x3B2; is the vector of parameters, and Y is the vector of observed values. (X^T means X matrix transposed and * means multiplication)</p><p>Lets understand through a practical example.</p><p><em><strong>Practical Example</strong></em></p><p>Consider a simple linear regression with one independent variable (X) and one dependent variable (Y). Suppose we have the following data:</p><p>X = {1,2,3,4}</p><p>Y = {2,3,5,7}</p><p>We want to fit the linear model: Y = &#x3B2;0 + &#x3B2;1X</p><ol><li><p><em>Initial Guess:</em> Let&apos;s start with the initial guesses &#x3B2;0 = 0 and &#x3B2;1 = 1. The initial model equation is: <em>Y = 0 + 1X</em></p></li><li><p><em>Compute Predictions:</em> With the initial guesses, we can compute the predicted values (&#x176;) for each X: </p><p><em>For X = 1, &#x176; = 0 + 1(1) = 1 </em></p><p><em>For X = 2, &#x176; = 0 + 1(2) = 2 </em></p><p><em>For X = 3, &#x176; = 0 + 1(3) = 3</em></p><p><em>For X = 4, &#x176; = 0 + 1(4) = 4</em></p></li><li><p><em>Compute Residuals and Cost:</em> Residuals (ei) = Observed Value (Yi) - Predicted Value (&#x176;i)</p><p><em>For X = 1, e1 = 2 - 1 = 1 </em></p><p><em>For X = 2, e2 = 3 - 2 = 1</em></p><p><em>For X = 3, e3 = 5 - 3 = 2 </em></p><p><em>For X = 4, e4 = 7 - 4 = 3 </em></p><p>So,Sum of Squared Residuals (SSE) = e1^2 + e2^2 + e3^2 + e4^2 = 1^2 + 1^2 + 2^2 + 3^2 = 1 + 1 + 4 + 9 = 15</p></li><li><p><em>Optimize Parameters: </em>To find the optimal values of &#x3B2;0 and &#x3B2;1 using OLS, we need to solve the normal equations: X^T * &#x3B2; = X^T *Y (where &#x3B2; is the matrix containing &#x3B2;0 and &#x3B2;1 as elements). On solving we get,</p><p></p><p><em>&#x3B2;0 = 0.5 &#x3B2;1 = 1.5</em></p></li></ol><p>After fitting, the optimized model equation is: Y = 0.5 + 1.5X</p><p>This model minimizes the sum of squared residuals (SSE = 0) for the given data(On repeating steps 1 ,2 and 3 we get SSE=0), meaning it provides the best fit to the linear relationship between X and Y. Therefore, the fitted linear regression model that best describes the relationship in the data is:</p><p>Y = 0.5 + 1.5X</p><div class="captioned-image-container"><figure><a class="image-link image2 is-viewable-img" target="_blank" href="https://substackcdn.com/image/fetch/$s_!HyPY!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fad600f46-b18e-464a-b898-ffc420457fa8_513x520.png" data-component-name="Image2ToDOM" rel="noopener noreferrer"><div class="image2-inset"><picture><source type="image/webp" srcset="https://substackcdn.com/image/fetch/$s_!HyPY!,w_424,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fad600f46-b18e-464a-b898-ffc420457fa8_513x520.png 424w, https://substackcdn.com/image/fetch/$s_!HyPY!,w_848,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fad600f46-b18e-464a-b898-ffc420457fa8_513x520.png 848w, https://substackcdn.com/image/fetch/$s_!HyPY!,w_1272,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fad600f46-b18e-464a-b898-ffc420457fa8_513x520.png 1272w, https://substackcdn.com/image/fetch/$s_!HyPY!,w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fad600f46-b18e-464a-b898-ffc420457fa8_513x520.png 1456w" sizes="100vw"><img src="https://substackcdn.com/image/fetch/$s_!HyPY!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fad600f46-b18e-464a-b898-ffc420457fa8_513x520.png" width="295" height="299.02534113060426" data-attrs="{&quot;src&quot;:&quot;https://substack-post-media.s3.amazonaws.com/public/images/ad600f46-b18e-464a-b898-ffc420457fa8_513x520.png&quot;,&quot;srcNoWatermark&quot;:null,&quot;fullscreen&quot;:null,&quot;imageSize&quot;:null,&quot;height&quot;:520,&quot;width&quot;:513,&quot;resizeWidth&quot;:295,&quot;bytes&quot;:180122,&quot;alt&quot;:null,&quot;title&quot;:null,&quot;type&quot;:&quot;image/png&quot;,&quot;href&quot;:null,&quot;belowTheFold&quot;:true,&quot;topImage&quot;:false,&quot;internalRedirect&quot;:null,&quot;isProcessing&quot;:false,&quot;align&quot;:null,&quot;offset&quot;:false}" class="sizing-normal" alt srcset="https://substackcdn.com/image/fetch/$s_!HyPY!,w_424,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fad600f46-b18e-464a-b898-ffc420457fa8_513x520.png 424w, https://substackcdn.com/image/fetch/$s_!HyPY!,w_848,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fad600f46-b18e-464a-b898-ffc420457fa8_513x520.png 848w, https://substackcdn.com/image/fetch/$s_!HyPY!,w_1272,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fad600f46-b18e-464a-b898-ffc420457fa8_513x520.png 1272w, https://substackcdn.com/image/fetch/$s_!HyPY!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fad600f46-b18e-464a-b898-ffc420457fa8_513x520.png 1456w" sizes="100vw" loading="lazy"></picture></div></a></figure></div><div class="captioned-image-container"><figure><a class="image-link image2" target="_blank" href="https://substackcdn.com/image/fetch/$s_!RBPT!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F78235dbf-36c0-44bf-b81f-0fd939feba0c_722x572.png" data-component-name="Image2ToDOM" rel="noopener noreferrer"><div class="image2-inset"><picture><source type="image/webp" srcset="https://substackcdn.com/image/fetch/$s_!RBPT!,w_424,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F78235dbf-36c0-44bf-b81f-0fd939feba0c_722x572.png 424w, https://substackcdn.com/image/fetch/$s_!RBPT!,w_848,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F78235dbf-36c0-44bf-b81f-0fd939feba0c_722x572.png 848w, https://substackcdn.com/image/fetch/$s_!RBPT!,w_1272,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F78235dbf-36c0-44bf-b81f-0fd939feba0c_722x572.png 1272w, https://substackcdn.com/image/fetch/$s_!RBPT!,w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F78235dbf-36c0-44bf-b81f-0fd939feba0c_722x572.png 1456w" sizes="100vw"><img src="https://substackcdn.com/image/fetch/$s_!RBPT!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F78235dbf-36c0-44bf-b81f-0fd939feba0c_722x572.png" width="300" height="237.67313019390582" data-attrs="{&quot;src&quot;:&quot;https://substack-post-media.s3.amazonaws.com/public/images/78235dbf-36c0-44bf-b81f-0fd939feba0c_722x572.png&quot;,&quot;srcNoWatermark&quot;:null,&quot;fullscreen&quot;:null,&quot;imageSize&quot;:null,&quot;height&quot;:572,&quot;width&quot;:722,&quot;resizeWidth&quot;:300,&quot;bytes&quot;:56918,&quot;alt&quot;:null,&quot;title&quot;:null,&quot;type&quot;:&quot;image/png&quot;,&quot;href&quot;:null,&quot;belowTheFold&quot;:true,&quot;topImage&quot;:false,&quot;internalRedirect&quot;:null,&quot;isProcessing&quot;:false,&quot;align&quot;:null,&quot;offset&quot;:false}" class="sizing-normal" alt srcset="https://substackcdn.com/image/fetch/$s_!RBPT!,w_424,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F78235dbf-36c0-44bf-b81f-0fd939feba0c_722x572.png 424w, https://substackcdn.com/image/fetch/$s_!RBPT!,w_848,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F78235dbf-36c0-44bf-b81f-0fd939feba0c_722x572.png 848w, https://substackcdn.com/image/fetch/$s_!RBPT!,w_1272,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F78235dbf-36c0-44bf-b81f-0fd939feba0c_722x572.png 1272w, https://substackcdn.com/image/fetch/$s_!RBPT!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F78235dbf-36c0-44bf-b81f-0fd939feba0c_722x572.png 1456w" sizes="100vw" loading="lazy"></picture><div></div></div></a><figcaption class="image-caption"><strong>Above examples graphical representation</strong></figcaption></figure></div><p>Hope it helps understanding &#x2026;.</p><p></p>
                 </div>
                 
-                <div class="subscribe-section" style="margin-top: 4rem; padding: 2rem; background: rgba(128, 128, 128, 0.05); border-radius: 8px; text-align: center;">
-                    <p style="margin-bottom: 1rem; font-style: italic;">Enjoyed this piece? Subscribe for free to receive new posts and support my work.</p>
-                    <a href="https://siliconandsoul.substack.com/subscribe" target="_blank" class="button primary" style="background: var(--highlight); color: var(--bg); padding: 0.8rem 1.5rem; border-radius: 4px; text-decoration: none; font-weight: bold; display: inline-block;">Subscribe on Substack</a>
+                <div class="subscribe-section" style="margin-top: 5rem; padding: 2.5rem; background: rgba(128, 128, 128, 0.05); border-radius: 12px; text-align: center;">
+                    <p style="margin-bottom: 1.5rem; font-style: italic; font-size: 1.1rem; opacity: 0.9;">Enjoyed this piece? Subscribe for free to receive new posts and support my work.</p>
+                    <a href="https://siliconandsoul.substack.com/subscribe" target="_blank" class="button primary" style="background: var(--highlight); color: var(--bg); padding: 1rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 600; letter-spacing: 0.5px; display: inline-block; transition: opacity 0.2s;">Subscribe on Substack</a>
                 </div>
             </article>
         </main>

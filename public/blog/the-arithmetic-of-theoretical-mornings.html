@@ -22,67 +22,128 @@
             max-width: 800px;
             margin: 0 auto;
             padding: 2rem 0;
-            line-height: 1.6;
-            font-size: 1.1rem;
+            line-height: 1.8; /* Increased line height for better readability */
+            font-size: 1.15rem;
         }
         .article-content img {
             max-width: 100%;
             height: auto;
             border-radius: 8px;
-            margin: 1.5rem 0;
+            margin: 2rem 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Subtle shadow */
         }
         .article-content h1, .article-content h2, .article-content h3 {
-            margin-top: 2rem;
-            margin-bottom: 1rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1.2rem;
             color: var(--highlight);
+            line-height: 1.3;
         }
         .article-content a {
             color: var(--highlight);
-            text-decoration: underline;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(var(--highlight-rgb), 0.3);
+            transition: border-color 0.2s;
         }
+        .article-content a:hover {
+            border-bottom-color: var(--highlight);
+        }
+        
+        /* Revised Header Styles for Aesthetics */
         .article-header {
-            margin-bottom: 3rem;
-            border-bottom: 1px dashed var(--dim);
-            padding-bottom: 2rem;
+            margin-bottom: 3.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(128, 128, 128, 0.2);
         }
         .article-title {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
             color: var(--fg);
-            text-decoration: none;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
         }
         .article-meta {
-            color: var(--dim);
+            font-family: var(--font-mono, monospace);
             font-size: 0.9rem;
+            color: var(--dim);
+            letter-spacing: 0.03em;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            opacity: 0.85;
         }
-        .back-link {
-            display: inline-block;
-            margin-bottom: 2rem;
+        .article-meta a {
             color: var(--dim);
             text-decoration: none;
+            border-bottom: 1px dotted var(--dim);
+            transition: all 0.2s ease;
+            margin-left: auto; /* Push link to the right on larger screens */
+        }
+        .article-meta a:hover {
+            color: var(--highlight);
+            border-bottom-color: var(--highlight);
+        }
+        .meta-separator {
+            opacity: 0.4;
+            display: inline-block;
+            margin: 0 0.2rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 3rem;
+            color: var(--dim);
+            text-decoration: none;
+            font-family: var(--font-mono, monospace);
+            font-size: 0.9rem;
+            opacity: 0.7;
+            transition: opacity 0.2s;
         }
         .back-link:hover {
             color: var(--highlight);
+            opacity: 1;
         }
+        
         .article-content pre {
-            background: var(--fg);
+            background: var(--fg); /* Inverted for code blocks */
             color: var(--bg);
-            padding: 1rem;
-            border-radius: 5px;
+            padding: 1.5rem;
+            border-radius: 6px;
             overflow-x: auto;
-            margin: 1.5rem 0;
+            margin: 2rem 0;
+            font-size: 0.95rem;
+            line-height: 1.5;
         }
         .article-content code {
-            font-family: var(--font-mono);
+            font-family: var(--font-mono, monospace);
             font-size: 0.9em;
-            background: rgba(128, 128, 128, 0.1);
+            background: rgba(128, 128, 128, 0.15);
             padding: 0.2rem 0.4rem;
-            border-radius: 3px;
+            border-radius: 4px;
         }
         .article-content pre code {
             background: none;
             padding: 0;
             color: inherit;
+        }
+        
+        @media (max-width: 600px) {
+            .article-title {
+                font-size: 2rem;
+            }
+            .article-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            .article-meta a {
+                margin-left: 0; /* Reset margin on mobile */
+                margin-top: 0.5rem;
+            }
+             .meta-separator {
+                display: none; /* Hide separator on mobile when stacked */
+            }
         }
     </style>
 </head>
@@ -127,7 +188,10 @@
                 <header class="article-header">
                     <h1 class="article-title">The Arithmetic of Theoretical Mornings </h1>
                     <div class="article-meta">
-                        Published on March 22, 2025 • <a href="https://siliconandsoul.substack.com/p/the-arithmetic-of-theoretical-mornings" target="_blank">Read on Substack</a>
+                        <span class="meta-item">March 22, 2025</span>
+                        <span class="meta-separator">/</span>
+                        <span class="meta-item">4 min read</span>
+                        <a href="https://siliconandsoul.substack.com/p/the-arithmetic-of-theoretical-mornings" target="_blank">Read on Substack ↗</a>
                     </div>
                 </header>
                 
@@ -135,9 +199,9 @@
                     <div class="captioned-image-container"><figure><a class="image-link image2 is-viewable-img" target="_blank" href="https://substackcdn.com/image/fetch/$s_!yi5N!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4007a50f-e191-496e-bd2a-f0a2271792a2_1184x1653.jpeg" data-component-name="Image2ToDOM" rel="noopener noreferrer"><div class="image2-inset"><picture><source type="image/webp" srcset="https://substackcdn.com/image/fetch/$s_!yi5N!,w_424,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4007a50f-e191-496e-bd2a-f0a2271792a2_1184x1653.jpeg 424w, https://substackcdn.com/image/fetch/$s_!yi5N!,w_848,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4007a50f-e191-496e-bd2a-f0a2271792a2_1184x1653.jpeg 848w, https://substackcdn.com/image/fetch/$s_!yi5N!,w_1272,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4007a50f-e191-496e-bd2a-f0a2271792a2_1184x1653.jpeg 1272w, https://substackcdn.com/image/fetch/$s_!yi5N!,w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4007a50f-e191-496e-bd2a-f0a2271792a2_1184x1653.jpeg 1456w" sizes="100vw"><img src="https://substackcdn.com/image/fetch/$s_!yi5N!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4007a50f-e191-496e-bd2a-f0a2271792a2_1184x1653.jpeg" width="1184" height="1653" data-attrs="{&quot;src&quot;:&quot;https://substack-post-media.s3.amazonaws.com/public/images/4007a50f-e191-496e-bd2a-f0a2271792a2_1184x1653.jpeg&quot;,&quot;srcNoWatermark&quot;:null,&quot;fullscreen&quot;:null,&quot;imageSize&quot;:null,&quot;height&quot;:1653,&quot;width&quot;:1184,&quot;resizeWidth&quot;:null,&quot;bytes&quot;:137582,&quot;alt&quot;:null,&quot;title&quot;:null,&quot;type&quot;:&quot;image/jpeg&quot;,&quot;href&quot;:null,&quot;belowTheFold&quot;:false,&quot;topImage&quot;:true,&quot;internalRedirect&quot;:&quot;https://essencex.substack.com/i/159599836?img=https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4007a50f-e191-496e-bd2a-f0a2271792a2_1184x1653.jpeg&quot;,&quot;isProcessing&quot;:false,&quot;align&quot;:null,&quot;offset&quot;:false}" class="sizing-normal" alt srcset="https://substackcdn.com/image/fetch/$s_!yi5N!,w_424,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4007a50f-e191-496e-bd2a-f0a2271792a2_1184x1653.jpeg 424w, https://substackcdn.com/image/fetch/$s_!yi5N!,w_848,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4007a50f-e191-496e-bd2a-f0a2271792a2_1184x1653.jpeg 848w, https://substackcdn.com/image/fetch/$s_!yi5N!,w_1272,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4007a50f-e191-496e-bd2a-f0a2271792a2_1184x1653.jpeg 1272w, https://substackcdn.com/image/fetch/$s_!yi5N!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4007a50f-e191-496e-bd2a-f0a2271792a2_1184x1653.jpeg 1456w" sizes="100vw" fetchpriority="high"></picture></div></a><figcaption class="image-caption"><strong>The stillness that was forced into pen</strong></figcaption></figure></div><p>I wake up half-expecting sunlight, the warm, disheveled kind that drips into March mornings without much conviction. But when I pull the curtain aside, the sky is just&#x2026; <strong>dull</strong>. Thick with <strong>unsure</strong> clouds, heavy with the idea of rain but not the certainty of it. <em><strong>63 percent</strong> chance of rain</em>, I mutter to myself, as if I&#x2019;m a weather app. </p><p>The wind sneaks in through the window I forgot to latch last night: chilly, damp, carrying the faint scent of rain and a weird fruity smell of dried marigold, leaving me perplexed&#x2026;</p><p><strong>August weather</strong> in March. The kind of sky that makes you say <em>&quot;it might rain&quot;</em> even when you know it won&#x2019;t.</p><p>I drag myself to the kitchen, not really walking, just floating through the motions. I fill the kettle, click the switch. The hum of boiling water is too loud. My hand reaches for the jar of <em>instant Arabica</em>, fingers clumsy, knocking over a spoon. It clatters. I don&#x2019;t pick it up. Three scoops into the mug. More than usual. I want the bitterness today; the kind that sits heavy on the tongue. I notice the mug has a brown stain at the rim, blue outside, white inside. I used to like how it looked. I still do, maybe because it reminds me of the ocean.</p><p>I pour the water in a slow, careless stream, watching the coffee bloom unevenly. Bubbles form and burst.  </p><p><em><strong>Tiny universes collapsing. </strong></em></p><p>I don&#x2019;t stir. Just watch. Then the first sip: sharp, earthy, wrong. The bitterness spreads thickly over my tongue. Stronger than I expected. I should&#x2019;ve brewed fresh beans. Should&#x2019;ve let the water drip slowly through the grounds. Let the coffee unfold itself instead of collapsing instantly. But I didn&#x2019;t. And now I&#x2019;m here, with this <em><strong>flat, unconvincing bitterness.</strong></em></p><p>On the way back to my desk, I feel the heaviness of a treason. I glance at the mug and resent it. Instant coffee. What a lazy compromise. <em>Should&#x2019;ve ground beans</em>.But I didn&#x2019;t. I sit down. The chair wobbles slightly, and I let it.</p><p>The books on the table: Dostoevsky&#x2019;s guilt, Camus&#x2019; absurdity, Deutsch&#x2019;s infinite threads, Murakami&#x2019;s talking cats - feel like homework. I&#x2019;m not in the mood for epiphanies. The pen sits untouched. I should read, but I just stare into the mug instead.</p><p>The inside is already stained, a faint brown ring clinging stubbornly to the ceramic. I take another sip, and it tastes stronger, harsher, like the bitterness grew thicker while I wasn&#x2019;t looking. I keep staring at the stain, and somehow, it feels important. Like a tiny metaphor for something I can&#x2019;t name. I tilt the mug slightly, watching the brown traces drift upward and downward, marking the edges.<em><strong> Coffee residue and gravity,</strong></em> that&#x2019;s all it is. But I keep looking.</p><p>Thoughts start spilling in. <em>The wandering kind </em>. What if I had stayed? Or left sooner? Or called back? Or hadn&#x2019;t? Tiny decisions with enormous shadows.My mind drifts into theoretical math, calculating lives I&#x2019;ll never live. The sum of wrong turns, the remainders of hesitation, the fractions of almosts. It feels pointless.</p><p><em>Should I let go of these thoughts or indulge them, I ask myself.</em></p><p>My phone chimes.  </p><p>I reach for it sluggishly, expecting nothing.  </p><blockquote class="quote-style"><p><strong>Zomato.</strong></p><p><strong>&quot;Sourav, Biryani for Saturday?&quot;</strong></p></blockquote><p>And just like that, the entire calculus of my morning dissolved. The coffee, the clouds, the existential drift - they all collapse into the simplicity of biryani. The saffron rice, the heavy warmth of ghee, tender meat falling off the bones, and the tangy raita cooling the edges. I can taste it already. I glance at the books once more, but they have lost all relevance. The coffee too. I sip it again, but it&#x2019;s <em>tasteless now</em>. The bitterness is just <strong>background noise</strong>.</p><p>I tap on the notification.  </p><p><em>One disrupted Saturday morning.</em></p><p></p>
                 </div>
                 
-                <div class="subscribe-section" style="margin-top: 4rem; padding: 2rem; background: rgba(128, 128, 128, 0.05); border-radius: 8px; text-align: center;">
-                    <p style="margin-bottom: 1rem; font-style: italic;">Enjoyed this piece? Subscribe for free to receive new posts and support my work.</p>
-                    <a href="https://siliconandsoul.substack.com/subscribe" target="_blank" class="button primary" style="background: var(--highlight); color: var(--bg); padding: 0.8rem 1.5rem; border-radius: 4px; text-decoration: none; font-weight: bold; display: inline-block;">Subscribe on Substack</a>
+                <div class="subscribe-section" style="margin-top: 5rem; padding: 2.5rem; background: rgba(128, 128, 128, 0.05); border-radius: 12px; text-align: center;">
+                    <p style="margin-bottom: 1.5rem; font-style: italic; font-size: 1.1rem; opacity: 0.9;">Enjoyed this piece? Subscribe for free to receive new posts and support my work.</p>
+                    <a href="https://siliconandsoul.substack.com/subscribe" target="_blank" class="button primary" style="background: var(--highlight); color: var(--bg); padding: 1rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 600; letter-spacing: 0.5px; display: inline-block; transition: opacity 0.2s;">Subscribe on Substack</a>
                 </div>
             </article>
         </main>

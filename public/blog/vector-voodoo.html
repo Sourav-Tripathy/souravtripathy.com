@@ -22,67 +22,128 @@
             max-width: 800px;
             margin: 0 auto;
             padding: 2rem 0;
-            line-height: 1.6;
-            font-size: 1.1rem;
+            line-height: 1.8; /* Increased line height for better readability */
+            font-size: 1.15rem;
         }
         .article-content img {
             max-width: 100%;
             height: auto;
             border-radius: 8px;
-            margin: 1.5rem 0;
+            margin: 2rem 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Subtle shadow */
         }
         .article-content h1, .article-content h2, .article-content h3 {
-            margin-top: 2rem;
-            margin-bottom: 1rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1.2rem;
             color: var(--highlight);
+            line-height: 1.3;
         }
         .article-content a {
             color: var(--highlight);
-            text-decoration: underline;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(var(--highlight-rgb), 0.3);
+            transition: border-color 0.2s;
         }
+        .article-content a:hover {
+            border-bottom-color: var(--highlight);
+        }
+        
+        /* Revised Header Styles for Aesthetics */
         .article-header {
-            margin-bottom: 3rem;
-            border-bottom: 1px dashed var(--dim);
-            padding-bottom: 2rem;
+            margin-bottom: 3.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(128, 128, 128, 0.2);
         }
         .article-title {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
             color: var(--fg);
-            text-decoration: none;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
         }
         .article-meta {
-            color: var(--dim);
+            font-family: var(--font-mono, monospace);
             font-size: 0.9rem;
+            color: var(--dim);
+            letter-spacing: 0.03em;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            opacity: 0.85;
         }
-        .back-link {
-            display: inline-block;
-            margin-bottom: 2rem;
+        .article-meta a {
             color: var(--dim);
             text-decoration: none;
+            border-bottom: 1px dotted var(--dim);
+            transition: all 0.2s ease;
+            margin-left: auto; /* Push link to the right on larger screens */
+        }
+        .article-meta a:hover {
+            color: var(--highlight);
+            border-bottom-color: var(--highlight);
+        }
+        .meta-separator {
+            opacity: 0.4;
+            display: inline-block;
+            margin: 0 0.2rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 3rem;
+            color: var(--dim);
+            text-decoration: none;
+            font-family: var(--font-mono, monospace);
+            font-size: 0.9rem;
+            opacity: 0.7;
+            transition: opacity 0.2s;
         }
         .back-link:hover {
             color: var(--highlight);
+            opacity: 1;
         }
+        
         .article-content pre {
-            background: var(--fg);
+            background: var(--fg); /* Inverted for code blocks */
             color: var(--bg);
-            padding: 1rem;
-            border-radius: 5px;
+            padding: 1.5rem;
+            border-radius: 6px;
             overflow-x: auto;
-            margin: 1.5rem 0;
+            margin: 2rem 0;
+            font-size: 0.95rem;
+            line-height: 1.5;
         }
         .article-content code {
-            font-family: var(--font-mono);
+            font-family: var(--font-mono, monospace);
             font-size: 0.9em;
-            background: rgba(128, 128, 128, 0.1);
+            background: rgba(128, 128, 128, 0.15);
             padding: 0.2rem 0.4rem;
-            border-radius: 3px;
+            border-radius: 4px;
         }
         .article-content pre code {
             background: none;
             padding: 0;
             color: inherit;
+        }
+        
+        @media (max-width: 600px) {
+            .article-title {
+                font-size: 2rem;
+            }
+            .article-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            .article-meta a {
+                margin-left: 0; /* Reset margin on mobile */
+                margin-top: 0.5rem;
+            }
+             .meta-separator {
+                display: none; /* Hide separator on mobile when stacked */
+            }
         }
     </style>
 </head>
@@ -127,7 +188,10 @@
                 <header class="article-header">
                     <h1 class="article-title">Vector Voodoo</h1>
                     <div class="article-meta">
-                        Published on July 28, 2024 • <a href="https://siliconandsoul.substack.com/p/vector-voodoo" target="_blank">Read on Substack</a>
+                        <span class="meta-item">July 28, 2024</span>
+                        <span class="meta-separator">/</span>
+                        <span class="meta-item">4 min read</span>
+                        <a href="https://siliconandsoul.substack.com/p/vector-voodoo" target="_blank">Read on Substack ↗</a>
                     </div>
                 </header>
                 
@@ -198,9 +262,9 @@ print(cosinex_y, cosiney_z, cosinex_z)</code></pre><pre><code>#OUTPUT
 0.16395271289351365</code></pre><p>There are many different ways to vectorize sentences and words that capture semantics and context more accurately, such as Word2Vec, GloVe, FastText, and others.</p><p>Now that you have understood how cosine similarity works and the mathematics behind it,You might wonder:</p><p> &quot;If vectors are represented in 2D or 3D, we get a close look at the angles between them or euclidean distance which often tells us what is more similar. Then why don&apos;t we use it directly? Why the need for cosine and all this mathematics?&quot;</p><p>The answer lies in the nature of the data we&apos;re often dealing with:</p><ol><li><p>Most real-world data (like text) is high-dimensional, making direct angle visualization or distance calculation less informative.</p></li><li><p>Many dimensions may be zero, making Euclidean distance less meaningful.</p></li><li><p>Cosine similarity focuses on direction, not magnitude, which is often more important in similarity comparisons.</p></li></ol><p>Consider two text documents that have the same words but different frequencies. Euclidean distance might declare them dissimilar due to the magnitude difference, while cosine similarity would recognize their content similarity based on the angle between their vectors.</p><p>When applying cosine similarity to text data in NLP, preprocessing steps like stemming and lemmatization are crucial:</p><p><strong>Stemming </strong>is the process of shortening words to their basic form, often using simple rules. For example, the words &quot;running,&quot; &quot;runs,&quot; and &quot;ran&quot; can all be reduced to &quot;run&quot;.</p><p><strong>Lemmatization</strong> is a more sophisticated process that reduces words to their base i.e dictionary form , considering the context and part of speech. For instance, &quot;better&quot; would be lemmatized to &quot;good&quot;.</p><p>These techniques are important for cosine similarity because they help to:</p><ol><li><p>Reduce dimensionality by consolidating related words.</p></li><li><p>Improve similarity measures by treating variations of the same word as identical.</p></li><li><p>Handle inflected forms and derivationally related words consistently.</p></li></ol><p></p><p>Happy Learning !!!</p><p class="button-wrapper" data-attrs="{&quot;url&quot;:&quot;https://siliconandsoul.substack.com/subscribe?&quot;,&quot;text&quot;:&quot;Subscribe now&quot;,&quot;action&quot;:null,&quot;class&quot;:null}" data-component-name="ButtonCreateButton"><a class="button primary" href="https://siliconandsoul.substack.com/subscribe?" target="_blank" rel="noopener noreferrer"><span>Subscribe now</span></a></p>
                 </div>
                 
-                <div class="subscribe-section" style="margin-top: 4rem; padding: 2rem; background: rgba(128, 128, 128, 0.05); border-radius: 8px; text-align: center;">
-                    <p style="margin-bottom: 1rem; font-style: italic;">Enjoyed this piece? Subscribe for free to receive new posts and support my work.</p>
-                    <a href="https://siliconandsoul.substack.com/subscribe" target="_blank" class="button primary" style="background: var(--highlight); color: var(--bg); padding: 0.8rem 1.5rem; border-radius: 4px; text-decoration: none; font-weight: bold; display: inline-block;">Subscribe on Substack</a>
+                <div class="subscribe-section" style="margin-top: 5rem; padding: 2.5rem; background: rgba(128, 128, 128, 0.05); border-radius: 12px; text-align: center;">
+                    <p style="margin-bottom: 1.5rem; font-style: italic; font-size: 1.1rem; opacity: 0.9;">Enjoyed this piece? Subscribe for free to receive new posts and support my work.</p>
+                    <a href="https://siliconandsoul.substack.com/subscribe" target="_blank" class="button primary" style="background: var(--highlight); color: var(--bg); padding: 1rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 600; letter-spacing: 0.5px; display: inline-block; transition: opacity 0.2s;">Subscribe on Substack</a>
                 </div>
             </article>
         </main>

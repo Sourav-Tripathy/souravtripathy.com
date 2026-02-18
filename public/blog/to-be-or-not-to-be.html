@@ -22,67 +22,128 @@
             max-width: 800px;
             margin: 0 auto;
             padding: 2rem 0;
-            line-height: 1.6;
-            font-size: 1.1rem;
+            line-height: 1.8; /* Increased line height for better readability */
+            font-size: 1.15rem;
         }
         .article-content img {
             max-width: 100%;
             height: auto;
             border-radius: 8px;
-            margin: 1.5rem 0;
+            margin: 2rem 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Subtle shadow */
         }
         .article-content h1, .article-content h2, .article-content h3 {
-            margin-top: 2rem;
-            margin-bottom: 1rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1.2rem;
             color: var(--highlight);
+            line-height: 1.3;
         }
         .article-content a {
             color: var(--highlight);
-            text-decoration: underline;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(var(--highlight-rgb), 0.3);
+            transition: border-color 0.2s;
         }
+        .article-content a:hover {
+            border-bottom-color: var(--highlight);
+        }
+        
+        /* Revised Header Styles for Aesthetics */
         .article-header {
-            margin-bottom: 3rem;
-            border-bottom: 1px dashed var(--dim);
-            padding-bottom: 2rem;
+            margin-bottom: 3.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(128, 128, 128, 0.2);
         }
         .article-title {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
             color: var(--fg);
-            text-decoration: none;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
         }
         .article-meta {
-            color: var(--dim);
+            font-family: var(--font-mono, monospace);
             font-size: 0.9rem;
+            color: var(--dim);
+            letter-spacing: 0.03em;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            opacity: 0.85;
         }
-        .back-link {
-            display: inline-block;
-            margin-bottom: 2rem;
+        .article-meta a {
             color: var(--dim);
             text-decoration: none;
+            border-bottom: 1px dotted var(--dim);
+            transition: all 0.2s ease;
+            margin-left: auto; /* Push link to the right on larger screens */
+        }
+        .article-meta a:hover {
+            color: var(--highlight);
+            border-bottom-color: var(--highlight);
+        }
+        .meta-separator {
+            opacity: 0.4;
+            display: inline-block;
+            margin: 0 0.2rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 3rem;
+            color: var(--dim);
+            text-decoration: none;
+            font-family: var(--font-mono, monospace);
+            font-size: 0.9rem;
+            opacity: 0.7;
+            transition: opacity 0.2s;
         }
         .back-link:hover {
             color: var(--highlight);
+            opacity: 1;
         }
+        
         .article-content pre {
-            background: var(--fg);
+            background: var(--fg); /* Inverted for code blocks */
             color: var(--bg);
-            padding: 1rem;
-            border-radius: 5px;
+            padding: 1.5rem;
+            border-radius: 6px;
             overflow-x: auto;
-            margin: 1.5rem 0;
+            margin: 2rem 0;
+            font-size: 0.95rem;
+            line-height: 1.5;
         }
         .article-content code {
-            font-family: var(--font-mono);
+            font-family: var(--font-mono, monospace);
             font-size: 0.9em;
-            background: rgba(128, 128, 128, 0.1);
+            background: rgba(128, 128, 128, 0.15);
             padding: 0.2rem 0.4rem;
-            border-radius: 3px;
+            border-radius: 4px;
         }
         .article-content pre code {
             background: none;
             padding: 0;
             color: inherit;
+        }
+        
+        @media (max-width: 600px) {
+            .article-title {
+                font-size: 2rem;
+            }
+            .article-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            .article-meta a {
+                margin-left: 0; /* Reset margin on mobile */
+                margin-top: 0.5rem;
+            }
+             .meta-separator {
+                display: none; /* Hide separator on mobile when stacked */
+            }
         }
     </style>
 </head>
@@ -127,7 +188,10 @@
                 <header class="article-header">
                     <h1 class="article-title">To Be or Not to Be</h1>
                     <div class="article-meta">
-                        Published on January 11, 2025 • <a href="https://siliconandsoul.substack.com/p/to-be-or-not-to-be" target="_blank">Read on Substack</a>
+                        <span class="meta-item">January 11, 2025</span>
+                        <span class="meta-separator">/</span>
+                        <span class="meta-item">2 min read</span>
+                        <a href="https://siliconandsoul.substack.com/p/to-be-or-not-to-be" target="_blank">Read on Substack ↗</a>
                     </div>
                 </header>
                 
@@ -135,9 +199,9 @@
                     <p><strong>To be</strong> or <strong>not to be </strong>; that&#x2019;s what Shakespeare said, didn&#x2019;t he? </p><p>And if I&#x2019;m honest, I don&#x2019;t think I have the capacity within me to fully grasp the depths of what those words are meant to reveal. They feel like a question meant for someone else, someone with more clarity, more courage&#x2026;<br><br>But as I sit here and reflect on everything happening around me, I realize that<strong> not to be</strong> feels like the better choice. It&#x2019;s a decision where the game stops, the odds cease to matter, and everything becomes quiet. In that sense, <strong>not to be</strong> has a simplicity to it, an escape from the endless competition of existence.<br><br>Yet, despite this, we always seem to choose <strong>to be</strong>. Why is that? Why do we fight so hard to stay? I wonder if it&#x2019;s fear , the fear of <strong>not to be</strong>. Maybe it&#x2019;s evolutionary, a deeply ingrained instinct to keep going, to keep existing. But the more I think about it, the more I feel haunted by the question itself. Choosing <strong>to be</strong> feels like a reflex, something automatic, yet the weight of it grows heavier the more I consider it.<br><br>Tears roll down my face without warning, and I try, desperately, to reason with them. I want to understand why they&#x2019;re here, why they exist, but my logical mind falls short. It&#x2019;s incomprehensible, this heaviness, this ache that has no name. So, here I sit, with nothing but a pen in my hand under the cloudy yet dark sky at 1 am, with no stars but a faint glow of the moon behind the clouds. As if writing under such a sky could change something or as if writing could somehow make sense of it all.<br><br>It&#x2019;s odd, isn&#x2019;t it? Who picks up a pen when grappling with a question as vast as <strong>to be </strong>or <strong>not to be</strong>? But maybe I&#x2019;m that person - <em>someone who finds no reason for the act itself, and yet does it anyway. </em><br><br>And maybe this question, this crying, this moment, it isn&#x2019;t for the soul. It&#x2019;s not something to be quietly resolved within me. It&#x2019;s larger than that. This question is for the world, a reflection of everything that weighs on it and on us.<br><br>As someone in my dream once told me:<br><em><strong>Some moments are for the soul...<br>Some moments are for the world...</strong></em><br><br><em>And this, this is for the world.</em></p>
                 </div>
                 
-                <div class="subscribe-section" style="margin-top: 4rem; padding: 2rem; background: rgba(128, 128, 128, 0.05); border-radius: 8px; text-align: center;">
-                    <p style="margin-bottom: 1rem; font-style: italic;">Enjoyed this piece? Subscribe for free to receive new posts and support my work.</p>
-                    <a href="https://siliconandsoul.substack.com/subscribe" target="_blank" class="button primary" style="background: var(--highlight); color: var(--bg); padding: 0.8rem 1.5rem; border-radius: 4px; text-decoration: none; font-weight: bold; display: inline-block;">Subscribe on Substack</a>
+                <div class="subscribe-section" style="margin-top: 5rem; padding: 2.5rem; background: rgba(128, 128, 128, 0.05); border-radius: 12px; text-align: center;">
+                    <p style="margin-bottom: 1.5rem; font-style: italic; font-size: 1.1rem; opacity: 0.9;">Enjoyed this piece? Subscribe for free to receive new posts and support my work.</p>
+                    <a href="https://siliconandsoul.substack.com/subscribe" target="_blank" class="button primary" style="background: var(--highlight); color: var(--bg); padding: 1rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 600; letter-spacing: 0.5px; display: inline-block; transition: opacity 0.2s;">Subscribe on Substack</a>
                 </div>
             </article>
         </main>
