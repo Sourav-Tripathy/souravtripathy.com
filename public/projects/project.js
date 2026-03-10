@@ -22,5 +22,13 @@ const projects = [
         description: "CommitGen is an CLI tool that automatically generates conventional git commit messages for your staged changes. It analyzes your git diff, summarizes the changes, and uses local LLMs (via Ollama) or cloud providers (via OpenRouter) to write clean, descriptive commit messages.",
         footerHtml: 'Available on <a href="https://pypi.org/project/commitgen-ai/" target="_blank">PyPI</a>',
         highlightColor: "var(--highlight)"
+    },
+    {
+        category: "Experiments on LLMs",
+        title: "Alignment Study",
+        url: "https://github.com/Sourav-Tripathy/Alignment-Study",
+        description: "A curiosity-driven culmination of experiments investigating the behavioral priors, decision-theoretic leanings, and alignment stability of modern LLMs when subjected to contextual variations, adversarial interactions, and logical paradoxes.",
+        footerHtml: 'View on <a href="https://github.com/Sourav-Tripathy/Alignment-Study" target="_blank">GitHub</a>',
+        highlightColor: "var(--highlight)"
     }
 ];
