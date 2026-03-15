@@ -11,6 +11,7 @@
     --dim: #4a6c56;
     /* Muted green for secondary text */
     --accent: #a37f5f;
+    --accent-rgb: 163, 127, 95;
     /* Coffee/Earth tone */
     --highlight: #2d6a45;
     /* Brighter green for active states */
@@ -30,6 +31,7 @@
     --dim: #7a9a87;
     /* Muted sage for secondary text */
     --accent: #c9a882;
+    --accent-rgb: 201, 168, 130;
     /* Warmer coffee/gold tone */
     --highlight: #5cb87a;
     /* Bright mint green for active states */
@@ -297,15 +299,34 @@ a:hover {
 .article-item {
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
-    margin-bottom: 0.8rem;
+    align-items: flex-start;
+    /* Changed to start to handle multi-line subtitles */
+    margin-bottom: 2rem;
+    /* Increased spacing between items */
+}
+
+.article-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    flex: 1;
+    /* Take up available space */
 }
 
 .article-title {
     text-decoration: none;
     border: none;
     color: var(--accent);
-    /* distinct link color */
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.article-subtitle-preview {
+    font-size: 0.9rem;
+    color: var(--dim);
+    margin: 0;
+    line-height: 1.4;
+    opacity: 0.8;
 }
 
 .article-title:hover {
@@ -317,8 +338,10 @@ a:hover {
 .article-meta {
     font-size: 0.85rem;
     color: var(--dim);
-    min-width: 120px;
+    min-width: 100px;
     text-align: right;
+    margin-left: 1rem;
+    opacity: 0.7;
 }
 
 /* Internet & You */

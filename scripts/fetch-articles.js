@@ -24,6 +24,7 @@ async function main() {
         for (const item of feed.items) {
             const title = item.title;
             const content = item['content:encoded'] || item.content;
+            const subtitle = item.contentSnippet || ""; // Substack subtitle is usually in description
             const date = item.isoDate; // Substack provides isoDate
             const link = item.link;
 
@@ -73,6 +74,7 @@ async function main() {
             articles.push({
                 date: date,
                 title: title,
+                subtitle: subtitle,
                 link: `./${filename}`, // Point to local file
                 originalLink: link,
                 platform: 'Substack',
@@ -80,7 +82,7 @@ async function main() {
             });
 
             // Generate HTML content
-            const htmlContent = generateHtml(title, date, cleanContent, link, readTime);
+            const htmlContent = generateHtml(title, subtitle, date, cleanContent, link, readTime);
 
             // Write HTML file
             fs.writeFileSync(filePath, htmlContent);
@@ -97,7 +99,7 @@ async function main() {
     }
 }
 
-function generateHtml(title, date, content, originalLink, readTime) {
+function generateHtml(title, subtitle, date, content, originalLink, readTime) {
     // Basic template based on public/blog/index.html structure
     // We navigate up one level for assets since we are in public/blog/
     const dateStr = new Date(date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
@@ -143,13 +145,14 @@ function generateHtml(title, date, content, originalLink, readTime) {
             line-height: 1.3;
         }
         .article-content a {
-            color: var(--highlight);
+            color: var(--accent);
             text-decoration: none;
-            border-bottom: 1px solid rgba(var(--highlight-rgb), 0.3);
+            border-bottom: 1px solid rgba(var(--accent-rgb), 0.3);
             transition: border-color 0.2s;
         }
         .article-content a:hover {
-            border-bottom-color: var(--highlight);
+            border-bottom-color: var(--accent);
+            color: var(--highlight);
         }
         
         /* Revised Header Styles for Aesthetics */
@@ -161,10 +164,18 @@ function generateHtml(title, date, content, originalLink, readTime) {
         .article-title {
             font-size: 2.8rem;
             font-weight: 700;
-            margin-bottom: 1.5rem;
+            margin-bottom: 0.5rem;
             color: var(--fg);
             line-height: 1.2;
             letter-spacing: -0.02em;
+        }
+        .article-subtitle {
+            font-size: 1.4rem;
+            color: var(--dim);
+            line-height: 1.4;
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+            opacity: 0.9;
         }
         .article-meta {
             font-family: var(--font-mono, monospace);
@@ -236,6 +247,9 @@ function generateHtml(title, date, content, originalLink, readTime) {
             .article-title {
                 font-size: 2rem;
             }
+            .article-subtitle {
+                font-size: 1.15rem;
+            }
             .article-meta {
                 flex-direction: column;
                 align-items: flex-start;
@@ -291,6 +305,7 @@ function generateHtml(title, date, content, originalLink, readTime) {
             <article class="article-content">
                 <header class="article-header">
                     <h1 class="article-title">${title}</h1>
+                    ${subtitle ? `<p class="article-subtitle">${subtitle}</p>` : ''}
                     <div class="article-meta">
                         <span class="meta-item">${dateStr}</span>
                         <span class="meta-separator">/</span>

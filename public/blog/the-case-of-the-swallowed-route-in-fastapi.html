@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>The Case of the Swallowed Route in FastAPI | Sourav Tripathy</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYTM3ZjVmIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggZD0iTTE4IDhoMWE0IDQgMCAwIDEgMCA4aC0xIi8+PHBhdGggZD0iTTIgOGgxNnY5YTQgNCAwIDAgMS00IDRINmE0IDQgMCAwIDEtNC00Vjh6Ii8+PGxpbmUgeDE9IjYiIHkxPSIxIiB4Mj0iNiIgeTI9IjQiLz48bGluZSB4MT0iMTAiIHkxPSIxIiB4Mj0iMTAiIHkyPSI0Ii8+PGxpbmUgeDE9IjE0IiB5MT0iMSIgeDI9IjE0IiB5Mj0iNCIvPjwvc3ZnPg==">
+    <script>
+        (function () {
+            var theme = localStorage.getItem('theme');
+            if (theme) {
+                document.documentElement.setAttribute('data-theme', theme);
+            } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+    <style>
+        /* Article specific styles */
+        .article-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 0;
+            line-height: 1.8; /* Increased line height for better readability */
+            font-size: 1.15rem;
+        }
+        .article-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 2rem 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Subtle shadow */
+        }
+        .article-content h1, .article-content h2, .article-content h3 {
+            margin-top: 2.5rem;
+            margin-bottom: 1.2rem;
+            color: var(--highlight);
+            line-height: 1.3;
+        }
+        .article-content a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(var(--accent-rgb), 0.3);
+            transition: border-color 0.2s;
+        }
+        .article-content a:hover {
+            border-bottom-color: var(--accent);
+            color: var(--highlight);
+        }
+        
+        /* Revised Header Styles for Aesthetics */
+        .article-header {
+            margin-bottom: 3.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+        }
+        .article-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--fg);
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+        .article-subtitle {
+            font-size: 1.4rem;
+            color: var(--dim);
+            line-height: 1.4;
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+        .article-meta {
+            font-family: var(--font-mono, monospace);
+            font-size: 0.9rem;
+            color: var(--dim);
+            letter-spacing: 0.03em;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            opacity: 0.85;
+        }
+        .article-meta a {
+            color: var(--dim);
+            text-decoration: none;
+            border-bottom: 1px dotted var(--dim);
+            transition: all 0.2s ease;
+            margin-left: auto; /* Push link to the right on larger screens */
+        }
+        .article-meta a:hover {
+            color: var(--highlight);
+            border-bottom-color: var(--highlight);
+        }
+        .meta-separator {
+            opacity: 0.4;
+            display: inline-block;
+            margin: 0 0.2rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 3rem;
+            color: var(--dim);
+            text-decoration: none;
+            font-family: var(--font-mono, monospace);
+            font-size: 0.9rem;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+        .back-link:hover {
+            color: var(--highlight);
+            opacity: 1;
+        }
+        
+        .article-content pre {
+            background: var(--fg); /* Inverted for code blocks */
+            color: var(--bg);
+            padding: 1.5rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 2rem 0;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        .article-content code {
+            font-family: var(--font-mono, monospace);
+            font-size: 0.9em;
+            background: rgba(128, 128, 128, 0.15);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+        }
+        .article-content pre code {
+            background: none;
+            padding: 0;
+            color: inherit;
+        }
+        
+        @media (max-width: 600px) {
+            .article-title {
+                font-size: 2rem;
+            }
+            .article-subtitle {
+                font-size: 1.15rem;
+            }
+            .article-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            .article-meta a {
+                margin-left: 0; /* Reset margin on mobile */
+                margin-top: 0.5rem;
+            }
+             .meta-separator {
+                display: none; /* Hide separator on mobile when stacked */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="masthead">
+        <div class="masthead-inner">
+            <header class="site-header">
+                <h1 class="brand-name">Sourav Tripathy</h1>
+                <nav class="tabs">
+                    <a href="/" class="tab-btn">About</a>
+                    <a href="/blog/" class="tab-btn active">Blog</a>
+                    <a href="/projects/" class="tab-btn">Projects</a>
+                    <a href="/curations/" class="tab-btn">Curations</a>
+                    <a href="/now/" class="tab-btn">Now</a>
+                    <a href="/observatory/" class="tab-btn">Observatory</a>
+                    <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark/light mode">
+                 <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                        <svg class="icon-moon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </button>
+                </nav>
+            </header>
+        </div>
+    </div>
+
+    <div class="container">
+        <main>
+            <a href="/blog/" class="back-link">← Back to Blog</a>
+            
+            <article class="article-content">
+                <header class="article-header">
+                    <h1 class="article-title">The Case of the Swallowed Route in FastAPI</h1>
+                    <p class="article-subtitle">How Starlette,Django,Werkzeug,Falcon and sanic match URLs under the hood.</p>
+                    <div class="article-meta">
+                        <span class="meta-item">March 15, 2026</span>
+                        <span class="meta-separator">/</span>
+                        <span class="meta-item">13 min read</span>
+                        <a href="https://siliconandsoul.substack.com/p/the-case-of-the-swallowed-route-in" target="_blank">Read on Substack ↗</a>
+                    </div>
+                </header>
+                
+                <div class="article-body">
+                    <p>Last week while working on a codebase that use <a href="https://github.com/fastapi/fastapi" target="_blank" rel="noopener noreferrer">FastAPI</a> , I encountered a problem. The endpoint I was pinging threw an error that should never have come from the route I had just written. My first hypothesis was that I had not reloaded the server after the changes, so I restarted it, pinged again, and got the same error. I was surprised. To dig further I dropped a print statement at the very top of the endpoint, before any function call, just to confirm which handler was actually being invoked. What I found was that a completely different endpoint was being called, one I had not touched.</p><p>I did a global search through the codebase to see if there was another route registered at the same path and found nothing. But here is how my routes were arranged :</p><div class="highlighted_code_block" data-attrs="{&quot;language&quot;:&quot;python&quot;,&quot;nodeId&quot;:&quot;171e3caa-b912-4e08-92ee-34225dc29a11&quot;}" data-component-name="HighlightedCodeBlockToDOM"><pre class="shiki"><code class="language-python">@app.get(&#x201D;/tests/{test_id}&#x201D;)
+async def get_test(test_id: str):
+    return 12
+
+@app.get(&#x201D;/tests/metrics&#x201D;)
+async def get_metrics():
+    return 1</code></pre></div><p>Every request to <code>/tests/metrics</code> was being swallowed by <code>get_test</code>, with metrics being passed in as the <code>test_id.</code> So to temporarily unblock myself ,I changed the metrics route to <code>/tests/metrics/q</code> and it worked, but I was still confused about why. I always assumed the routing logic of such a framework must be doing exact matching or a dictionary lookup, in which case a static path like <code>/tests/metrics</code> should never collide with a dynamic route with a pattern like <code>/tests/{test_id}</code><em><strong>.</strong></em></p><p>So I opened the router file, looked at the order in which routes were registered, and noticed that <em><strong>get_test</strong></em> was above <em><strong>get_metrics</strong></em>. To test whether order was the cause I moved <em><strong>get_metrics</strong></em> above <em><strong>get_test</strong></em>, restarted the server, and pinged <code>/tests/metrics</code>. This time I got <strong>1</strong>, meaning I was hitting the correct endpoint. So I now knew that order matters in Starlette (FastAPI uses this for routing), but the question is why.</p><h3>How Starlette actually matches routes</h3><p>I went into the <a href="https://github.com/Kludex/starlette/tree/main" target="_blank" rel="noopener noreferrer">Starlette source code</a> to see how requests are routed. What I found is that it does not do exact matching. It compiles each registered route path into a regex and stores those regexes in the order the routes were registered. When a request comes in, Starlette walks through these regexes one by one and routes the request to the first one that matches. </p><p>The function responsible for this is <code>compile_path()</code> in <code>starlette/routing.py </code>(<a href="https://github.com/Kludex/starlette/blob/main/starlette/routing.py" target="_blank" rel="noopener noreferrer">Link to the code file</a>):</p><div class="highlighted_code_block" data-attrs="{&quot;language&quot;:&quot;python&quot;,&quot;nodeId&quot;:&quot;ac80d363-6271-4d14-887a-6cc47f94225a&quot;}" data-component-name="HighlightedCodeBlockToDOM"><pre class="shiki"><code class="language-python"># Match parameters in URL paths, eg. &apos;{param}&apos;, and &apos;{param:int}&apos;
+PARAM_REGEX = re.compile(&quot;{([a-zA-Z_][a-zA-Z0-9_]*)(:[a-zA-Z_][a-zA-Z0-9_]*)?}&quot;)
+
+
+def compile_path(
+    path: str,
+) -&gt; tuple[Pattern[str], str, dict[str, Convertor[Any]]]:
+    &quot;&quot;&quot;
+    Given a path string, like: &quot;/{username:str}&quot;,
+    or a host string, like: &quot;{subdomain}.mydomain.org&quot;, return a three-tuple
+    of (regex, format, {param_name:convertor}).
+
+    regex:      &quot;/(?P&lt;username&gt;[^/]+)&quot;
+    format:     &quot;/{username}&quot;
+    convertors: {&quot;username&quot;: StringConvertor()}
+    &quot;&quot;&quot;
+    is_host = not path.startswith(&quot;/&quot;)
+
+    path_regex = &quot;^&quot;
+    path_format = &quot;&quot;
+    duplicated_params: set[str] = set()
+
+    idx = 0
+    param_convertors = {}
+    for match in PARAM_REGEX.finditer(path):
+        param_name, convertor_type = match.groups(&quot;str&quot;)
+        convertor_type = convertor_type.lstrip(&quot;:&quot;)
+        assert convertor_type in CONVERTOR_TYPES, f&quot;Unknown path convertor &apos;{convertor_type}&apos;&quot;
+        convertor = CONVERTOR_TYPES[convertor_type]
+
+        path_regex += re.escape(path[idx : match.start()])
+        path_regex += f&quot;(?P&lt;{param_name}&gt;{convertor.regex})&quot;
+
+        path_format += path[idx : match.start()]
+        path_format += &quot;{%s}&quot; % param_name
+
+        if param_name in param_convertors:
+            duplicated_params.add(param_name)
+
+        param_convertors[param_name] = convertor
+
+        idx = match.end()
+
+    if duplicated_params:
+        names = &quot;, &quot;.join(sorted(duplicated_params))
+        ending = &quot;s&quot; if len(duplicated_params) &gt; 1 else &quot;&quot;
+        raise ValueError(f&quot;Duplicated param name{ending} {names} at path {path}&quot;)
+
+    if is_host:
+        # Align with `Host.matches()` behavior, which ignores port.
+        hostname = path[idx:].split(&quot;:&quot;)[0]
+        path_regex += re.escape(hostname) + &quot;$&quot;
+    else:
+        path_regex += re.escape(path[idx:]) + &quot;$&quot;
+
+    path_format += path[idx:]
+
+    return re.compile(path_regex), path_format, param_convertors</code></pre></div><p>So <code>/tests/{test_id}</code> compiles to the regex <code>^/tests/(?P&lt;test_id&gt;[^/]+)$</code>, where <code>[^/]+</code> means &#x201C;<em><strong>one or more characters that are not a forward slash.</strong></em>&#x201D; And <code>/tests/metrics</code> compiles to <code>^/tests/metrics$</code>.</p><p>Now here is the thing I had not thought about clearly until I printed both patterns and tested them manually. If you pass the string <code>/tests/metrics</code> through the regex for <code>/tests/{test_id}</code>, it matches, because metrics is a valid sequence of non-slash characters. The static path <code>/tests/metrics</code> is a perfectly valid match for the dynamic pattern.</p><p>You can run this yourself to see:</p><div class="highlighted_code_block" data-attrs="{&quot;language&quot;:&quot;python&quot;,&quot;nodeId&quot;:&quot;041e810f-4ca2-437e-8565-7bc55fa65bfb&quot;}" data-component-name="HighlightedCodeBlockToDOM"><pre class="shiki"><code class="language-python">import re
+# Regex compiled from /tests/{test_id}
+dynamic_pattern = re.compile(r&#x201D;^/tests/(?P&lt;test_id&gt;[^/]+)$&#x201D;)
+match = dynamic_pattern.match(&#x201D;/tests/metrics&#x201D;)
+
+if match:
+    print(&#x201D;dynamic route matches /tests/metrics&#x201D;)  # this prints
+else:
+    print(&#x201D;no match&#x201D;)
+
+# Regex compiled from /tests/metrics
+static_pattern = re.compile(r&#x201D;^/tests/metrics$&#x201D;)
+match = static_pattern.match(&#x201D;/tests/test-1234&#x201D;)
+
+if match:
+    print(&#x201D;static route matches /tests/test-1234&#x201D;)
+else:
+    print(&#x201D;no match&#x201D;)  # this prints</code></pre></div><p>The dynamic route is broader. It matches anything the static route matches, but not the other way around. So if the dynamic route is registered first, it will always win, and the static route below it will never be reached. </p><p>The practical rule that comes out of this is simple : <strong>always register static routes before dynamic ones that share the same prefix.</strong> If you have <code>/tests/metrics</code> and <code>/tests/{test_id}</code> in the same router, metrics must come first, otherwise the dynamic route swallows it every time. or <strong>just make the routes more distinct</strong> like <code>/tests/metrics/info </code>to avoid the problem . Given FastAPI&apos;s dominance in modern Python backends, keeping this quirk in mind will save you a lot of debugging time if you ever come into such problems like me.</p><h3>Does Django have the same problem?</h3><p>After understanding what was happening in Starlette, I installed <a href="https://www.djangoproject.com/" target="_blank" rel="noopener noreferrer">Django</a> and repeated the same experiment , dynamic route registered above the static one - to see if it would suffer the same fate. It did. Django routed the request to the dynamic endpoint, completely swallowing <code>/tests/metrics/</code>.</p><p>To understand exactly why, I went into <a href="https://github.com/django/django" target="_blank" rel="noopener noreferrer">Django&#x2019;s source</a>. The URL resolution is handled by URLResolver in <a href="https://github.com/django/django/blob/main/django/urls/resolvers.py" target="_blank" rel="noopener noreferrer">django/urls/resolvers.py</a>, which iterates through your urlpatterns list strictly from top to bottom. It stops at the very first pattern that returns a match.</p><p>However, looking at the RoutePattern class and the <code>_route_to_regex</code> function, there is an interesting optimization in how Django handles individual routes. The current implementation in <code>RoutePattern.match</code> looks like this:</p><div class="highlighted_code_block" data-attrs="{&quot;language&quot;:&quot;python&quot;,&quot;nodeId&quot;:&quot;87086d60-0a8e-4086-b755-06cdcfcab251&quot;}" data-component-name="HighlightedCodeBlockToDOM"><pre class="shiki"><code class="language-python">class RoutePattern(CheckURLMixin):
+    regex = LocaleRegexRouteDescriptor()
+
+    def __init__(self, route, name=None, is_endpoint=False):
+        self._route = route
+        self._regex, self.converters = _route_to_regex(str(route), is_endpoint)
+        self._regex_dict = {}
+        self._is_endpoint = is_endpoint
+        self.name = name
+
+    def match(self, path):
+        # Only use regex overhead if there are converters.
+        if self.converters:
+            if match := self.regex.search(path):
+                # RoutePattern doesn&apos;t allow non-named groups so args are
+                # ignored.
+                kwargs = match.groupdict()
+                for key, value in kwargs.items():
+                    converter = self.converters[key]
+                    try:
+                        kwargs[key] = converter.to_python(value)
+                    except ValueError:
+                        return None
+                return path[match.end() :], (), kwargs
+        # If this is an endpoint, the path should be exactly the same as the
+        # route.
+        elif self._is_endpoint:
+            if self._route == path:
+                return &quot;&quot;, (), {}
+        # If this isn&apos;t an endpoint, the path should start with the route.
+        elif path.startswith(route := str(self._route)):
+            return path.removeprefix(route), (), {}
+        return None
+
+    def check(self):
+        warnings = [
+            *self._check_pattern_startswith_slash(),
+            *self._check_pattern_unmatched_angle_brackets(),
+        ]
+        route = self._route
+        if &quot;(?P&lt;&quot; in route or route.startswith(&quot;^&quot;) or route.endswith(&quot;$&quot;):
+            warnings.append(
+                Warning(
+                    &quot;Your URL pattern {} has a route that contains &apos;(?P&lt;&apos;, begins &quot;
+                    &quot;with a &apos;^&apos;, or ends with a &apos;$&apos;. This was likely an oversight &quot;
+                    &quot;when migrating to django.urls.path().&quot;.format(self.describe()),
+                    id=&quot;2_0.W001&quot;,
+                )
+            )
+        return warnings</code></pre></div><p>There is a clever detail here : for routes with no dynamic segments, Django skips the regex entirely and does a plain string comparison. This is faster and exactly correct meaning <code>/tests/metrics/</code> will only match <code>/tests/metrics/</code>.</p><p>But this is purely a performance optimization for evaluating a single route. It does not reorder your routes or prioritize static ones over dynamic ones. <em>If a dynamic route with a string converter</em> (which matches any non-empty string excluding /) comes first in urlpatterns, it will happily accept &#x201C;metrics&#x201D; as a valid variable before the static route ever gets evaluated.</p><p>You can run the experiment to verify :</p><div class="highlighted_code_block" data-attrs="{&quot;language&quot;:&quot;python&quot;,&quot;nodeId&quot;:&quot;635f0180-5c8e-4114-8e9a-d7d9d246da90&quot;}" data-component-name="HighlightedCodeBlockToDOM"><pre class="shiki"><code class="language-python">import django
+from django.conf import settings
+settings.configure(ROOT_URLCONF=__name__)
+django.setup()
+from django.urls import path
+from django.http import HttpResponse
+from django.test import RequestFactory
+
+def get_test(request, test_id):
+    return HttpResponse(f&quot;dynamic: {test_id}&quot;)
+
+def get_metrics(request):
+
+    return HttpResponse(&quot;static: metrics&quot;)
+
+# Dynamic route registered FIRST, static route second
+
+urlpatterns = [
+
+    path(&quot;tests/&lt;str:test_id&gt;/&quot;, get_test),
+
+    path(&quot;tests/metrics/&quot;, get_metrics),
+
+]
+factory = RequestFactory()
+request = factory.get(&quot;/tests/metrics/&quot;)
+from django.urls import resolve
+match = resolve(&quot;/tests/metrics/&quot;)
+
+print(match.func.__name__)  # prints get_test, swallowing get_metrics</code></pre></div><p>When you run the above codeblock  you will see <em><strong>get_test</strong></em>  in your terminal. So one must put static routes above dynamic routes when using Django just like FastAPI.</p><h3>What about Flask?</h3><p><a href="https://flask.palletsprojects.com/en/stable/" target="_blank" rel="noopener noreferrer">Flask&#x2019;s</a> routing works differently from both of the above, and this is where it gets interesting. <a href="https://github.com/pallets/flask" target="_blank" rel="noopener noreferrer">Flask</a> delegates all URL matching to <a href="https://github.com/pallets/werkzeug" target="_blank" rel="noopener noreferrer">Werkzeug</a>, specifically to its <strong>Map</strong> and <strong>Rule</strong> classes. When you decorate a function with <code>@app.route</code>, Flask adds a Rule to its internal <code>url_map</code>, which is an instance of Werkzeug&#x2019;s Map.</p><p>The key difference is that Werkzeug does not match in pure registration order. It sorts rules by specificity before matching. From Werkzeug&#x2019;s own source and <a href="https://werkzeug.palletsprojects.com/en/stable/routing/" target="_blank" rel="noopener noreferrer">documentation</a> :</p><div class="highlighted_code_block" data-attrs="{&quot;language&quot;:&quot;plaintext&quot;,&quot;nodeId&quot;:&quot;545f1bf3-cee4-4f21-a480-df93598da61b&quot;}" data-component-name="HighlightedCodeBlockToDOM"><pre class="shiki"><code class="language-plaintext">Current sorting implementation:
+
+1. rules without any dynamic arguments come first (static routes win)
+2. more complex rules come before simpler ones
+3. within equal complexity, earlier registration wins</code></pre></div><p>So if you register a dynamic route before a static one in Flask, Werkzeug still puts the static route earlier in the matching list because it recognises it as more specific. You can see this behavior yourself :</p><div class="highlighted_code_block" data-attrs="{&quot;language&quot;:&quot;python&quot;,&quot;nodeId&quot;:&quot;8996df50-d9cc-4ef8-8eaa-d94a52c35260&quot;}" data-component-name="HighlightedCodeBlockToDOM"><pre class="shiki"><code class="language-python">from flask import Flask
+
+app = Flask(__name__)
+
+# Dynamic route registered FIRST
+@app.get(&quot;/tests/&lt;test_id&gt;&quot;)
+def get_test(test_id):
+    return f&quot;dynamic: {test_id}&quot;
+
+# Static route registered SECOND
+@app.get(&quot;/tests/metrics&quot;)
+def get_metrics():
+    return &quot;static: metrics&quot;
+
+# Print the sorted url_map to see the actual matching order
+with app.app_context():
+    for rule in app.url_map.iter_rules():
+        print(rule.rule, rule.arguments)
+
+# Using a test client to explicitly show precedence
+with app.test_client() as client:
+    resp = client.get(&quot;/tests/metrics&quot;)
+    print(f&quot;\nResponse from /tests/metrics: {resp.data.decode(&apos;utf-8&apos;)}&quot;)</code></pre></div><p>Flask protects you from this particular trap automatically. A request to <code>/tests/metrics</code> will always reach <em><strong>get_metrics</strong></em>, regardless of the order in which you define your routes. The tradeoff is that Werkzeug does extra work on startup to sort the rules, and the sorting logic has its own edge cases  -  particularly around the path converter and rules of equal specificity, where registration order still applies.</p><h3>What about Falcon and Sanic?</h3><p>After seeing how Flask handles routes through specificity, I wanted to examine how performance-focused frameworks like <a href="https://falconframework.org/" target="_blank" rel="noopener noreferrer">Falcon</a> and <a href="https://sanic.dev/en/#-the-lightning-fast-asynchronous-python-web-framework" target="_blank" rel="noopener noreferrer">Sanic</a> handle this shadowing problem. </p><p>I ran the exact same experiment : registering a dynamic route, registering a static route below it, and then requesting the static endpoint. Both Falcon and Sanic correctly routed the request to the static endpoint, completely ignoring the registration order. </p><p>Under the hood, Sanic and Falcon behave differently from Flask, Django, and FastAPI. They do not use sequential regex matching or simple hash maps. Instead, they compile their routes into optimized routing trees (like a Radix tree or Trie). If you want to dive into their source code to see how these algorithms are built, you can view <a href="https://github.com/sanic-org/sanic-routing/blob/main/sanic_routing/tree.py" target="_blank" rel="noopener noreferrer">falcon&#x2019;s routing/compiled file</a> and <a href="https://github.com/sanic-org/sanic-routing/blob/main/sanic_routing/tree.py" target="_blank" rel="noopener noreferrer">sanic&#x2019;s routing/tree file</a> .</p><p>When you define routes in Sanic and Falcon, they construct a tree where static string segments act as explicit branches, and dynamic variables act as fallback nodes. When traversing this tree during a request, explicit static branches are always prioritized over variable nodes.</p><p>For example, Falcon&#x2019;s <code>CompiledRouter</code> goes as far as dynamically generating a Python string of nested if/elif dictionary lookups for the entire routing tree, and then uses Python&#x2019;s <code>compile()</code> function to evaluate it into a highly-optimized matching function at startup .</p><p>Sanic operates somewhat similarly by building a Node structure (a Radix Tree). When finding a route, Sanic navigates down the nodes, looking for exact string matches first before falling back to parameterized children segment. <br>You can test both of these implementations on your own machine. Here is the code to prove that Falcon correctly routes to the static <strong>get_metrics</strong> handler despite being registered second.</p><div class="highlighted_code_block" data-attrs="{&quot;language&quot;:&quot;python&quot;,&quot;nodeId&quot;:&quot;34f2bf19-83ee-434b-ad90-7b6fba4fb3ca&quot;}" data-component-name="HighlightedCodeBlockToDOM"><pre class="shiki"><code class="language-python">import asyncio
+from sanic import Sanic
+from sanic.response import text
+
+app = Sanic(&quot;RouterExp&quot;)
+
+# Dynamic route registered FIRST
+@app.get(&quot;/tests/&lt;test_id&gt;&quot;)
+async def get_test(request, test_id):
+    return text(f&quot;dynamic: {test_id}&quot;)
+
+# Static route registered SECOND
+@app.get(&quot;/tests/metrics&quot;)
+async def get_metrics(request):
+    return text(&quot;static: metrics&quot;)
+
+if __name__ == &quot;__main__&quot;:
+    # Check routing behavior
+    # Sanic resolves routes using a radix tree.
+    # We can just simulate a request using its TestClient.
+    request, response = app.test_client.get(&quot;/tests/metrics&quot;)
+    
+    print(&quot;Testing GET /tests/metrics&quot;)
+    print(f&quot;Response: {response.text}&quot;)</code></pre></div><div class="highlighted_code_block" data-attrs="{&quot;language&quot;:&quot;python&quot;,&quot;nodeId&quot;:&quot;7e101497-2174-4536-ab62-f1a7c71e73c7&quot;}" data-component-name="HighlightedCodeBlockToDOM"><pre class="shiki"><code class="language-python">import falcon
+from falcon import testing
+
+class DynamicResource:
+    def on_get(self, req, resp, test_id):
+        resp.text = f&quot;dynamic: {test_id}&quot;
+
+class StaticResource:
+    def on_get(self, req, resp):
+        resp.text = &quot;static: metrics&quot;
+
+app = falcon.App()
+
+# Dynamic route registered FIRST
+app.add_route(&quot;/tests/{test_id}&quot;, DynamicResource())
+
+# Static route registered SECOND
+app.add_route(&quot;/tests/metrics&quot;, StaticResource())
+
+if __name__ == &quot;__main__&quot;:
+    # Check routing behavior
+    client = testing.TestClient(app)
+    result = client.simulate_get(&quot;/tests/metrics&quot;)
+    
+    print(&quot;Testing GET /tests/metrics&quot;)
+    print(f&quot;Response: {result.text}&quot;)</code></pre></div><p>This structural difference explains why FastAPI and Django fail the shadowing test, while the others pass. May be the creators of FastAPI (via Starlette) and Django chose sequential first-match because appending to a list and matching regexes in order is simple, flexible, and starts up instantly. However, as the number of routes grows, sequential regex matching scales at O(N) time complexity. In the worst case, the router checks every previous route before finding the right one.</p><p>To observe this, I wrote a benchmark script (with the help of gemini 3.1 pro) to compare the pure routing time complexity of these frameworks. I generated up to 1,000 dynamic routes, appended a single target static route at the very end, and measured the time it took to resolve that static route 10,000 times. </p><p>The results highlighted three distinct algorithm complexities :</p><p><em><strong>Linear Time O(N</strong></em>): Django and FastAPI. As the number of registered routes increased by 10x, the time it took to route requests also increased by roughly 10x. </p><p><em><strong>Constant Time O(1)</strong></em>: Sanic and Flask. Their routing times remained completely flat regardless of how many routes were registered before the target route. Their specialized internal structures drop requests into the correct handlers almost instantaneously.</p><p><em><strong>Logarithmic Time O(log N)</strong></em>: Falcon. It scaled gracefully, sitting comfortably between constant and linear time, reflecting its internal tree traversal overhead.</p><p>If  O(1) routing is significantly faster and avoids the shadowing trap, <em>why doesn&#x2019;t every framework build a Radix tree?</em> </p><p>The answer might be startup time. I ran a secondary benchmark to measure how long each framework takes to initialize an application and compile its routes. </p><p><em><strong>Django</strong></em> was near-instantaneous. Because it just stores URL patterns in a Python list, it avoids heavy upfront computation. <em><strong>Flask</strong></em>, <em><strong>Falcon</strong></em>, and <em><strong>Sanic</strong></em>, however, took noticeably longer to start up. They have to pay a CPU processing time upfront to parse paths, validate dynamic types, and weave all the routes into a sophisticated tree . <em><strong>FastAPI</strong></em> does not build a routing tree, but it also exhibited a surprisingly slow startup time. Its delay comes from compiling all its route paths into regular expressions upfront, along with the heavy time of parsing Pydantic annotations and generating OpenAPI schemas for all endpoints during initialization. </p><p>Below are the graphs of the benchmarks I ran - </p><div class="captioned-image-container"><figure><a class="image-link image2 is-viewable-img" target="_blank" href="https://substackcdn.com/image/fetch/$s_!WWsK!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F08eee4e1-6ec6-4ab7-89d0-1bbcea31cd85_3000x1800.png" data-component-name="Image2ToDOM" rel="noopener noreferrer"><div class="image2-inset"><picture><source type="image/webp" srcset="https://substackcdn.com/image/fetch/$s_!WWsK!,w_424,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F08eee4e1-6ec6-4ab7-89d0-1bbcea31cd85_3000x1800.png 424w, https://substackcdn.com/image/fetch/$s_!WWsK!,w_848,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F08eee4e1-6ec6-4ab7-89d0-1bbcea31cd85_3000x1800.png 848w, https://substackcdn.com/image/fetch/$s_!WWsK!,w_1272,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F08eee4e1-6ec6-4ab7-89d0-1bbcea31cd85_3000x1800.png 1272w, https://substackcdn.com/image/fetch/$s_!WWsK!,w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F08eee4e1-6ec6-4ab7-89d0-1bbcea31cd85_3000x1800.png 1456w" sizes="100vw"><img src="https://substackcdn.com/image/fetch/$s_!WWsK!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F08eee4e1-6ec6-4ab7-89d0-1bbcea31cd85_3000x1800.png" width="1456" height="874" data-attrs="{&quot;src&quot;:&quot;https://substack-post-media.s3.amazonaws.com/public/images/08eee4e1-6ec6-4ab7-89d0-1bbcea31cd85_3000x1800.png&quot;,&quot;srcNoWatermark&quot;:null,&quot;fullscreen&quot;:null,&quot;imageSize&quot;:null,&quot;height&quot;:874,&quot;width&quot;:1456,&quot;resizeWidth&quot;:null,&quot;bytes&quot;:279716,&quot;alt&quot;:null,&quot;title&quot;:null,&quot;type&quot;:&quot;image/png&quot;,&quot;href&quot;:null,&quot;belowTheFold&quot;:true,&quot;topImage&quot;:false,&quot;internalRedirect&quot;:&quot;https://siliconandsoul.substack.com/i/190936337?img=https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F08eee4e1-6ec6-4ab7-89d0-1bbcea31cd85_3000x1800.png&quot;,&quot;isProcessing&quot;:false,&quot;align&quot;:null,&quot;offset&quot;:false}" class="sizing-normal" alt srcset="https://substackcdn.com/image/fetch/$s_!WWsK!,w_424,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F08eee4e1-6ec6-4ab7-89d0-1bbcea31cd85_3000x1800.png 424w, https://substackcdn.com/image/fetch/$s_!WWsK!,w_848,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F08eee4e1-6ec6-4ab7-89d0-1bbcea31cd85_3000x1800.png 848w, https://substackcdn.com/image/fetch/$s_!WWsK!,w_1272,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F08eee4e1-6ec6-4ab7-89d0-1bbcea31cd85_3000x1800.png 1272w, https://substackcdn.com/image/fetch/$s_!WWsK!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F08eee4e1-6ec6-4ab7-89d0-1bbcea31cd85_3000x1800.png 1456w" sizes="100vw" loading="lazy"></picture></div></a></figure></div><div class="captioned-image-container"><figure><a class="image-link image2 is-viewable-img" target="_blank" href="https://substackcdn.com/image/fetch/$s_!jDJ_!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F84790041-0b02-43a7-bf42-e79c52931370_3000x1800.png" data-component-name="Image2ToDOM" rel="noopener noreferrer"><div class="image2-inset"><picture><source type="image/webp" srcset="https://substackcdn.com/image/fetch/$s_!jDJ_!,w_424,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F84790041-0b02-43a7-bf42-e79c52931370_3000x1800.png 424w, https://substackcdn.com/image/fetch/$s_!jDJ_!,w_848,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F84790041-0b02-43a7-bf42-e79c52931370_3000x1800.png 848w, https://substackcdn.com/image/fetch/$s_!jDJ_!,w_1272,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F84790041-0b02-43a7-bf42-e79c52931370_3000x1800.png 1272w, https://substackcdn.com/image/fetch/$s_!jDJ_!,w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F84790041-0b02-43a7-bf42-e79c52931370_3000x1800.png 1456w" sizes="100vw"><img src="https://substackcdn.com/image/fetch/$s_!jDJ_!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F84790041-0b02-43a7-bf42-e79c52931370_3000x1800.png" width="1456" height="874" data-attrs="{&quot;src&quot;:&quot;https://substack-post-media.s3.amazonaws.com/public/images/84790041-0b02-43a7-bf42-e79c52931370_3000x1800.png&quot;,&quot;srcNoWatermark&quot;:null,&quot;fullscreen&quot;:null,&quot;imageSize&quot;:null,&quot;height&quot;:874,&quot;width&quot;:1456,&quot;resizeWidth&quot;:null,&quot;bytes&quot;:365859,&quot;alt&quot;:null,&quot;title&quot;:null,&quot;type&quot;:&quot;image/png&quot;,&quot;href&quot;:null,&quot;belowTheFold&quot;:true,&quot;topImage&quot;:false,&quot;internalRedirect&quot;:&quot;https://siliconandsoul.substack.com/i/190936337?img=https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F84790041-0b02-43a7-bf42-e79c52931370_3000x1800.png&quot;,&quot;isProcessing&quot;:false,&quot;align&quot;:null,&quot;offset&quot;:false}" class="sizing-normal" alt srcset="https://substackcdn.com/image/fetch/$s_!jDJ_!,w_424,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F84790041-0b02-43a7-bf42-e79c52931370_3000x1800.png 424w, https://substackcdn.com/image/fetch/$s_!jDJ_!,w_848,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F84790041-0b02-43a7-bf42-e79c52931370_3000x1800.png 848w, https://substackcdn.com/image/fetch/$s_!jDJ_!,w_1272,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F84790041-0b02-43a7-bf42-e79c52931370_3000x1800.png 1272w, https://substackcdn.com/image/fetch/$s_!jDJ_!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F84790041-0b02-43a7-bf42-e79c52931370_3000x1800.png 1456w" sizes="100vw" loading="lazy"></picture></div></a></figure></div><p>If you want to view the full experiment, the benchmark scripts and the results, you can find the full code <a href="https://github.com/Sourav-Tripathy/Cute-Experiments/tree/main/exp-6" target="_blank" rel="noopener noreferrer">here</a> .</p><p><a class="footnote-anchor" data-component-name="FootnoteAnchorToDOM" id="footnote-anchor-1" href="#footnote-1" target="_self">1</a></p><div class="footnote" data-component-name="FootnoteToDOM"><a id="footnote-1" href="#footnote-anchor-1" class="footnote-number" contenteditable="false" target="_self">1</a><div class="footnote-content"><p>I put together this experiment out of curiosity to understand the tools I use every day a little better. If I have misunderstood any of the underlying technical details in how these frameworks compile or match routes, please let me know or leave a comment ! There is always more to learn.</p><p>Note: There are a few limitations to this benchmark. I isolated the router explicitly, bypassing network and HTTP/TCP overhead, which usually overshadows pure routing speed in real-world scenarios. I also did not explicitly force Python garbage collection between loops, which could introduce minor variance.</p><p>Python env and framework versions : CPython 3.10.12 | Django 5.2.12 | Flask 3.1.3 | Falcon 4.2.0 | Sanic 25.12.0 | FastAPI 0.115.6</p><p class="button-wrapper" data-attrs="{&quot;url&quot;:&quot;https://siliconandsoul.substack.com/p/the-case-of-the-swallowed-route-in/comments&quot;,&quot;text&quot;:&quot;Leave a comment&quot;,&quot;action&quot;:null,&quot;class&quot;:null}" data-component-name="ButtonCreateButton"><a class="button primary" href="https://siliconandsoul.substack.com/p/the-case-of-the-swallowed-route-in/comments" target="_blank" rel="noopener noreferrer"><span>Leave a comment</span></a></p><p></p></div></div>
+                </div>
+                
+                <div class="subscribe-section" style="margin-top: 5rem; padding: 2.5rem; background: rgba(128, 128, 128, 0.05); border-radius: 12px; text-align: center;">
+                    <p style="margin-bottom: 1.5rem; font-style: italic; font-size: 1.1rem; opacity: 0.9;">Enjoyed this piece? Subscribe for free to receive new posts and support my work.</p>
+                    <a href="https://siliconandsoul.substack.com/subscribe" target="_blank" class="button primary" style="background: var(--highlight); color: var(--bg); padding: 1rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 600; letter-spacing: 0.5px; display: inline-block; transition: opacity 0.2s;">Subscribe on Substack</a>
+                </div>
+            </article>
+        </main>
+
+        <footer>
+            <div class="social-links" style="margin-bottom: 2rem;">
+              <a href="mailto:lipuntripathy74@gmail.com" target="_blank">Email</a>
+                <a href="https://x.com/EssenceThinker" target="_blank">X (Twitter)</a>
+                <a href="https://www.linkedin.com/in/sourav-tripathy-astrophile/" target="_blank">LinkedIn</a>
+                <a href="https://github.com/Sourav-Tripathy" target="_blank">GitHub</a>
+                <a href="https://letterboxd.com/essenceX/" target="_blank">Letterboxd</a>
+                <a href="https://www.goodreads.com/user/show/82254166-sourav-tripathy" target="_blank">Goodreads</a>
+            </div>
+            © <span id="year"></span> Sourav Tripathy
+        </footer>
+    </div>
+    <script src="../script.js"></script>
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

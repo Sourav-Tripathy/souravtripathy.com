@@ -68,7 +68,10 @@ function renderArticles() {
         const target = art.link.startsWith('http') ? '_blank' : '_self';
 
         item.innerHTML = `
-             <a href="${art.link}" target="${target}" class="article-title">${art.title}</a>
+             <div class="article-info">
+                <a href="${art.link}" target="${target}" class="article-title">${art.title}</a>
+                ${art.subtitle ? `<p class="article-subtitle-preview">${art.subtitle}</p>` : ''}
+             </div>
              <span class="article-meta">${dateStr}</span>
         `;
         list.appendChild(item);
