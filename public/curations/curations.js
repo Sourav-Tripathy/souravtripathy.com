@@ -219,6 +219,10 @@ const curations = {
         {
             title: "The Pancake at the Bottom",
             link: "https://www.scottaaronson.com/writings/pancake.html"
+        },
+        {
+            title: "On the Need for Understanding",
+            link: "https://blog.information-superhighway.net/on-the-need-for-understanding"
         }
     ],
     videos: [
