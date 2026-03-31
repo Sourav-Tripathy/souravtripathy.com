@@ -233,6 +233,10 @@ const curations = {
         {
             title: "Pragmatism and Truth",
             link: "https://www.youtube.com/watch?v=1W7v4Ey2RHo"
+        },
+        {
+            title: "Anatomy of a Request:Beyond Backend Processing (Hussein Nasser)",
+            link: "https://www.youtube.com/watch?v=s0r3Aky9I5g"
         }
     ]
 };
