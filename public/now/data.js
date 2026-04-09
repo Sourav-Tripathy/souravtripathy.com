@@ -11,6 +11,12 @@ window.nowData = {
             titleLink: "https://www.goodreads.com/book/show/9712.Love_in_the_Time_of_Cholera",
             author: "Gabriel García Márquez",
             authorLink: "https://en.wikipedia.org/wiki/Gabriel_García_Márquez"
+        },
+        {
+            title: "Project Hail Mary",
+            titleLink: "https://www.goodreads.com/book/show/54493401-project-hail-mary",
+            author: "Andy Weir",
+            authorLink: "https://en.wikipedia.org/wiki/Andy_Weir"
         }
     ],
     listening: [
