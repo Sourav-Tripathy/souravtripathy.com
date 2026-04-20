@@ -237,6 +237,10 @@ const curations = {
         {
             title: "Anatomy of a Request:Beyond Backend Processing (Hussein Nasser)",
             link: "https://www.youtube.com/watch?v=s0r3Aky9I5g"
+        },
+        {
+            title: "Mission ISRO with Harsha Bhogle (Spotify Podcast)- (You will never regret listening to this)",
+            link: "https://open.spotify.com/show/2JXFCMLGVhTBtdz1WYxd4H"
         }
     ]
 };
