@@ -8,6 +8,14 @@ const projects = [
         highlightColor: "var(--highlight)"
     },
     {
+        category: "LLM Inference ",
+        title: "talk-souravtripathy",
+        url: "https://talk.souravtripathy.com",
+        description: "A 500M parameter Qwen2.5 model natively hosted on an old GTX 1650 Ti GPU via vLLM and FastAPI. Built to keep old hardware busy. Goes offline when the laptop does.",
+        footerHtml: '<a href="https://talk.souravtripathy.com" target="_blank">Try it out</a> &nbsp;•&nbsp; <a href="https://github.com/Sourav-Tripathy/talk-souravtripathy" target="_blank">GitHub</a>',
+        highlightColor: "var(--highlight)"
+    },
+    {
         category: "Browser Extension",
         title: "ISS Distance Tracker",
         url: "https://chromewebstore.google.com/detail/iss-distance-tracker/hcleaonfidpimalcjakemloadmejpiff",
