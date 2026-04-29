@@ -9,9 +9,9 @@ const projects = [
     },
     {
         category: "LLM Inference ",
-        title: "talk-souravtripathy",
+        title: "talk",
         url: "https://talk.souravtripathy.com",
-        description: "A 500M parameter Qwen2.5 model natively hosted on an old GTX 1650 Ti GPU via vLLM and FastAPI. Built to keep old hardware busy. Goes offline when the laptop does.",
+        description: "A 500M parameter Qwen2.5 model natively hosted on an old GTX 1650 Ti GPU via vLLM and FastAPI. Built to keep old hardware busy. Goes offline when the laptop does.This is to study different inference methods(Currently uses VLLM)",
         footerHtml: '<a href="https://talk.souravtripathy.com" target="_blank">Try it out</a> &nbsp;•&nbsp; <a href="https://github.com/Sourav-Tripathy/talk-souravtripathy" target="_blank">GitHub</a>',
         highlightColor: "var(--highlight)"
     },
