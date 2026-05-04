@@ -1,5 +1,14 @@
 const articles = [
     {
+        "date": "2026-05-04T03:21:25.000Z",
+        "title": "The Engineering Constraints of Distributed LLM Inference Over the Open Internet",
+        "subtitle": "An analysis and chain of thought",
+        "link": "./the-engineering-constraints-of-distributed-llm-inference-over-the-open-internet.html",
+        "originalLink": "https://siliconandsoul.substack.com/p/the-engineering-constraints-of-distributed",
+        "platform": "Substack",
+        "readTime": "17 min read"
+    },
+    {
         "date": "2026-03-15T05:23:04.000Z",
         "title": "The Case of the Swallowed Route in FastAPI",
         "subtitle": "How Starlette,Django,Werkzeug,Falcon and sanic match URLs under the hood.",
@@ -169,14 +178,5 @@ const articles = [
         "originalLink": "https://siliconandsoul.substack.com/p/vector-voodoo",
         "platform": "Substack",
         "readTime": "4 min read"
-    },
-    {
-        "date": "2024-05-29T15:14:46.000Z",
-        "title": "Linear Regression ",
-        "subtitle": "The Fundamental Statistics and Machine Learning Algorithm",
-        "link": "./linear-regression.html",
-        "originalLink": "https://siliconandsoul.substack.com/p/linear-regression",
-        "platform": "Substack",
-        "readTime": "6 min read"
     }
 ];

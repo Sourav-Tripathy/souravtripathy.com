@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>The Engineering Constraints of Distributed LLM Inference Over the Open Internet | Sourav Tripathy</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYTM3ZjVmIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggZD0iTTE4IDhoMWE0IDQgMCAwIDEgMCA4aC0xIi8+PHBhdGggZD0iTTIgOGgxNnY5YTQgNCAwIDAgMS00IDRINmE0IDQgMCAwIDEtNC00Vjh6Ii8+PGxpbmUgeDE9IjYiIHkxPSIxIiB4Mj0iNiIgeTI9IjQiLz48bGluZSB4MT0iMTAiIHkxPSIxIiB4Mj0iMTAiIHkyPSI0Ii8+PGxpbmUgeDE9IjE0IiB5MT0iMSIgeDI9IjE0IiB5Mj0iNCIvPjwvc3ZnPg==">
+    <script>
+        (function () {
+            var theme = localStorage.getItem('theme');
+            if (theme) {
+                document.documentElement.setAttribute('data-theme', theme);
+            } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+    <style>
+        /* Article specific styles */
+        .article-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 0;
+            line-height: 1.8; /* Increased line height for better readability */
+            font-size: 1.15rem;
+        }
+        .article-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 2rem 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Subtle shadow */
+        }
+        .article-content h1, .article-content h2, .article-content h3 {
+            margin-top: 2.5rem;
+            margin-bottom: 1.2rem;
+            color: var(--highlight);
+            line-height: 1.3;
+        }
+        .article-content a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(var(--accent-rgb), 0.3);
+            transition: border-color 0.2s;
+        }
+        .article-content a:hover {
+            border-bottom-color: var(--accent);
+            color: var(--highlight);
+        }
+        
+        /* Revised Header Styles for Aesthetics */
+        .article-header {
+            margin-bottom: 3.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+        }
+        .article-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--fg);
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+        .article-subtitle {
+            font-size: 1.4rem;
+            color: var(--dim);
+            line-height: 1.4;
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+        .article-meta {
+            font-family: var(--font-mono, monospace);
+            font-size: 0.9rem;
+            color: var(--dim);
+            letter-spacing: 0.03em;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            opacity: 0.85;
+        }
+        .article-meta a {
+            color: var(--dim);
+            text-decoration: none;
+            border-bottom: 1px dotted var(--dim);
+            transition: all 0.2s ease;
+            margin-left: auto; /* Push link to the right on larger screens */
+        }
+        .article-meta a:hover {
+            color: var(--highlight);
+            border-bottom-color: var(--highlight);
+        }
+        .meta-separator {
+            opacity: 0.4;
+            display: inline-block;
+            margin: 0 0.2rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 3rem;
+            color: var(--dim);
+            text-decoration: none;
+            font-family: var(--font-mono, monospace);
+            font-size: 0.9rem;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+        .back-link:hover {
+            color: var(--highlight);
+            opacity: 1;
+        }
+        
+        .article-content pre {
+            background: var(--fg); /* Inverted for code blocks */
+            color: var(--bg);
+            padding: 1.5rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 2rem 0;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        .article-content code {
+            font-family: var(--font-mono, monospace);
+            font-size: 0.9em;
+            background: rgba(128, 128, 128, 0.15);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+        }
+        .article-content pre code {
+            background: none;
+            padding: 0;
+            color: inherit;
+        }
+        
+        @media (max-width: 600px) {
+            .article-title {
+                font-size: 2rem;
+            }
+            .article-subtitle {
+                font-size: 1.15rem;
+            }
+            .article-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            .article-meta a {
+                margin-left: 0; /* Reset margin on mobile */
+                margin-top: 0.5rem;
+            }
+             .meta-separator {
+                display: none; /* Hide separator on mobile when stacked */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="masthead">
+        <div class="masthead-inner">
+            <header class="site-header">
+                <h1 class="brand-name">Sourav Tripathy</h1>
+                <nav class="tabs">
+                    <a href="/" class="tab-btn">About</a>
+                    <a href="/blog/" class="tab-btn active">Blog</a>
+                    <a href="/projects/" class="tab-btn">Projects</a>
+                    <a href="/curations/" class="tab-btn">Curations</a>
+                    <a href="/now/" class="tab-btn">Now</a>
+                    <a href="/observatory/" class="tab-btn">Observatory</a>
+                    <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark/light mode">
+                 <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                        <svg class="icon-moon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </button>
+                </nav>
+            </header>
+        </div>
+    </div>
+
+    <div class="container">
+        <main>
+            <a href="/blog/" class="back-link">← Back to Blog</a>
+            
+            <article class="article-content">
+                <header class="article-header">
+                    <h1 class="article-title">The Engineering Constraints of Distributed LLM Inference Over the Open Internet</h1>
+                    <p class="article-subtitle">An analysis and chain of thought</p>
+                    <div class="article-meta">
+                        <span class="meta-item">May 4, 2026</span>
+                        <span class="meta-separator">/</span>
+                        <span class="meta-item">17 min read</span>
+                        <a href="https://siliconandsoul.substack.com/p/the-engineering-constraints-of-distributed" target="_blank">Read on Substack ↗</a>
+                    </div>
+                </header>
+                
+                <div class="article-body">
+                    <p>Decentralisation of every major technology is one of the key dreams of all people who believe in opensource and community control over technology. The technology that currently sits at the heart of artificial intelligence is the Large Language Model. So the decentralisation of inference of LLMs is a question that appears in the mind of anyone who cares about this, and the same occured to a dear friend of mine while we were talking about inference methods. The idea vanished from the conversation but somehow it got me thinking about it when I was about to go to sleep. Before I forget the thoughts that I have about this, here is a penning down of the idea in detail and the constraints that appear from a first principles breakdown of the problem.</p><p>Since we are going to talk about inference, let us just assume we have an LLM of 400B parameters ready for inference. Suppose the precision at which we will serve the model is FP16. That is 2 bytes per parameter, meaning about 800 GB roughly in size. This is what I will call the <strong>Memory Wall</strong>. No single GPU can serve this on its own, so distributed inference is the go to method. But there is a fundamental difference between how large hyperscalers or AI labs are inferencing these models versus how any idea of decentralisation would actually have to work.</p><p>To see why, we first need to understand the three ways you can distribute a model across multiple GPUs. The first is <strong>data parallelism</strong>. This is where you make identical copies of the entire model and place each copy on a different GPU. Each GPU processes different data, meaning different user requests, in parallel. If you have ten users querying the model simultaneously, you might route user 1 to GPU A, user 2 to GPU B, and so on. Each GPU holds the full 800GB model, so this only works if a single GPU can fit the entire model, which brings us back to the Memory Wall. Data parallelism lets you serve more users concurrently, but it does not help you serve a model larger than one GPU&#x2019;s memory.</p><p>The second is <strong>pipeline parallelism</strong>. This is where you chop the model vertically by layers. GPU 1 holds layers 0 to 10, GPU 2 holds layers 11 to 20, and so on. Data flows through sequentially. GPU 1 finishes its block, passes the output activations to GPU 2, then waits for the next request. Each device executes full layers independently and just passes the final hidden states forward. The communication only happens between layer blocks, not within them.</p><p>The third is <strong>tensor parallelism</strong>. This is where you take a single layer and chop it horizontally across devices. Imagine one transformer layer with its attention heads and feedforward network. With tensor parallelism, you might put half the attention heads on GPU A and half on GPU B, or split the weight matrix of the MLP such that GPU A computes half the neurons and GPU B computes the other half. They work simultaneously on the same layer, computing in parallel, but halfway through they must synchronize. Every GPU needs to talk to every other GPU to exchange partial results and reconstruct the full output. This is called all-to-all communication, and it happens within the computation of a single layer.</p><p>Current NVIDIA stack is quite suited for the centralized case with their NVLink powered racks. For example, the NVIDIA GB200 NVL72 which contains 72 GB200 Blackwell GPUs has a total memory capacity of 13.4 TB. Inside that rack, those 72 GPUs are connected by NVLink delivering 900 GB/s of bandwidth with microsecond latency. This lets them use tensor parallelism aggressively. They can split individual layers across dozens of GPUs, and because the all-to-all synchronisation happens over NVLink nearly instantly, the GPUs barely stall.</p><p>But isolate one GPU from that rack. Its memory is about 180 GB, which means about 5 of these would be required to serve a 400B model with roughly 100GB there for KV cache. Now imagine those 5 GPUs are not in the same rack with NVLink, but in 5 different homes across the internet. The internet offers 10 to 100 MB/s with highly asymmetric upload, typically one tenth of the download speed, and latencies of tens or hundreds of milliseconds. This is what we might call the <strong>Bandwidth Abyss</strong>.</p><p>If we tried to use tensor parallelism over the internet, every layer would require all-to-all synchronisation across the network. With 100 millisecond latencies, we would spend 99 percent of your time waiting for network round trips rather than computing. The constant chatter required by tensor parallelism makes it impossible over the open internet.</p><p>So for our decentralized scenario, pipeline parallelism is the only viable route. We must accept that layers must run sequentially and just try to make the handoff between them tolerate high latency. Instead of synchronizing within every layer, we only communicate once per block of layers. The payload is larger i.e. we are sending full hidden states rather than partial sums but the latency tolerance is much higher. We can compress the activations, batch multiple tokens, and absorb network jitter because the communication is point-to-point between sequential stages rather than collective synchronisation across all devices.</p><p>Now lets reason the case through decentralisation point of view. Just assume that 5 people in 5 corner of the world each has one B200 at their home and they want to run the model. Now the communication between them is internet and the bandwidth it offers. So here multiple scenarios comes into thought.</p><p>In the first scenario, all these 5 people somehow coincidentally met on the internet and decided they will provide inference of this model. They decide over a sharding scheme and each loads their shard of the model to their VRAM. In an ideal world where each of these is online 24x7, sure there will be latency about the transfer of activations from one layer to the next. That is the bottleneck, the transfer of intermediate data between layers. When one shard completes its share of forward pass, it stops and sits idle until a new forward pass for it arrives. Here in this scenario the base condition is a predefined weight load to the GPU. It is kind of like a contract signing where the GPU has to be there at all times otherwise the entire network fails. This we can call <strong>rigidity of Static Topology.</strong></p><p>Now let us move to scenario 2 where there is no such fixed group of 5 people, but instead we build a system where people run some code that sends their available GPU specs to a central server. The server then assigns a specific shard of the model for them to download and load in their VRAM, and asks them to be online with periodic heartbeat signals. When a request arrives and it is time for their shard to process those layers, the GPU receives the required data, completes the operations, and sends the data over. But here the number of shards and number of GPUs to be involved is predefined. Until that number is reached, inference is not possible at all. This is what we can call <strong>bootstrap problem.</strong></p><p>So the obvious direction one says is ,suppose we have more number of GPUs available than the minimum required. Because more number of GPUs is available, one might think to make the shards smaller rather than maxing out each GPU, and distribute as usual. Now suppose during an idle period an extra GPU joins the network. The central server, looking at availability, decides to make the shards even smaller and redistribute. Or suppose one GPU leaves the shard. Since each remaining GPU is not at their max, the central server could make their shards bigger to cover the gap. But this creates the problem of <strong>Weight Migration</strong>.</p><p>There are two potential paths here. One is that the central server sends the weight file over the internet to be downloaded by your GPU whenever sharding changes. But that requires the central server to hold the whole model somewhere. This is a bottleneck and also makes you think, if the central server can hold all weights, why not just run from there? Why shard and distribute at all? The reason is that disk to VRAM I/O is much more expensive than network I/O. Loading weights from disk to active VRAM, then shedding and reloading the next shard, is much more time consuming than having shards of weight loaded in multiple VRAMs and just sending the required hidden layer for the next layer to perform computation.For example, suppose you have a 176&#x2011;billion&#x2011;parameter model in FP16, so roughly <strong>352 GB</strong> of weights. You split it into <strong>8 shards</strong>, each about <strong>44 GB</strong>.</p><ul><li><p>If you keep all weights on a single GPU, you must constantly <strong>swap shards between disk and VRAM</strong>.</p><ul><li><p>A good NVMe SSD can read about <strong>3&#x2013;5 GB/s</strong>.</p></li><li><p>Loading one shard of <strong>44 GB</strong> from disk:</p><p>44 GB/4 GB/s&#x2248;11 seconds, and this cost repeats every time that shard is swapped in.</p></li></ul></li><li><p>In contrast, if you instead <strong>split the model across two GPUs over the internet</strong>, each GPU permanently keeps half the weights in VRAM (e.g., 176 GB each), and the only thing that crosses the network is the <strong>hidden&#x2011;state activations</strong> between layers.</p><ul><li><p>Suppose the activations amount to <strong>~1 GB per token</strong> (before compression).</p></li><li><p>With a <strong>50 MB/s upload link</strong> to the remote GPU, sending that payload takes:</p><p>1 GB/50 MB/s = 20 seconds in total (roughly) but note this can overlap with computation on the other side.</p></li><li><p>In practice you compress the activations (e.g., to 8&#x2011;bit), cutting the size roughly in half or more, so the effective transfer time drops to <strong>around 10 seconds or less per token&#x2019;s worth of activations</strong>.</p></li></ul></li></ul><p>Even with relatively slow internet, shipping smaller activations over the network is still often cheaper than repeatedly shuttling large weight shards between disk and VRAM, which is why disk&#x2011;to&#x2011;VRAM I/O is considered much more expensive than network I/O for this kind of workload.</p><p>The second path is that each GPU in the network has a local disk which can hold the entire model, and the server only signals what slice of that weight file the GPU has to load. Here the loading becomes a little faster than receiving the weight file over the internet, but now every peer needs terabytes of local storage just to participate.</p><p>This brings us to the even deeper problem of <strong>Hardware Heterogeneity</strong>. In reality, peers do not have identical GPUs. One person has an RTX 3090 with 24GB. Another has an RTX 4090 with 24GB but faster compute. Another might have an A100 with 80GB. Equal sharding wastes resources on the larger GPU. Optimal assignment is complicated because you cannot simply divide layers evenly. Some layers are larger, some are computationally heavier. The problem of assigning layers to GPUs of varying capacity such that no GPU is overloaded while minimising communication is not trivial.</p><p>Now so far I have talked about the weight side of the model involved in the inference but there is another equally important resident of GPU memory during inference that I have not touched - the KV cache. During the autoregressive decode phase of transformer inference, instead of recomputing the key and value vectors for every past token at every new step, we store them in memory and reuse them. This is the KV cache. Now in a single machine setting this is straightforward , the cache just sits in VRAM. But in our distributed internet scenario, the KV cache for a given sequence lives on whichever GPU owns those layers. Suppose GPU 3 owns layers 40 to 60, so the K and V tensors computed by those layers for our sequence sit on GPU 3&#x2019;s VRAM, idle, waiting for the next token to arrive so they can participate in the next attention computation. This means between every two consecutive tokens of a generation, all five GPUs in our pipeline are holding live KV cache for every in-flight request. And here is where it gets worse - KV cache size grows with context length. A longer conversation or a longer generation means a larger cache sitting resident on each GPU for the entire duration of that sequence. But then again this KV cache can be evicted once the genration is complete.</p><p>So to summarise everything : we have the <strong>Memory Wall</strong> that makes single device inference impossible, the <strong>Sequential Dependency</strong> that prevents parallelism within a token, the <strong>Bandwidth Abyss</strong> that makes communication expensive, <strong>Static Topology</strong> that creates fragile networks, the <strong>Weight Migration</strong> problem that makes dynamic scaling difficult, <strong>Hardware Heterogeneity</strong> that complicates optimal assignment, the <strong>KV Cache Persistence</strong> that grows memory usage with sequence length and creates stateful dependencies, <strong>Topological Instability</strong> that means peers can disappear at any time, the Trust problem of verifying remote computation, and the <strong>Distribution problem</strong> of how weights get to peers in the first place.</p><p>Now that I am up from sleep and researched and verified all I wrote above lets discuss how the Petals architecture (<a href="https://arxiv.org/pdf/2312.08361" target="_blank" rel="noopener noreferrer">https://arxiv.org/pdf/2312.08361</a>) which is one of the publicly available versions of decentralization of LLM inference handles them.</p><div class="captioned-image-container"><figure><a class="image-link image2 is-viewable-img" target="_blank" href="https://substackcdn.com/image/fetch/$s_!BkQG!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F24e2072c-d62d-42a5-abb7-620529f5de4e_2816x1536.png" data-component-name="Image2ToDOM" rel="noopener noreferrer"><div class="image2-inset"><picture><source type="image/webp" srcset="https://substackcdn.com/image/fetch/$s_!BkQG!,w_424,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F24e2072c-d62d-42a5-abb7-620529f5de4e_2816x1536.png 424w, https://substackcdn.com/image/fetch/$s_!BkQG!,w_848,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F24e2072c-d62d-42a5-abb7-620529f5de4e_2816x1536.png 848w, https://substackcdn.com/image/fetch/$s_!BkQG!,w_1272,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F24e2072c-d62d-42a5-abb7-620529f5de4e_2816x1536.png 1272w, https://substackcdn.com/image/fetch/$s_!BkQG!,w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F24e2072c-d62d-42a5-abb7-620529f5de4e_2816x1536.png 1456w" sizes="100vw"><img src="https://substackcdn.com/image/fetch/$s_!BkQG!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F24e2072c-d62d-42a5-abb7-620529f5de4e_2816x1536.png" width="1456" height="794" data-attrs="{&quot;src&quot;:&quot;https://substack-post-media.s3.amazonaws.com/public/images/24e2072c-d62d-42a5-abb7-620529f5de4e_2816x1536.png&quot;,&quot;srcNoWatermark&quot;:null,&quot;fullscreen&quot;:null,&quot;imageSize&quot;:null,&quot;height&quot;:794,&quot;width&quot;:1456,&quot;resizeWidth&quot;:null,&quot;bytes&quot;:6605192,&quot;alt&quot;:null,&quot;title&quot;:null,&quot;type&quot;:&quot;image/png&quot;,&quot;href&quot;:null,&quot;belowTheFold&quot;:true,&quot;topImage&quot;:false,&quot;internalRedirect&quot;:&quot;https://siliconandsoul.substack.com/i/195510244?img=https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F24e2072c-d62d-42a5-abb7-620529f5de4e_2816x1536.png&quot;,&quot;isProcessing&quot;:false,&quot;align&quot;:null,&quot;offset&quot;:false}" class="sizing-normal" alt srcset="https://substackcdn.com/image/fetch/$s_!BkQG!,w_424,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F24e2072c-d62d-42a5-abb7-620529f5de4e_2816x1536.png 424w, https://substackcdn.com/image/fetch/$s_!BkQG!,w_848,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F24e2072c-d62d-42a5-abb7-620529f5de4e_2816x1536.png 848w, https://substackcdn.com/image/fetch/$s_!BkQG!,w_1272,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F24e2072c-d62d-42a5-abb7-620529f5de4e_2816x1536.png 1272w, https://substackcdn.com/image/fetch/$s_!BkQG!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F24e2072c-d62d-42a5-abb7-620529f5de4e_2816x1536.png 1456w" sizes="100vw" loading="lazy"></picture></div></a><figcaption class="image-caption">An Image Produced by Nano Banana (Prompt- Whole article,produce an minimal and clear image)</figcaption></figure></div><p>To understand Petals, we first have to look at how they define the problem. They look at exactly the nightmare scenario we just discussed: you have a massive &gt;100B parameter model, and you have a swarm of consumer-grade GPUs scattered across the internet. But instead of assuming these GPUs are reliable nodes in a pristine data center, they assume the worst. They assume the internet is slow, bandwidth is heavily asymmetric (good download, terrible upload), and most importantly, peers are fundamentally unreliable. A node might drop offline at any second.</p><p>But before diving into their exact mechanics, we have to break a mental habit. When we think of load-balancing or distributed systems, our brains naturally want to assign a &#x201C;<em>manager</em>&#x201D; i.e. a central server that receives user requests, monitors GPU availability, and lines up the sequence. If there were a central server mapping the GPUs and passing the weights, that server would become a massive bottleneck and a single point of failure.</p><p>Instead, the paradigm shifts to the edge. There is no central mind. The orchestrator of the request is simply the <strong>client</strong>. And by &#x201C;<em>client</em>,&#x201D; it does not mean a cloud server; it means literally your local machine running a Jupyter notebook, asking the model to generate text. The client is entirely self-interested. It does not manage the network for anyone else; it only wants to map out a path for its own specific prompt, use the swarm to compute it, and then disconnect.</p><p>So, how does your laptop coordinate this without a central manager? It uses a Distributed Hash Table (DHT), specifically inspired by protocols like BitTorrent. In the Petals network, the model is still sharded layer by layer. When someone volunteers their GPU, they announce to the DHT: &#x201C;I have 24GB of VRAM available, what layers are currently under-represented?&#x201D; They download those weights from a source like HuggingFace, load them into VRAM, and sit ready as purely reactive, stateless workers.</p><p>When your laptop (the client) wants to run an inference request, it does not process any model layers itself. Instead, it queries the DHT: &#x201C;Who currently holds layers 0-10? Who holds 11-20?&#x201D; The DHT replies with the IP addresses of available GPUs. <em>Your laptop</em> then runs the routing algorithms locally to piece together a continuous pipeline from layer 0 to the end.</p><p>During the forward pass, your laptop creates the initial token embeddings and sends them directly over the internet to the first GPU on its list. Peer 1 runs its block of layers and sends the hidden states over the internet to Peer 2, and so on, until the final peer computes the logits and sends them back to your laptop. To survive the severe bottleneck of internet bandwidth, Petals passes these hidden activations between peers using 8-bit quantization, drastically reducing the payload size traversing the network.</p><p>But what about that dynamic sharding and the KV cache problem we talked about earlier? Suppose GPU 3, holding layers 40 to 60, suddenly disconnects to play a video game in the middle of a generation. In our centralized scenario, the network breaks. In Petals, because your laptop constructed the route, it holds the &#x201C;<em>session</em>&#x201D; state. Your laptop realizes the connection to GPU 3 timed out. It immediately queries the DHT for a backup peer that also holds layers 40 to 60.</p><p>But as we established, the KV cache lives on the GPU that owns those layers. If GPU 3 dies, its resident KV cache for our sequence is gone forever. Petals handles this through a fallback mechanism. When a GPU that holds a contiguous block of layers (e.g., layers 40&#x2013;60) goes offline, the system locates a replacement server for that block and resends the cached intermediate activations (i.e., the outputs of the preceding layer, such as layer 39) for all previous tokens in the sequence. The new server then recomputes the KV cache for that block from those activations, rather than re&#x2011;running the entire decode phase from the beginning. This implies that the system must keep or be able to replay the inputs to each distributed block, which introduces additional memory overhead compared with a purely local KV&#x2011;cache&#x2011;only scheme.</p><p>The GPU nodes just hold weights and process whatever hidden states arrive at their doorstep. The client i.e your local machine is the one keeping the heartbeat of the sequence alive, dynamically rebuilding the pipeline on the fly as the chaotic internet shifts underneath it.</p><p>To appreciate the results, we first have to establish the baseline of despair. If you want to run a massive model say, the 176B parameter model or a 70B Llama on a single 24GB consumer GPU (like an RTX 3090), your only option is offloading. You have to constantly swap weight shards between your system&#x2019;s slow RAM (or worse, your SSD) and the GPU&#x2019;s VRAM for every single forward pass. The I/O bottleneck is absolute. In this offloading setup, you are looking at generation speeds of maybe 0.1 to 0.2 tokens per second. It is  slow, practically unusable for anything interactive.</p><p>Now, lets take the same 176B model onto the Petals swarm. We have traded the local Disk-to-VRAM bottleneck for the Network I/O bottleneck, but with a crucial difference: we are only sending compressed hidden states over the network, leaving the heavy weights firmly parked in each peers&#x2019; VRAM.</p><p>The paper reports that for a 176B model spread across a global, decentralized network of consumer GPUs, Petals achieves generation speeds of roughly <strong>1 to 2 tokens per second</strong>.</p><p>Finally, what about the fault tolerance mechanism we discussed? What actually happens to the user experience when a node dies mid-generation?</p><p>The paper shows that when a GPU abruptly drops offline, the client takes some seconds to detect the timeout, query the DHT for a new peer, reroute the connection, and recompute the missing KV cache. In practice, this means the user watching the text generate sees a brief may be 3-second pause, and then the text resumes streaming. A momentary hiccup is an incredibly elegant trade-off for a system that allows anyone with a laptop to infer a 176B parameter model using community hardware.</p><p>This paper is a proof of how massive problems can be engineered elegantly and have a decent enough solution. After petals architecture several other papers have been published with some tweaks and different ways to address all the problem we discussed above.Below are the paper links if you are intrested to study them along with the paper we discussed.<a class="footnote-anchor" data-component-name="FootnoteAnchorToDOM" id="footnote-anchor-1" href="#footnote-1" target="_self">1</a></p><ol><li><p><a href="https://arxiv.org/pdf/2312.08361" target="_blank" rel="noopener noreferrer">Distributed Inference and Fine-tuning of Large Language Models Over The Internet</a></p></li><li><p><a href="https://arxiv.org/pdf/2505.18164" target="_blank" rel="noopener noreferrer">Model-Distributed Inference for Large Language Models at the Edge</a></p></li><li><p><a href="https://arxiv.org/pdf/2507.12000" target="_blank" rel="noopener noreferrer">DSSD: Efficient Edge-Device LLM Deployment and Collaborative Inference via Distributed Split Speculative Decoding</a></p></li><li><p><a href="https://arxiv.org/pdf/2504.20101" target="_blank" rel="noopener noreferrer">PlanetServe: A Decentralized, Scalable, and Privacy-Preserving Overlay for Democratizing Large Language Model Serving</a></p></li><li><p><a href="https://arxiv.org/pdf/2604.21072" target="_blank" rel="noopener noreferrer">Distributed Generative Inference of LLM at Internet Scales with Multi-Dimensional Communication Optimization</a></p></li></ol><p></p><p><strong>Thanks</strong> to <a href="https://x.com/molyb01" target="_blank" rel="noopener noreferrer">Asutosh Padhi</a> and <a href="https://x.com/harshbhatt7585" target="_blank" rel="noopener noreferrer">Harsh Bhatt </a>for reading drafts of this.</p><div class="footnote" data-component-name="FootnoteToDOM"><a id="footnote-1" href="#footnote-anchor-1" class="footnote-number" contenteditable="false" target="_self">1</a><div class="footnote-content"><p>If I have made any mistake in the analysis of the problem , feel free to cite them in the comment ,it would be of great help.</p></div></div>
+                </div>
+                
+                <div class="subscribe-section" style="margin-top: 5rem; padding: 2.5rem; background: rgba(128, 128, 128, 0.05); border-radius: 12px; text-align: center;">
+                    <p style="margin-bottom: 1.5rem; font-style: italic; font-size: 1.1rem; opacity: 0.9;">Enjoyed this piece? Subscribe for free to receive new posts and support my work.</p>
+                    <a href="https://siliconandsoul.substack.com/subscribe" target="_blank" class="button primary" style="background: var(--highlight); color: var(--bg); padding: 1rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 600; letter-spacing: 0.5px; display: inline-block; transition: opacity 0.2s;">Subscribe on Substack</a>
+                </div>
+            </article>
+        </main>
+
+        <footer>
+            <div class="social-links" style="margin-bottom: 2rem;">
+              <a href="mailto:lipuntripathy74@gmail.com" target="_blank">Email</a>
+                <a href="https://x.com/EssenceThinker" target="_blank">X (Twitter)</a>
+                <a href="https://www.linkedin.com/in/sourav-tripathy-astrophile/" target="_blank">LinkedIn</a>
+                <a href="https://github.com/Sourav-Tripathy" target="_blank">GitHub</a>
+                <a href="https://letterboxd.com/essenceX/" target="_blank">Letterboxd</a>
+                <a href="https://www.goodreads.com/user/show/82254166-sourav-tripathy" target="_blank">Goodreads</a>
+            </div>
+            © <span id="year"></span> Sourav Tripathy
+        </footer>
+    </div>
+    <script src="../script.js"></script>
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
