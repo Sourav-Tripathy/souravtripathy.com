@@ -429,6 +429,21 @@ function renderNowPage() {
 }
 
 
+// 9. Visitor Counter
+async function initVisitorCounter() {
+    const countEl = document.getElementById('visitor-count');
+    if (!countEl) return;
+
+    try {
+        const res = await fetch('https://api.counterapi.dev/v1/souravtripathy/observatory/up');
+        const data = await res.json();
+        countEl.innerText = data.count.toLocaleString();
+    } catch (e) {
+        console.error('Failed to fetch visitor count:', e);
+        countEl.innerText = 'Lost in space';
+    }
+}
+
 // 8. Masthead Scroll Effect
 function initMastheadScroll() {
     const masthead = document.querySelector('.masthead');
@@ -458,6 +473,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initIpMagic();
     initISSTracker();
     initMastheadScroll(); // Initialize masthead scroll effect
+    initVisitorCounter(); // Initialize visitor counter
 
     // Update Mars time every second
     setInterval(updateMarsTime, 1000);
