@@ -165,11 +165,11 @@ const curations = {
     },
     articles: [
         {
-            title: "The Bitter Lesson",
+            title: "The Bitter Lesson (Richard Sutton)",
             link: "http://www.incompleteideas.net/IncIdeas/BitterLesson.html"
         },
         {
-            title: "Is Anything Inherently Difficult?",
+            title: "Is Anything Inherently Difficult? ",
             link: "https://guzey.com/education/is-anything-inherently-difficult/"
         },
         {
@@ -177,15 +177,19 @@ const curations = {
             link: "https://www.paulgraham.com/gh.html"
         },
         {
-            title: "The Impossibility of Intelligence Explosion",
+            title: "The Impossibility of Intelligence Explosion (François Chollet)",
             link: "https://medium.com/@francois.chollet/the-impossibility-of-intelligence-explosion-5be4a9eda6ec"
+        },
+        {
+            title: "The Unreasonable Effectiveness of Mathematics in the Natural Sciences (Eugene Wigner)",
+            link: "https://webhomes.maths.ed.ac.uk/~v1ranick/papers/wigner.pdf"
         },
         {
             title: "Good Writing (Paul Graham)",
             link: "https://www.paulgraham.com/goodwriting.html"
         },
         {
-            title: "Machines of Loving Grace",
+            title: "Machines of Loving Grace (Dario Amodei)",
             link: "https://darioamodei.com/essay/machines-of-loving-grace"
         },
         {
@@ -193,7 +197,7 @@ const curations = {
             link: "https://www.theculturist.io/p/why-does-beauty-matter-e7c"
         },
         {
-            title: "Even If You Beat Me",
+            title: "Even If You Beat Me (Sally Rooney)",
             link: "https://thedublinreview.com/article/even-if-you-beat-me/"
         },
         {
@@ -217,7 +221,7 @@ const curations = {
             link: "https://archive.is/20250302062059/https://www.economist.com/1843/2025/02/28/tyler-cowen-the-man-who-wants-to-know-everything"
         },
         {
-            title: "The Pancake at the Bottom",
+            title: "The Pancake at the Bottom (Scott Aaronson)",
             link: "https://www.scottaaronson.com/writings/pancake.html"
         },
         {
