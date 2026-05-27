@@ -325,6 +325,17 @@ function generateHtml(title, subtitle, date, content, originalLink, readTime) {
             </article>
         </main>
 
+        <hr class="blog-footer-divider">
+        <div class="blog-footer-license">
+            <div class="license-left">
+                <p class="author-name">Sourav Tripathy</p>
+                <p class="author-opinions">The opinions on this site are my own. They do not necessarily represent those of my employer.</p>
+            </div>
+            <div class="license-right">
+                <p>This work is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">Creative Commons Attribution 4.0 International License</a>.</p>
+            </div>
+        </div>
+
         <footer>
             <div class="social-links" style="margin-bottom: 2rem;">
               <a href="mailto:lipuntripathy74@gmail.com" target="_blank">Email</a>
