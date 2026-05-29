@@ -161,6 +161,12 @@ const curations = {
         authorWiki: "https://en.wikipedia.org/wiki/Walt_Whitman",
         link: "https://www.poetryfoundation.org/poems/45474/o-captain-my-captain",
       },
+      {
+        title: "Because I could not stop for Death – (479)",
+        author: "Emily Dickinson",
+        authorWiki: "https://en.wikipedia.org/wiki/Emily_Dickinson",
+        link: "https://www.poetryfoundation.org/poems/47652/because-i-could-not-stop-for-death-479",
+      },
     ],
   },
   articles: [
