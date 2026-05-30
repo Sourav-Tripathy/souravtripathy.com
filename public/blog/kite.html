@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>In a Subversion of Life | Sourav Tripathy</title>
+    <title>Kite . | Sourav Tripathy</title>
     <link rel="stylesheet" href="../styles.css">
-    <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYTM3ZjVmIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggZD0iTTE4IDhoMWE0IDQgMCAwIDEgMCA4aC0xIi8+PHBhdGggZD0iTTIgOGgxNnY5YTQgNCAwIDAgMS00IDRINmE0IDQgMCAwIDEtNC00Vjh6Ii8+PGxpbmUgeDE9IjYiIHkxPSIxIiB4Mj0iNiIgeTI9IjQiLz48bGluZSB4MT0iMTAiIHkxPSIxIiB4Mj0iMTAiIHkyPSI0Ii8+PGxpbmUgeDE9IjE0IiB5MT0iMSIgeDI9IjE0IiB5Mj0iNCIvPjwvc3ZnPg==">
+    <link rel="icon"
+        href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYTM3ZjVmIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggZD0iTTE4IDhoMWE0IDQgMCAwIDEgMCA4aC0xIi8+PHBhdGggZD0iTTIgOGgxNnY5YTQgNCAwIDAgMS00IDRINmE0IDQgMCAwIDEtNC00Vjh6Ii8+PGxpbmUgeDE9IjYiIHkxPSIxIiB4Mj0iNiIgeTI9IjQiLz48bGluZSB4MT0iMTAiIHkxPSIxIiB4Mj0iMTAiIHkyPSI0Ii8+PGxpbmUgeDE9IjE0IiB5MT0iMSIgeDI9IjE0IiB5Mj0iNCIvPjwvc3ZnPg==">
     <script>
         (function () {
             var theme = localStorage.getItem('theme');
@@ -22,39 +24,45 @@
             max-width: 800px;
             margin: 0 auto;
             padding: 2rem 0;
-            line-height: 1.8; /* Increased line height for better readability */
+            line-height: 1.8;
             font-size: 1.15rem;
         }
+
         .article-content img {
             max-width: 100%;
             height: auto;
             border-radius: 8px;
             margin: 2rem 0;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Subtle shadow */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
-        .article-content h1, .article-content h2, .article-content h3 {
+
+        .article-content h1,
+        .article-content h2,
+        .article-content h3 {
             margin-top: 2.5rem;
             margin-bottom: 1.2rem;
             color: var(--highlight);
             line-height: 1.3;
         }
+
         .article-content a {
             color: var(--accent);
             text-decoration: none;
             border-bottom: 1px solid rgba(var(--accent-rgb), 0.3);
             transition: border-color 0.2s;
         }
+
         .article-content a:hover {
             border-bottom-color: var(--accent);
             color: var(--highlight);
         }
-        
-        /* Revised Header Styles for Aesthetics */
+
         .article-header {
             margin-bottom: 3.5rem;
             padding-bottom: 1.5rem;
             border-bottom: 1px solid rgba(128, 128, 128, 0.2);
         }
+
         .article-title {
             font-size: 2.8rem;
             font-weight: 700;
@@ -63,6 +71,7 @@
             line-height: 1.2;
             letter-spacing: -0.02em;
         }
+
         .article-subtitle {
             font-size: 1.4rem;
             color: var(--dim);
@@ -71,6 +80,7 @@
             font-weight: 400;
             opacity: 0.9;
         }
+
         .article-meta {
             font-family: var(--font-mono, monospace);
             font-size: 0.9rem;
@@ -82,17 +92,20 @@
             gap: 1rem;
             opacity: 0.85;
         }
+
         .article-meta a {
             color: var(--dim);
             text-decoration: none;
             border-bottom: 1px dotted var(--dim);
             transition: all 0.2s ease;
-            margin-left: auto; /* Push link to the right on larger screens */
+            margin-left: auto;
         }
+
         .article-meta a:hover {
             color: var(--highlight);
             border-bottom-color: var(--highlight);
         }
+
         .meta-separator {
             opacity: 0.4;
             display: inline-block;
@@ -109,13 +122,14 @@
             opacity: 0.7;
             transition: opacity 0.2s;
         }
+
         .back-link:hover {
             color: var(--highlight);
             opacity: 1;
         }
-        
+
         .article-content pre {
-            background: var(--fg); /* Inverted for code blocks */
+            background: var(--fg);
             color: var(--bg);
             padding: 1.5rem;
             border-radius: 6px;
@@ -124,6 +138,7 @@
             font-size: 0.95rem;
             line-height: 1.5;
         }
+
         .article-content code {
             font-family: var(--font-mono, monospace);
             font-size: 0.9em;
@@ -131,34 +146,40 @@
             padding: 0.2rem 0.4rem;
             border-radius: 4px;
         }
+
         .article-content pre code {
             background: none;
             padding: 0;
             color: inherit;
         }
-        
+
         @media (max-width: 600px) {
             .article-title {
                 font-size: 2rem;
             }
+
             .article-subtitle {
                 font-size: 1.15rem;
             }
+
             .article-meta {
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 0.5rem;
             }
+
             .article-meta a {
-                margin-left: 0; /* Reset margin on mobile */
+                margin-left: 0;
                 margin-top: 0.5rem;
             }
-             .meta-separator {
-                display: none; /* Hide separator on mobile when stacked */
+
+            .meta-separator {
+                display: none;
             }
         }
     </style>
 </head>
+
 <body>
     <div class="masthead">
         <div class="masthead-inner">
@@ -172,7 +193,7 @@
                     <a href="/now/" class="tab-btn">Now</a>
                     <a href="/observatory/" class="tab-btn">Observatory</a>
                     <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark/light mode">
-                 <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <circle cx="12" cy="12" r="5"></circle>
                             <line x1="12" y1="1" x2="12" y2="3"></line>
                             <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -195,21 +216,76 @@
     <div class="container">
         <main>
             <a href="/blog/" class="back-link">← Back to Blog</a>
-            
+
             <article class="article-content">
                 <header class="article-header">
-                    <h1 class="article-title">In a Subversion of Life</h1>
-                    <p class="article-subtitle">Between Logic and Living</p>
+                    <h1 class="article-title">Kite .</h1>
+                    <p class="article-subtitle"></p>
                     <div class="article-meta">
-                        <span class="meta-item">June 28, 2025</span>
+                        <span class="meta-item">August 20, 2023</span>
                         <span class="meta-separator">/</span>
-                        <span class="meta-item">1 min read</span>
-                        <a href="https://siliconandsoul.substack.com/p/in-a-subversion-of-life" target="_blank">Read on Substack ↗</a>
+                        <span class="meta-item">2 min read</span>
+                        <a href="https://medium.com/@nyctophile-wordsmith/kite-65bdb2a0f999" target="_blank">Read on
+                            Medium ↗</a>
                     </div>
                 </header>
-                
+
                 <div class="article-body">
-                    <div class="captioned-image-container"><figure><a class="image-link image2 is-viewable-img" target="_blank" href="https://substackcdn.com/image/fetch/$s_!C8H8!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4254bf87-c878-4636-ac64-ab292e1c7db1_460x280.jpeg" data-component-name="Image2ToDOM" rel="noopener noreferrer"><div class="image2-inset"><picture><source type="image/webp" srcset="https://substackcdn.com/image/fetch/$s_!C8H8!,w_424,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4254bf87-c878-4636-ac64-ab292e1c7db1_460x280.jpeg 424w, https://substackcdn.com/image/fetch/$s_!C8H8!,w_848,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4254bf87-c878-4636-ac64-ab292e1c7db1_460x280.jpeg 848w, https://substackcdn.com/image/fetch/$s_!C8H8!,w_1272,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4254bf87-c878-4636-ac64-ab292e1c7db1_460x280.jpeg 1272w, https://substackcdn.com/image/fetch/$s_!C8H8!,w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4254bf87-c878-4636-ac64-ab292e1c7db1_460x280.jpeg 1456w" sizes="100vw"><img src="https://substackcdn.com/image/fetch/$s_!C8H8!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4254bf87-c878-4636-ac64-ab292e1c7db1_460x280.jpeg" width="460" height="280" data-attrs="{&quot;src&quot;:&quot;https://substack-post-media.s3.amazonaws.com/public/images/4254bf87-c878-4636-ac64-ab292e1c7db1_460x280.jpeg&quot;,&quot;srcNoWatermark&quot;:null,&quot;fullscreen&quot;:null,&quot;imageSize&quot;:null,&quot;height&quot;:280,&quot;width&quot;:460,&quot;resizeWidth&quot;:null,&quot;bytes&quot;:69274,&quot;alt&quot;:null,&quot;title&quot;:null,&quot;type&quot;:&quot;image/jpeg&quot;,&quot;href&quot;:null,&quot;belowTheFold&quot;:false,&quot;topImage&quot;:true,&quot;internalRedirect&quot;:&quot;https://siliconandsoul.substack.com/i/167047108?img=https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4254bf87-c878-4636-ac64-ab292e1c7db1_460x280.jpeg&quot;,&quot;isProcessing&quot;:false,&quot;align&quot;:null,&quot;offset&quot;:false}" class="sizing-normal" alt srcset="https://substackcdn.com/image/fetch/$s_!C8H8!,w_424,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4254bf87-c878-4636-ac64-ab292e1c7db1_460x280.jpeg 424w, https://substackcdn.com/image/fetch/$s_!C8H8!,w_848,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4254bf87-c878-4636-ac64-ab292e1c7db1_460x280.jpeg 848w, https://substackcdn.com/image/fetch/$s_!C8H8!,w_1272,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4254bf87-c878-4636-ac64-ab292e1c7db1_460x280.jpeg 1272w, https://substackcdn.com/image/fetch/$s_!C8H8!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4254bf87-c878-4636-ac64-ab292e1c7db1_460x280.jpeg 1456w" sizes="100vw" fetchpriority="high"></picture></div></a></figure></div><p>A body in motion remains in motion , <br>unless acted upon by grief.<br>But what of souls ?<br>They decelerate not from resistance,<br>but from remembering.</p><p>Let us consider:<br>Let <em>x</em> be time,<br>Let <em>f(x)</em> be love - bounded,<br>continuous, but not differentiable at heartbreak.</p><p>Entropy grows.<br>Every ordered morning leads to chaotic dusk.<br>Even hope bleeds into thermodynamic equilibrium.</p><p>We are quantum:<br>superposed between becoming and collapsing<br>measured only when observed,<br>and always changed by the looking.</p><p>Life isn&apos;t linear.<br>It&apos;s a Fourier transform of sorrow and joy<br>complex, with hidden frequencies<br>only evident in death&apos;s inverse.</p><p>So integrate it not over time,<br>but over meaning,<br>and you may find that limit does not exist<br>yet still converges.</p><p><strong>Q.E.D.</strong> - Quite Elegantly Dying.</p>
+
+                    <section name="0faa" class="section section--body section--first section--last">
+                        <div class="section-content">
+                            <div class="section-inner sectionLayout--insetColumn">
+                                <figure><img
+                                        src="https://cdn-images-1.medium.com/max/800/1*BkQHAS7PmNO1aYtBHkPqgA.jpeg">
+                                    <figcaption class="imageCaption"></figcaption>
+                                </figure>
+                                <p class="graf graf--p graf-after--figure">Life is strange. we all are bounded by some
+                                    emotions that are foreign to us. we don&#x2019;t understand how they came into
+                                    existence in us, yet they leave a mark in us. In those moments of perplexity all a
+                                    human can do is gaze at the blue sky and understand that we are a combination of
+                                    star dusts that are in the universe since the Big Bang. We have the universe
+                                    residing in us and when such a vast thing is in us, aren&#x2019;t we allowed to have
+                                    some mystery&#xA0;? Of course, we are and below is a poem that I wrote without any
+                                    certain understanding. I saw a kite in the sky and my heart started to sing words
+                                    that were strange because this emotion is uncanny to me. The poem is not about
+                                    somebody but it is at the same time a poem about somebody. Feel free to interpret
+                                    the way you want, but remember its always a hearts tale in the end&#x2026;.</p>
+                                <blockquote class="graf graf--blockquote graf-after--p quote-style"><strong
+                                        class="markup--strong markup--blockquote-strong">In the depths of
+                                        midnight&#x2019;s embrace&#xA0;<br>silent whispers from my core
+                                        emerge,<br>Unyielding to slumber&#x2019;s tender call<br>I inscribe tales upon
+                                        my heart&#x2019;s blank page.</strong></blockquote>
+                                <blockquote class="graf graf--blockquote graf-after--blockquote quote-style"><strong
+                                        class="markup--strong markup--blockquote-strong">Reviving ancient faiths from
+                                        within<br>I summon courage to embrace love&#x2019;s path,&#xA0;<br>Crawling,
+                                        walking, running, stumbling<br>a recurrent dream, like d&#xE9;j&#xE0;
+                                        vu&#x2019;s aftermath.</strong></blockquote>
+                                <blockquote class="graf graf--blockquote graf-after--blockquote quote-style"><strong
+                                        class="markup--strong markup--blockquote-strong">My heart soars like a kite
+                                        reaching for your sky<br>yearning for a union, hoping to align,<br>Yet the
+                                        breeze fades, the threads sever<br>guiding me towards time&#x2019;s cavernous
+                                        confines.</strong></blockquote>
+                                <blockquote class="graf graf--blockquote graf-after--blockquote quote-style"><strong
+                                        class="markup--strong markup--blockquote-strong">Where dwell you, my ethereal
+                                        muse?<br>Where reside I in this vast expanse?<br>No answers bestowed upon our
+                                        quest<br>yet my heart soars, seeking your sky&#x2019;s advance.</strong>
+                                </blockquote>
+                                <blockquote class="graf graf--blockquote graf-after--blockquote quote-style"><strong
+                                        class="markup--strong markup--blockquote-strong">The shroud of night&#x2019;s
+                                        darkness wanes<br>before the anguish that clings to my soul,&#xA0;<br>amidst the
+                                        mist, I witness<br>your hands slipping away, beyond my control.</strong>
+                                </blockquote>
+                                <blockquote
+                                    class="graf graf--blockquote graf-after--blockquote graf--trailing quote-style">
+                                    <strong class="markup--strong markup--blockquote-strong">Victorious we shall
+                                        be<br>triumphing over lost wagers,&#xA0;<br>Destined to reunite in
+                                        truth&#x2019;s delicate scales<br>indeed, today my heart soars as a
+                                        kite<br>yearning to bind with your celestial trails.</strong>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </section>
+
                 </div>
             </article>
         </main>
@@ -218,16 +294,18 @@
         <div class="blog-footer-license">
             <div class="license-left">
                 <p class="author-name">Sourav Tripathy</p>
-                <p class="author-opinions">The opinions on this site are my own. They do not necessarily represent those of my employer.</p>
+                <p class="author-opinions">The opinions on this site are my own. They do not necessarily represent those
+                    of my employer.</p>
             </div>
             <div class="license-right">
-                <p>This work is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">Creative Commons Attribution 4.0 International License</a>.</p>
+                <p>This work is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank"
+                        rel="noopener noreferrer">Creative Commons Attribution 4.0 International License</a>.</p>
             </div>
         </div>
 
         <footer>
             <div class="social-links" style="margin-bottom: 2rem;">
-              <a href="mailto:lipuntripathy74@gmail.com" target="_blank">Email</a>
+                <a href="mailto:lipuntripathy74@gmail.com" target="_blank">Email</a>
                 <a href="https://x.com/EssenceThinker" target="_blank">X (Twitter)</a>
                 <a href="https://www.linkedin.com/in/sourav-tripathy-astrophile/" target="_blank">LinkedIn</a>
                 <a href="https://github.com/Sourav-Tripathy" target="_blank">GitHub</a>
@@ -242,4 +320,5 @@
         document.getElementById("year").textContent = new Date().getFullYear();
     </script>
 </body>
+
 </html>

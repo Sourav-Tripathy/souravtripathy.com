@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>To Be or Not to Be | Sourav Tripathy</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The Quiet Madness of 3:00 am | Sourav Tripathy</title>
     <link rel="stylesheet" href="../styles.css">
-    <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYTM3ZjVmIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggZD0iTTE4IDhoMWE0IDQgMCAwIDEgMCA4aC0xIi8+PHBhdGggZD0iTTIgOGgxNnY5YTQgNCAwIDAgMS00IDRINmE0IDQgMCAwIDEtNC00Vjh6Ii8+PGxpbmUgeDE9IjYiIHkxPSIxIiB4Mj0iNiIgeTI9IjQiLz48bGluZSB4MT0iMTAiIHkxPSIxIiB4Mj0iMTAiIHkyPSI0Ii8+PGxpbmUgeDE9IjE0IiB5MT0iMSIgeDI9IjE0IiB5Mj0iNCIvPjwvc3ZnPg==">
+    <link rel="icon"
+        href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYTM3ZjVmIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggZD0iTTE4IDhoMWE0IDQgMCAwIDEgMCA4aC0xIi8+PHBhdGggZD0iTTIgOGgxNnY5YTQgNCAwIDAgMS00IDRINmE0IDQgMCAwIDEtNC00Vjh6Ii8+PGxpbmUgeDE9IjYiIHkxPSIxIiB4Mj0iNiIgeTI9IjQiLz48bGluZSB4MT0iMTAiIHkxPSIxIiB4Mj0iMTAiIHkyPSI0Ii8+PGxpbmUgeDE9IjE0IiB5MT0iMSIgeDI9IjE0IiB5Mj0iNCIvPjwvc3ZnPg==">
     <script>
         (function () {
             var theme = localStorage.getItem('theme');
@@ -22,39 +24,45 @@
             max-width: 800px;
             margin: 0 auto;
             padding: 2rem 0;
-            line-height: 1.8; /* Increased line height for better readability */
+            line-height: 1.8;
             font-size: 1.15rem;
         }
+
         .article-content img {
             max-width: 100%;
             height: auto;
             border-radius: 8px;
             margin: 2rem 0;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Subtle shadow */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
-        .article-content h1, .article-content h2, .article-content h3 {
+
+        .article-content h1,
+        .article-content h2,
+        .article-content h3 {
             margin-top: 2.5rem;
             margin-bottom: 1.2rem;
             color: var(--highlight);
             line-height: 1.3;
         }
+
         .article-content a {
             color: var(--accent);
             text-decoration: none;
             border-bottom: 1px solid rgba(var(--accent-rgb), 0.3);
             transition: border-color 0.2s;
         }
+
         .article-content a:hover {
             border-bottom-color: var(--accent);
             color: var(--highlight);
         }
-        
-        /* Revised Header Styles for Aesthetics */
+
         .article-header {
             margin-bottom: 3.5rem;
             padding-bottom: 1.5rem;
             border-bottom: 1px solid rgba(128, 128, 128, 0.2);
         }
+
         .article-title {
             font-size: 2.8rem;
             font-weight: 700;
@@ -63,6 +71,7 @@
             line-height: 1.2;
             letter-spacing: -0.02em;
         }
+
         .article-subtitle {
             font-size: 1.4rem;
             color: var(--dim);
@@ -71,6 +80,7 @@
             font-weight: 400;
             opacity: 0.9;
         }
+
         .article-meta {
             font-family: var(--font-mono, monospace);
             font-size: 0.9rem;
@@ -82,17 +92,20 @@
             gap: 1rem;
             opacity: 0.85;
         }
+
         .article-meta a {
             color: var(--dim);
             text-decoration: none;
             border-bottom: 1px dotted var(--dim);
             transition: all 0.2s ease;
-            margin-left: auto; /* Push link to the right on larger screens */
+            margin-left: auto;
         }
+
         .article-meta a:hover {
             color: var(--highlight);
             border-bottom-color: var(--highlight);
         }
+
         .meta-separator {
             opacity: 0.4;
             display: inline-block;
@@ -109,13 +122,14 @@
             opacity: 0.7;
             transition: opacity 0.2s;
         }
+
         .back-link:hover {
             color: var(--highlight);
             opacity: 1;
         }
-        
+
         .article-content pre {
-            background: var(--fg); /* Inverted for code blocks */
+            background: var(--fg);
             color: var(--bg);
             padding: 1.5rem;
             border-radius: 6px;
@@ -124,6 +138,7 @@
             font-size: 0.95rem;
             line-height: 1.5;
         }
+
         .article-content code {
             font-family: var(--font-mono, monospace);
             font-size: 0.9em;
@@ -131,34 +146,40 @@
             padding: 0.2rem 0.4rem;
             border-radius: 4px;
         }
+
         .article-content pre code {
             background: none;
             padding: 0;
             color: inherit;
         }
-        
+
         @media (max-width: 600px) {
             .article-title {
                 font-size: 2rem;
             }
+
             .article-subtitle {
                 font-size: 1.15rem;
             }
+
             .article-meta {
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 0.5rem;
             }
+
             .article-meta a {
-                margin-left: 0; /* Reset margin on mobile */
+                margin-left: 0;
                 margin-top: 0.5rem;
             }
-             .meta-separator {
-                display: none; /* Hide separator on mobile when stacked */
+
+            .meta-separator {
+                display: none;
             }
         }
     </style>
 </head>
+
 <body>
     <div class="masthead">
         <div class="masthead-inner">
@@ -172,19 +193,19 @@
                     <a href="/now/" class="tab-btn">Now</a>
                     <a href="/observatory/" class="tab-btn">Observatory</a>
                     <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark/light mode">
-                 <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="5"></circle>
-                            <line x1="12" y1="1" x2="12" y2="3"></line>
-                            <line x1="12" y1="21" x2="12" y2="23"></line>
-                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                            <line x1="1" y1="12" x2="3" y2="12"></line>
-                            <line x1="21" y1="12" x2="23" y2="12"></line>
-                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="5" />
+                            <line x1="12" y1="1" x2="12" y2="3" />
+                            <line x1="12" y1="21" x2="12" y2="23" />
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                            <line x1="1" y1="12" x2="3" y2="12" />
+                            <line x1="21" y1="12" x2="23" y2="12" />
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
                         </svg>
                         <svg class="icon-moon" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
                         </svg>
                     </button>
                 </nav>
@@ -195,21 +216,61 @@
     <div class="container">
         <main>
             <a href="/blog/" class="back-link">← Back to Blog</a>
-            
+
             <article class="article-content">
                 <header class="article-header">
-                    <h1 class="article-title">To Be or Not to Be</h1>
-                    <p class="article-subtitle">A Personal Reflection</p>
+                    <h1 class="article-title">The Quiet Madness of 3:00 am</h1>
+                    <p class="article-subtitle">Waiting for a click that may never come</p>
                     <div class="article-meta">
-                        <span class="meta-item">January 11, 2025</span>
+                        <span class="meta-item">July 4, 2025</span>
                         <span class="meta-separator">/</span>
-                        <span class="meta-item">2 min read</span>
-                        <a href="https://siliconandsoul.substack.com/p/to-be-or-not-to-be" target="_blank">Read on Substack ↗</a>
+                        <span class="meta-item">1 min read</span>
+                        <a href="https://medium.com/@nyctophile-wordsmith/the-quiet-madness-of-3-00-am-94d08380d101"
+                            target="_blank">Read on Medium ↗</a>
                     </div>
                 </header>
-                
+
                 <div class="article-body">
-                    <p><strong>To be</strong> or <strong>not to be </strong>; that&#x2019;s what Shakespeare said, didn&#x2019;t he? </p><p>And if I&#x2019;m honest, I don&#x2019;t think I have the capacity within me to fully grasp the depths of what those words are meant to reveal. They feel like a question meant for someone else, someone with more clarity, more courage&#x2026;<br><br>But as I sit here and reflect on everything happening around me, I realize that<strong> not to be</strong> feels like the better choice. It&#x2019;s a decision where the game stops, the odds cease to matter, and everything becomes quiet. In that sense, <strong>not to be</strong> has a simplicity to it, an escape from the endless competition of existence.<br><br>Yet, despite this, we always seem to choose <strong>to be</strong>. Why is that? Why do we fight so hard to stay? I wonder if it&#x2019;s fear , the fear of <strong>not to be</strong>. Maybe it&#x2019;s evolutionary, a deeply ingrained instinct to keep going, to keep existing. But the more I think about it, the more I feel haunted by the question itself. Choosing <strong>to be</strong> feels like a reflex, something automatic, yet the weight of it grows heavier the more I consider it.<br><br>Tears roll down my face without warning, and I try, desperately, to reason with them. I want to understand why they&#x2019;re here, why they exist, but my logical mind falls short. It&#x2019;s incomprehensible, this heaviness, this ache that has no name. So, here I sit, with nothing but a pen in my hand under the cloudy yet dark sky at 1 am, with no stars but a faint glow of the moon behind the clouds. As if writing under such a sky could change something or as if writing could somehow make sense of it all.<br><br>It&#x2019;s odd, isn&#x2019;t it? Who picks up a pen when grappling with a question as vast as <strong>to be </strong>or <strong>not to be</strong>? But maybe I&#x2019;m that person - <em>someone who finds no reason for the act itself, and yet does it anyway. </em><br><br>And maybe this question, this crying, this moment, it isn&#x2019;t for the soul. It&#x2019;s not something to be quietly resolved within me. It&#x2019;s larger than that. This question is for the world, a reflection of everything that weighs on it and on us.<br><br>As someone in my dream once told me:<br><em><strong>Some moments are for the soul...<br>Some moments are for the world...</strong></em><br><br><em>And this, this is for the world.</em></p>
+
+                    <section name="37c3" class="section section--body section--first section--last">
+                        <div class="section-content">
+                            <div class="section-inner sectionLayout--insetColumn">
+                                </h4>
+                                <figure><img data-unsplash-photo-id="RBthQZJd_vU"
+                                        src="https://cdn-images-1.medium.com/max/800/0*qNaA2Rh7AEEM6fZD">
+                                    <figcaption class="imageCaption">Photo by <a
+                                            href="https://unsplash.com/@_th4d_?utm_source=medium&utm_medium=referral"
+                                            data-href="https://unsplash.com/@_th4d_?utm_source=medium&utm_medium=referral"
+                                            class="markup--anchor markup--figure-anchor" rel="photo-creator noopener"
+                                            target="_blank">Thaddaeus Lim</a> on <a
+                                            href="https://unsplash.com?utm_source=medium&utm_medium=referral"
+                                            data-href="https://unsplash.com?utm_source=medium&utm_medium=referral"
+                                            class="markup--anchor markup--figure-anchor" rel="photo-source noopener"
+                                            target="_blank">Unsplash</a></figcaption>
+                                </figure>
+                                <p class="graf graf--p graf-after--figure"><strong
+                                        class="markup--strong markup--p-strong"><em class="markup--em markup--p-em">I am
+                                            an overthinker.</em></strong><em class="markup--em markup--p-em"><br>The
+                                        kind that believes in themselves so much it borders on delusion<br>Not the
+                                        arrogant kind, but the desperate, stubborn kind.<br>The kind that sits on a
+                                        chair at 3:00 a.m.,<br>Staring at blank walls like they might blink back with an
+                                        answer.</em></p>
+                                <p class="graf graf--p graf-after--p"><em class="markup--em markup--p-em">I lose sleep
+                                        not to dreams,<br>But to thoughts looping endlessly <br>Waiting for a click in
+                                        my brain,<br>A whisper of clarity, a sentence worth writing,<br>Or just a breath
+                                        deep enough to carry meaning.</em></p>
+                                <p class="graf graf--p graf-after--p"><em class="markup--em markup--p-em">I work at 8. I
+                                        know.<br>But the night pulls me in<br>Not because I want to escape the
+                                        day,<br>But because I still believe<br>That somewhere between 2:47 and 3:12
+                                        a.m.,<br> truth might arrive.</em></p>
+                                <p class="graf graf--p graf-after--p graf--trailing"><em
+                                        class="markup--em markup--p-em">And when dawn breaks,<br>That’s when I finally
+                                        sleep<br>Because the world is waking up,<br>And I can rest knowing I was still
+                                        searching<br>While everyone else dreamed.</em></p>
+                            </div>
+                        </div>
+                    </section>
+
                 </div>
             </article>
         </main>
@@ -218,16 +279,18 @@
         <div class="blog-footer-license">
             <div class="license-left">
                 <p class="author-name">Sourav Tripathy</p>
-                <p class="author-opinions">The opinions on this site are my own. They do not necessarily represent those of my employer.</p>
+                <p class="author-opinions">The opinions on this site are my own. They do not necessarily represent those
+                    of my employer.</p>
             </div>
             <div class="license-right">
-                <p>This work is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">Creative Commons Attribution 4.0 International License</a>.</p>
+                <p>This work is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank"
+                        rel="noopener noreferrer">Creative Commons Attribution 4.0 International License</a>.</p>
             </div>
         </div>
 
         <footer>
             <div class="social-links" style="margin-bottom: 2rem;">
-              <a href="mailto:lipuntripathy74@gmail.com" target="_blank">Email</a>
+                <a href="mailto:lipuntripathy74@gmail.com" target="_blank">Email</a>
                 <a href="https://x.com/EssenceThinker" target="_blank">X (Twitter)</a>
                 <a href="https://www.linkedin.com/in/sourav-tripathy-astrophile/" target="_blank">LinkedIn</a>
                 <a href="https://github.com/Sourav-Tripathy" target="_blank">GitHub</a>
@@ -241,5 +304,7 @@
     <script>
         document.getElementById("year").textContent = new Date().getFullYear();
     </script>
+
 </body>
+
 </html>

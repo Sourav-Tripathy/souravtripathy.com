@@ -1,0 +1,399 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>A Hello from Van Gogh… | Sourav Tripathy</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYTM3ZjVmIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggZD0iTTE4IDhoMWE0IDQgMCAwIDEgMCA4aC0xIi8+PHBhdGggZD0iTTIgOGgxNnY5YTQgNCAwIDAgMS00IDRINmE0IDQgMCAwIDEtNC00Vjh6Ii8+PGxpbmUgeDE9IjYiIHkxPSIxIiB4Mj0iNiIgeTI9IjQiLz48bGluZSB4MT0iMTAiIHkxPSIxIiB4Mj0iMTAiIHkyPSI0Ii8+PGxpbmUgeDE9IjE0IiB5MT0iMSIgeDI9IjE0IiB5Mj0iNCIvPjwvc3ZnPg==">
+    <script>
+        (function () {
+            var theme = localStorage.getItem('theme');
+            if (theme) {
+                document.documentElement.setAttribute('data-theme', theme);
+            } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+    <style>
+        /* Article specific styles */
+        .article-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 0;
+            line-height: 1.8;
+            font-size: 1.15rem;
+        }
+
+        .article-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 2rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .article-content h1,
+        .article-content h2,
+        .article-content h3 {
+            margin-top: 2.5rem;
+            margin-bottom: 1.2rem;
+            color: var(--highlight);
+            line-height: 1.3;
+        }
+
+        .article-content a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(var(--accent-rgb), 0.3);
+            transition: border-color 0.2s;
+        }
+
+        .article-content a:hover {
+            border-bottom-color: var(--accent);
+            color: var(--highlight);
+        }
+
+        .article-header {
+            margin-bottom: 3.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+        }
+
+        .article-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--fg);
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        .article-subtitle {
+            font-size: 1.4rem;
+            color: var(--dim);
+            line-height: 1.4;
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+
+        .article-meta {
+            font-family: var(--font-mono, monospace);
+            font-size: 0.9rem;
+            color: var(--dim);
+            letter-spacing: 0.03em;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            opacity: 0.85;
+        }
+
+        .article-meta a {
+            color: var(--dim);
+            text-decoration: none;
+            border-bottom: 1px dotted var(--dim);
+            transition: all 0.2s ease;
+            margin-left: auto;
+        }
+
+        .article-meta a:hover {
+            color: var(--highlight);
+            border-bottom-color: var(--highlight);
+        }
+
+        .meta-separator {
+            opacity: 0.4;
+            display: inline-block;
+            margin: 0 0.2rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 3rem;
+            color: var(--dim);
+            text-decoration: none;
+            font-family: var(--font-mono, monospace);
+            font-size: 0.9rem;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .back-link:hover {
+            color: var(--highlight);
+            opacity: 1;
+        }
+
+        .article-content pre {
+            background: var(--fg);
+            color: var(--bg);
+            padding: 1.5rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 2rem 0;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .article-content code {
+            font-family: var(--font-mono, monospace);
+            font-size: 0.9em;
+            background: rgba(128, 128, 128, 0.15);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+        }
+
+        .article-content pre code {
+            background: none;
+            padding: 0;
+            color: inherit;
+        }
+
+        @media (max-width: 600px) {
+            .article-title {
+                font-size: 2rem;
+            }
+
+            .article-subtitle {
+                font-size: 1.15rem;
+            }
+
+            .article-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+
+            .article-meta a {
+                margin-left: 0;
+                margin-top: 0.5rem;
+            }
+
+            .meta-separator {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="masthead">
+        <div class="masthead-inner">
+            <header class="site-header">
+                <h1 class="brand-name">Sourav Tripathy</h1>
+                <nav class="tabs">
+                    <a href="/" class="tab-btn">About</a>
+                    <a href="/blog/" class="tab-btn active">Blog</a>
+                    <a href="/projects/" class="tab-btn">Projects</a>
+                    <a href="/curations/" class="tab-btn">Curations</a>
+                    <a href="/now/" class="tab-btn">Now</a>
+                    <a href="/observatory/" class="tab-btn">Observatory</a>
+                    <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark/light mode">
+                        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="5"/>
+                            <line x1="12" y1="1" x2="12" y2="3"/>
+                            <line x1="12" y1="21" x2="12" y2="23"/>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                            <line x1="1" y1="12" x2="3" y2="12"/>
+                            <line x1="21" y1="12" x2="23" y2="12"/>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                        </svg>
+                        <svg class="icon-moon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                        </svg>
+                    </button>
+                </nav>
+            </header>
+        </div>
+    </div>
+
+    <div class="container">
+        <main>
+            <a href="/blog/" class="back-link">← Back to Blog</a>
+
+            <article class="article-content">
+                <header class="article-header">
+                    <h1 class="article-title">A Hello from Van Gogh…</h1>
+                    <p class="article-subtitle">Me, Starry Night, and a random June night</p>
+                    <div class="article-meta">
+                        <span class="meta-item">June 25, 2025</span>
+                        <span class="meta-separator">/</span>
+                        <span class="meta-item">6 min read</span>
+                        <a href="https://medium.com/@nyctophile-wordsmith/a-hello-from-van-gogh-5f7541ebd67f" target="_blank">Read on Medium ↗</a>
+                    </div>
+                </header>
+
+                <div class="article-body">
+
+                    <section name="f636" class="section section--body section--first">
+                        <div class="section-content">
+                            <div class="section-inner sectionLayout--insetColumn">
+                                <h4 class="graf graf--h4 graf--leading graf--kicker"></h4>
+                                <figure><img src="https://cdn-images-1.medium.com/max/800/1*MXMQq7kTXTpnPS-0Tq9NWw.jpeg">
+                                    <figcaption class="imageCaption">Van Gogh’s Famous starry Night Painting
+                                    </figcaption>
+                                </figure>
+                                <p class="graf graf--p graf-after--figure">It’s the middle of June and the
+                                    weather is neither too dry nor too wet… it feels polite, but somehow it is
+                                    heavy on the heart. I don’t know why — is it the
+                                    occasional drizzle of rain, or the sudden shift from rain to sun? Only my heart
+                                    knows, and it’s not trying to talk to my brain. So I am clueless…</p>
+                                <p class="graf graf--p graf-after--p">So, instead of wandering out, or sitting with a
+                                    book, or putting on a show on Netflix, I just brewed myself a cup of black coffee
+                                    from the instant coffee bottle and opened my laptop. My home screen: <em class="markup--em markup--p-em">Starry Night</em> by Van Gogh.</p>
+                                <p class="graf graf--p graf-after--p">I stopped there instead of clicking on Chrome or
+                                    VS Code. I just sat still while my cup remained halfway to my mouth, the steam
+                                    rising from the coffee, hazing up my spectacles, and me staring at the screen
+                                    through the misty glass. I put down the cup… didn’t wipe my spectacles
+                                    clean, as I felt a weird tingle in my brain.</p>
+                                <p class="graf graf--p graf-after--p">The home screen has been set to <em class="markup--em markup--p-em">Starry Night</em> for the past eleven months
+                                    just because I liked the colours — it felt unique to my eyes
+                                    somehow. But I never cared to stare at it. I know all those things people write
+                                    about it, describing how this painting was done by Van Gogh when he was in the
+                                    mental asylum, and this was what he saw from his window… the yellow and blue
+                                    colours appearing due to his colour blindness… and some say it shows how he
+                                    manifested the world — bright sun indicating positivity and all
+                                    that bullshit.</p>
+                                <p class="graf graf--p graf-after--p">But since I’ve realized that art has no
+                                    meaning in itself — that it is the consumer who defines what it
+                                    feels or brings — I never looked for a feeling. And since that
+                                    feeling never came, I never thought about it.</p>
+                                <p class="graf graf--p graf-after--p">But today, in the middle of June, on a random
+                                    Tuesday night, somehow, I feel different…</p>
+                                <p class="graf graf--p graf-after--p">I am feeling a bit of anguish in me, while feeling
+                                    calm by looking at the picture. I don’t know why… the fluidity of the
+                                    painting and the messy brushstrokes symbolize for me the fragility of everything in
+                                    existence. The utter ephemerality is brought out and laid before me… and I
+                                    don’t flinch. I see the black lines posing as a tree and imagine myself being
+                                    one of them — staring at the sun and moon simultaneously, as if
+                                    I am the creator of them, consuming them at the same time.</p>
+                                <p class="graf graf--p graf-after--p">The small sleepy town remains unaware of the
+                                    absurdity above, sleeping in silence under the billion-dollar show put on by the
+                                    stars.</p>
+                                <p class="graf graf--p graf--startsWithDoubleQuote graf-after--p"><em class="markup--em markup--p-em">“I need some liquid,”</em> the
+                                    tree says, and my hand automatically reaches for the coffee, which is only a little
+                                    warm now.</p>
+                                <p class="graf graf--p graf-after--p">I realize the haze is no longer over my
+                                    spectacles. It has vanished. I sip three times, continuously… put the cup
+                                    down… and suddenly, I realize — oh, there is a church in
+                                    the picture. Standing tall.</p>
+                                <p class="graf graf--p graf-after--p">I drift into thought… was it intentional?
+                                    Did the asylum Van Gogh stayed at have windows that overlooked a church? Because at
+                                    that time, people were deeply religious and believed surrendering to God could
+                                    somehow bring sanity… when it’s just a momentary illusion. People stay
+                                    in because they fear to question.</p>
+                                <p class="graf graf--p graf-after--p">And I find myself asking more questions…
+                                    did Van Gogh believe in God? Or did he just paint it because he saw it? Or because
+                                    he thought: <em class="markup--em markup--p-em">If I am painting houses, I ought to
+                                        put a church — because people need it… because
+                                        morality mostly comes from there and not from within?</em></p>
+                                <p class="graf graf--p graf-after--p">I get perplexed… and somehow amused.</p>
+                                <p class="graf graf--p graf-after--p">Maybe that’s what this night is
+                                    about — not answers, just questions.<br>Questions that know how
+                                    to sit beside you like an old friend… not the loud kind, but the one who
+                                    knows you well enough to not interrupt your silence.</p>
+                                <figure><img src="https://cdn-images-1.medium.com/max/800/1*AdyEallgxwqYviA3Fa1fnQ.jpeg">
+                                    <figcaption class="imageCaption">The NIght view that caused all these thoughts..
+                                    </figcaption>
+                                </figure>
+                                <p class="graf graf--p graf-after--figure">The painting hasn’t changed, and yet
+                                    tonight it feels like it’s breathing with me. Maybe it’s always been
+                                    like this, and I never had the right kind of silence to notice…or maybe I was
+                                    just too loud inside to listen.</p>
+                                <p class="graf graf--p graf-after--p">I move the mouse a bit, not to open
+                                    anything — just to see the tiny arrow move across the stars
+                                    like a comet wandering aimlessly… and I think of how easy it is to exist like
+                                    that… floating around in someone else’s masterpiece, pretending to
+                                    mean something.</p>
+                                <p class="graf graf--p graf-after--p">The coffee’s cold now.</p>
+                                <p class="graf graf--p graf-after--p">I don’t drink it. I just hold the mug, as
+                                    if the warmth left behind could still seep into me if I waited long enough…
+                                </p>
+                                <p class="graf graf--p graf-after--p">The window beside me is slightly open, and the
+                                    curtain flutters a little… that same polite wind, the same polite
+                                    weather… pretending to be light while it weighs something on your chest that
+                                    you can’t name.</p>
+                                <p class="graf graf--p graf-after--p">I stare again at the black silhouette in the
+                                    painting — the tree, or whatever it is. People say it’s
+                                    a cypress, associated with mourning and death. Of course it is. Van Gogh
+                                    wouldn’t just paint a pretty sky without a reminder of how close beauty and
+                                    decay walk together…</p>
+                                <p class="graf graf--p graf-after--p">And somehow, I feel like I am that tree tonight,
+                                    stretching upwards without knowing why. Maybe hoping that if I stretch long enough,
+                                    I will touch something… God, purpose, or just a better version of me.</p>
+                                <p class="graf graf--p graf-after--p">I laugh quietly — not the
+                                    happy kind, more like a tired exhale that forgets it was once laughter.</p>
+                                <p class="graf graf--p graf-after--p">The houses in the town look so asleep… so
+                                    unaware.</p>
+                                <p class="graf graf--p graf-after--p"><strong class="markup--strong markup--p-strong"><em class="markup--em markup--p-em">And
+                                            I wonder — do they dream in paintings?<br>Do they ever
+                                            try to run away from the canvas they’re trapped in?</em></strong></p>
+                                <p class="graf graf--p graf-after--p">Another sip. It’s bitter now. But I
+                                    don’t mind. Sometimes bitterness is easier to sit with than
+                                    sweetness — it demands less pretending.</p>
+                                <p class="graf graf--p graf-after--p">And then something strikes me…</p>
+                                <p class="graf graf--p graf-after--p">The stars in <em class="markup--em markup--p-em">Starry Night</em> aren’t small.
+                                    They’re absurdly large, swirling, alive… Maybe Van Gogh didn’t
+                                    paint what he saw — maybe he painted how it felt to be under
+                                    the sky when your mind was louder than the world… when the stars refused to
+                                    be dots and instead became voices… whispers… or screams…</p>
+                                <p class="graf graf--p graf-after--p">I suddenly realize I’ve been here for
+                                    hours.</p>
+                                <p class="graf graf--p graf-after--p">The clock says something irrelevant like 2:41
+                                    am… but time doesn’t matter right now. What matters is the quiet
+                                    between thoughts… the strange peace of confusion…the freedom of not
+                                    chasing meaning but simply sitting in its absence like it’s okay to be lost.
+                                </p>
+                                <p class="graf graf--p graf-after--p">I close the laptop.</p>
+                                <p class="graf graf--p graf-after--p">The stars disappear… but they’ve
+                                    already sunk somewhere inside me.</p>
+                                <p class="graf graf--p graf-after--p">And tomorrow, when the sun rises and people start
+                                    talking about plans and tasks and the weather, I’ll still be carrying this
+                                    night quietly with me…<br>like a painting I didn’t know how much I
+                                    needed to look at… until I did.</p>
+                                <p class="graf graf--p graf-after--p">I switch off the lamp and lie down on my bed.</p>
+                                <p class="graf graf--p graf-after--p graf--trailing">I hear a dog barking outside. I go
+                                    near the window and see the dog on the side road, staring straight and barking. I
+                                    just smile and return to my bed…</p>
+                            </div>
+                        </div>
+                    </section>
+                    
+
+                </div>
+            </article>
+        </main>
+
+        <hr class="blog-footer-divider">
+        <div class="blog-footer-license">
+            <div class="license-left">
+                <p class="author-name">Sourav Tripathy</p>
+                <p class="author-opinions">The opinions on this site are my own. They do not necessarily represent those
+                    of my employer.</p>
+            </div>
+            <div class="license-right">
+                <p>This work is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">Creative Commons Attribution 4.0 International License</a>.</p>
+            </div>
+        </div>
+
+        <footer>
+            <div class="social-links" style="margin-bottom: 2rem;">
+                <a href="mailto:lipuntripathy74@gmail.com" target="_blank">Email</a>
+                <a href="https://x.com/EssenceThinker" target="_blank">X (Twitter)</a>
+                <a href="https://www.linkedin.com/in/sourav-tripathy-astrophile/" target="_blank">LinkedIn</a>
+                <a href="https://github.com/Sourav-Tripathy" target="_blank">GitHub</a>
+                <a href="https://letterboxd.com/essenceX/" target="_blank">Letterboxd</a>
+                <a href="https://www.goodreads.com/user/show/82254166-sourav-tripathy" target="_blank">Goodreads</a>
+            </div>
+            © <span id="year"></span> Sourav Tripathy
+        </footer>
+    </div>
+    <script src="../script.js"></script>
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+
+
+</body></html>

@@ -33,48 +33,73 @@ function initThemeToggle() {
 
 // 2. Blog Rendering
 function renderArticles() {
-    // Only run if the articles-list element exists
     const list = document.getElementById('articles-list');
+    const yearsNav = document.getElementById('years-nav');
     if (!list) return;
 
-    // Sort Descending
+    // Sort Descending by date
     articles.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-    let currentYear = null;
+    // Get unique years in descending order
+    const years = [...new Set(articles.map(art => {
+        const d = new Date(art.date);
+        return isNaN(d.getTime()) ? null : d.getFullYear();
+    }).filter(Boolean))].sort((a, b) => b - a);
+
+    // Render Years Navigation at top
+    if (yearsNav) {
+        yearsNav.innerHTML = years.map(y => `<a href="#year-${y}" class="year-nav-link">${y}</a>`).join(' &bull; ');
+    }
+
+    // Clear list
+    list.innerHTML = '';
+
+    // Group articles by year
+    const articlesByYear = {};
+    years.forEach(y => {
+        articlesByYear[y] = [];
+    });
+
+    articles.forEach(art => {
+        const year = new Date(art.date).getFullYear();
+        if (articlesByYear[year]) {
+            articlesByYear[year].push(art);
+        }
+    });
+
     // Stagger delay counter
     let delay = 0;
 
-    articles.forEach(art => {
-        const artYear = art.date.split('-')[0];
-        if (artYear !== currentYear) {
-            currentYear = artYear;
-            const yearHeader = document.createElement('div');
-            yearHeader.className = 'year-separator fade-in-item';
-            yearHeader.style.animationDelay = `${delay}ms`;
-            yearHeader.innerText = currentYear;
-            list.appendChild(yearHeader);
-            delay += 50;
-        }
+    years.forEach(year => {
+        const yearGroup = document.createElement('div');
+        yearGroup.className = 'year-group fade-in-item';
+        yearGroup.style.animationDelay = `${delay}ms`;
+        delay += 60;
 
-        const item = document.createElement('div');
-        item.className = 'article-item fade-in-item';
-        item.style.animationDelay = `${delay}ms`;
-        delay += 50; // Increment delay for next item
+        const yearHeader = document.createElement('h3');
+        yearHeader.id = `year-${year}`;
+        yearHeader.className = 'blog-year-header';
+        yearHeader.innerText = year;
+        yearGroup.appendChild(yearHeader);
 
-        // Date formatting: "Jan 12"
-        const dateObj = new Date(art.date);
-        const dateStr = dateObj.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+        const ul = document.createElement('ul');
+        ul.className = 'blog-year-list';
 
-        const target = art.link.startsWith('http') ? '_blank' : '_self';
+        articlesByYear[year].forEach(art => {
+            const li = document.createElement('li');
+            li.className = 'blog-item';
 
-        item.innerHTML = `
-             <div class="article-info">
-                <a href="${art.link}" target="${target}" class="article-title">${art.title}</a>
-                ${art.subtitle ? `<p class="article-subtitle-preview">${art.subtitle}</p>` : ''}
-             </div>
-             <span class="article-meta">${dateStr}</span>
-        `;
-        list.appendChild(item);
+            const target = art.link.startsWith('http') ? '_blank' : '_self';
+            const tagsText = art.tags && art.tags.length > 0 ? ` <span class="blog-item-tags">(${art.tags.join(', ')})</span>` : '';
+
+            li.innerHTML = `
+                <a href="${art.link}" target="${target}" class="blog-item-link">${art.title}</a>${tagsText}
+            `;
+            ul.appendChild(li);
+        });
+
+        yearGroup.appendChild(ul);
+        list.appendChild(yearGroup);
     });
 }
 // 3. Mars Time

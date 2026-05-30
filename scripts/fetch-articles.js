@@ -14,7 +14,58 @@ async function main() {
         const feed = await parser.parseURL(FEED_URL);
         console.log(`Found ${feed.items.length} articles.`);
 
-        const articles = [];
+        // Load existing articles
+        const articlesJsPath = path.join(OUTPUT_DIR, 'articles.js');
+        let existingArticles = [];
+        if (fs.existsSync(articlesJsPath)) {
+            try {
+                const content = fs.readFileSync(articlesJsPath, 'utf8');
+                const jsonMatch = content.match(/const articles = (\[[\s\S]*?\]);/);
+                if (jsonMatch) {
+                    existingArticles = JSON.parse(jsonMatch[1]);
+                }
+            } catch (e) {
+                console.error("Failed to parse existing articles.js:", e);
+            }
+        }
+
+        // Helper to determine the default tags based on the title
+        function getDefaultTags(title) {
+            const t = title.toLowerCase();
+            if (t.includes("distributed llm inference") || 
+                t.includes("swallowed route") || 
+                t.includes("continual learning") || 
+                t.includes("eigenvectors") || 
+                t.includes("knowledge distillation") || 
+                t.includes("lora and qlora") || 
+                t.includes("word square") || 
+                t.includes("vectors, matrices") || 
+                t.includes("power of attention") || 
+                t.includes("vector voodoo") ||
+                t.includes("entropy") ||
+                t.includes("scientific experiments") ||
+                t.includes("quantum physics") ||
+                t.includes("linear regression") ||
+                t.includes("llm") || t.includes("ai") || t.includes("model") || t.includes("network") || t.includes("fastapi") || t.includes("code") || t.includes("vector") || t.includes("matrix") || t.includes("programming") || t.includes("algorithm") || t.includes("inference")) {
+                return ["Tech"];
+            }
+            if (t.includes("elegy") || 
+                t.includes("fallen flowers") || 
+                t.includes("whispers of rain") || 
+                t.includes("kite") || 
+                t.includes("poem") || t.includes("poetry") || t.includes("song") || t.includes("verse") || t.includes("rain")) {
+                return ["Poetry"];
+            }
+            if (t.includes("stardust") || t.includes("story") || t.includes("whisper")) {
+                return ["Short Story (Fiction)"];
+            }
+            return ["Reflections"];
+        }
+
+        const articlesMap = new Map();
+        existingArticles.forEach(art => {
+            articlesMap.set(art.title.toLowerCase().trim(), art);
+        });
 
         // Ensure output directory exists
         if (!fs.existsSync(OUTPUT_DIR)) {
@@ -48,8 +99,10 @@ async function main() {
             $('.image-link-expand').remove();
             $('figure').removeAttr('class'); // Remove substack classes
 
-            // 4. Remove 'Direct Message' buttons
+            // 4. Remove 'Direct Message' buttons and other promotional elements
             $('.directMessage').remove();
+            $('.button-wrapper').remove();
+            $('.subscribe-section').remove();
 
             // 5. Fix links - Ensure external links open in new tab
             $('a').each((i, el) => {
@@ -70,16 +123,22 @@ async function main() {
             const wordCount = textContent.trim().split(/\s+/).length;
             const readTime = Math.ceil(wordCount / 200) + ' min read';
 
+            const key = title.toLowerCase().trim();
+            const existing = articlesMap.get(key);
+
             // Save article metadata for articles.js
-            articles.push({
+            const articleMeta = {
                 date: date,
                 title: title,
                 subtitle: subtitle,
                 link: `./${filename}`, // Point to local file
                 originalLink: link,
                 platform: 'Substack',
-                readTime: readTime
-            });
+                readTime: readTime,
+                tags: existing && existing.tags ? existing.tags : getDefaultTags(title)
+            };
+
+            articlesMap.set(key, articleMeta);
 
             // Generate HTML content
             const htmlContent = generateHtml(title, subtitle, date, cleanContent, link, readTime);
@@ -90,7 +149,9 @@ async function main() {
         }
 
         // Generate articles.js
-        const articlesJsContent = `const articles = ${JSON.stringify(articles, null, 4)};\n`;
+        const mergedList = Array.from(articlesMap.values());
+        mergedList.sort((a, b) => new Date(b.date) - new Date(a.date));
+        const articlesJsContent = `const articles = ${JSON.stringify(mergedList, null, 4)};\n`;
         fs.writeFileSync(path.join(OUTPUT_DIR, 'articles.js'), articlesJsContent);
         console.log('Updated articles.js');
 
@@ -316,11 +377,6 @@ function generateHtml(title, subtitle, date, content, originalLink, readTime) {
                 
                 <div class="article-body">
                     ${content}
-                </div>
-                
-                <div class="subscribe-section" style="margin-top: 5rem; padding: 2.5rem; background: rgba(128, 128, 128, 0.05); border-radius: 12px; text-align: center;">
-                    <p style="margin-bottom: 1.5rem; font-style: italic; font-size: 1.1rem; opacity: 0.9;">Enjoyed this piece? Subscribe for free to receive new posts and support my work.</p>
-                    <a href="https://siliconandsoul.substack.com/subscribe" target="_blank" class="button primary" style="background: var(--highlight); color: var(--bg); padding: 1rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 600; letter-spacing: 0.5px; display: inline-block; transition: opacity 0.2s;">Subscribe on Substack</a>
                 </div>
             </article>
         </main>

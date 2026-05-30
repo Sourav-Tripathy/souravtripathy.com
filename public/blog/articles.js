@@ -6,7 +6,12 @@ const articles = [
         "link": "./the-engineering-constraints-of-distributed-llm-inference-over-the-open-internet.html",
         "originalLink": "https://siliconandsoul.substack.com/p/the-engineering-constraints-of-distributed",
         "platform": "Substack",
-        "readTime": "17 min read"
+        "readTime": "17 min read",
+        "tags": [
+            "Distributed Systems",
+            "Inference",
+            "LLMs"
+        ]
     },
     {
         "date": "2026-03-15T05:23:04.000Z",
@@ -15,7 +20,24 @@ const articles = [
         "link": "./the-case-of-the-swallowed-route-in-fastapi.html",
         "originalLink": "https://siliconandsoul.substack.com/p/the-case-of-the-swallowed-route-in",
         "platform": "Substack",
-        "readTime": "13 min read"
+        "readTime": "13 min read",
+        "tags": [
+            "FastAPI",
+            "Routing"
+        ]
+    },
+    {
+        "date": "2026-01-25T18:30:00.000Z",
+        "title": "Between Sips",
+        "subtitle": "The existential dread of instant Coffee",
+        "link": "./between-sips.html",
+        "originalLink": "https://medium.com/@nyctophile-wordsmith/between-sips-4e256c0eb96b",
+        "platform": "Medium",
+        "readTime": "5 min read",
+        "tags": [
+            "Existentialism",
+            "Reflections"
+        ]
     },
     {
         "date": "2026-01-18T15:02:43.000Z",
@@ -24,7 +46,38 @@ const articles = [
         "link": "./continual-learningmemory-and-context-problem.html",
         "originalLink": "https://siliconandsoul.substack.com/p/continual-learningmemory-and-context",
         "platform": "Substack",
-        "readTime": "12 min read"
+        "readTime": "12 min read",
+        "tags": [
+            "LLMs",
+            "Memory Systems"
+        ]
+    },
+    {
+        "date": "2025-11-21T18:30:00.000Z",
+        "title": "The Homicide of I",
+        "subtitle": "Some late night thoughts wrapped in crisis",
+        "link": "./the-homicide-of-i.html",
+        "originalLink": "https://medium.com/@nyctophile-wordsmith/the-homicide-of-i-9e1b3a3fca45",
+        "platform": "Medium",
+        "readTime": "4 min read",
+        "tags": [
+            "Identity",
+            "Reflections"
+        ]
+    },
+    {
+        "date": "2025-11-06T18:30:00.000Z",
+        "title": "Notes from an October Silence",
+        "subtitle": "",
+        "link": "./notes-from-an-october-silence.html",
+        "originalLink": "https://medium.com/@nyctophile-wordsmith/notes-from-an-october-silence-70701fd79397",
+        "platform": "Medium",
+        "readTime": "1 min read",
+        "tags": [
+            "Existentialism",
+            "Solitude",
+            "Reflections"
+        ]
     },
     {
         "date": "2025-10-27T04:49:33.000Z",
@@ -33,7 +86,11 @@ const articles = [
         "link": "./what-are-eigenvectors-and-eigenvalues.html",
         "originalLink": "https://siliconandsoul.substack.com/p/what-are-eigenvectors-and-eigenvalues",
         "platform": "Substack",
-        "readTime": "9 min read"
+        "readTime": "9 min read",
+        "tags": [
+            "Linear Algebra",
+            "Algorithms"
+        ]
     },
     {
         "date": "2025-09-14T03:46:18.000Z",
@@ -42,7 +99,10 @@ const articles = [
         "link": "./an-introduction-to-knowledge-distillation-in-neural-networks.html",
         "originalLink": "https://siliconandsoul.substack.com/p/an-introduction-to-knowledge-distillation",
         "platform": "Substack",
-        "readTime": "6 min read"
+        "readTime": "6 min read",
+        "tags": [
+            "Neural Networks"
+        ]
     },
     {
         "date": "2025-08-01T15:38:47.000Z",
@@ -51,7 +111,24 @@ const articles = [
         "link": "./understanding-lora-and-qlora-for-llm-fine-tuning.html",
         "originalLink": "https://siliconandsoul.substack.com/p/understanding-lora-and-qlora-for",
         "platform": "Substack",
-        "readTime": "8 min read"
+        "readTime": "8 min read",
+        "tags": [
+            "Fine-Tuning",
+            "LLMs",
+            "PEFT"
+        ]
+    },
+    {
+        "date": "2025-07-23T18:30:00.000Z",
+        "title": "A Whisper of Stardust",
+        "subtitle": "Conversations at the Edge of the World",
+        "link": "./a-whisper-of-stardust.html",
+        "originalLink": "https://medium.com/@nyctophile-wordsmith/a-whisper-of-stardust-397c8cf56c05",
+        "platform": "Medium",
+        "readTime": "12 min read",
+        "tags": [
+            "Short Story (Fiction)"
+        ]
     },
     {
         "date": "2025-07-18T20:51:08.000Z",
@@ -60,7 +137,24 @@ const articles = [
         "link": "./the-seduction-of-incompleteness.html",
         "originalLink": "https://siliconandsoul.substack.com/p/the-seduction-of-incompleteness",
         "platform": "Substack",
-        "readTime": "4 min read"
+        "readTime": "4 min read",
+        "tags": [
+            "Philosophy",
+            "Reflections"
+        ]
+    },
+    {
+        "date": "2025-07-03T18:30:00.000Z",
+        "title": "The Quiet Madness of 3:00 am",
+        "subtitle": "Waiting for a click that may never come",
+        "link": "./the-quiet-madness-of-300-am.html",
+        "originalLink": "https://medium.com/@nyctophile-wordsmith/the-quiet-madness-of-3-00-am-94d08380d101",
+        "platform": "Medium",
+        "readTime": "1 min read",
+        "tags": [
+            "Solitude",
+            "Reflections"
+        ]
     },
     {
         "date": "2025-06-28T15:36:10.000Z",
@@ -69,7 +163,24 @@ const articles = [
         "link": "./in-a-subversion-of-life.html",
         "originalLink": "https://siliconandsoul.substack.com/p/in-a-subversion-of-life",
         "platform": "Substack",
-        "readTime": "1 min read"
+        "readTime": "1 min read",
+        "tags": [
+            "Philosophy",
+            "Reflections"
+        ]
+    },
+    {
+        "date": "2025-06-24T18:30:00.000Z",
+        "title": "A Hello from Van Gogh…",
+        "subtitle": "Me, Starry Night, and a random June night",
+        "link": "./a-hello-from-van-gogh.html",
+        "originalLink": "https://medium.com/@nyctophile-wordsmith/a-hello-from-van-gogh-5f7541ebd67f",
+        "platform": "Medium",
+        "readTime": "6 min read",
+        "tags": [
+            "Art",
+            "Reflections"
+        ]
     },
     {
         "date": "2025-05-17T11:58:56.000Z",
@@ -78,7 +189,12 @@ const articles = [
         "link": "./a-stillness-that-holds-you.html",
         "originalLink": "https://siliconandsoul.substack.com/p/a-stillness-that-holds-you",
         "platform": "Substack",
-        "readTime": "7 min read"
+        "readTime": "7 min read",
+        "tags": [
+            "Cinema",
+            "Architecture",
+            "Reflections"
+        ]
     },
     {
         "date": "2025-04-27T12:56:40.000Z",
@@ -87,7 +203,11 @@ const articles = [
         "link": "./we-are-all-prisms-in-sunlight.html",
         "originalLink": "https://siliconandsoul.substack.com/p/we-are-all-prisms-in-sunlight",
         "platform": "Substack",
-        "readTime": "3 min read"
+        "readTime": "3 min read",
+        "tags": [
+            "Philosophy",
+            "Reflections"
+        ]
     },
     {
         "date": "2025-03-30T10:12:09.000Z",
@@ -96,7 +216,11 @@ const articles = [
         "link": "./of-circuits-and-citrus.html",
         "originalLink": "https://siliconandsoul.substack.com/p/of-circuits-and-citrus",
         "platform": "Substack",
-        "readTime": "4 min read"
+        "readTime": "4 min read",
+        "tags": [
+            "Solitude",
+            "Reflections"
+        ]
     },
     {
         "date": "2025-03-22T06:35:45.000Z",
@@ -105,7 +229,11 @@ const articles = [
         "link": "./the-arithmetic-of-theoretical-mornings.html",
         "originalLink": "https://siliconandsoul.substack.com/p/the-arithmetic-of-theoretical-mornings",
         "platform": "Substack",
-        "readTime": "4 min read"
+        "readTime": "4 min read",
+        "tags": [
+            "Solitude",
+            "Reflections"
+        ]
     },
     {
         "date": "2025-03-12T16:13:05.000Z",
@@ -114,7 +242,11 @@ const articles = [
         "link": "./the-calculus-of-falling.html",
         "originalLink": "https://siliconandsoul.substack.com/p/the-calculus-of-falling",
         "platform": "Substack",
-        "readTime": "4 min read"
+        "readTime": "4 min read",
+        "tags": [
+            "Existentialism",
+            "Reflections"
+        ]
     },
     {
         "date": "2025-03-11T04:39:39.000Z",
@@ -123,7 +255,12 @@ const articles = [
         "link": "./the-word-square-experiment.html",
         "originalLink": "https://siliconandsoul.substack.com/p/the-word-square-experiment",
         "platform": "Substack",
-        "readTime": "6 min read"
+        "readTime": "6 min read",
+        "tags": [
+            "LLMs",
+            "Reasoning",
+            "Experiments"
+        ]
     },
     {
         "date": "2025-02-16T03:46:38.000Z",
@@ -132,7 +269,11 @@ const articles = [
         "link": "./a-sugar-rush-of-thoughts.html",
         "originalLink": "https://siliconandsoul.substack.com/p/a-sugar-rush-of-thoughts",
         "platform": "Substack",
-        "readTime": "2 min read"
+        "readTime": "1 min read",
+        "tags": [
+            "Mental Health",
+            "Reflections"
+        ]
     },
     {
         "date": "2025-01-11T14:13:57.000Z",
@@ -141,7 +282,11 @@ const articles = [
         "link": "./to-be-or-not-to-be.html",
         "originalLink": "https://siliconandsoul.substack.com/p/to-be-or-not-to-be",
         "platform": "Substack",
-        "readTime": "2 min read"
+        "readTime": "2 min read",
+        "tags": [
+            "Philosophy",
+            "Reflections"
+        ]
     },
     {
         "date": "2024-12-04T11:50:42.000Z",
@@ -150,7 +295,11 @@ const articles = [
         "link": "./decoding-vectors-matrices-and-transformations.html",
         "originalLink": "https://siliconandsoul.substack.com/p/decoding-vectors-matrices-and-transformations",
         "platform": "Substack",
-        "readTime": "6 min read"
+        "readTime": "6 min read",
+        "tags": [
+            "Linear Algebra",
+            "Machine Learning"
+        ]
     },
     {
         "date": "2024-11-26T20:04:51.000Z",
@@ -159,7 +308,12 @@ const articles = [
         "link": "./a-philosophical-exploration-of-existence.html",
         "originalLink": "https://siliconandsoul.substack.com/p/a-philosophical-exploration-of-existence-5619865884bb",
         "platform": "Substack",
-        "readTime": "5 min read"
+        "readTime": "5 min read",
+        "tags": [
+            "Philosophy",
+            "Existentialism",
+            "Reflections"
+        ]
     },
     {
         "date": "2024-08-31T17:55:53.000Z",
@@ -168,7 +322,11 @@ const articles = [
         "link": "./the-power-of-attention.html",
         "originalLink": "https://siliconandsoul.substack.com/p/the-power-of-attention",
         "platform": "Substack",
-        "readTime": "9 min read"
+        "readTime": "9 min read",
+        "tags": [
+            "Deep Learning",
+            "Transformers"
+        ]
     },
     {
         "date": "2024-07-28T11:01:27.000Z",
@@ -177,6 +335,84 @@ const articles = [
         "link": "./vector-voodoo.html",
         "originalLink": "https://siliconandsoul.substack.com/p/vector-voodoo",
         "platform": "Substack",
-        "readTime": "4 min read"
+        "readTime": "4 min read",
+        "tags": [
+            "Natural Language Processing",
+            "Mathematics"
+        ]
+    },
+    {
+        "date": "2024-05-28T18:30:00.000Z",
+        "title": "Linear Regression",
+        "subtitle": "The Fundamental Statistics and Machine Learning Algorithm",
+        "link": "./linear-regression.html",
+        "originalLink": "https://siliconandsoul.substack.com/p/linear-regression",
+        "platform": "Substack",
+        "readTime": "6 min read",
+        "tags": [
+            "Machine Learning",
+            "Statistics"
+        ]
+    },
+    {
+        "date": "2024-05-25T18:30:00.000Z",
+        "title": "Kafka, Metamorphosis and Kafkaesque",
+        "subtitle": "",
+        "link": "./kafka-metamorphosis-and-kafkaesque.html",
+        "originalLink": "https://siliconandsoul.substack.com/p/kafka-metamorphosis-and-kafkaesque-ada21edbb78b",
+        "platform": "Substack",
+        "readTime": "6 min read",
+        "tags": [
+            "Kafka",
+            "Literature"
+        ]
+    },
+    {
+        "date": "2023-08-19T18:30:00.000Z",
+        "title": "Kite .",
+        "subtitle": "Explore emotions, cosmic connections, and elusive love in a poetic journey that intertwines hearts under the vast sky .",
+        "link": "./kite.html",
+        "originalLink": "https://medium.com/@nyctophile-wordsmith/kite-65bdb2a0f999",
+        "platform": "Medium",
+        "readTime": "2 min read",
+        "tags": [
+            "Poetry"
+        ]
+    },
+    {
+        "date": "2023-07-05T18:30:00.000Z",
+        "title": "Is it worth !",
+        "subtitle": "Explore the futile nature of life’s illusions, as we navigate the enigmatic dance of reality. Discover resilience and joy on journey.",
+        "link": "./is-it-worth.html",
+        "originalLink": "https://medium.com/@nyctophile-wordsmith/is-it-worth-166a736885d3",
+        "platform": "Medium",
+        "readTime": "2 min read",
+        "tags": [
+            "Poetry"
+        ]
+    },
+    {
+        "date": "2023-06-30T18:30:00.000Z",
+        "title": "Ecstasy of fallen flowers",
+        "subtitle": "Discover the delicate ecstasy as raindrops caress fallen flowers in a poignant tableau. A poetic journey of nature’s embrace and eternal…",
+        "link": "./ecstasy-of-fallen-flowers.html",
+        "originalLink": "https://medium.com/@nyctophile-wordsmith/ecstasy-of-fallen-flowers-73e3daafa107",
+        "platform": "Medium",
+        "readTime": "1 min read",
+        "tags": [
+            "Poetry"
+        ]
+    },
+    {
+        "date": "2023-06-24T18:30:00.000Z",
+        "title": "Elegy of the Searching Soul",
+        "subtitle": "Discover poetic introspection in the depths of sorrow, the allure of the absurd, and the pursuit of purpose.",
+        "link": "./elegy-of-the-searching-soul.html",
+        "originalLink": "https://medium.com/@nyctophile-wordsmith/elegy-of-the-searching-soul-5d6fb0a0b55b",
+        "platform": "Medium",
+        "readTime": "2 min read",
+        "tags": [
+            "Poetry"
+        ]
     }
 ];
