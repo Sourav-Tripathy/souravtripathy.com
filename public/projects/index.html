@@ -100,13 +100,17 @@
     <script src="project.js?v=1.7"></script>
     <script>
         const projectsContainer = document.getElementById('projects');
-        projects.forEach((project, index) => {
-            const projectDiv = document.createElement('div');
-            projectDiv.className = 'info-block fade-in-item';
-            projectDiv.style.borderLeftColor = project.highlightColor || 'var(--highlight)';
-            projectDiv.style.animationDelay = `${index * 0.2}s`;
+        const projectsUl = document.createElement('ul');
+        projectsUl.className = 'bullet-list';
+        projectsContainer.appendChild(projectsUl);
 
-            projectDiv.innerHTML = `
+        projects.forEach((project, index) => {
+            const projectLi = document.createElement('li');
+            projectLi.className = 'info-block fade-in-item';
+            projectLi.style.setProperty('--marker-color', project.highlightColor || 'var(--highlight)');
+            projectLi.style.animationDelay = `${index * 0.2}s`;
+
+            projectLi.innerHTML = `
                 <span class="label" style="text-transform: none;">${project.category}</span>
                 <span class="value"><a href="${project.url}" target="_blank"
                         style="text-decoration: none;">${project.title}</a></span>
@@ -119,7 +123,7 @@
                     </p>
                 </div>
             `;
-            projectsContainer.appendChild(projectDiv);
+            projectsUl.appendChild(projectLi);
         });
     </script>
     <script src="../blog/articles.js"></script>

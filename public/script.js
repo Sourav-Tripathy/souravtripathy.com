@@ -397,9 +397,9 @@ function renderNowPage() {
 
     // Render Reading Section
     if (data.reading && data.reading.length > 0) {
-        const block = document.createElement('div');
+        const block = document.createElement('li');
         block.className = 'info-block fade-in-item';
-        block.style.borderLeftColor = 'var(--highlight)'; // Greenish for reading
+        block.style.setProperty('--marker-color', 'var(--highlight)'); // Greenish for reading
         block.style.animationDelay = `${delay}ms`;
         delay += 100;
 
@@ -426,9 +426,9 @@ function renderNowPage() {
 
     // Render Listening Section
     if (data.listening && data.listening.length > 0) {
-        const block = document.createElement('div');
+        const block = document.createElement('li');
         block.className = 'info-block fade-in-item';
-        block.style.borderLeftColor = 'var(--accent)'; // Brownish for assignments/music
+        block.style.setProperty('--marker-color', 'var(--accent)'); // Brownish for assignments/music
         block.style.animationDelay = `${delay}ms`;
         delay += 100;
 

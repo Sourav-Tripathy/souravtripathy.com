@@ -44,15 +44,21 @@
 
             .book-item,
             .article-item-curation {
-                margin-bottom: 1rem;
-                padding-left: 1rem;
-                border-left: 2px solid var(--dim);
-                transition: border-color 0.2s;
+                margin-bottom: 1.2rem;
+                display: list-item;
+                list-style-type: disc;
+                margin-left: 1.5rem;
             }
 
-            .book-item:hover,
-            .article-item-curation:hover {
-                border-left-color: var(--highlight);
+            .book-item::marker,
+            .article-item-curation::marker {
+                color: var(--dim);
+                transition: color 0.2s;
+            }
+
+            .book-item:hover::marker,
+            .article-item-curation:hover::marker {
+                color: var(--highlight);
             }
 
             .item-title {
@@ -182,31 +188,31 @@
                 <!-- Fiction Section -->
                 <section id="fiction-section" class="curation-section">
                     <h2 class="curation-header">fiction</h2>
-                    <div id="fiction-list"></div>
+                    <ul id="fiction-list" class="bullet-list"></ul>
                 </section>
 
                 <!-- Non-Fiction Section -->
                 <section id="nonfiction-section" class="curation-section">
                     <h2 class="curation-header">non-fiction</h2>
-                    <div id="nonfiction-list"></div>
+                    <ul id="nonfiction-list" class="bullet-list"></ul>
                 </section>
 
                 <!-- Poetry Section -->
                 <section id="poetry-section" class="curation-section">
                     <h2 class="curation-header">poetry</h2>
-                    <div id="poetry-list"></div>
+                    <ul id="poetry-list" class="bullet-list"></ul>
                 </section>
 
                 <!-- Curated Articles Section -->
                 <section id="curated-articles-section" class="curation-section">
                     <h2 class="curation-header">articles</h2>
-                    <div id="curated-articles-list"></div>
+                    <ul id="curated-articles-list" class="bullet-list"></ul>
                 </section>
 
                 <!-- Videos Section -->
                 <section id="videos-section" class="curation-section">
                     <h2 class="curation-header">youtube videos / podcasts</h2>
-                    <div id="videos-list"></div>
+                    <ul id="videos-list" class="bullet-list"></ul>
                 </section>
             </main>
 
@@ -245,31 +251,31 @@
         <script>
             // Helper to create book elements
             function createBookElement(book, index) {
-                const div = document.createElement("div");
-                div.className = "book-item fade-in-item";
-                div.style.animationDelay = `${index * 0.1}s`;
+                const li = document.createElement("li");
+                li.className = "book-item fade-in-item";
+                li.style.animationDelay = `${index * 0.1}s`;
 
                 // Format: Title by Author (with links)
-                div.innerHTML = `
+                li.innerHTML = `
                 <div class="item-title">
                     <a href="${book.link}" target="_blank" style="text-decoration: none; border: none;">${book.title}</a>
                     <span style="font-weight: 400; color: var(--dim); font-size: 0.95rem;">by <a href="${book.authorWiki}" target="_blank" style="text-decoration: none; border-bottom: 1px dotted var(--dim);">${book.author}</a></span>
                 </div>
             `;
-                return div;
+                return li;
             }
 
             // Helper to create article elements
             function createArticleElement(article, index) {
-                const div = document.createElement("div");
-                div.className = "article-item-curation fade-in-item";
-                div.style.animationDelay = `${index * 0.1}s`;
-                div.innerHTML = `
+                const li = document.createElement("li");
+                li.className = "article-item-curation fade-in-item";
+                li.style.animationDelay = `${index * 0.1}s`;
+                li.innerHTML = `
                 <div class="item-title" style="font-weight: 400; font-family: var(--font-mono);">
                     <a href="${article.link}" target="_blank">${article.title}</a>
                 </div>
             `;
-                return div;
+                return li;
             }
 
             // Render Fiction

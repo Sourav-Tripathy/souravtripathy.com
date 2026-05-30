@@ -62,35 +62,35 @@
             <!-- Status Section -->
             <section id="observatory" class="tab-content">
                 <div class="status-grid">
-                    <div class="status-info">
-                        <div class="info-block">
+                    <ul class="status-info bullet-list">
+                        <li class="info-block">
                             <span class="label">Mars Coordinated Time</span>
                             <span class="value" id="mars-time">--:-- MTC</span>
                             <div id="mars-daylight" class="sub-info"></div>
-                        </div>
+                        </li>
 
-                        <div class="info-block" style="margin-top: 2rem;">
+                        <li class="info-block" style="margin-top: 2rem;">
                             <span class="label">Your IP Address</span>
                             <span class="value" id="ip-address">Loading...</span>
                             <div id="ip-info" class="sub-info">
                             </div>
-                        </div>
+                        </li>
 
-                        <div class="info-block" style="margin-top: 2rem;">
+                        <li class="info-block" style="margin-top: 2rem;">
                             <span class="label">International Space Station (ISS)</span>
                             <span class="value" id="iss-distance">Scanning sky...</span>
                             <div id="iss-detail" class="sub-info"></div>
                             <div style="font-size: 0.75rem; color: var(--dim); margin-top: 0.5rem; opacity: 0.8;">
                                 Calculated using Haversine formula from your IP geolocation to ISS location.
                             </div>
-                        </div>
+                        </li>
 
-                        <div class="info-block" style="margin-top: 2rem;">
+                        <li class="info-block" style="margin-top: 2rem;">
                             <span class="label">Observatory Visitors</span>
                             <span class="value" id="visitor-count">Counting...</span>
                             <div class="sub-info">You are among the curious minds who visited.</div>
-                        </div>
-                    </div>
+                        </li>
+                    </ul>
 
                     <div class="status-visual">
                         <div id="globe-container" class="smooth-fade-in"
