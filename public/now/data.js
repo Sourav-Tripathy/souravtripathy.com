@@ -1,13 +1,6 @@
 window.nowData = {
   reading: [
     {
-  title: "A Short Stay in Hell",
-  titleLink:
-    "https://www.goodreads.com/book/show/13456414-a-short-stay-in-hell",
-  author: "Steven L. Peck",
-  authorLink: "https://en.wikipedia.org/wiki/Steven_L._Peck",
-    },
-    {
       title: "Gödel, Escher, Bach: An Eternal Golden Braid",
       titleLink: "https://www.goodreads.com/book/show/24113.G_del_Escher_Bach",
       author: "Douglas Hofstadter",
