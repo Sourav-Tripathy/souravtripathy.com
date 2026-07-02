@@ -1,5 +1,13 @@
 const projects = [
     {
+        category: "WebGL / Vanilla JS Game",
+        title: "The Inference Chronicles",
+        url: "https://inference-chronicles.pages.dev/",
+        description: "A vibe-coded, retro-cyberpunk D&D-style web game where you play an amnesiac AI engineer trying to escape a simulation of a Transformer model. Navigate through the model's pipeline (Embedding, Attention, MLP, etc.) by answering demons/gatekeepers' questions on Transformer architecture and inference engineering. V1 is live; currently working on V2.",
+        footerHtml: '<a href="https://inference-chronicles.pages.dev/" target="_blank">Play V1</a> &nbsp;•&nbsp; <a href="https://github.com/Sourav-Tripathy/inference-chronicles" target="_blank">GitHub</a>',
+        highlightColor: "var(--highlight)"
+    },
+    {
         category: "Linux CLI / Daemon (Rust)",
         title: "wd",
         url: "https://github.com/Sourav-Tripathy/wd",
