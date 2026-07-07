@@ -204,6 +204,10 @@ const curations = {
       link: "https://www.theculturist.io/p/why-does-beauty-matter-e7c",
     },
     {
+      title: "You and your research (Richard Hamming)",
+      link: "https://www.cs.utexas.edu/~dahlin/bookshelf/hamming.html",
+    },
+    {
       title: "Even If You Beat Me (Sally Rooney)",
       link: "https://thedublinreview.com/article/even-if-you-beat-me/",
     },
