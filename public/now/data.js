@@ -7,12 +7,6 @@ window.nowData = {
       authorLink: "https://patchenbarss.com",
     },
     {
-      title: "South of the Border, West of the Sun",
-      titleLink: "https://www.goodreads.com/book/show/17799.South_of_the_Border_West_of_the_Sun",
-      author: "Haruki Murakami",
-      authorLink: "https://en.wikipedia.org/wiki/Haruki_Murakami",
-    },
-    {
       title: "Gödel, Escher, Bach: An Eternal Golden Braid",
       titleLink: "https://www.goodreads.com/book/show/24113.G_del_Escher_Bach",
       author: "Douglas Hofstadter",
