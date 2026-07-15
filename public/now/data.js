@@ -1,10 +1,10 @@
 window.nowData = {
   reading: [
     {
-      title: "The Impossible Man: Roger Penrose and the Cost of Genius",
-      titleLink: "https://www.goodreads.com/book/show/209456147-the-impossible-man",
-      author: "Patchen Barss",
-      authorLink: "https://patchenbarss.com",
+      title: "The Infinity Machine: Demis Hassabis, DeepMind, and the Quest for Superintelligence",
+      titleLink: "https://www.goodreads.com/book/show/241434373-the-infinity-machine",
+      author: "Sebastian Mallaby",
+      authorLink: "https://en.wikipedia.org/wiki/Sebastian_Mallaby",
     },
     {
       title: "Gödel, Escher, Bach: An Eternal Golden Braid",
