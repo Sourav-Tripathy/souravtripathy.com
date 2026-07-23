@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Sourav Tripathy | Reading Shelf</title>
+        <link rel="stylesheet" href="../../styles.css" />
+        <!-- Simple Coffee Mug SVG Favicon -->
+        <link
+            rel="icon"
+            href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYTM3ZjVmIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggZD0iTTE4IDhoMWE0IDQgMCAwIDEgMCA4aC0xIi8+PHBhdGggZD0iTTIgOGgxNnY5YTQgNCAwIDAgMS00IDRINmE0IDQgMCAwIDEtNC00Vjh6Ii8+PGxpbmUgeDE9IjYiIHkxPSIxIiB4Mj0iNiIgeTI9IjQiLz48bGluZSB4MT0iMTAiIHkxPSIxIiB4Mj0iMTAiIHkyPSI0Ii8+PGxpbmUgeDE9IjE0IiB5MT0iMSIgeDI9IjE0IiB5Mj0iNCIvPjwvc3ZnPg=="
+        />
+        <link rel="prefetch" href="../../globe.js" as="script" />
+        <!-- Apply theme immediately to prevent flash -->
+        <script>
+            (function () {
+                var theme = localStorage.getItem("theme");
+                if (theme) {
+                    document.documentElement.setAttribute("data-theme", theme);
+                } else if (
+                    window.matchMedia &&
+                    window.matchMedia("(prefers-color-scheme: dark)").matches
+                ) {
+                    document.documentElement.setAttribute("data-theme", "dark");
+                }
+            })();
+        </script>
+        <style>
+            /* Shelf Page Custom Styles */
+            .shelf-title {
+                font-family: var(--font-serif);
+                font-size: 2.2rem;
+                margin-top: 0;
+                margin-bottom: 0.5rem;
+                color: var(--fg);
+            }
+
+            .shelf-desc {
+                font-size: 1.05rem;
+                color: var(--dim);
+                margin-bottom: 2.5rem;
+                line-height: 1.6;
+            }
+
+            .shelf-tabs {
+                display: flex;
+                gap: 2rem;
+                border-bottom: 1px dashed var(--dim);
+                padding-bottom: 0.5rem;
+                margin-bottom: 2rem;
+            }
+
+            .shelf-tab {
+                background: none;
+                border: none;
+                font-family: var(--font-mono);
+                font-size: 1rem;
+                color: var(--dim);
+                cursor: pointer;
+                padding: 5px 0;
+                position: relative;
+                text-transform: lowercase;
+                transition: color 0.2s ease;
+            }
+
+            .shelf-tab:hover {
+                color: var(--highlight);
+            }
+
+            .shelf-tab.active {
+                color: var(--fg);
+                font-weight: 700;
+            }
+
+            .shelf-tab.active::after {
+                content: '';
+                position: absolute;
+                bottom: -0.6rem;
+                left: 0;
+                right: 0;
+                height: 2px;
+                background-color: var(--accent);
+            }
+
+            .controls-row {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 2rem;
+                gap: 1.5rem;
+                flex-wrap: wrap;
+            }
+
+            .search-container {
+                position: relative;
+                flex: 1;
+                min-width: 280px;
+            }
+
+            .search-input {
+                width: 100%;
+                background: rgba(var(--accent-rgb), 0.05);
+                border: 1px solid var(--dim);
+                border-radius: 6px;
+                padding: 0.7rem 1rem;
+                font-family: var(--font-mono);
+                color: var(--fg);
+                font-size: 0.95rem;
+                outline: none;
+                transition: all 0.2s ease;
+            }
+
+            .search-input:focus {
+                border-color: var(--highlight);
+                box-shadow: 0 0 8px rgba(45, 106, 69, 0.15);
+                background: rgba(var(--accent-rgb), 0.08);
+            }
+
+            .search-input::placeholder {
+                color: var(--dim);
+                opacity: 0.7;
+            }
+
+            .view-toggles {
+                display: flex;
+                gap: 0.5rem;
+                align-items: center;
+            }
+
+            .view-btn {
+                background: none;
+                border: 1px solid var(--dim);
+                border-radius: 4px;
+                padding: 0.35rem 0.8rem;
+                font-family: var(--font-mono);
+                font-size: 0.85rem;
+                color: var(--dim);
+                cursor: pointer;
+                text-transform: lowercase;
+                transition: all 0.2s ease;
+            }
+
+            .view-btn:hover:not(:disabled) {
+                color: var(--highlight);
+                border-color: var(--highlight);
+            }
+
+            .view-btn.active {
+                background: var(--fg);
+                color: var(--bg);
+                border-color: var(--fg);
+            }
+
+            .view-btn:disabled {
+                opacity: 0.4;
+                cursor: not-allowed;
+            }
+
+            /* Timeline Rendering Styles */
+            .timeline-year {
+                margin-bottom: 3.5rem;
+                scroll-margin-top: 6rem;
+            }
+
+            .year-title {
+                font-family: var(--font-serif);
+                font-size: 2.2rem;
+                color: var(--fg);
+                margin-top: 0;
+                margin-bottom: 1.5rem;
+                border-bottom: 1px solid var(--dim);
+                padding-bottom: 0.3rem;
+                display: inline-block;
+            }
+
+            .timeline-month {
+                margin-bottom: 2.5rem;
+                margin-left: 1rem;
+            }
+
+            .month-title {
+                font-family: var(--font-mono);
+                font-size: 1.2rem;
+                color: var(--highlight);
+                margin-top: 0;
+                margin-bottom: 1rem;
+                text-transform: lowercase;
+                border-left: 3px solid var(--accent);
+                padding-left: 0.6rem;
+            }
+
+            .shelf-list {
+                list-style: none;
+                padding-left: 0;
+                margin: 0;
+            }
+
+            .shelf-item {
+                display: flex;
+                gap: 1.2rem;
+                margin-bottom: 0.9rem;
+                line-height: 1.6;
+                align-items: flex-start;
+                padding: 0.4rem 0.6rem;
+                border-radius: 4px;
+                transition: background-color 0.15s ease;
+            }
+
+            .shelf-item:hover {
+                background-color: rgba(var(--accent-rgb), 0.05);
+            }
+
+            .item-date {
+                color: var(--dim);
+                font-size: 0.85rem;
+                min-width: 65px;
+                text-align: right;
+                padding-top: 0.15rem;
+                opacity: 0.85;
+            }
+
+            .item-content {
+                flex: 1;
+                font-size: 0.98rem;
+            }
+
+            .item-link {
+                color: var(--accent);
+                text-decoration: none;
+                font-weight: 500;
+                transition: color 0.15s ease;
+            }
+
+            .item-link:hover {
+                color: var(--highlight);
+                text-decoration: underline;
+                text-underline-offset: 2px;
+            }
+
+            .item-note-badge {
+                display: inline-block;
+                font-size: 0.75rem;
+                color: var(--fg);
+                background-color: rgba(var(--accent-rgb), 0.12);
+                padding: 0.1rem 0.45rem;
+                border-radius: 3px;
+                margin-left: 0.6rem;
+                font-weight: normal;
+                border: 1px dashed rgba(var(--accent-rgb), 0.4);
+                vertical-align: middle;
+            }
+
+            .item-note-badge.exceptional {
+                background-color: rgba(92, 184, 122, 0.15);
+                color: var(--highlight);
+                border: 1px solid rgba(92, 184, 122, 0.3);
+                font-weight: bold;
+            }
+
+            /* Custom empty and locking states */
+            .empty-state {
+                text-align: center;
+                padding: 4rem 2rem;
+                color: var(--dim);
+                font-family: var(--font-mono);
+                border: 1px dashed var(--dim);
+                border-radius: 8px;
+                background: rgba(var(--accent-rgb), 0.02);
+            }
+
+            .empty-state-title {
+                font-size: 1.2rem;
+                font-weight: bold;
+                color: var(--fg);
+                margin-bottom: 0.5rem;
+            }
+
+            .empty-state-desc {
+                font-size: 0.95rem;
+                line-height: 1.5;
+            }
+
+            /* Stats block */
+            .stats-container {
+                font-family: var(--font-mono);
+                font-size: 0.85rem;
+                color: var(--dim);
+                display: flex;
+                gap: 1rem;
+                align-items: center;
+                flex-wrap: wrap;
+            }
+
+            .stat-badge {
+                background: rgba(var(--accent-rgb), 0.1);
+                color: var(--fg);
+                padding: 0.2rem 0.5rem;
+                border-radius: 4px;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+
+    <body>
+        <!-- MASTHEAD - Fixed navigation bar -->
+        <div class="masthead">
+            <div class="masthead-inner">
+                <header class="site-header">
+                    <h1 class="brand-name">Sourav Tripathy</h1>
+                    <nav class="tabs">
+                        <a href="/" class="tab-btn">About</a>
+                        <a href="/blog/" class="tab-btn">Blog</a>
+                        <a href="/projects/" class="tab-btn">Projects</a>
+                        <a href="/curations/" class="tab-btn active"
+                            >Curations</a
+                        >
+                        <a href="/now/" class="tab-btn">Now</a>
+                        <a href="/observatory/" class="tab-btn">Observatory</a>
+                        <button
+                            class="theme-toggle"
+                            aria-label="Toggle dark mode"
+                            title="Toggle dark/light mode"
+                        >
+                            <svg
+                                class="icon-sun"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                            >
+                                <circle cx="12" cy="12" r="5"></circle>
+                                <line x1="12" y1="1" x2="12" y2="3"></line>
+                                <line x1="12" y1="21" x2="12" y2="23"></line>
+                                <line
+                                    x1="4.22"
+                                    y1="4.22"
+                                    x2="5.64"
+                                    y2="5.64"
+                                ></line>
+                                <line
+                                    x1="18.36"
+                                    y1="18.36"
+                                    x2="19.78"
+                                    y2="19.78"
+                                ></line>
+                                <line x1="1" y1="12" x2="3" y2="12"></line>
+                                <line x1="21" y1="12" x2="23" y2="12"></line>
+                                <line
+                                    x1="4.22"
+                                    y1="19.78"
+                                    x2="5.64"
+                                    y2="18.36"
+                                ></line>
+                                <line
+                                    x1="18.36"
+                                    y1="5.64"
+                                    x2="19.78"
+                                    y2="4.22"
+                                ></line>
+                            </svg>
+                            <svg
+                                class="icon-moon"
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                            >
+                                <path
+                                    d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
+                                ></path>
+                            </svg>
+                        </button>
+                    </nav>
+                </header>
+            </div>
+        </div>
+        <!-- MASTHEAD END -->
+
+        <div class="container">
+            <main>
+                <div style="margin-bottom: 2rem;">
+                    <a href="/curations/" style="font-family: var(--font-mono); font-size: 0.9rem; text-decoration: none; color: var(--dim); border-bottom: 1.5px dotted var(--dim);">&larr; back to curations</a>
+                </div>
+
+                <h1 class="shelf-title">the reading shelf</h1>
+                <div class="shelf-desc">
+                    A raw chronological record of internet articles, blogs, and books I have read since December 26th, 2024. I source and read these from Hacker News, Substack, Medium, LessWrong, and other corners of the internet. Updated weekly.
+                </div>
+
+                <!-- Sub Tabs for Content Type -->
+                <div class="shelf-tabs">
+                    <button class="shelf-tab active" id="tab-articles">internet articles & blogs</button>
+                    <button class="shelf-tab" id="tab-books">books</button>
+                </div>
+
+                <!-- Controls: Search & Views -->
+                <div class="controls-row" id="controls-row">
+                    <div class="search-container">
+                        <input type="text" class="search-input" id="search-input" placeholder="Search by title, domain, or notes..." />
+                    </div>
+                    
+                    <div class="view-toggles">
+                        <button class="view-btn active" id="view-list">list view</button>
+                        <button class="view-btn" id="view-graph" title="Graph view is locked until semantic tagging is completed">graph view</button>
+                    </div>
+                </div>
+
+                <!-- Content Container -->
+                <div id="shelf-content-area">
+                    <!-- Dynamic rendering will populate here -->
+                </div>
+            </main>
+
+            <!-- COMMON FOOTER START -->
+            <footer>
+                <div class="social-links" style="margin-bottom: 2rem">
+                    <a href="mailto:lipuntripathy74@gmail.com" target="_blank"
+                        >Email</a
+                    >
+                    <a href="https://x.com/EssenceThinker" target="_blank"
+                        >X (Twitter)</a
+                    >
+                    <a
+                        href="https://www.linkedin.com/in/sourav-tripathy-astrophile/"
+                        target="_blank"
+                        >LinkedIn</a
+                    >
+                    <a href="https://github.com/Sourav-Tripathy" target="_blank"
+                        >GitHub</a
+                    >
+                    <a href="https://siliconandsoul.substack.com" target="_blank"
+                        >Substack</a
+                    >
+                    <a href="https://letterboxd.com/essenceX/" target="_blank"
+                        >Letterboxd</a
+                    >
+                    <a
+                        href="https://www.goodreads.com/user/show/82254166-sourav-tripathy"
+                        target="_blank"
+                        >Goodreads</a
+                    >
+                </div>
+                © <span id="year"></span> Sourav Tripathy
+            </footer>
+            <!-- COMMON FOOTER END -->
+        </div>
+
+        <script src="shelf.js?v=1.0"></script>
+        <script src="../../script.js"></script>
+        <script src="../../globe.js"></script>
+    </body>
+</html>
