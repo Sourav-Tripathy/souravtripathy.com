@@ -8135,5 +8135,36 @@
         "note": null
       }
     ]
+  },
+  {
+    "date": "24th July",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://tris.sherliker.net/blog/dont-put-your-name-to-bot-written-content/",
+        "title": "Dont Put Your Name to Bot Written Content (tris.sherliker.net)",
+        "note": null
+      },
+      {
+        "url": "https://blog.jimgrey.net/2026/06/30/what-happens-when-the-information-runs-out/",
+        "title": "What Happens When the Information Runs Out (blog.jimgrey.net)",
+        "note": null
+      },
+      {
+        "url": "https://bdtechtalks.substack.com/p/a-primer-on-self-improving-agent",
+        "title": "A Primer on Self Improving Agent (Bdtechtalks (Substack))",
+        "note": null
+      },
+      {
+        "url": "https://www.humanlayer.com/blog/long-context-isnt-the-answer",
+        "title": "Long Context Isnt the Answer (humanlayer.com)",
+        "note": null
+      },
+      {
+        "url": "https://github.com/humanlayer/advanced-context-engineering-for-coding-agents/blob/main/wsff.md",
+        "title": "advanced-context-engineering-for-coding-agents",
+        "note": null
+      }
+    ]
   }
 ]
