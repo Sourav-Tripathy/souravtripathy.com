@@ -8166,5 +8166,119 @@
         "note": null
       }
     ]
+  },
+  {
+    "date": "27th July",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://finshots.in/archive/is-pli-alone-enough-to-induce-manufacturing/",
+        "title": "Is PLI Alone Enough to Induce Manufacturing? (Finshots)",
+        "note": null
+      }
+    ]
+  },
+  {
+    "date": "28th July",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://www.anthropic.com/news/position-open-weights-models",
+        "title": "Our Position on Open-Weights Models (anthropic.com)",
+        "note": null
+      },
+      {
+        "url": "https://golemui.com/blog/the-age-of-token-efficiency/",
+        "title": "The Age of Token Efficiency, the Age of Libraries (golemui.com)",
+        "note": null
+      },
+      {
+        "url": "https://justinflick.com/2026/07/27/llm-confidence-scores.html",
+        "title": "Why I Hate LLM Confidence Scores (justinflick.com)",
+        "note": null
+      },
+      {
+        "url": "https://stephango.com/design-is-compromise",
+        "title": "Design Is Compromise (stephango.com)",
+        "note": null
+      },
+      {
+        "url": "https://davidnicholaswilliams.com/its-not-empowering-to-hand-off-the-details/",
+        "title": "It's Not Empowering to Hand Off the Details (davidnicholaswilliams.com)",
+        "note": null
+      },
+      {
+        "url": "https://invertedpassion.com/unsolicited-advice-to-the-indian-govt-on-frontier-models/",
+        "title": "Unsolicited Advice to the Indian Govt on Frontier Models (invertedpassion.com)",
+        "note": null
+      },
+      {
+        "url": "https://newsletter.semianalysis.com/p/rl-environments-and-rl-for-science",
+        "title": "RL Environments and RL for Science: Data Foundries and Multi-Agent Architectures (newsletter.semianalysis.com)",
+        "note": null
+      },
+      {
+        "url": "https://lmsherlock.substack.com/p/what-kind-of-person-is-deepseeks",
+        "title": "What Kind of Person Is DeepSeek's Founder, Liang Wenfeng? (Lmsherlock (Substack))",
+        "note": null
+      }
+    ]
+  },
+  {
+    "date": "29th July",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://www.seangoedecke.com/you-dont-have-to-be-smart-if-you-think-clearly/",
+        "title": "You Don't Have to Be Smart If You Can Think Clearly (seangoedecke.com)",
+        "note": null
+      },
+      {
+        "url": "https://abeljansma.nl/2026/07/10/truth-is-not-a-direction.html",
+        "title": "Truth Is Not a Direction: A Tarski Attack on LLM Probes (abeljansma.nl)",
+        "note": null
+      },
+      {
+        "url": "https://sebastianraschka.com/blog/2026/kimi-k3-architecture-notes.html",
+        "title": "Kimi K3 Architecture Notes (sebastianraschka.com)",
+        "note": null
+      }
+    ]
+  },
+  {
+    "date": "30th July",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://frantic.im/mirage/",
+        "title": "The Productivity Mirage (frantic.im)",
+        "note": null
+      },
+      {
+        "url": "https://zachholman.com/posts/cold-email",
+        "title": "The Cold Email (zachholman.com)",
+        "note": null
+      },
+      {
+        "url": "https://www.emergingtrajectories.com/lh/commodification-and-circularity/",
+        "title": "Commodification of Intelligence: Good, Bad, and Ugly Circular AI Deals (emergingtrajectories.com)",
+        "note": null
+      },
+      {
+        "url": "https://huggingface.co/blog/agent-intrusion-technical-timeline",
+        "title": "Anatomy of a Frontier Lab Agent Intrusion: A Technical Timeline of the July 2026 Incident (huggingface.co)",
+        "note": null
+      },
+      {
+        "url": "https://daily.semidoped.com/p/til-a-machine-that-could-not-hold",
+        "title": "TIL: A Machine That Could Not Hold a Thought, and the Man Who Gave It a Longer Memory (daily.semidoped.com)",
+        "note": null
+      },
+      {
+        "url": "https://www.dwarkesh.com/p/why-compute-might-get-10x-more-expensive",
+        "title": "Why Compute Might Get 10x More Expensive in Coming Years (dwarkesh.com)",
+        "note": null
+      }
+    ]
   }
 ]
