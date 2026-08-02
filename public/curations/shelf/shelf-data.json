@@ -8280,5 +8280,46 @@
         "note": null
       }
     ]
+  },
+  {
+    "date": "31st July",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://blog.jim-nielsen.com/2026/ai-aesthetic/",
+        "title": "The AI Aesthetic (blog.jim-nielsen.com)",
+        "note": null
+      },
+      {
+        "url": "https://blog.jetbrains.com/ai/2026/07/speak-to-ai-agents-like-cavemen-tosave-tokens/",
+        "title": "Speaking to AI Agents like Cavemen Saves 65% of Tokens (blog.jetbrains.com)",
+        "note": null
+      },
+      {
+        "url": "https://graybeard.ing/the-religion-of-speed/",
+        "title": "The Religion of Speed (graybeard.ing)",
+        "note": null
+      },
+      {
+        "url": "https://obryant.dev/p/2x-not-10x/",
+        "title": "2x, Not 10x: Coding with LLMs in 2026 (obryant.dev)",
+        "note": null
+      },
+      {
+        "url": "https://www.bottlenecklabs.com/blog/autonomously-run-businesses",
+        "title": "GPT 5.6 Sol Ran a Real Business (bottlenecklabs.com)",
+        "note": null
+      },
+      {
+        "url": "https://finshots.in/markets/coforge-build-an-ai-giant-through-acquisitions/",
+        "title": "Can Coforge Build an AI Giant Through Acquisitions? (Finshots)",
+        "note": null
+      },
+      {
+        "url": "https://www.scylladb.com/2025/11/12/cache-vs-database-how-architecture-impacts-performance/",
+        "title": "Cache vs. Database: How Architecture Impacts Performance (scylladb.com)",
+        "note": null
+      }
+    ]
   }
 ]
