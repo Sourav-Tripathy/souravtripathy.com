@@ -1,10 +1,10 @@
 window.nowData = {
   reading: [
     {
-      title: "The Infinity Machine: Demis Hassabis, DeepMind, and the Quest for Superintelligence",
-      titleLink: "https://www.goodreads.com/book/show/241434373-the-infinity-machine",
-      author: "Sebastian Mallaby",
-      authorLink: "https://en.wikipedia.org/wiki/Sebastian_Mallaby",
+      title: "The MANIAC",
+      titleLink: "https://www.goodreads.com/book/show/137893498-the-maniac",
+      author: "Benjamín Labatut",
+      authorLink: "https://en.wikipedia.org/wiki/Benjam%C3%ADn_Labatut",
     },
     {
       title: "Gödel, Escher, Bach: An Eternal Golden Braid",
