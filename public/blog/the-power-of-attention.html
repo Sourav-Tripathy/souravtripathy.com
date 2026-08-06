@@ -155,9 +155,10 @@
             }
              .meta-separator {
                 display: none; /* Hide separator on mobile when stacked */
-            }
         }
     </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
 </head>
 <body>
     <div class="masthead">
@@ -266,6 +267,28 @@ Q&#x2082;&#xB7;K&#x2082;^T = (-0.3) * 0.1 + 0.1 * (-0.2) + 0.2 * 0.3 = 0.01</cod
     <script src="../script.js"></script>
     <script>
         document.getElementById("year").textContent = new Date().getFullYear();
+        
+        // Render Substack LaTeX formulas
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelectorAll('.latex-rendered').forEach(function(el) {
+                try {
+                    const rawAttrs = el.getAttribute('data-attrs');
+                    if (rawAttrs) {
+                        const attrs = JSON.parse(rawAttrs);
+                        const formula = attrs.persistentExpression;
+                        if (formula) {
+                            const isBlock = el.getAttribute('data-component-name') === 'LatexBlockToDOM';
+                            katex.render(formula, el, {
+                                displayMode: isBlock,
+                                throwOnError: false
+                            });
+                        }
+                    }
+                } catch (e) {
+                    console.error("Failed to render LaTeX:", e);
+                }
+            });
+        });
     </script>
 </body>
 </html>
