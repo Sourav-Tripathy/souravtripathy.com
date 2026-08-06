@@ -46,6 +46,7 @@ async function main() {
                 t.includes("scientific experiments") ||
                 t.includes("quantum physics") ||
                 t.includes("linear regression") ||
+                t.includes("compute") || t.includes("memory") ||
                 t.includes("llm") || t.includes("ai") || t.includes("model") || t.includes("network") || t.includes("fastapi") || t.includes("code") || t.includes("vector") || t.includes("matrix") || t.includes("programming") || t.includes("algorithm") || t.includes("inference")) {
                 return ["Tech"];
             }

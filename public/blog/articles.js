@@ -1,5 +1,20 @@
 const articles = [
     {
+        "date": "2026-08-05T05:04:53.000Z",
+        "title": "What does Compute Bound and Memory Bound mean ?",
+        "subtitle": "A simple basic analysis from first principles",
+        "link": "./what-does-compute-bound-and-memory-bound-mean.html",
+        "originalLink": "https://siliconandsoul.substack.com/p/what-does-compute-bound-and-memory",
+        "platform": "Substack",
+        "readTime": "6 min read",
+        "tags": [
+            "Tech",
+            "GPUs",
+            "LLMs",
+            "Inference"
+        ]
+    },
+    {
         "date": "2026-05-04T03:21:25.000Z",
         "title": "The Engineering Constraints of Distributed LLM Inference Over the Open Internet",
         "subtitle": "An analysis and chain of thought",

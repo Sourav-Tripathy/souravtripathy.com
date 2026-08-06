@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>What does Compute Bound and Memory Bound mean ? | Sourav Tripathy</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYTM3ZjVmIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggZD0iTTE4IDhoMWE0IDQgMCAwIDEgMCA4aC0xIi8+PHBhdGggZD0iTTIgOGgxNnY5YTQgNCAwIDAgMS00IDRINmE0IDQgMCAwIDEtNC00Vjh6Ii8+PGxpbmUgeDE9IjYiIHkxPSIxIiB4Mj0iNiIgeTI9IjQiLz48bGluZSB4MT0iMTAiIHkxPSIxIiB4Mj0iMTAiIHkyPSI0Ii8+PGxpbmUgeDE9IjE0IiB5MT0iMSIgeDI9IjE0IiB5Mj0iNCIvPjwvc3ZnPg==">
+    <script>
+        (function () {
+            var theme = localStorage.getItem('theme');
+            if (theme) {
+                document.documentElement.setAttribute('data-theme', theme);
+            } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+    <style>
+        /* Article specific styles */
+        .article-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 0;
+            line-height: 1.8; /* Increased line height for better readability */
+            font-size: 1.15rem;
+        }
+        .article-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 2rem 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Subtle shadow */
+        }
+        .article-content h1, .article-content h2, .article-content h3 {
+            margin-top: 2.5rem;
+            margin-bottom: 1.2rem;
+            color: var(--highlight);
+            line-height: 1.3;
+        }
+        .article-content a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(var(--accent-rgb), 0.3);
+            transition: border-color 0.2s;
+        }
+        .article-content a:hover {
+            border-bottom-color: var(--accent);
+            color: var(--highlight);
+        }
+        
+        /* Revised Header Styles for Aesthetics */
+        .article-header {
+            margin-bottom: 3.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+        }
+        .article-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--fg);
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+        .article-subtitle {
+            font-size: 1.4rem;
+            color: var(--dim);
+            line-height: 1.4;
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+        .article-meta {
+            font-family: var(--font-mono, monospace);
+            font-size: 0.9rem;
+            color: var(--dim);
+            letter-spacing: 0.03em;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            opacity: 0.85;
+        }
+        .article-meta a {
+            color: var(--dim);
+            text-decoration: none;
+            border-bottom: 1px dotted var(--dim);
+            transition: all 0.2s ease;
+            margin-left: auto; /* Push link to the right on larger screens */
+        }
+        .article-meta a:hover {
+            color: var(--highlight);
+            border-bottom-color: var(--highlight);
+        }
+        .meta-separator {
+            opacity: 0.4;
+            display: inline-block;
+            margin: 0 0.2rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 3rem;
+            color: var(--dim);
+            text-decoration: none;
+            font-family: var(--font-mono, monospace);
+            font-size: 0.9rem;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+        .back-link:hover {
+            color: var(--highlight);
+            opacity: 1;
+        }
+        
+        .article-content pre {
+            background: var(--fg); /* Inverted for code blocks */
+            color: var(--bg);
+            padding: 1.5rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 2rem 0;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        .article-content code {
+            font-family: var(--font-mono, monospace);
+            font-size: 0.9em;
+            background: rgba(128, 128, 128, 0.15);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+        }
+        .article-content pre code {
+            background: none;
+            padding: 0;
+            color: inherit;
+        }
+        
+        @media (max-width: 600px) {
+            .article-title {
+                font-size: 2rem;
+            }
+            .article-subtitle {
+                font-size: 1.15rem;
+            }
+            .article-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            .article-meta a {
+                margin-left: 0; /* Reset margin on mobile */
+                margin-top: 0.5rem;
+            }
+             .meta-separator {
+                display: none; /* Hide separator on mobile when stacked */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="masthead">
+        <div class="masthead-inner">
+            <header class="site-header">
+                <h1 class="brand-name">Sourav Tripathy</h1>
+                <nav class="tabs">
+                    <a href="/" class="tab-btn">About</a>
+                    <a href="/blog/" class="tab-btn active">Blog</a>
+                    <a href="/projects/" class="tab-btn">Projects</a>
+                    <a href="/curations/" class="tab-btn">Curations</a>
+                    <a href="/now/" class="tab-btn">Now</a>
+                    <a href="/observatory/" class="tab-btn">Observatory</a>
+                    <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark/light mode">
+                 <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                        <svg class="icon-moon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </button>
+                </nav>
+            </header>
+        </div>
+    </div>
+
+    <div class="container">
+        <main>
+            <a href="/blog/" class="back-link">← Back to Blog</a>
+            
+            <article class="article-content">
+                <header class="article-header">
+                    <h1 class="article-title">What does Compute Bound and Memory Bound mean ?</h1>
+                    <p class="article-subtitle">A simple basic analysis from first principles</p>
+                    <div class="article-meta">
+                        <span class="meta-item">August 5, 2026</span>
+                        <span class="meta-separator">/</span>
+                        <span class="meta-item">6 min read</span>
+                        <a href="https://siliconandsoul.substack.com/p/what-does-compute-bound-and-memory" target="_blank">Read on Substack ↗</a>
+                    </div>
+                </header>
+                
+                <div class="article-body">
+                    <p>Anytime you read any blog that describes inference of large language models, you must have come across two jargon terms :<strong>compute bound </strong>and <strong>memory bound. </strong>And they brush over it to algorithms or implementations. Let&#x2019;s break down these two terms from first principles so that any GPU you come across, you can categorise whatever you will be running on it to be its type and work on it.</p><p>To understand them we have to start from scratch with what is available with us, when we are working on Inference. We have GPUs and their specifications. Out of those specifications there are three specifications that is important to us. Below is an image of the specifications from NVIDIA&#x2019;s website.</p><div class="captioned-image-container"><figure><a class="image-link image2 is-viewable-img" target="_blank" href="https://substackcdn.com/image/fetch/$s_!lfmJ!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2dc96a00-efc1-4093-b4dd-1aca01a98dec_1388x760.png" data-component-name="Image2ToDOM" rel="noopener noreferrer"><div class="image2-inset"><picture><source type="image/webp" srcset="https://substackcdn.com/image/fetch/$s_!lfmJ!,w_424,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2dc96a00-efc1-4093-b4dd-1aca01a98dec_1388x760.png 424w, https://substackcdn.com/image/fetch/$s_!lfmJ!,w_848,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2dc96a00-efc1-4093-b4dd-1aca01a98dec_1388x760.png 848w, https://substackcdn.com/image/fetch/$s_!lfmJ!,w_1272,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2dc96a00-efc1-4093-b4dd-1aca01a98dec_1388x760.png 1272w, https://substackcdn.com/image/fetch/$s_!lfmJ!,w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2dc96a00-efc1-4093-b4dd-1aca01a98dec_1388x760.png 1456w" sizes="100vw"><img src="https://substackcdn.com/image/fetch/$s_!lfmJ!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2dc96a00-efc1-4093-b4dd-1aca01a98dec_1388x760.png" width="1388" height="760" data-attrs="{&quot;src&quot;:&quot;https://substack-post-media.s3.amazonaws.com/public/images/2dc96a00-efc1-4093-b4dd-1aca01a98dec_1388x760.png&quot;,&quot;srcNoWatermark&quot;:null,&quot;fullscreen&quot;:null,&quot;imageSize&quot;:null,&quot;height&quot;:760,&quot;width&quot;:1388,&quot;resizeWidth&quot;:null,&quot;bytes&quot;:74390,&quot;alt&quot;:null,&quot;title&quot;:null,&quot;type&quot;:&quot;image/png&quot;,&quot;href&quot;:null,&quot;belowTheFold&quot;:false,&quot;topImage&quot;:true,&quot;internalRedirect&quot;:&quot;https://siliconandsoul.substack.com/i/209598927?img=https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2dc96a00-efc1-4093-b4dd-1aca01a98dec_1388x760.png&quot;,&quot;isProcessing&quot;:false,&quot;align&quot;:null,&quot;offset&quot;:false}" class="sizing-normal" alt srcset="https://substackcdn.com/image/fetch/$s_!lfmJ!,w_424,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2dc96a00-efc1-4093-b4dd-1aca01a98dec_1388x760.png 424w, https://substackcdn.com/image/fetch/$s_!lfmJ!,w_848,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2dc96a00-efc1-4093-b4dd-1aca01a98dec_1388x760.png 848w, https://substackcdn.com/image/fetch/$s_!lfmJ!,w_1272,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2dc96a00-efc1-4093-b4dd-1aca01a98dec_1388x760.png 1272w, https://substackcdn.com/image/fetch/$s_!lfmJ!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2dc96a00-efc1-4093-b4dd-1aca01a98dec_1388x760.png 1456w" sizes="100vw" fetchpriority="high"></picture></div></a><figcaption class="image-caption">https://www.nvidia.com/en-in/data-center/h100/</figcaption></figure></div><p>The three specifications are GPU Memory, GPU Memory  Bandwidth and Tensor core FLOPS(floating point operations per second) in different precision&#x2019;s (we have to select the precision we are working with).</p><p>The above image is specification of a H100 GPU from NVIDIA&#x2019;s Hopper series .</p><p>From above GPU memory is 80 GB, Memory bandwidth is 3.35TB/s and if we take FP16 precision(with sparsity) then tensor core flops is 1,979 TeraFLOPs.</p><p><em>Now for compute bound and memory bound understanding, memory bandwidth and Tensor core flops are important.</em></p><p>There is a concept called <strong>Machine Balance</strong> which is defined as the <mark data-color="#ffd966" style="background-color: rgb(255, 217, 102); color: rgb(0, 0, 0);">ratio of peak tensor core FLOPS of a GPU (in selected precision) to that of memory bandwidth. Mathematically</mark> </p><div class="latex-rendered" data-attrs="{&quot;persistentExpression&quot;:&quot;\\text{Machine Balance} = \\frac{\\text{Peak FLOP/s}}{\\text{Peak Memory Bandwidth (Bytes/s)}} &quot;,&quot;id&quot;:&quot;PXREPCBKUF&quot;}" data-component-name="LatexBlockToDOM"></div><p>Here if we take H100 SXM in FP16 tensor core precision then machine balance becomes :</p><div class="latex-rendered" data-attrs="{&quot;persistentExpression&quot;:&quot;\\text{Machine Balance} = \\frac{1,979 \\times 10^{12}}{3.35 \\times 10^{12}} \\approx \\mathbf{590.7 \\text{ FLOPs/Byte}}&quot;,&quot;id&quot;:&quot;WIYHRTCXOC&quot;}" data-component-name="LatexBlockToDOM"></div><p>The significance of machine balance is that it tells you how many floating point operations your GPU must do to be 100 percent utilised while moving 1 byte from HBM to the SRAM i.e. this is the compute capacity of your GPU theoretically.</p><p>There is another concept called <strong>Arithmetic Intensity</strong> . Arithmetic Intensity is calculated for the arithmetic operation that you will be doing on your GPU. <mark data-color="#ffd966" style="background-color: rgb(255, 217, 102); color: rgb(0, 0, 0);">It is defined as the ratio of total number of floating point operations you do to that of total number of memory in bytes you moved for that particular arithmetic operation.</mark></p><div class="latex-rendered" data-attrs="{&quot;persistentExpression&quot;:&quot;\\text{Arithmetic Intensity} = \\frac{\\text{Total Floating Point Operations (FLOPs)}}{\\text{Total Memory Transferred (Bytes)}}&quot;,&quot;id&quot;:&quot;FCCNBCJLOR&quot;}" data-component-name="LatexBlockToDOM"></div><p>Let&#x2019;s take an example of a matrix vector multiplication ( y = Ax ) into consideration. The matrix <span>A</span> be <span>N x N</span> and vector <span>x</span> be <span>N x 1</span>, using 16-bit floating-point precision (where <span>1 element = 2 bytes </span>).</p><p>To perform y = Ax requires N^2 multiplications and N(N-1) additions. So the number of floating point operations is roughly 2N^2 (we are approximating).  <br>Now we have to read matrix A (N^2 elements), read vector x (N elements) and write vector y (N elements). so bytes read/written is roughly 2(N^2 + 2N).</p><p>then that makes Arithmetic Intensity (I) :</p><div class="latex-rendered" data-attrs="{&quot;persistentExpression&quot;:&quot;\\text{Arithmetic Intensity} = \\frac{2N^2}{2(N^2 + 2N)} = \\frac{N^2}{N^2 + 2N} \\approx 1 \\quad \\left[\\frac{\\text{FLOPs}}{\\text{Byte}}\\right] \\quad \\text{for large } N&quot;,&quot;id&quot;:&quot;LJWFKQFGWO&quot;}" data-component-name="LatexBlockToDOM"></div><p>So, for a standard matrix-vector multiplication (one of the core operations in the decode phase of LLM Inference) we perform nearly 1 FLOPs per byte of memory read. </p><p>Earlier we calculated that the machine balance of H100 SXM is about 591 FLOPs/byte but here for a standard matrix vector multiplication we only do 1 FLOPs/byte, which is less than 591 and hence this operation is memory bound because we are not short on compute capacity rather we are bottlenecked by the number of read/write we are performing. </p><p>So speaking in terms of generalisation if Arithmetic intensity of an operation is less than Machine balance of the GPU then that operation is memory bound and if the other way then it is compute bound because we need extra compute for our operations.</p><p>Taking all these into consideration a standard relationship between Arithmetic Intensity and performance(FLOPs/sec) can be drawn and it will look like :</p><div class="captioned-image-container"><figure><a class="image-link image2 is-viewable-img" target="_blank" href="https://substackcdn.com/image/fetch/$s_!8usa!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fceb05555-5c3f-4a5f-9bc9-c03dfdb069af_1193x602.png" data-component-name="Image2ToDOM" rel="noopener noreferrer"><div class="image2-inset"><picture><source type="image/webp" srcset="https://substackcdn.com/image/fetch/$s_!8usa!,w_424,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fceb05555-5c3f-4a5f-9bc9-c03dfdb069af_1193x602.png 424w, https://substackcdn.com/image/fetch/$s_!8usa!,w_848,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fceb05555-5c3f-4a5f-9bc9-c03dfdb069af_1193x602.png 848w, https://substackcdn.com/image/fetch/$s_!8usa!,w_1272,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fceb05555-5c3f-4a5f-9bc9-c03dfdb069af_1193x602.png 1272w, https://substackcdn.com/image/fetch/$s_!8usa!,w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fceb05555-5c3f-4a5f-9bc9-c03dfdb069af_1193x602.png 1456w" sizes="100vw"><img src="https://substackcdn.com/image/fetch/$s_!8usa!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fceb05555-5c3f-4a5f-9bc9-c03dfdb069af_1193x602.png" width="1193" height="602" data-attrs="{&quot;src&quot;:&quot;https://substack-post-media.s3.amazonaws.com/public/images/ceb05555-5c3f-4a5f-9bc9-c03dfdb069af_1193x602.png&quot;,&quot;srcNoWatermark&quot;:null,&quot;fullscreen&quot;:null,&quot;imageSize&quot;:null,&quot;height&quot;:602,&quot;width&quot;:1193,&quot;resizeWidth&quot;:null,&quot;bytes&quot;:43939,&quot;alt&quot;:null,&quot;title&quot;:null,&quot;type&quot;:&quot;image/png&quot;,&quot;href&quot;:null,&quot;belowTheFold&quot;:true,&quot;topImage&quot;:false,&quot;internalRedirect&quot;:&quot;https://siliconandsoul.substack.com/i/209598927?img=https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fceb05555-5c3f-4a5f-9bc9-c03dfdb069af_1193x602.png&quot;,&quot;isProcessing&quot;:false,&quot;align&quot;:null,&quot;offset&quot;:false}" class="sizing-normal" alt srcset="https://substackcdn.com/image/fetch/$s_!8usa!,w_424,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fceb05555-5c3f-4a5f-9bc9-c03dfdb069af_1193x602.png 424w, https://substackcdn.com/image/fetch/$s_!8usa!,w_848,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fceb05555-5c3f-4a5f-9bc9-c03dfdb069af_1193x602.png 848w, https://substackcdn.com/image/fetch/$s_!8usa!,w_1272,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fceb05555-5c3f-4a5f-9bc9-c03dfdb069af_1193x602.png 1272w, https://substackcdn.com/image/fetch/$s_!8usa!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fceb05555-5c3f-4a5f-9bc9-c03dfdb069af_1193x602.png 1456w" sizes="100vw" loading="lazy"></picture></div></a><figcaption class="image-caption">Roofline Model ( credit - https://modal.com/gpu-glossary/perf/roofline-model)</figcaption></figure></div><p>The above image is called a Roofline Model. It is a simplified visual model of performance used to quickly determine whether a program is bound by memory bandwidth(memory bound) or arithmetic bandwidth (compute bound).</p><p>A specific <span>kernel&#x2019;s</span><a href="https://modal.com/gpu-glossary/device-software/kernel" target="_blank" rel="noopener noreferrer"> </a>x-coordinate tells you instantly whether it is fundamentally <span>compute-bound</span><a href="https://modal.com/gpu-glossary/perf/compute-bound" target="_blank" rel="noopener noreferrer"> </a>(points beneath the flat roof) or <span>memory-bound</span><a href="https://modal.com/gpu-glossary/perf/memory-bound" target="_blank" rel="noopener noreferrer"> </a>(points beneath the slanted roof). </p><p>The point on the boundary, i.e. where the diagonal and horizontal roof meet, is called the <strong>&#x201C;ridge point&#x201D;</strong>. Its x-coordinate is the minimum <span>arithmetic intensity</span><a href="https://modal.com/gpu-glossary/perf/arithmetic-intensity" target="_blank" rel="noopener noreferrer"> </a>required to be able to escape the memory <span>bottleneck</span><a href="https://modal.com/gpu-glossary/perf/performance-bottleneck" target="_blank" rel="noopener noreferrer"> </a>. Computer systems whose ridge point is further to the left are easier to achieve maximum performance on, but the relatively poor scaling of memory relative to compute generally has pushed the ridge points of systems to the right over time.</p><p>For an H100 SXM running FP16/BF16 (with sparsity), the compute ceiling hits <strong>1,979 Tensor core TeraFLOPS</strong>. Dividing this by its <strong>3.35 TB/s</strong> memory bandwidth gives a <strong>Ridge Point (Machine Balance) of ~591 FLOPs/Byte .</strong></p><p>Now that we are clear on how do we know if something is memory bound or compute bound lets go over its practical implications in a short manner.</p><p>LLM inference has two phases namely, the pre-fill phase and the decode phase. In the pre-fill phase, we process all tokens at once meaning we do matrix-matrix multiplications whose arithmetic intensity is pretty high compared to matrix-vector multiplication which we do in the decode phase.</p><p>to compare let&#x2019;s take two square matrices of N x N . The result matrix will also be a square matrix of dimension N x N . For each element we are doing one multiplication and then addition, so that makes nearly 2N operations and then since N^2 number of elements, it becomes 2N^3 FLOPs. and if we take memory read/writes in FP16, 2N^2 for each and sum to 6N^2 making the arithmetic intensity about N/3  i.e. if N/3 is greater than 591 then we are compute bound .</p><p>Because of the decode phase being memory bound, algorithms like FlashAttention and techniques like increasing batch size, PagedAttention or KV cache compression, Quantization exist to move it from memory bound towards compute bound. </p><p>Next time whenever you are planning to write a kernel for operations in any GPU, you can immediately calculate the operation&#x2019;s Arithmetic intensity and Machine Balance of the GPU and decide whether it is compute bound or memory bound and proceed for optimisation.</p><p><strong><mark data-color="#ffd966" style="background-color: rgb(255, 217, 102); color: rgb(0, 0, 0);">In a nutshell If you are Memory-Bound, don&#x2019;t waste time trying to optimise the math equations. Instead, focus on minimising memory traffic i.e. use techniques like Quantization (smaller data types), larger Batch Sizes, or Kernel Fusion (combining operations into a single kernel so intermediate data stays in fast SRAM instead of round-tripping to HBM). And If you are Compute-Bound, focus heavily on the math execution i.e. use lower precision (like FP8 or INT8) to unlock higher Tensor Core FLOPS, leverage hardware Sparsity, or parallelize compute across multiple GPU cores.</mark></strong></p>
+                </div>
+            </article>
+        </main>
+
+        <hr class="blog-footer-divider">
+        <div class="blog-footer-license">
+            <div class="license-left">
+                <p class="author-name">Sourav Tripathy</p>
+                <p class="author-opinions">The opinions on this site are my own. They do not necessarily represent those of my employer.</p>
+            </div>
+            <div class="license-right">
+                <p>This work is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">Creative Commons Attribution 4.0 International License</a>.</p>
+            </div>
+        </div>
+
+        <footer>
+            <div class="social-links" style="margin-bottom: 2rem;">
+              <a href="mailto:lipuntripathy74@gmail.com" target="_blank">Email</a>
+                <a href="https://x.com/EssenceThinker" target="_blank">X (Twitter)</a>
+                <a href="https://www.linkedin.com/in/sourav-tripathy-astrophile/" target="_blank">LinkedIn</a>
+                <a href="https://github.com/Sourav-Tripathy" target="_blank">GitHub</a>
+                <a href="https://siliconandsoul.substack.com" target="_blank">Substack</a>
+                <a href="https://letterboxd.com/essenceX/" target="_blank">Letterboxd</a>
+                <a href="https://www.goodreads.com/user/show/82254166-sourav-tripathy" target="_blank">Goodreads</a>
+            </div>
+            © <span id="year"></span> Sourav Tripathy
+        </footer>
+    </div>
+    <script src="../script.js"></script>
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
