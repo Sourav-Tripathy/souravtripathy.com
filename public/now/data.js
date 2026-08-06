@@ -11,12 +11,6 @@ window.nowData = {
       titleLink: "https://www.goodreads.com/book/show/24113.G_del_Escher_Bach",
       author: "Douglas Hofstadter",
       authorLink: "https://en.wikipedia.org/wiki/Douglas_Hofstadter",
-    },
-    {
-      title: "Inference Engineering",
-      titleLink: "https://www.goodreads.com/book/show/252701214-inference-engineering",
-      author: "Philip Kiely",
-      authorLink: "https://philipkiely.com/",
     }
   ],
   listening: [
