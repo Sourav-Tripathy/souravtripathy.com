@@ -8321,5 +8321,140 @@
         "note": null
       }
     ]
+  },
+  {
+    "date": "3rd August",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://flashblaze.xyz/posts/having-fun-with-omp-deepseek-luna-and-agy/",
+        "title": "Having fun with oh my pi, DeepSeek-V4-Flash, GPT-5.6 Luna and Antigravity CLI (flashblaze.xyz)",
+        "note": null
+      },
+      {
+        "url": "https://blog.semenzin.com/let-the-machines-in/",
+        "title": "Let the machines in – Flights of fancy (blog.semenzin.com)",
+        "note": null
+      },
+      {
+        "url": "https://mattbeton.com/blog/bitnet-6502.html",
+        "title": "Autoregressive Language Model on the 6502 Processor (mattbeton.com)",
+        "note": null
+      },
+      {
+        "url": "https://medium.com/@prathamgrover777/speculative-decoding-make-your-llms-faster-25535d10c8f0",
+        "title": "Speculative Decoding: Make Your LLMs Faster (medium.com)",
+        "note": null
+      }
+    ]
+  },
+  {
+    "date": "4th August",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://ochagavia.nl/blog/that-time-when-i-failed-the-microsoft-interview/",
+        "title": "That time when I failed the Microsoft interview (ochagavia.nl)",
+        "note": null
+      },
+      {
+        "url": "https://blog.cloudflare.com/smaller-faster-safer-models/",
+        "title": "Smaller, faster, safer: running Kimi and GLM at scale (blog.cloudflare.com)",
+        "note": null
+      },
+      {
+        "url": "https://ankursethi.com/blog/prevent-cognitive-debt-by-manually-retyping-llm-generated-code/",
+        "title": "Prevent cognitive debt by manually retyping LLM-generated code (ankursethi.com)",
+        "note": null
+      },
+      {
+        "url": "https://epoch.ai/MirrorCode",
+        "title": "MirrorCode: What's the largest software project AI can complete on its own? (epoch.ai)",
+        "note": null
+      },
+      {
+        "url": "https://www.seangoedecke.com/llms-reward-expertise/",
+        "title": "LLMs reward expertise (seangoedecke.com)",
+        "note": null
+      }
+    ]
+  },
+  {
+    "date": "5th August",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://writings.stephenwolfram.com/2026/08/in-memory-of-my-wife-elise-cawley-1961-2026-with-thanks-for-36-wonderful-years/",
+        "title": "In Memory of My Wife, Elise Cawley (1961–2026), with Thanks for 36 Wonderful Years (writings.stephenwolfram.com)",
+        "note": null
+      },
+      {
+        "url": "https://simonwillison.net/2026/Jul/31/stateless-mcp/",
+        "title": "Stateless MCP has recaptured my interest (and inspired mcp-explorer and datasette-mcp) (simonwillison.net)",
+        "note": null
+      }
+    ]
+  },
+  {
+    "date": "6th August",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://blog.fogus.me/llm/born-against.html",
+        "title": "Born Against, or why hobby programming communities are aggressively against LLM usage (blog.fogus.me)",
+        "note": null
+      },
+      {
+        "url": "https://norbertkozsir.com/posts/work-in-the-second-dimension/",
+        "title": "What happens if you put work into the second dimension? (norbertkozsir.com)",
+        "note": null
+      },
+      {
+        "url": "https://news.stanford.edu/stories/2026/08/ai-companions-chatbots-loneliness-research",
+        "title": "AI companions may worsen loneliness for vulnerable users (news.stanford.edu)",
+        "note": null
+      }
+    ]
+  },
+  {
+    "date": "7th August",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://www.futilitycloset.com/2026/07/26/the-sylvester-gallai-theorem/",
+        "title": "The Sylvester–Gallai Theorem (futilitycloset.com)",
+        "note": null
+      },
+      {
+        "url": "https://scalex.dev/blog/ai-agent-permissions-stats/",
+        "title": "Humans missed 1 in 3 threats approving AI agent commands across 40,000 plays (scalex.dev)",
+        "note": null
+      },
+      {
+        "url": "https://scalex.dev/blog/how-to-make-architecture-trade-off-decisions-cb23482e1dfe/",
+        "title": "How to make software architecture trade-off decisions (scalex.dev)",
+        "note": null
+      },
+      {
+        "url": "https://notashelf.dev/posts/taste-is-all-thats-left",
+        "title": "Taste Is All That's Left (notashelf.dev)",
+        "note": null
+      },
+      {
+        "url": "https://socket.dev/blog/ai-agent-open-source-malware",
+        "title": "UK Cyber Test: AI Agent Attempted to Social Engineer Open Source Maintainer Into Merging Malware (socket.dev)",
+        "note": null
+      },
+      {
+        "url": "https://blog.janestreet.com/can-you-reverse-engineer-an-asic/",
+        "title": "Can you reverse engineer an ASIC? (blog.janestreet.com)",
+        "note": null
+      },
+      {
+        "url": "https://fabiensanglard.net/cuda/",
+        "title": "A history of NVidia Stream Multiprocessor (fabiensanglard.net)",
+        "note": null
+      }
+    ]
   }
 ]
