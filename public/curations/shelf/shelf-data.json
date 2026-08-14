@@ -8456,5 +8456,99 @@
         "note": null
       }
     ]
+  },
+  {
+    "date": "10th August",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://seg6.space/posts/phone-server/",
+        "title": "My Server is a Phone Now (seg6.space)",
+        "note": null
+      },
+      {
+        "url": "https://www.startingfromnix.com/p/if-experience-is-the-goal-then-you",
+        "title": "If Experience is the Goal, Then You Always Win (startingfromnix.com)",
+        "note": null
+      }
+    ]
+  },
+  {
+    "date": "11th August",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://www.anthropic.com/research/riemann-zeta",
+        "title": "Learning More About Claude's Mathematical Capabilities (anthropic.com)",
+        "note": null
+      },
+      {
+        "url": "https://julienreszka.com/blog/we-got-better-at-keeping-you-alive-not-at-keeping-healthy/",
+        "title": "We Got Better at Keeping You Alive. Not at Keeping Healthy. (julienreszka.com)",
+        "note": null
+      },
+      {
+        "url": "https://kuber.studio/blog/Reflections/Humanising-LLM-Outputs-is-Actually-Dumb",
+        "title": "Humanising LLM Outputs is Dumb (kuber.studio)",
+        "note": null
+      }
+    ]
+  },
+  {
+    "date": "12th August",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://brentfitzgerald.com/posts/the-human-is-the-loop/",
+        "title": "The Human is the Loop (brentfitzgerald.com)",
+        "note": null
+      },
+      {
+        "url": "https://stratechery.com/2026/nvidias-risky-business/",
+        "title": "Nvidia's Risky Business (stratechery.com)",
+        "note": null
+      },
+      {
+        "url": "https://oodist.substack.com/p/india-has-an-agency-problem",
+        "title": "India Has an Agency Problem (Oodist (Substack))",
+        "note": null
+      },
+      {
+        "url": "https://januverma.substack.com/p/physics-of-coffee-brewing",
+        "title": "Physics of Coffee Brewing (Januverma (Substack))",
+        "note": null
+      }
+    ]
+  },
+  {
+    "date": "13th August",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://www.astralcodexten.com/p/the-quest-for-caffeine-you-can-have",
+        "title": "The Quest for Caffeine You Can Have at Night (Astral Codex Ten (Substack))",
+        "note": null
+      },
+      {
+        "url": "https://finshots.in/archive/how-do-you-scale-upi-if-its-not-free/",
+        "title": "How Do You Scale UPI If It's Not Free? (Finshots)",
+        "note": null
+      },
+      {
+        "url": "https://guillaumetech.github.io/posts/jpg-scaling-chrome/",
+        "title": "What Looked Like a Rendering Bug Turned Out to Be a Clever JPEG Decoding Optimization in Chrome (guillaumetech.github.io)",
+        "note": null
+      },
+      {
+        "url": "https://bengodfrey.dev/blog/process/",
+        "title": "Process as a Proxy for Motivation(bengodfrey.dev)",
+        "note": null
+      },
+      {
+        "url": "https://blog.florianherrengt.com/ai-removing-middle-class-software-engineering.html",
+        "title": "AI is Removing the Middle Class of Software Engineering (blog.florianherrengt.com)",
+        "note": null
+      }
+    ]
   }
 ]
