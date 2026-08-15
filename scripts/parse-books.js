@@ -95,7 +95,6 @@ function processBooks() {
         const rating = ratingVal ? parseFloat(ratingVal) : 0;
         
         const publisher = getVal(row, 'Publisher');
-        const binding = getVal(row, 'Binding');
         
         const numPagesVal = getVal(row, 'Number of Pages');
         const numPages = numPagesVal ? parseInt(numPagesVal, 10) : null;
@@ -114,23 +113,18 @@ function processBooks() {
             review = null;
         }
 
-        const tagsString = getVal(row, 'Bookshelves') || '';
-        const tags = tagsString ? tagsString.split(',').map(t => t.trim()).filter(t => t !== shelf && t !== '') : [];
-
         books.push({
             id,
             title,
             author,
             rating,
             publisher,
-            binding,
             numPages,
             year,
             readDate,
             addedDate,
             shelf,
-            review,
-            tags
+            review
         });
     });
 

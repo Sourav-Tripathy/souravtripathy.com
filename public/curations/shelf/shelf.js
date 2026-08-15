@@ -373,7 +373,7 @@ function renderBooks() {
     } else if (activeBookShelf === 'currently-reading') {
         statsText = `showing <span class="stat-badge">${filteredBooks.length}</span> books currently being read`;
     } else {
-        statsText = `showing <span class="stat-badge">${filteredBooks.length}</span> books in backlog`;
+        statsText = `showing <span class="stat-badge">${filteredBooks.length}</span> books in to be read (TBR)`;
     }
     
     statsDiv.innerHTML = `<span>${statsText}</span>`;
@@ -457,17 +457,7 @@ function renderBooks() {
                 }
 
                 // Date label
-                const dateLabel = activeBookShelf === 'read' ? `read ${book.day}` : `added ${book.day}`;
-
-                // Tags HTML
-                let tagsHtml = '';
-                if (book.tags && book.tags.length > 0) {
-                    tagsHtml = `
-                        <div class="book-tags">
-                            ${book.tags.map(t => `<span class="book-tag">#${t}</span>`).join('')}
-                        </div>
-                    `;
-                }
+                const dateLabel = activeBookShelf === 'read' ? `completed on ${book.day}` : `added ${book.day}`;
 
                 // Review HTML
                 let reviewHtml = '';
@@ -497,7 +487,6 @@ function renderBooks() {
                         </div>
                     </div>
                     ${reviewHtml}
-                    ${tagsHtml}
                 `;
                 
                 bookListDiv.appendChild(card);
