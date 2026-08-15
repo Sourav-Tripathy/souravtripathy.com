@@ -8550,5 +8550,26 @@
         "note": null
       }
     ]
+  },
+  {
+    "date": "14th August",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://www.seangoedecke.com/blog-about-things-you-dont-understand-yet/",
+        "title": "Blog about things you don't understand yet (seangoedecke.com)",
+        "note": null
+      },
+      {
+        "url": "https://gruhn.me/blog/2026-08-13/",
+        "title": "NP-overrated (gruhn.me)",
+        "note": null
+      },
+      {
+        "url": "https://www.geoffreylitt.com/2026/07/02/understanding-is-the-new-bottleneck",
+        "title": "Understanding is the new bottleneck (geoffreylitt.com)",
+        "note": null
+      }
+    ]
   }
 ]
