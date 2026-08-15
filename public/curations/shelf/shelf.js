@@ -1,6 +1,8 @@
 let rawShelfData = [];
+let rawBooksData = [];
 let activeTab = 'articles'; // 'articles' or 'books'
 let activeView = 'list'; // 'list' or 'graph'
+let activeBookShelf = 'read'; // 'read', 'currently-reading', 'to-read'
 let searchQuery = '';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -38,6 +40,9 @@ function setupEventListeners() {
     // Tabs
     const tabArticles = document.getElementById('tab-articles');
     const tabBooks = document.getElementById('tab-books');
+    const bookFilters = document.getElementById('book-filters');
+    const viewToggles = document.querySelector('.view-toggles');
+    const searchInput = document.getElementById('search-input');
     
     tabArticles.addEventListener('click', () => {
         if (activeTab === 'articles') return;
@@ -45,32 +50,53 @@ function setupEventListeners() {
         tabArticles.classList.add('active');
         tabBooks.classList.remove('active');
         
-        // Show controls row
-        document.getElementById('controls-row').style.display = 'flex';
+        // UI Layout updates
+        bookFilters.style.display = 'none';
+        viewToggles.style.display = 'flex';
+        searchInput.placeholder = 'Search by title, domain, or notes...';
         
         renderShelf();
     });
     
-    tabBooks.addEventListener('click', () => {
+    tabBooks.addEventListener('click', async () => {
         if (activeTab === 'books') return;
         activeTab = 'books';
         tabBooks.classList.add('active');
         tabArticles.classList.remove('active');
         
-        // Hide controls row for books since it is currently empty
-        document.getElementById('controls-row').style.display = 'none';
+        // UI Layout updates
+        bookFilters.style.display = 'flex';
+        viewToggles.style.display = 'none';
+        searchInput.placeholder = 'Search by title, author, or reviews...';
+        
+        // Load books data if not already done
+        if (rawBooksData.length === 0) {
+            const contentArea = document.getElementById('shelf-content-area');
+            contentArea.innerHTML = '<div class="empty-state"><div class="empty-state-title">Loading Books...</div><div class="empty-state-desc">Parsing Goodreads library export.</div></div>';
+            await loadBooksData();
+        }
         
         renderShelf();
     });
 
+    // Book shelf filters
+    const filterBtns = bookFilters.querySelectorAll('.view-btn');
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            activeBookShelf = btn.dataset.shelf;
+            renderShelf();
+        });
+    });
+
     // Search Input
-    const searchInput = document.getElementById('search-input');
     searchInput.addEventListener('input', (e) => {
         searchQuery = e.target.value.toLowerCase().trim();
         renderShelf();
     });
 
-    // View Toggles
+    // View Toggles (Articles only)
     const viewList = document.getElementById('view-list');
     const viewGraph = document.getElementById('view-graph');
 
@@ -91,6 +117,25 @@ function setupEventListeners() {
     });
 }
 
+async function loadBooksData() {
+    try {
+        const response = await fetch('books-data.json');
+        if (!response.ok) {
+            throw new Error('Failed to load books data');
+        }
+        rawBooksData = await response.json();
+    } catch (error) {
+        console.error('Error loading books data:', error);
+        const contentArea = document.getElementById('shelf-content-area');
+        contentArea.innerHTML = `
+            <div class="empty-state" style="border-color: #ff6b6b;">
+                <div class="empty-state-title" style="color: #ff6b6b;">Failed to Load Books</div>
+                <div class="empty-state-desc">Could not load the books data. Please try again later.</div>
+            </div>
+        `;
+    }
+}
+
 function showGraphComingSoonMessage() {
     const contentArea = document.getElementById('shelf-content-area');
     contentArea.innerHTML = `
@@ -108,12 +153,46 @@ window.goBackToList = function() {
     renderShelf();
 };
 
-function renderShelf() {
-    const contentArea = document.getElementById('shelf-content-area');
-    contentArea.innerHTML = '';
+window.toggleReview = function(bookId) {
+    const content = document.getElementById(`review-${bookId}`);
+    const toggle = document.getElementById(`toggle-${bookId}`);
+    if (!content || !toggle) return;
+    
+    if (content.style.display === 'none') {
+        content.style.display = 'block';
+        toggle.innerText = '[-] hide review';
+    } else {
+        content.style.display = 'none';
+        toggle.innerText = '[+] read review';
+    }
+};
 
+function parseBookDate(dateStr) {
+    if (!dateStr) return { year: 'Unknown', month: 'Unknown', day: '' };
+    const parts = dateStr.split('/');
+    if (parts.length < 3) return { year: 'Unknown', month: 'Unknown', day: '' };
+    
+    const year = parts[0];
+    const monthIdx = parseInt(parts[1], 10) - 1;
+    const dayNum = parseInt(parts[2], 10);
+    
+    const monthNames = [
+        'January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December'
+    ];
+    const month = monthNames[monthIdx] || 'Unknown';
+    
+    const getOrdinalNum = (n) => {
+        return n + (n > 0 ? ['th', 'st', 'nd', 'rd'][(n > 3 && n < 21) || n % 10 > 3 ? 0 : n % 10] : '');
+    };
+    const day = getOrdinalNum(dayNum);
+    
+    return { year, month, day };
+}
+
+function renderShelf() {
     if (activeTab === 'books') {
-        renderBooksEmptyState();
+        renderBooks();
         return;
     }
 
@@ -121,6 +200,13 @@ function renderShelf() {
         showGraphComingSoonMessage();
         return;
     }
+
+    renderShelfArticles();
+}
+
+function renderShelfArticles() {
+    const contentArea = document.getElementById('shelf-content-area');
+    contentArea.innerHTML = '';
 
     // Process and filter articles
     let filteredData = [];
@@ -164,9 +250,7 @@ function renderShelf() {
     contentArea.appendChild(statsDiv);
 
     // Grouping by Year and Month in descending order (reverse chronological)
-    // We reverse the filtered data to start with the newest entries (2026)
     const reversedData = [...filteredData].reverse();
-
     const dataByYear = {};
 
     reversedData.forEach(dayEntry => {
@@ -190,18 +274,16 @@ function renderShelf() {
         yearSection.appendChild(yearHeader);
 
         // Group by Month within this year
-        // We want to preserve the order in reversedData
         const monthsInYear = [];
         const dataByMonth = {};
 
         dataByYear[year].forEach(dayEntry => {
-            // Extracts month name from date string (e.g. "26th December" -> "December")
             const parts = dayEntry.date.split(' ');
             const month = parts[parts.length - 1]; // Last word is month name
 
             if (!dataByMonth[month]) {
                 dataByMonth[month] = [];
-                monthsInYear.push(month); // Order of encounter is already descending
+                monthsInYear.push(month);
             }
             dataByMonth[month].push(dayEntry);
         });
@@ -223,10 +305,8 @@ function renderShelf() {
                     const li = document.createElement('li');
                     li.className = 'shelf-item';
 
-                    // Get the day part of date (e.g. "26th December" -> "26th")
                     const dayPart = dayEntry.date.split(' ')[0];
 
-                    // Determine note badge class
                     let noteBadge = '';
                     if (link.note) {
                         const isExceptional = link.note.toLowerCase().includes('exceptional') || link.note.toLowerCase().includes('must read');
@@ -253,11 +333,180 @@ function renderShelf() {
     });
 }
 
-function renderBooksEmptyState() {
+function renderBooks() {
     const contentArea = document.getElementById('shelf-content-area');
-    contentArea.innerHTML = `
-        <div class="empty-state">
-            <div class="empty-state-desc">This will be updated shortly.</div>
-        </div>
-    `;
+    contentArea.innerHTML = '';
+
+    // Filter books based on shelf and search query
+    const filteredBooks = rawBooksData.filter(book => {
+        if (book.shelf !== activeBookShelf) return false;
+        
+        if (!searchQuery) return true;
+        
+        const titleMatch = book.title && book.title.toLowerCase().includes(searchQuery);
+        const authorMatch = book.author && book.author.toLowerCase().includes(searchQuery);
+        const reviewMatch = book.review && book.review.toLowerCase().includes(searchQuery);
+        const tagMatch = book.tags && book.tags.some(t => t.toLowerCase().includes(searchQuery));
+        
+        return titleMatch || authorMatch || reviewMatch || tagMatch;
+    });
+
+    if (filteredBooks.length === 0) {
+        contentArea.innerHTML = `
+            <div class="empty-state">
+                <div class="empty-state-title">No matching books found</div>
+                <div class="empty-state-desc">Try search terms like book titles, authors, or review words.</div>
+            </div>
+        `;
+        return;
+    }
+
+    // Render Stats
+    const statsDiv = document.createElement('div');
+    statsDiv.className = 'stats-container';
+    statsDiv.style.marginBottom = '2rem';
+    
+    let statsText = '';
+    if (activeBookShelf === 'read') {
+        const yearsCount = new Set(filteredBooks.map(b => parseBookDate(b.readDate).year)).size;
+        statsText = `showing <span class="stat-badge">${filteredBooks.length}</span> books completed across <span class="stat-badge">${yearsCount}</span> active years`;
+    } else if (activeBookShelf === 'currently-reading') {
+        statsText = `showing <span class="stat-badge">${filteredBooks.length}</span> books currently being read`;
+    } else {
+        statsText = `showing <span class="stat-badge">${filteredBooks.length}</span> books in backlog`;
+    }
+    
+    statsDiv.innerHTML = `<span>${statsText}</span>`;
+    contentArea.appendChild(statsDiv);
+
+    // Grouping
+    const groupedData = {};
+    const yearOrder = [];
+    
+    filteredBooks.forEach(book => {
+        const dateToUse = activeBookShelf === 'read' ? book.readDate : book.addedDate;
+        const { year, month, day } = parseBookDate(dateToUse);
+        
+        if (!groupedData[year]) {
+            groupedData[year] = {
+                months: {},
+                monthOrder: []
+            };
+            yearOrder.push(year);
+        }
+        
+        if (!groupedData[year].months[month]) {
+            groupedData[year].months[month] = [];
+            groupedData[year].monthOrder.push(month);
+        }
+        
+        groupedData[year].months[month].push({
+            ...book,
+            day
+        });
+    });
+
+    // Sort yearOrder in descending order (newest years first)
+    yearOrder.sort((a, b) => {
+        if (a === 'Unknown' || a === 'unknown') return 1;
+        if (b === 'Unknown' || b === 'unknown') return -1;
+        return b - a;
+    });
+
+    yearOrder.forEach(year => {
+        const yearSection = document.createElement('section');
+        yearSection.className = 'timeline-year';
+        
+        const yearHeader = document.createElement('h2');
+        yearHeader.className = 'year-title';
+        yearHeader.innerText = year;
+        yearSection.appendChild(yearHeader);
+
+        const { months, monthOrder } = groupedData[year];
+        
+        // Month ordering: order by chronological month index
+        const monthNames = [
+            'December', 'November', 'October', 'September', 'August', 'July',
+            'June', 'May', 'April', 'March', 'February', 'January', 'Unknown'
+        ];
+        
+        monthOrder.sort((a, b) => {
+            return monthNames.indexOf(a) - monthNames.indexOf(b);
+        });
+        
+        monthOrder.forEach(month => {
+            const monthDiv = document.createElement('div');
+            monthDiv.className = 'timeline-month';
+
+            const monthHeader = document.createElement('h3');
+            monthHeader.className = 'month-title';
+            monthHeader.innerText = month;
+            monthDiv.appendChild(monthHeader);
+
+            const bookListDiv = document.createElement('div');
+            bookListDiv.className = 'book-list';
+
+            months[month].forEach(book => {
+                const card = document.createElement('div');
+                card.className = 'book-card';
+                
+                // Stars HTML
+                let starsHtml = '';
+                if (book.rating > 0) {
+                    starsHtml = `<span class="book-rating">${'★'.repeat(book.rating)}${'☆'.repeat(5 - book.rating)}</span>`;
+                }
+
+                // Date label
+                const dateLabel = activeBookShelf === 'read' ? `read ${book.day}` : `added ${book.day}`;
+
+                // Tags HTML
+                let tagsHtml = '';
+                if (book.tags && book.tags.length > 0) {
+                    tagsHtml = `
+                        <div class="book-tags">
+                            ${book.tags.map(t => `<span class="book-tag">#${t}</span>`).join('')}
+                        </div>
+                    `;
+                }
+
+                // Review HTML
+                let reviewHtml = '';
+                if (book.review) {
+                    reviewHtml = `
+                        <div class="book-review-toggle" id="toggle-${book.id}" onclick="window.toggleReview('${book.id}')">
+                            [+] read review
+                        </div>
+                        <div class="book-review-content" id="review-${book.id}" style="display: none;">
+                            ${book.review}
+                        </div>
+                    `;
+                }
+
+                card.innerHTML = `
+                    <div class="book-card-header">
+                        <div class="book-info">
+                            <div class="book-title-container">
+                                <a href="https://www.goodreads.com/book/show/${book.id}" target="_blank" class="book-title-link">${book.title}</a>
+                                ${book.year ? `<span class="book-year">(${book.year})</span>` : ''}
+                            </div>
+                            <div class="book-author">by ${book.author}</div>
+                        </div>
+                        <div class="book-meta">
+                            ${starsHtml}
+                            <div class="book-date">${dateLabel}</div>
+                        </div>
+                    </div>
+                    ${reviewHtml}
+                    ${tagsHtml}
+                `;
+                
+                bookListDiv.appendChild(card);
+            });
+
+            monthDiv.appendChild(bookListDiv);
+            yearSection.appendChild(monthDiv);
+        });
+
+        contentArea.appendChild(yearSection);
+    });
 }

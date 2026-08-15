@@ -298,6 +298,137 @@
                 border-radius: 4px;
                 font-weight: bold;
             }
+
+            /* Books shelf rendering styles */
+            .book-list {
+                display: flex;
+                flex-direction: column;
+                gap: 1.5rem;
+                margin-top: 1rem;
+            }
+
+            .book-card {
+                background: rgba(var(--accent-rgb), 0.02);
+                border: 1px solid rgba(var(--accent-rgb), 0.15);
+                border-radius: 8px;
+                padding: 1.2rem;
+                transition: all 0.2s ease;
+            }
+
+            .book-card:hover {
+                background: rgba(var(--accent-rgb), 0.04);
+                border-color: var(--accent);
+                box-shadow: 0 4px 12px rgba(var(--accent-rgb), 0.08);
+            }
+
+            .book-card-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                gap: 1.5rem;
+                flex-wrap: wrap;
+            }
+
+            .book-info {
+                display: flex;
+                flex-direction: column;
+                gap: 0.25rem;
+                flex: 1;
+                min-width: 250px;
+            }
+
+            .book-title-container {
+                display: flex;
+                align-items: baseline;
+                gap: 0.5rem;
+                flex-wrap: wrap;
+            }
+
+            .book-title-link {
+                font-family: var(--font-serif);
+                font-size: 1.15rem;
+                font-weight: 700;
+                color: var(--accent);
+                text-decoration: none !important;
+                border: none !important;
+            }
+
+            .book-title-link:hover {
+                color: var(--highlight);
+                text-decoration: underline !important;
+            }
+
+            .book-year {
+                font-size: 0.85rem;
+                color: var(--dim);
+            }
+
+            .book-author {
+                font-size: 0.9rem;
+                color: var(--dim);
+            }
+
+            .book-meta {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                gap: 0.3rem;
+                font-family: var(--font-mono);
+                font-size: 0.85rem;
+            }
+
+            .book-rating {
+                color: var(--accent);
+                letter-spacing: 1px;
+            }
+
+            .book-date {
+                color: var(--dim);
+                opacity: 0.85;
+            }
+
+            .book-review-toggle {
+                margin-top: 0.8rem;
+                font-family: var(--font-mono);
+                font-size: 0.85rem;
+                color: var(--accent);
+                cursor: pointer;
+                user-select: none;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.3rem;
+            }
+
+            .book-review-toggle:hover {
+                color: var(--highlight);
+            }
+
+            .book-review-content {
+                margin-top: 0.6rem;
+                padding: 0.8rem 1.2rem;
+                background: rgba(var(--accent-rgb), 0.03);
+                border-left: 3px solid var(--accent);
+                border-radius: 0 4px 4px 0;
+                font-size: 0.92rem;
+                line-height: 1.6;
+                color: var(--fg);
+            }
+
+            .book-tags {
+                display: flex;
+                gap: 0.5rem;
+                margin-top: 0.8rem;
+                flex-wrap: wrap;
+            }
+
+            .book-tag {
+                font-family: var(--font-mono);
+                font-size: 0.75rem;
+                color: var(--dim);
+                background: rgba(var(--accent-rgb), 0.08);
+                padding: 0.1rem 0.4rem;
+                border-radius: 4px;
+            }
         </style>
     </head>
 
@@ -389,6 +520,13 @@
                 <div class="shelf-tabs">
                     <button class="shelf-tab active" id="tab-articles">internet articles & blogs</button>
                     <button class="shelf-tab" id="tab-books">books</button>
+                </div>
+
+                <!-- Book Shelf Filters (Completed, Reading, Backlog) -->
+                <div id="book-filters" style="display: none; gap: 0.5rem; margin-bottom: 2rem; align-items: center;">
+                    <button class="view-btn active" data-shelf="read">completed</button>
+                    <button class="view-btn" data-shelf="currently-reading">currently reading</button>
+                    <button class="view-btn" data-shelf="to-read">backlog</button>
                 </div>
 
                 <!-- Controls: Search & Views -->
