@@ -64,6 +64,12 @@ const curations = {
     ],
     nonFiction: [
       {
+        title: "The MANIAC",
+        author: "Benjamín Labatut",
+        authorWiki: "https://en.wikipedia.org/wiki/Benjam%C3%ADn_Labatut",
+        link: "https://www.goodreads.com/book/show/75665931",
+      },
+      {
         title: "Surely You're Joking, Mr. Feynman!",
         author: "Richard P. Feynman",
         authorWiki: "https://en.wikipedia.org/wiki/Richard_Feynman",
