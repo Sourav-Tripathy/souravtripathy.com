@@ -1,8 +1,8 @@
 window.nowData = {
   reading: [
     {
-      title: "The MANIAC",
-      titleLink: "https://www.goodreads.com/book/show/137893498-the-maniac",
+      title: "When we cease to understand the world",
+      titleLink: "https://www.goodreads.com/book/show/62069739-when-we-cease-to-understand-the-world",
       author: "Benjamín Labatut",
       authorLink: "https://en.wikipedia.org/wiki/Benjam%C3%ADn_Labatut",
     },
