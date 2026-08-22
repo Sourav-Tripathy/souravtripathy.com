@@ -8571,5 +8571,140 @@
         "note": null
       }
     ]
+  },
+  {
+    "date": "17th August",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://simonwillison.net/2026/Aug/16/qwen-38-27b/",
+        "title": "Qwen 3.8 27B is excellent, but it defaults to wildly overthinking things (simonwillison.net)",
+        "note": null
+      },
+      {
+        "url": "https://vectoral.com/blog/who-are-the-token-brokers",
+        "title": "Who Are the Token Brokers? (vectoral.com)",
+        "note": null
+      },
+      {
+        "url": "https://w4g1.dev/blog/models-are-getting-dumber-on-purpose",
+        "title": "Models Are Getting Dumber on Purpose (w4g1.dev)",
+        "note": null
+      },
+      {
+        "url": "https://www.anthropic.com/news/claude-text-watermark",
+        "title": "How Claude's Text Watermarking Works (anthropic.com)",
+        "note": null
+      },
+      {
+        "url": "https://www.strangeloopcanon.com/p/nobody-knows-anything",
+        "title": "Nobody Knows Anything (strangeloopcanon.com)",
+        "note": null
+      },
+      {
+        "url": "https://scottaaronson.blog/?p=9333",
+        "title": "Theory and AI Alignment (scottaaronson.blog)",
+        "note": null
+      }
+    ]
+  },
+  {
+    "date": "18th August",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://engineering.myhoai.com/posts/a-simple-fix-for-llm-tail-latency/",
+        "title": "A Simple Fix for LLM Tail Latency (engineering.myhoai.com)",
+        "note": null
+      },
+      {
+        "url": "https://thenewcuriosityshop.substack.com/p/the-essential-question",
+        "title": "The Essential Question (Thenewcuriosityshop (Substack))",
+        "note": null
+      },
+      {
+        "url": "https://timmarinin.net/2026/bluesky-screenshots/",
+        "title": "How Bluesky Draws Its Logo on Screenshots (timmarinin.net)",
+        "note": null
+      },
+      {
+        "url": "https://en.wikisource.org/wiki/I,_Pencil",
+        "title": "I, Pencil (en.wikisource.org)",
+        "note": null
+      }
+    ]
+  },
+  {
+    "date": "19th August",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://seths.blog/2026/08/the-amazon-tax/",
+        "title": "The Amazon Tax (seths.blog)",
+        "note": null
+      },
+      {
+        "url": "https://langfuse.com/academy/evaluate/choosing-what-to-evaluate#ref-hamel-field-guide",
+        "title": "Choosing What to Evaluate (langfuse.com)",
+        "note": null
+      },
+      {
+        "url": "https://newsroom.arm.com/blog/arm-official-history",
+        "title": "The Official History of Arm (newsroom.arm.com)",
+        "note": null
+      },
+      {
+        "url": "https://www.onethousandmeans.com/p/norway-should-buy-openai",
+        "title": "Norway Should Buy OpenAI (onethousandmeans.com)",
+        "note": null
+      }
+    ]
+  },
+  {
+    "date": "20th August",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://openrouter.ai/blog/announcements/openrouter-is-joining-stripe/",
+        "title": "OpenRouter Is Joining Stripe (openrouter.ai)",
+        "note": null
+      },
+      {
+        "url": "https://jumploops.com/blog/sol-loves-to-cheat/",
+        "title": "Sol Loves to Cheat (jumploops.com)",
+        "note": null
+      },
+      {
+        "url": "https://jeremymorrell.dev/blog/extensible-software-in-the-age-of-llms/",
+        "title": "Extensible Software in the Age of LLMs (jeremymorrell.dev)",
+        "note": null
+      },
+      {
+        "url": "https://www.geoffreylitt.com/2025/10/24/code-like-a-surgeon",
+        "title": "Code Like a Surgeon (geoffreylitt.com)",
+        "note": null
+      }
+    ]
+  },
+  {
+    "date": "21st August",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://github.blog/news-insights/company-news/the-august-17-outage-and-the-work-ahead/",
+        "title": "The August 17 Outage, and the Work Ahead (github.blog)",
+        "note": null
+      },
+      {
+        "url": "https://www.experimental-history.com/p/why-arent-smart-people-happier",
+        "title": "Why Aren't Smart People Happier? (experimental-history.com)",
+        "note": null
+      },
+      {
+        "url": "https://strn.cat/posts/spacetime/",
+        "title": "SpacetimeDB: A Short Technical Review (strn.cat)",
+        "note": null
+      }
+    ]
   }
 ]
