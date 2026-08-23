@@ -11,7 +11,7 @@ const projects = [
         category: "Linux CLI / Daemon (Rust)",
         title: "wd",
         url: "https://github.com/Sourav-Tripathy/wd",
-        description: "A lightweight word-lookup daemon and CLI tool for Linux — similar in spirit to <a href=\"http://artha.sourceforge.net/\" target=\"_blank\">Artha</a>, but aiming further. Type <code>wd &lt;word&gt;</code> for instant definitions, or run it as a daemon with a global hotkey (Ctrl+Alt+W) to look up any selected text system-wide. The stretch goal is fully hotkey-free lookup inside PDF viewers: select a word and the definition pops up automatically, no keypress needed. Offline-first via a local WordNet database with automatic Wiktionary fallback — under 4 MB RAM at idle, zero CPU between lookups. Built in Rust with the help of Gemini 3.1 Pro; a vibecoded project where I directed the architecture and mechanical decisions while the model wrote most of the code.",
+        description: "A lightweight, offline-first word lookup tool and background daemon for Linux. It features instant CLI queries, system-wide hotkey support (Ctrl+Alt+W), and automated popups upon selecting text in PDF viewers. Most of the code is written with the help of AI models. A working release version is now available on GitHub.",
         footerHtml: 'View on <a href="https://github.com/Sourav-Tripathy/wd" target="_blank">GitHub</a>',
         highlightColor: "var(--highlight)"
     },
@@ -43,7 +43,7 @@ const projects = [
         category: "PyPI Package(CLI tool)",
         title: "commitgen",
         url: "https://pypi.org/project/commitgen-ai/",
-        description: "CommitGen is an CLI tool that automatically generates conventional git commit messages for your staged changes. It analyzes your git diff, summarizes the changes, and uses local LLMs (via Ollama) or cloud providers (via OpenRouter) to write clean, descriptive commit messages.",
+        description: "A CLI tool that automatically generates conventional git commit messages and changelogs. Supports local LLMs (Ollama) and cloud APIs (Gemini, OpenRouter) with customizable TOML configurations.",
         footerHtml: 'Available on <a href="https://pypi.org/project/commitgen-ai/" target="_blank">PyPI</a>',
         highlightColor: "var(--highlight)"
     },
