@@ -1,8 +1,7 @@
 let rawShelfData = [];
 let rawBooksData = [];
 let activeTab = 'articles'; // 'articles' or 'books'
-let activeView = 'list'; // 'list' or 'graph'
-let activeBookShelf = 'read'; // 'read', 'currently-reading', 'to-read'
+let activeBookShelf = 'read'; // 'read', 'to-read'
 let searchQuery = '';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -41,7 +40,6 @@ function setupEventListeners() {
     const tabArticles = document.getElementById('tab-articles');
     const tabBooks = document.getElementById('tab-books');
     const bookFilters = document.getElementById('book-filters');
-    const viewToggles = document.querySelector('.view-toggles');
     const searchInput = document.getElementById('search-input');
     
     tabArticles.addEventListener('click', () => {
@@ -52,7 +50,6 @@ function setupEventListeners() {
         
         // UI Layout updates
         bookFilters.style.display = 'none';
-        viewToggles.style.display = 'flex';
         searchInput.placeholder = 'Search by title, domain, or notes...';
         
         renderShelf();
@@ -66,7 +63,6 @@ function setupEventListeners() {
         
         // UI Layout updates
         bookFilters.style.display = 'flex';
-        viewToggles.style.display = 'none';
         searchInput.placeholder = 'Search by title, author, or reviews...';
         
         // Load books data if not already done
@@ -95,26 +91,6 @@ function setupEventListeners() {
         searchQuery = e.target.value.toLowerCase().trim();
         renderShelf();
     });
-
-    // View Toggles (Articles only)
-    const viewList = document.getElementById('view-list');
-    const viewGraph = document.getElementById('view-graph');
-
-    viewList.addEventListener('click', () => {
-        if (activeView === 'list') return;
-        activeView = 'list';
-        viewList.classList.add('active');
-        viewGraph.classList.remove('active');
-        renderShelf();
-    });
-
-    viewGraph.addEventListener('click', () => {
-        if (activeView === 'graph') return;
-        activeView = 'graph';
-        viewGraph.classList.add('active');
-        viewList.classList.remove('active');
-        renderShelf();
-    });
 }
 
 async function loadBooksData() {
@@ -135,23 +111,6 @@ async function loadBooksData() {
         `;
     }
 }
-
-function showGraphComingSoonMessage() {
-    const contentArea = document.getElementById('shelf-content-area');
-    contentArea.innerHTML = `
-        <div class="empty-state">
-            <div class="empty-state-desc" style="margin-bottom: 1.5rem;">This will be updated soon.</div>
-            <button class="view-btn active" onclick="goBackToList()">return to list view</button>
-        </div>
-    `;
-}
-
-window.goBackToList = function() {
-    activeView = 'list';
-    document.getElementById('view-list').classList.add('active');
-    document.getElementById('view-graph').classList.remove('active');
-    renderShelf();
-};
 
 window.toggleReview = function(bookId) {
     const content = document.getElementById(`review-${bookId}`);
@@ -193,15 +152,9 @@ function parseBookDate(dateStr) {
 function renderShelf() {
     if (activeTab === 'books') {
         renderBooks();
-        return;
+    } else {
+        renderShelfArticles();
     }
-
-    if (activeView === 'graph') {
-        showGraphComingSoonMessage();
-        return;
-    }
-
-    renderShelfArticles();
 }
 
 function renderShelfArticles() {
@@ -370,8 +323,6 @@ function renderBooks() {
     if (activeBookShelf === 'read') {
         const yearsCount = new Set(filteredBooks.map(b => parseBookDate(b.readDate).year)).size;
         statsText = `showing <span class="stat-badge">${filteredBooks.length}</span> books completed across <span class="stat-badge">${yearsCount}</span> active years`;
-    } else if (activeBookShelf === 'currently-reading') {
-        statsText = `showing <span class="stat-badge">${filteredBooks.length}</span> books currently being read`;
     } else {
         statsText = `showing <span class="stat-badge">${filteredBooks.length}</span> books in to be read (TBR)`;
     }
