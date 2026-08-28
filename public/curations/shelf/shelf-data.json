@@ -8706,5 +8706,145 @@
         "note": null
       }
     ]
+  },
+  {
+    "date": "22nd August",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://cursor.com/blog/git-at-any-scale",
+        "title": "Git at Any Scale (cursor.com)",
+        "note": null
+      }
+    ]
+  },
+  {
+    "date": "24th August",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://blog.coredump.cx/p/conways-game-of-life-in-real-life",
+        "title": "Conway's Game of Life, in Real Life (Coredump (Substack))",
+        "note": null
+      },
+      {
+        "url": "https://insufferable.dev/posts/vibe-tax/",
+        "title": "The Vibe Tax (insufferable.dev)",
+        "note": null
+      },
+      {
+        "url": "https://omegion.dev/2026/08/ai-and-infrastructure-engineering/",
+        "title": "AI and Infrastructure Engineering (omegion.dev)",
+        "note": null
+      },
+      {
+        "url": "https://lalitm.com/post/find-problems-staff-engineer/",
+        "title": "How I Find Problems to Solve as a Staff Engineer (lalitm.com)",
+        "note": null
+      },
+      {
+        "url": "https://schlarp.com/posts/everything-i-own-owned/",
+        "title": "Everything I Own, Owned (schlarp.com)",
+        "note": null
+      },
+      {
+        "url": "https://nappertime.com/the-golden-rule-of-becoming-a-better-writer/",
+        "title": "The Golden Rule of Becoming a Better Writer (nappertime.com)",
+        "note": null
+      },
+      {
+        "url": "https://www.jacobpeake.com/how-to-learn",
+        "title": "How to Learn (jacobpeake.com)",
+        "note": null
+      }
+    ]
+  },
+  {
+    "date": "25th August",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://lucumr.pocoo.org/2026/8/24/anger-anxiety-agency/",
+        "title": "Anger, Anxiety and Agency (lucumr.pocoo.org)",
+        "note": null
+      },
+      {
+        "url": "https://boydkane.com/essays/llms-could-control-their-host-machines-by-exploiting-inference-engines",
+        "title": "LLMs Could Control Their Host Machines by Exploiting Inference Engines (boydkane.com)",
+        "note": null
+      },
+      {
+        "url": "https://surya.website/rling-qwen-to-paint-with-code",
+        "title": "RL-ing Qwen to Paint with Code (surya.website)",
+        "note": null
+      },
+      {
+        "url": "https://blog.archive.org/2026/08/16/vintage-artificial-intelligence-before-it-got-awkward/",
+        "title": "Vintage Artificial Intelligence: Before It Got Awkward (blog.archive.org)",
+        "note": null
+      },
+      {
+        "url": "https://paulgraham.com/prepare.html",
+        "title": "How Universities Should Prepare Founders (Paul Graham)",
+        "note": null
+      }
+    ]
+  },
+  {
+    "date": "26th August",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://sethmlarson.dev/when-str-lower-is-a-security-vulnerability",
+        "title": "When str.lower() Is a Security Vulnerability in Python (sethmlarson.dev)",
+        "note": null
+      },
+      {
+        "url": "https://fgiesen.wordpress.com/2018/01/20/network-latencies-and-speed-of-light/",
+        "title": "Network Latencies and Speed of Light (fgiesen.wordpress.com)",
+        "note": null
+      },
+      {
+        "url": "https://newsletter.semianalysis.com/p/openai-jalapeno-better-than-nvidia",
+        "title": "OpenAI Jalapeño: Better Than Nvidia Blackwell (Semianalysis (Substack))",
+        "note": null
+      },
+      {
+        "url": "https://sebsite.pw/w/20260801-pythonconstants.html",
+        "title": "Python's Pre-Declared Constants Are Kinda Weird (sebsite.pw)",
+        "note": null
+      }
+    ]
+  },
+  {
+    "date": "27th August",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://z.ai/blog/glm-5.3-flash",
+        "title": "GLM-5.3-Flash (z.ai)",
+        "note": null
+      },
+      {
+        "url": "https://ducklabs.com/news/2026/08/26/ducklabs-to-join-aws",
+        "title": "DuckLabs to Join AWS, Projects to Remain Open Source (ducklabs.com)",
+        "note": null
+      },
+      {
+        "url": "https://www.gkogan.co/say-something-people-want/",
+        "title": "Say Something People Want (gkogan.co)",
+        "note": null
+      },
+      {
+        "url": "https://karpathy.github.io/2022/03/14/lecun1989/",
+        "title": "Deep Neural Nets: 33 Years Ago and 33 Years from Now (karpathy.github.io)",
+        "note": "remarkable"
+      },
+      {
+        "url": "https://karpathy.github.io/2021/03/27/forward-pass/",
+        "title": "Short Story on AI: Forward Pass (karpathy.github.io)",
+        "note": "deep learning fiction"
+      }
+    ]
   }
 ]
