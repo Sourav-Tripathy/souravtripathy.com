@@ -128,23 +128,39 @@ function processBooks() {
         });
     });
 
-    // Sort books: 
-    // - read books: sort by readDate DESC (most recently read first)
-    // - currently-reading books: sort by addedDate DESC
-    // - to-read books: sort by addedDate DESC
-    books.sort((a, b) => {
-        if (a.shelf === 'read' && b.shelf === 'read') {
-            const dateA = a.readDate ? new Date(a.readDate) : new Date(0);
-            const dateB = b.readDate ? new Date(b.readDate) : new Date(0);
-            return dateB - dateA;
+    // Load existing books if file exists to preserve custom edits & reviews
+    let existingBooks = [];
+    if (fs.existsSync(outputPath)) {
+        try {
+            existingBooks = JSON.parse(fs.readFileSync(outputPath, 'utf8'));
+        } catch (e) {
+            console.error('Could not parse existing books-data.json:', e.message);
         }
-        const dateA = a.addedDate ? new Date(a.addedDate) : new Date(0);
-        const dateB = b.addedDate ? new Date(b.addedDate) : new Date(0);
-        return dateB - dateA;
+    }
+
+    const csvBooksMap = new Map();
+    books.forEach(b => csvBooksMap.set(b.id, b));
+
+    const existingIds = new Set(existingBooks.map(b => b.id));
+
+    // Update existing books with CSV changes (shelf status, read date, rating, review if new)
+    existingBooks.forEach(b => {
+        const csvB = csvBooksMap.get(b.id);
+        if (csvB) {
+            if (csvB.shelf) b.shelf = csvB.shelf;
+            if (csvB.readDate) b.readDate = csvB.readDate;
+            if (csvB.rating > 0) b.rating = csvB.rating;
+            if (!b.review && csvB.review) b.review = csvB.review;
+        }
     });
 
-    fs.writeFileSync(outputPath, JSON.stringify(books, null, 2));
-    console.log(`Successfully processed ${books.length} books.`);
+    // Extract new books
+    const newBooks = books.filter(b => !existingIds.has(b.id));
+
+    const finalBooks = [...newBooks, ...existingBooks];
+
+    fs.writeFileSync(outputPath, JSON.stringify(finalBooks, null, 2));
+    console.log(`Successfully merged books. Added ${newBooks.length} new books. Total: ${finalBooks.length}`);
     console.log(`Saved JSON data to: ${outputPath}`);
 }
 
