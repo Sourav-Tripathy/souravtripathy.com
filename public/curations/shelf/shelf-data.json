@@ -8846,5 +8846,113 @@
         "note": "deep learning fiction"
       }
     ]
+  },
+  {
+    "date": "28th August",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://blog.cloudflare.com/dns-cache-memory-optimization-1111/",
+        "title": "How We Saved 100 Terabytes of Memory by Optimizing 1.1.1.1's DNS Cache (blog.cloudflare.com)",
+        "note": null
+      }
+    ]
+  },
+  {
+    "date": "31st August",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://www.dwarkesh.com/p/openai-huggingface",
+        "title": "The Rise and Fall of Agent Civilizations (dwarkesh.com)",
+        "note": null
+      },
+      {
+        "url": "https://www.planned-obsolescence.org/p/the-hugging-face-attack-surprised",
+        "title": "The Hugging Face Attack Surprised Me (planned-obsolescence.org)",
+        "note": null
+      },
+      {
+        "url": "https://daily.semidoped.com/p/til-the-man-whose-perseverance-made",
+        "title": "TIL: The Man Whose Perseverance Made the Transistor Possible (daily.semidoped.com)",
+        "note": null
+      },
+      {
+        "url": "https://derangedmathematician.substack.com/p/what-is-math",
+        "title": "What Is Math? (Derangedmathematician (Substack))",
+        "note": null
+      },
+      {
+        "url": "https://www.anthropic.com/research/multiagent-systems",
+        "title": "Patterns and Problems in Multiagent Systems (anthropic.com)",
+        "note": null
+      },
+      {
+        "url": "https://physicsgene.substack.com/p/if-light-is-massless-why-is-it-affected",
+        "title": "If Light Is Massless, Why Is It Affected by Gravity (Physicsgene (Substack))",
+        "note": null
+      },
+      {
+        "url": "https://arpericcardo.substack.com/p/lecture-0-why-is-quantum-so-difficult",
+        "title": "Notes #0: Why Is Quantum so Difficult? (Arpericcardo (Substack))",
+        "note": null
+      },
+      {
+        "url": "https://arpericcardo.substack.com/p/lecture-1-the-birth-of-quantum-mechanics",
+        "title": "Notes #1: The Birth of Quantum Mechanics (Arpericcardo (Substack))",
+        "note": null
+      },
+      {
+        "url": "https://0xcc.io/posts/omarchy-root-creds/",
+        "title": "Omarchy: Any User Process Can Escalate to Root (0xcc.io)",
+        "note": null
+      },
+      {
+        "url": "https://patrickcollison.com/dispatches/why-aesthetics",
+        "title": "Why Aesthetics (patrickcollison.com)",
+        "note": null
+      },
+      {
+        "url": "https://simonwillison.net/2026/Aug/30/understanding-chatgpt-work/",
+        "title": "Understanding ChatGPT Work (simonwillison.net)",
+        "note": null
+      },
+      {
+        "url": "https://www.johndcook.com/blog/2026/08/21/ancient-number-system/",
+        "title": "How Would You Know Whether an Ancient Culture Had Zero? (johndcook.com)",
+        "note": null
+      }
+    ]
+  },
+  {
+    "date": "1st September",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://0xcc.io/posts/omarchy-root-creds/",
+        "title": "Omarchy: Any User Process Can Escalate to Root (0xcc.io)",
+        "note": null
+      },
+      {
+        "url": "https://antar.me/blog/delulu-is-the-solulu/",
+        "title": "Delulu Is the Solulu (antar.me)",
+        "note": null
+      },
+      {
+        "url": "https://sfiscience.substack.com/p/sizing-up-the-ghosts-in-the-machines",
+        "title": "Sizing Up the Ghosts in the Machines (Sfiscience (Substack))",
+        "note": null
+      },
+      {
+        "url": "https://garvvee.substack.com/p/no-country-for-mediocre-mathematicians",
+        "title": "No Country for Mediocre Mathematicians (Garvvee (Substack))",
+        "note": null
+      },
+      {
+        "url": "https://republicofphysics.substack.com/p/black-holes-and-the-curse-of-beauty",
+        "title": "Black Holes and the Curse of Beauty (Republicofphysics (Substack))",
+        "note": "Beautifully written"
+      }
+    ]
   }
 ]
