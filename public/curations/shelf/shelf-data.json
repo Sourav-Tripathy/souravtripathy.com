@@ -8954,5 +8954,119 @@
         "note": "Beautifully written"
       }
     ]
+  },
+  {
+    "date": "2nd September",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://www.baseten.co/blog/the-efficient-frontier-of-llm-inference/",
+        "title": "The Efficient Frontier of LLM Inference (baseten.co)",
+        "note": null
+      },
+      {
+        "url": "https://kix.codes/anthropic-banned-me-for-suspicious-signals/",
+        "title": "Anthropic Banned Me for 'Suspicious Signals' (kix.codes)",
+        "note": null
+      },
+      {
+        "url": "https://www.hermit-tech.com/blog/ai-can-make-you-suck-faster-too",
+        "title": "AI Can Make You Suck Faster Too (hermit-tech.com)",
+        "note": null
+      },
+      {
+        "url": "https://mvakde.github.io/blog/novelty",
+        "title": "My Chat with a Nobel Laureate (mvakde.github.io)",
+        "note": null
+      },
+      {
+        "url": "https://www.understandingai.org/p/why-humanoid-robots-wont-catch-up",
+        "title": "Why Humanoid Robots Won't Catch Up to Human Workers Any Time Soon (understandingai.org)",
+        "note": null
+      }
+    ]
+  },
+  {
+    "date": "3rd September",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://cemrehancavdar.com/2026/08/30/making-the-internet-boring/",
+        "title": "Making the Internet Boring (cemrehancavdar.com)",
+        "note": null
+      },
+      {
+        "url": "https://openteams.com/intelligence-vs-cost/",
+        "title": "LLMs: Intelligence vs. Cost (openteams.com)",
+        "note": null
+      },
+      {
+        "url": "https://ashley.rolfmore.com/ai-is-stopping-startups-from-completing-puberty/",
+        "title": "AI Is Stopping Startups from Completing Puberty (ashley.rolfmore.com)",
+        "note": null
+      },
+      {
+        "url": "https://www.fastcompany.com/91563020/aspire-rocket-design-spacex",
+        "title": "Inside the Bold Bet to Rival SpaceX (fastcompany.com)",
+        "note": null
+      },
+      {
+        "url": "https://secondthoughts.ai/p/14-reasons-robotics-is-hard",
+        "title": "14 Reasons Robotics Is Hard (secondthoughts.ai)",
+        "note": null
+      }
+    ]
+  },
+  {
+    "date": "5th September",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://www.anthropic.com/research/formalizing-fermats-last-theorem",
+        "title": "Formalizing Fermat's Last Theorem (anthropic.com)",
+        "note": null
+      },
+      {
+        "url": "https://xenaproject.wordpress.com/2026/09/04/flt-anthropic-has-beaten-me-to-it/",
+        "title": "FLT: Anthropic Has Beaten Me to It (xenaproject.wordpress.com)",
+        "note": null
+      },
+      {
+        "url": "https://simonwillison.net/2026/Sep/3/gpt6-astra/",
+        "title": "GPT-6 Astra (simonwillison.net)",
+        "note": null
+      }
+    ]
+  },
+  {
+    "date": "7th September",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://ceselder.substack.com/p/pivot-to-ai-safety-i-beg-you",
+        "title": "Pivot to AI Safety, I Beg You (Ceselder (Substack))",
+        "note": null
+      },
+      {
+        "url": "https://www.ben-evans.com/benedictevans/2026/9/3/ai-tools-and-transformation",
+        "title": "AI, Tools and Transformation (ben-evans.com)",
+        "note": null
+      },
+      {
+        "url": "https://openai.com/index/an-alien-mind/",
+        "title": "An Alien Mind (openai.com)",
+        "note": null
+      },
+      {
+        "url": "https://bcantrill.dtrace.org/2025/12/05/your-intellectual-fly-is-open/",
+        "title": "Your Intellectual Fly Is Open (bcantrill.dtrace.org)",
+        "note": null
+      },
+      {
+        "url": "https://austinhenley.com/blog/python1024.html",
+        "title": "Making a Python Interpreter in 1024 Bytes (austinhenley.com)",
+        "note": null
+      }
+    ]
   }
 ]
