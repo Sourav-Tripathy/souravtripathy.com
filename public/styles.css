@@ -632,3 +632,84 @@ footer {
     margin-left: 0.4rem;
     font-weight: normal;
 }
+
+/* Bucket List / Life Quests */
+.quests-section {
+    margin-top: 3.5rem;
+    border-top: 1px dashed var(--dim);
+    padding-top: 2rem;
+}
+
+.quests-header {
+    margin-bottom: 1.5rem;
+}
+
+.quests-title {
+    font-size: 1.25rem;
+    color: var(--accent);
+    margin: 0 0 0.25rem 0;
+    font-weight: 700;
+}
+
+.quests-subtitle {
+    font-size: 0.85rem;
+    color: var(--dim);
+    font-style: italic;
+}
+
+.quests-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.quest-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.85rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.quest-box {
+    font-family: var(--font-mono);
+    color: var(--dim);
+    font-weight: 700;
+    user-select: none;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+}
+
+.quest-box.in-progress {
+    color: var(--highlight);
+}
+
+.quest-content {
+    flex: 1;
+}
+
+.quest-name {
+    color: var(--fg);
+    font-weight: 600;
+}
+
+.quest-details {
+    margin-top: 0.25rem;
+    font-size: 0.85rem;
+    color: var(--dim);
+}
+
+.quest-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    padding: 0.1rem 0.45rem;
+    border-radius: 3px;
+    background: rgba(var(--accent-rgb), 0.12);
+    color: var(--accent);
+    margin-left: 0.5rem;
+    font-weight: 400;
+    vertical-align: middle;
+}
