@@ -9068,5 +9068,64 @@
         "note": null
       }
     ]
+  },
+  {
+    "date": "9th September",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://martinfowler.com/articles/exploring-gen-ai/an-accidental-blackboard.html",
+        "title": "An Accidental Blackboard (martinfowler.com)",
+        "note": null
+      },
+      {
+        "url": "https://deepmind.google/blog/alphagenome-atlas-a-predictive-map-of-every-possible-dna-letter-change-in-the-human-genome/",
+        "title": "AlphaGenome Atlas: A Predictive Map of Every Possible DNA Letter Change in the Human Genome (deepmind.google)",
+        "note": null
+      },
+      {
+        "url": "https://openai.com/index/navier-stokes-solution/",
+        "title": "On the Navier–Stokes Millennium Prize Problem (openai.com)",
+        "note": null
+      },
+      {
+        "url": "https://www.astralcodexten.com/p/god-help-us-lets-try-to-learn-about",
+        "title": "God Help Us, Let's Try To Learn About Mechanistic Interpretability Techniques (Astral Codex Ten (Substack))",
+        "note": null
+      }
+    ]
+  },
+  {
+    "date": "10th September",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://mlechner.substack.com/p/the-memory-bandwidth-ladder-what",
+        "title": "The Memory Bandwidth Ladder: What Actually Decides How Fast Your LLM Runs (Mlechner (Substack))",
+        "note": null
+      }
+    ]
+  },
+  {
+    "date": "11th September",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://lemire.me/blog/2026/09/03/python-sets-and-dictionaries-can-have-quadratic-time-performance/",
+        "title": "Python Sets and Dictionaries Can Have Quadratic-Time Performance (lemire.me)",
+        "note": null
+      },
+      {
+        "url": "https://www.uber.com/us/en/blog/uber-eats-search-pipeline/",
+        "title": "Halving the Time: How Uber Eats Rebuilt Its Search Pipeline (uber.com)",
+        "note": null
+      },
+      {
+        "url": "https://www.inventbuild.studio/blog/genuine-creativity-is-your-new-moat",
+        "title": "Genuine Creativity Is Your New Moat (inventbuild.studio)",
+        "note": null
+      }
+    ]
   }
 ]
+
