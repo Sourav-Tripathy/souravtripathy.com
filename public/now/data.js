@@ -1,10 +1,10 @@
 window.nowData = {
   reading: [
     {
-      title: "Gödel, Escher, Bach: An Eternal Golden Braid",
-      titleLink: "https://www.goodreads.com/book/show/24113.G_del_Escher_Bach",
-      author: "Douglas Hofstadter",
-      authorLink: "https://en.wikipedia.org/wiki/Douglas_Hofstadter",
+      title: "I,Robot",
+      titleLink: "https://www.goodreads.com/en/book/show/41804.I_Robot",
+      author: "Isaac Asimov",
+      authorLink: "https://en.wikipedia.org/wiki/Isaac_Asimov",
     }
   ],
   listening: [
