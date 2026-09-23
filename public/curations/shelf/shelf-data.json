@@ -9126,6 +9126,138 @@
         "note": null
       }
     ]
+  },
+  {
+    "date": "12th September",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://www.mathandai.org/",
+        "title": "A Severe Misalignment of AI in Mathematics (mathandai.org)",
+        "note": null
+      }
+    ]
+  },
+  {
+    "date": "14th September",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://idiallo.com/blog/making-changes-mid-sentence",
+        "title": "AI Forces You to Commit to Your Initial Belief (idiallo.com)",
+        "note": null
+      },
+      {
+        "url": "https://bcantrill.dtrace.org/2026/09/13/the-contagion-of-fear/",
+        "title": "The Contagion of Fear (bcantrill.dtrace.org)",
+        "note": null
+      },
+      {
+        "url": "https://yoshuabengio.org/en/publication/why-are-ai-agents-lying-cheating-and-coordinating",
+        "title": "Why Are AI Agents Lying, Cheating and Coordinating? (yoshuabengio.org)",
+        "note": null
+      },
+      {
+        "url": "https://paulgraham.com/powerful.html",
+        "title": "Making Startups Powerful (Paul Graham)",
+        "note": null
+      }
+    ]
+  },
+  {
+    "date": "15th September",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://www.daniellitt.com/blog/2026/9/13/a-beginning-for-mathematics/",
+        "title": "A Beginning for Mathematics (daniellitt.com)",
+        "note": null
+      },
+      {
+        "url": "https://patrickmccanna.net/notes-on-migrating-large-prompts-away-from-anthropic-openai-to-self-hosted-llms/",
+        "title": "Notes on Migrating 35kb Prompts Away from Anthropic/OpenAI to Self-Hosted Ollama+opencode (patrickmccanna.net)",
+        "note": null
+      },
+      {
+        "url": "https://www.amazon.science/blog/why-dont-machine-learning-research-agents-overfit",
+        "title": "Why Machine Learning Research Agents Don't Overfit — and What Compression Has to Do with It (amazon.science)",
+        "note": null
+      }
+    ]
+  },
+  {
+    "date": "16th September",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://www.strix.ai/blog/baseten-harbor-github-pat-takeover",
+        "title": "We Wanted to Use Baseten for Inference. We Ended Up with Admin Access to Baseten GitHub Repos (strix.ai)",
+        "note": null
+      },
+      {
+        "url": "https://blog.coredump.cx/p/inverse-square-law",
+        "title": "Inverse-Square Law (Coredump (Substack))",
+        "note": null
+      }
+    ]
+  },
+  {
+    "date": "17th September",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://www.netmeister.org/blog/everybodys-lost-their-minds.html",
+        "title": "Everybody's Lost Their Minds (netmeister.org)",
+        "note": null
+      },
+      {
+        "url": "https://will-keleher.com/posts/small-programming-tricks-matter/",
+        "title": "Small Programming Tricks (will-keleher.com)",
+        "note": null
+      },
+      {
+        "url": "https://filipovski.net/2026/09/16/backups-arent-simple.html",
+        "title": "Backups Aren't Simple (filipovski.net)",
+        "note": null
+      },
+      {
+        "url": "https://johnsalvatier.org/blog/2017/reality-has-a-surprising-amount-of-detail",
+        "title": "Reality Has a Surprising Amount of Detail (johnsalvatier.org)",
+        "note": null
+      },
+      {
+        "url": "https://eli.thegreenplace.net/2026/how-big-are-factorials/",
+        "title": "How Big Are Factorials? (eli.thegreenplace.net)",
+        "note": "insightful"
+      }
+    ]
+  },
+  {
+    "date": "22nd September",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://alicegg.tech/2026/09/21/attention",
+        "title": "Attention Is All You Have (alicegg.tech)",
+        "note": null
+      },
+      {
+        "url": "https://borischerny.com/management,/product/2026/09/19/I-am-often-wrong.html",
+        "title": "I Am Often Wrong (borischerny.com)",
+        "note": null
+      },
+      {
+        "url": "https://gregorygundersen.com/blog/2018/04/15/backprop/",
+        "title": "Why Backprop Goes Backward (gregorygundersen.com)",
+        "note": null
+      },
+      {
+        "url": "https://substack.davidepiffer.com/p/ai-isnt-outthinking-mathematicians",
+        "title": "AI Isn't Outthinking Mathematicians. It's Out-Remembering Them. (Davidepiffer (Substack))",
+        "note": null
+      }
+    ]
   }
 ]
+
 
