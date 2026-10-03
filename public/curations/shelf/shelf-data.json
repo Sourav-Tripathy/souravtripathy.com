@@ -9257,7 +9257,108 @@
         "note": null
       }
     ]
+  },
+  {
+    "date": "23rd September",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://michaelheap.com/i-dont-want-the-details/",
+        "title": "I Don't Want the Details (michaelheap.com)",
+        "note": null
+      },
+      {
+        "url": "https://jyn.dev/tokens-too-cheap-to-meter/",
+        "title": "Tokens Too Cheap to Meter (jyn.dev)",
+        "note": null
+      }
+    ]
+  },
+  {
+    "date": "28th September",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://sancho.bearblog.dev/google-weird/",
+        "title": "When Did Google Get So F-ing Weird? (sancho.bearblog.dev)",
+        "note": null
+      }
+    ]
+  },
+  {
+    "date": "29th September",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://magazine.sebastianraschka.com/p/classifier-history-and-jev",
+        "title": "Language Models for Text Classification: From Bag-of-Words to Jev (magazine.sebastianraschka.com)",
+        "note": null
+      },
+      {
+        "url": "https://finshots.in/archive/indias-black-powder-problem-with-battery-recycling/",
+        "title": "India's Black Powder Problem with Battery Recycling (Finshots)",
+        "note": null
+      }
+    ]
+  },
+  {
+    "date": "30th September",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://web.mit.edu/phillipi/www/writing/PhD-in-age-of-AI.html",
+        "title": "On the Value of Doing a PhD in the Age of AI (web.mit.edu)",
+        "note": null
+      },
+      {
+        "url": "https://sujithjay.com/internal-platforms",
+        "title": "Defining a Platform is Hard (sujithjay.com)",
+        "note": null
+      },
+      {
+        "url": "https://piggsboson.medium.com/he-spent-19-hours-a-day-doing-math-ac1697d90bde",
+        "title": "He Spent 19 Hours a Day Doing Math (piggsboson.medium.com)",
+        "note": null
+      },
+      {
+        "url": "https://www.quantamagazine.org/mathematicians-harness-randomness-to-crack-a-55-year-old-conjecture-20260928/",
+        "title": "Mathematicians Harness Randomness to Crack a 55-Year-Old Conjecture (quantamagazine.org)",
+        "note": null
+      },
+      {
+        "url": "https://writings.stephenwolfram.com/2026/09/whats-the-future-for-pure-math-research-in-the-age-of-ai/",
+        "title": "What's the Future for Pure Math Research in the Age of AI? (Stephen Wolfram)",
+        "note": null
+      }
+    ]
+  },
+  {
+    "date": "1st October",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://earendil.com/posts/you-said-no-mcp/",
+        "title": "You Said No MCP! (earendil.com)",
+        "note": null
+      },
+      {
+        "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/",
+        "title": "Introducing Gemini 4 Argon (blog.google)",
+        "note": null
+      },
+      {
+        "url": "https://arpericcardo.substack.com/p/classical-cryptography-is-dead",
+        "title": "Classical Cryptography Is Dead (Arpericcardo (Substack))",
+        "note": null
+      },
+      {
+        "url": "https://jamesclear.com/random-ideas-about-life",
+        "title": "Random Ideas About Life (jamesclear.com)",
+        "note": null
+      }
+    ]
   }
 ]
+
 
 
