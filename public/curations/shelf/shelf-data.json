@@ -9426,5 +9426,131 @@
         "note": null
       }
     ]
+  },
+  {
+    "date": "11th October",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://finshots.in/archive/global-food-crisis/",
+        "title": "What's Behind the Looming Global Food Crisis (Finshots)",
+        "note": null
+      },
+      {
+        "url": "https://davidbessis.substack.com/p/attention-is-all-we-have",
+        "title": "Attention Is All We Have (Davidbessis (Substack))",
+        "note": null
+      }
+    ]
+  },
+  {
+    "date": "12th October",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://curtjaimungal.substack.com/p/what-is-rationality",
+        "title": "What Is Rationality? (Curtjaimungal (Substack))",
+        "note": null
+      },
+      {
+        "url": "https://www.argmin.net/p/the-quantification-trap",
+        "title": "The Quantification Trap (argmin.net)",
+        "note": null
+      },
+      {
+        "url": "https://lemire.me/blog/2026/10/12/parsing-json-at-tens-of-gigabytes-per-second-in-python/",
+        "title": "Parsing JSON at Tens of Gigabytes per Second in Python (lemire.me)",
+        "note": null
+      },
+      {
+        "url": "https://softwaredoug.com/blog/2026/10/08/bag-of-decisions.html",
+        "title": "Bag of Decisions Reranker (softwaredoug.com)",
+        "note": null
+      }
+    ]
+  },
+  {
+    "date": "13th October",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://uncynical.substack.com/p/how-to-tell-a-good-story",
+        "title": "How to Tell a Good Story (Uncynical (Substack))",
+        "note": null
+      },
+      {
+        "url": "https://finshots.in/archive/why-the-nobel-prize-in-economics-went-to-robert-hall-and-michael-woodford-2/",
+        "title": "Why the Nobel Prize in Economics Went to Robert Hall and Michael Woodford (Finshots)",
+        "note": null
+      },
+      {
+        "url": "https://www.salmanq.com/blog/understanding-sandboxes/",
+        "title": "Understanding Sandboxes: gVisor, Hypervisors, and Firecracker (salmanq.com)",
+        "note": null
+      },
+      {
+        "url": "https://www.owlposting.com/p/optogenetics-could-change-the-world",
+        "title": "Optogenetics Could Change the World. So Why Hasn't It? (owlposting.com)",
+        "note": null
+      },
+      {
+        "url": "https://physicsgene.substack.com/p/whats-a-black-hole-really",
+        "title": "What's a Black Hole, Really? (Physicsgene (Substack))",
+        "note": null
+      }
+    ]
+  },
+  {
+    "date": "14th October",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://brookslybrand.com/posts/do-frameworks-matter-anymore/",
+        "title": "Do Frameworks Matter Anymore? (brookslybrand.com)",
+        "note": null
+      },
+      {
+        "url": "https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/load-testing-hosted-mcp-servers-with-locust-and-azure-load-testing/4522691",
+        "title": "Load Testing Hosted MCP Servers with Locust and Azure Load Testing (techcommunity.microsoft.com)",
+        "note": null
+      }
+    ]
+  },
+  {
+    "date": "15th October",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://finshots.in/archive/can-starlink-win-indias-internet-war/",
+        "title": "Can Starlink Win India's Internet War? (Finshots)",
+        "note": null
+      },
+      {
+        "url": "https://marginalrevolution.com/marginalrevolution/2026/10/astra-held-its-ground-truth.html",
+        "title": "Astra Held Its Ground (Truth) (Marginal Revolution)",
+        "note": null
+      },
+      {
+        "url": "https://max.nardit.com/articles/karpathy-understanding-llm-outputs#what-did-karpathy-recommend-for-understanding-llm-output",
+        "title": "Karpathy on Understanding LLM Outputs (max.nardit.com)",
+        "note": null
+      }
+    ]
+  },
+  {
+    "date": "16th October",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://sklar.rocks/non-determinism-doesnt-matter/",
+        "title": "Non-Determinism Doesn't Matter (sklar.rocks)",
+        "note": null
+      },
+      {
+        "url": "https://finshots.in/archive/the-new-gst-reforms-explained/",
+        "title": "The New GST Reforms Explained (Finshots)",
+        "note": null
+      }
+    ]
   }
 ]
