@@ -404,7 +404,8 @@ function renderBooks() {
                 // Stars HTML
                 let starsHtml = '';
                 if (book.rating > 0) {
-                    starsHtml = `<span class="book-rating">${'★'.repeat(book.rating)}${'☆'.repeat(5 - book.rating)}</span>`;
+                    const roundedRating = Math.round(book.rating);
+                    starsHtml = `<span class="book-rating" title="${book.rating} / 5">${'★'.repeat(roundedRating)}${'☆'.repeat(Math.max(0, 5 - roundedRating))}</span>`;
                 }
 
                 // Date label

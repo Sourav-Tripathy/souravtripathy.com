@@ -143,14 +143,18 @@ function processBooks() {
 
     const existingIds = new Set(existingBooks.map(b => b.id));
 
-    // Update existing books with CSV changes (shelf status, read date, rating, review if new)
+    // Update existing books with CSV changes (title, pages, shelf status, read date, rating, review)
     existingBooks.forEach(b => {
         const csvB = csvBooksMap.get(b.id);
         if (csvB) {
+            if (csvB.title) b.title = csvB.title;
+            if (csvB.numPages) b.numPages = csvB.numPages;
+            if (csvB.publisher) b.publisher = csvB.publisher;
+            if (csvB.year) b.year = csvB.year;
             if (csvB.shelf) b.shelf = csvB.shelf;
             if (csvB.readDate) b.readDate = csvB.readDate;
             if (csvB.rating > 0) b.rating = csvB.rating;
-            if (!b.review && csvB.review) b.review = csvB.review;
+            if (csvB.review) b.review = csvB.review;
         }
     });
 
