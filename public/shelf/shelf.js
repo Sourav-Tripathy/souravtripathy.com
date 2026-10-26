@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 async function initShelf() {
+    loadCurrentlyReading();
+
     const contentArea = document.getElementById('shelf-content-area');
     contentArea.innerHTML = '<div class="empty-state"><div class="empty-state-title">Loading Reading Shelf...</div><div class="empty-state-desc">Fetching articles from the archive.</div></div>';
 
@@ -450,4 +452,79 @@ function renderBooks() {
 
         contentArea.appendChild(yearSection);
     });
+}
+
+async function loadCurrentlyReading() {
+    const container = document.getElementById('currently-reading-container');
+    const itemsEl = document.getElementById('currently-reading-items');
+    const listeningEl = document.getElementById('currently-listening-container');
+    if (!container || !itemsEl) return;
+
+    try {
+        const response = await fetch('currently-reading.json');
+        if (!response.ok) return;
+        const data = await response.json();
+
+        let reading = [];
+        let listening = [];
+
+        if (Array.isArray(data)) {
+            reading = data;
+        } else if (data) {
+            reading = data.reading || data.books || [];
+            listening = data.listening || data['on repeat'] || data.onRepeat || data.music || [];
+        }
+
+        if (reading.length === 0 && listening.length === 0) {
+            container.style.display = 'none';
+            return;
+        }
+
+        container.style.display = 'block';
+        itemsEl.innerHTML = '';
+
+        reading.forEach(book => {
+            const item = document.createElement('div');
+            item.className = 'currently-reading-item';
+
+            const titleLink = book.titleLink || book.link || '#';
+            const author = book.author || '';
+            const authorLink = book.authorLink || '';
+            const progress = book.progress || book.note || '';
+
+            let authorHtml = '';
+            if (author) {
+                if (authorLink) {
+                    authorHtml = `<span class="currently-reading-author">by <a href="${authorLink}" target="_blank" rel="noopener noreferrer">${author}</a></span>`;
+                } else {
+                    authorHtml = `<span class="currently-reading-author">by ${author}</span>`;
+                }
+            }
+
+            let progressHtml = '';
+            if (progress) {
+                progressHtml = `<span class="currently-reading-progress">${progress}</span>`;
+            }
+
+            item.innerHTML = `
+                <a href="${titleLink}" target="_blank" rel="noopener noreferrer" class="currently-reading-title">${book.title}</a>
+                ${authorHtml}
+                ${progressHtml}
+            `;
+            itemsEl.appendChild(item);
+        });
+
+        if (listening.length > 0 && listeningEl) {
+            listeningEl.style.display = 'flex';
+            const links = listening
+                .map(song => `<a href="${song.link}" target="_blank" rel="noopener noreferrer">${song.title}</a>`)
+                .join(', ');
+            listeningEl.innerHTML = `<span>on repeat:</span> ${links}`;
+        } else if (listeningEl) {
+            listeningEl.style.display = 'none';
+        }
+    } catch (e) {
+        console.warn('Could not load currently reading:', e);
+        if (container) container.style.display = 'none';
+    }
 }

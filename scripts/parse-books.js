@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const csvPath = path.join(__dirname, '../goodreads_library_export.csv');
-const outputPath = path.join(__dirname, '../public/curations/shelf/books-data.json');
+const outputPath = path.join(__dirname, '../public/shelf/books-data.json');
 
 function parseCSV(csvText) {
     const lines = [];
