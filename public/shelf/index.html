@@ -464,28 +464,6 @@
                 gap: 0.45rem;
             }
 
-            .pulse-dot {
-                width: 8px;
-                height: 8px;
-                background-color: var(--highlight);
-                border-radius: 50%;
-                display: inline-block;
-                box-shadow: 0 0 0 rgba(45, 106, 69, 0.4);
-                animation: pulse 2s infinite;
-            }
-
-            @keyframes pulse {
-                0% {
-                    box-shadow: 0 0 0 0 rgba(92, 184, 122, 0.7);
-                }
-                70% {
-                    box-shadow: 0 0 0 7px rgba(92, 184, 122, 0);
-                }
-                100% {
-                    box-shadow: 0 0 0 0 rgba(92, 184, 122, 0);
-                }
-            }
-
             .currently-reading-items {
                 display: flex;
                 flex-direction: column;
@@ -531,17 +509,6 @@
             .currently-reading-author a:hover {
                 color: var(--highlight);
                 border-color: var(--highlight);
-            }
-
-            .currently-reading-progress {
-                font-family: var(--font-mono);
-                font-size: 0.75rem;
-                padding: 0.15rem 0.5rem;
-                border-radius: 3px;
-                background: rgba(var(--accent-rgb), 0.12);
-                color: var(--fg);
-                border: 1px solid rgba(var(--accent-rgb), 0.25);
-                margin-left: auto;
             }
 
             .currently-listening-row {
@@ -652,9 +619,7 @@
                 <!-- Currently Reading Section -->
                 <div id="currently-reading-container" class="currently-reading-box" style="display: none;">
                     <div class="currently-reading-header">
-                        <span class="currently-reading-badge">
-                            <span class="pulse-dot"></span> currently reading
-                        </span>
+                        <span class="currently-reading-badge">currently reading</span>
                     </div>
                     <div id="currently-reading-items" class="currently-reading-items">
                         <!-- Dynamic rendering from currently-reading.json -->
@@ -723,7 +688,7 @@
             <!-- COMMON FOOTER END -->
         </div>
 
-        <script src="shelf.js?v=1.1"></script>
+        <script src="shelf.js?v=1.2"></script>
         <script src="../script.js"></script>
         <script src="../globe.js"></script>
     </body>

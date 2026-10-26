@@ -490,8 +490,6 @@ async function loadCurrentlyReading() {
             const titleLink = book.titleLink || book.link || '#';
             const author = book.author || '';
             const authorLink = book.authorLink || '';
-            const progress = book.progress || book.note || '';
-
             let authorHtml = '';
             if (author) {
                 if (authorLink) {
@@ -501,15 +499,9 @@ async function loadCurrentlyReading() {
                 }
             }
 
-            let progressHtml = '';
-            if (progress) {
-                progressHtml = `<span class="currently-reading-progress">${progress}</span>`;
-            }
-
             item.innerHTML = `
                 <a href="${titleLink}" target="_blank" rel="noopener noreferrer" class="currently-reading-title">${book.title}</a>
                 ${authorHtml}
-                ${progressHtml}
             `;
             itemsEl.appendChild(item);
         });
