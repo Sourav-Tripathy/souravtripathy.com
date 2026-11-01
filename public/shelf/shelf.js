@@ -294,7 +294,11 @@ function renderBooks() {
 
     // Filter books based on shelf and search query
     const filteredBooks = rawBooksData.filter(book => {
-        if (book.shelf !== activeBookShelf) return false;
+        if (activeBookShelf === 'to-read') {
+            if (book.shelf !== 'to-read' && book.shelf !== 'currently-reading') return false;
+        } else if (book.shelf !== activeBookShelf) {
+            return false;
+        }
         
         if (!searchQuery) return true;
         
@@ -411,7 +415,9 @@ function renderBooks() {
                 }
 
                 // Date label
-                const dateLabel = activeBookShelf === 'read' ? `completed on ${book.day}` : `added ${book.day}`;
+                const dateLabel = activeBookShelf === 'read'
+                    ? `completed on ${book.day}`
+                    : (book.shelf === 'currently-reading' ? `<span style="color: var(--accent); font-weight: 500;">currently reading</span>` : `added ${book.day}`);
 
                 // Review HTML
                 let reviewHtml = '';
