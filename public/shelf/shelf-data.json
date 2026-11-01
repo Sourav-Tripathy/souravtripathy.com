@@ -9635,5 +9635,65 @@
         "note": null
       }
     ]
+  },
+  {
+    "date": "26th October",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://www.alfie.wtf/programming/why-i-am-a-programmer.html",
+        "title": "Why I Am a Programmer (alfie.wtf)",
+        "note": null
+      },
+      {
+        "url": "https://www.dbreunig.com/2026/10/24/the-state-of-context-engineering.html",
+        "title": "The State of Context Engineering (dbreunig.com)",
+        "note": null
+      },
+      {
+        "url": "https://www.a16z.news/p/superhuman-hardware-design-is-the",
+        "title": "Superhuman Hardware Design Is the Easy Part (a16z.news)",
+        "note": null
+      }
+    ]
+  },
+  {
+    "date": "27th October",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://finshots.in/archive/why-does-csr-money-go-to-richer-states/",
+        "title": "Why Does CSR Money Go to Richer States? (Finshots)",
+        "note": null
+      },
+      {
+        "url": "https://openai.com/index/building-scientific-understanding-with-academic-communities/",
+        "title": "Working with Academic Communities to Build Scientific Understanding (openai.com)",
+        "note": null
+      }
+    ]
+  },
+  {
+    "date": "28th October",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://felixrieseberg.com/hunger-beats-tenure-advice-for-junior-engineers/",
+        "title": "Hunger Beats Tenure: Advice for Junior Engineers (felixrieseberg.com)",
+        "note": null
+      }
+    ]
+  },
+  {
+    "date": "30th October",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://martinfowler.com/bliki/LLM-Voice.html",
+        "title": "LLM Voice (martinfowler.com)",
+        "note": null
+      }
+    ]
   }
 ]
+
