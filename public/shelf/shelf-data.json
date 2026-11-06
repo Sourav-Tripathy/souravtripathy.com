@@ -9694,6 +9694,63 @@
         "note": null
       }
     ]
+  },
+  {
+    "date": "2nd November",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://finshots.in/archive/has-chinas-ai-bubble-already-burst/",
+        "title": "Has China's AI Bubble Already Burst? (Finshots)",
+        "note": null
+      },
+      {
+        "url": "https://sketch.dev/blog/agent-loop",
+        "title": "Agent Loop (Sketch)",
+        "note": null
+      },
+      {
+        "url": "https://asianometry.passport.online/member/episode/the-rise-of-glm-and-chinas-zhipu-ai",
+        "title": "The Rise of GLM and China's Zhipu AI (Asianometry)",
+        "note": null
+      },
+      {
+        "url": "https://www.noahpinion.blog/p/anthropics-moat-is-claude",
+        "title": "Anthropic's Moat Is Claude (Noahpinion)",
+        "note": null
+      }
+    ]
+  },
+  {
+    "date": "3rd November",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://rikiyat.github.io/blog/weight-space-programming/",
+        "title": "Weight Space Programming",
+        "note": null
+      },
+      {
+        "url": "https://www.seangoedecke.com/llms-are-not-superhuman-at-reading-and-writing-neural-network-weights/",
+        "title": "LLMs Are Not Superhuman at Reading and Writing Neural Network Weights",
+        "note": null
+      },
+      {
+        "url": "https://chalmovsky.com/posts/wtf-ubuntu",
+        "title": "WTF Ubuntu",
+        "note": null
+      }
+    ]
+  },
+  {
+    "date": "5th November",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://knlb.dev/essays/surrender",
+        "title": "Surrender",
+        "note": null
+      }
+    ]
   }
 ]
-
