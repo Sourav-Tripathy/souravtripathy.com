@@ -9752,5 +9752,16 @@
         "note": null
       }
     ]
+  },
+  {
+    "date": "10th November",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://michaelnotebook.com/dci/index.html",
+        "title": "Developing Creative Identity (Michael Nielsen)",
+        "note": "Wonderful essay"
+      }
+    ]
   }
 ]

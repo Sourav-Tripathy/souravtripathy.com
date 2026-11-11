@@ -245,6 +245,10 @@ const curations = {
       title: "On the Need for Understanding",
       link: "https://blog.information-superhighway.net/on-the-need-for-understanding",
     },
+    {
+      title: "Developing Creative Identity (Michael Nielsen)",
+      link: "https://michaelnotebook.com/dci/index.html",
+    },
   ],
   videos: [
     {
