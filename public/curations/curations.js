@@ -268,5 +268,9 @@ const curations = {
         "Mission ISRO with Harsha Bhogle (Spotify Podcast)- (You will never regret listening to this)",
       link: "https://open.spotify.com/show/2JXFCMLGVhTBtdz1WYxd4H",
     },
+    {
+      title: "Death Lecture Series with Shelly Kagan (Open Yale Courses)",
+      link: "https://www.youtube.com/playlist?list=PLEA18FAF1AD9047B0",
+    },
   ],
 };
