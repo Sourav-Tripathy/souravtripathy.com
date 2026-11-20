@@ -269,7 +269,7 @@
     "year": 1965,
     "readDate": null,
     "addedDate": "2026/09/23",
-    "shelf": "to-read",
+    "shelf": "currently-reading",
     "review": null
   },
   {
@@ -965,14 +965,14 @@
     "id": "6334",
     "title": "Never Let Me Go",
     "author": "Kazuo Ishiguro",
-    "rating": 0,
+    "rating": 3.75,
     "publisher": "Vintage Books",
     "numPages": 288,
     "year": 2005,
-    "readDate": null,
+    "readDate": "2026/11/18",
     "addedDate": "2026/07/29",
-    "shelf": "currently-reading",
-    "review": null
+    "shelf": "read",
+    "review": "Hope and uncertainty are beautifully depicted by Kazuo Ishiguro in this book. This was my introduction to his writing, and what an unsettling yet beautiful introduction it turned out to be.<br/><br/>There were instances when I felt strangely uncomfortable with the direction of the story. I had picked this book up without reading the blurb, so I had no idea that the students were being raised to become organ donors. When that gradually became clear to me, I felt an inexplicable uneasiness.<br/><br/>The lives of Kathy, Tommy, and Ruth are beautiful in a rather heartbreaking way. They know, or at least gradually come to understand, what awaits them and how inevitable it all is. Yet they continue to hope. They hold on to rumours, possibilities, and the faintest suggestions that perhaps there might be another way. They find meaning in these little possibilities, and there is something incredibly elegant about that.<br/>You see the fragility and vulnerability of human beings through these characters. I particularly liked how Ishiguro explores the nuances of their behaviour, their relationships, their insecurities, and the little things they say and do. Perhaps that is the point of the story. It is in these nuances that we find the things we often forget to stop and look at, the little details that reveal so much about being human.<br/><br/>Friendship carries its own heaviness in this story. There is jealousy, resentment, affection, guilt, and an inability to fully articulate what one feels. Yet, amidst all of that, there is a small, beautiful picture of innocence and thoughtfulness that I found wonderful to read.Perhaps Kathy, Tommy and Ruth aren't tragic because they are destined to die. They are tragic because, in that respect, they are not particularly different from us."
   },
   {
     "id": "295",
@@ -2380,7 +2380,7 @@
   },
   {
     "id": "38376059",
-    "title": "On Drinking",
+    "title": "On Drinking: Charles Bukowski's Definitive Collection of Poetry and Prose on Alcohol, Life, and the Art of Writing",
     "author": "Charles Bukowski",
     "rating": 0,
     "publisher": "Ecco",

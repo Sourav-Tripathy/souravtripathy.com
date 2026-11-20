@@ -303,7 +303,7 @@ function renderBooks() {
         if (!searchQuery) return true;
         
         const titleMatch = book.title && book.title.toLowerCase().includes(searchQuery);
-        const authorMatch = book.author && book.author.toLowerCase().includes(searchQuery);
+        const authorMatch = book.author && (book.author.toLowerCase().includes(searchQuery) || book.author.replace(/\s+/g, ' ').toLowerCase().includes(searchQuery));
         const reviewMatch = book.review && book.review.toLowerCase().includes(searchQuery);
         const tagMatch = book.tags && book.tags.some(t => t.toLowerCase().includes(searchQuery));
         
