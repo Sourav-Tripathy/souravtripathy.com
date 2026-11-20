@@ -9763,5 +9763,64 @@
         "note": "Wonderful essay"
       }
     ]
+  },
+  {
+    "date": "13th November",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://roll.bybacon.com/2026/10/14/vibes-dont-maintain.html",
+        "title": "Vibes Don't Maintain (roll.bybacon.com)",
+        "note": null
+      },
+      {
+        "url": "https://roll.bybacon.com/2026/09/16/always-be-knolling.html",
+        "title": "Always Be Knolling (roll.bybacon.com)",
+        "note": null
+      }
+    ]
+  },
+  {
+    "date": "16th November",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://www.lesswrong.com/posts/mepsi7JNKYejq9wry/eval-awareness-vs-eval-paranoia",
+        "title": "Eval Awareness vs Eval Paranoia (lesswrong.com)",
+        "note": null
+      },
+      {
+        "url": "https://jakub.jankiewicz.org/blog/ai-code-open-source/",
+        "title": "All AI-Generated Code Should Be Open Source (Jakub T. Jankiewicz)",
+        "note": null
+      },
+      {
+        "url": "https://www.lesswrong.com/posts/fooXeRHjgpv4TcoRy/elegy-for-what-s-left-of-the-normal",
+        "title": "Elegy for What's Left of the Normal (lesswrong.com)",
+        "note": null
+      }
+    ]
+  },
+  {
+    "date": "17th November",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://arcentry.com/blog/do-repeat-yourself/",
+        "title": "Do Repeat Yourself (arcentry.com)",
+        "note": null
+      }
+    ]
+  },
+  {
+    "date": "19th November",
+    "year": 2026,
+    "links": [
+      {
+        "url": "https://invertedpassion.substack.com/p/making-sense-of-recursive-self-improvement",
+        "title": "Making Sense of Recursive Self-Improvement (Inverted Passion (Substack))",
+        "note": null
+      }
+    ]
   }
 ]
